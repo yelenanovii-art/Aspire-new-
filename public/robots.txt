@@ -1,0 +1,16 @@
+# Aspire Agency Marketing
+User-agent: *
+Allow: /
+
+# AI answer engines are welcome — every page ships real prerendered HTML.
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# Plain-text summary for AI answer engines
+# https://www.aspireagencymarketing.com/llms.txt
+
+Sitemap: https://www.aspireagencymarketing.com/sitemap.xml

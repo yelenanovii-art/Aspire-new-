@@ -1,0 +1,353 @@
+/* ============================================================
+   Aspire Agency
+   Near-black ink on white paper. Coral used sparingly.
+   Bodoni Moda display (echoes the "Aspire." wordmark) + Inter text.
+   Tokens, resets, typography, buttons, utilities.
+   ============================================================ */
+
+:root {
+  /* Ink. Not a neutral black: every dark carries a trace of the accent's hue,
+     so the palette reads as one family rather than teal dropped onto grey.
+     That shared undertone is most of what "depth" actually is. */
+  --ink: #0b1316;
+  --ink-900: #060c0e;
+  --ink-800: #141e22;
+  --ink-700: #243238;
+  --ink-600: #3d4e55;
+
+  /* The one accent: deep teal. A Didone wants a colour with the same weight
+     as its hairlines are fine — a high-chroma orange fights it. Teal also
+     sits well outside the palette every other agency reaches for.
+     --accent       fills, the wordmark's period, and the dark-hero glow
+     --accent-hover the CTA hover state
+     --accent-600   text on white (9.9:1 against #fff — well past AA)
+     --accent-700   error text, which has to stay legible at small sizes
+     --accent-rgb   the same hue as channels, for the translucent hero glows
+     Swapping the accent means editing this block and nothing else. */
+  --accent: #0d5c6b;
+  --accent-hover: #10707f;
+  --accent-600: #0a4a57;
+  --accent-700: #073742;
+  --accent-tint: #ddf0f3;
+  --accent-tint-2: #8fc9d4;
+  --accent-rgb: 13, 92, 107;
+
+  /* Neutrals, cooled to the same hue family as the ink and the accent.
+     --page-alt is deliberately deeper than a hairline off-white: a band you can
+     actually see is what separates sections without needing a border. */
+  --body: #45525a;
+  /* --muted measured 3.9:1 on --page-alt, short of the 4.5 needed for body
+     size text. This is the lightest value that clears 4.5 on both white and
+     --page-alt, so the grey stays quiet without failing. */
+  --muted: #5e6a6f;
+  --muted-light: #9aa6ab;
+  --line: #e1e7ea;
+  --line-strong: #c8d3d7;
+  --surface: #ffffff;
+  --page: #ffffff;
+  --page-alt: #e6edef;
+  --page-deep: #e2e9ec;
+  --white: #ffffff;
+
+  /* Layered section grounds. Flat fills are what made the light sections read
+     as empty; a gradient plus a faint tint of the accent gives them a light
+     source and a direction. */
+  --wash-light: linear-gradient(180deg, #eff4f5 0%, var(--page-alt) 100%);
+  --wash-dark:
+    radial-gradient(90% 70% at 78% 0%, rgba(13, 92, 107, 0.22) 0%, transparent 60%),
+    linear-gradient(180deg, #101b1f 0%, var(--ink) 55%, #080f12 100%);
+  /* Cards sit on the grounds above, so they need their own subtle lift. */
+  --card-fill: linear-gradient(168deg, #ffffff 0%, #ffffff 100%);
+
+  /* Type.
+     --display is a tight grotesque: sharp, and legible at every size, which a
+     high-contrast Didone is not once it drops below ~28px. The wordmark keeps
+     the Didone (see --wordmark) so the logo still reads as the brand mark. */
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --display: "Inter Tight", "Inter", -apple-system, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* The wordmark keeps its own face, independent of --display: it is the logo,
+     so it should not change when the heading font does. */
+  --wordmark: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
+
+  /* Display faces need different weight and tracking to hold at large sizes —
+     a serif wants light and open, a grotesque wants bold and tight. Every
+     display heading reads these, so changing --display means changing these
+     three and the font link in index.html, and nothing else.
+       --display-w        section titles, card titles, stat figures
+       --display-w-light  the largest type (hero, page titles, CTA band)
+       --display-ls       tracking */
+  --display-w: 700;
+  --display-w-light: 700;
+  --display-ls: -0.032em;
+
+  /* Layout */
+  --maxw: 1180px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 22px;
+
+  /* Elevation — neutral, since the palette is neutral. */
+  /* Shadows tinted with the ink rather than pure black, so they sink into the
+     page instead of greying it out. */
+  --shadow-sm: 0 1px 2px rgba(11, 19, 22, 0.05), 0 8px 24px rgba(11, 19, 22, 0.06);
+  --shadow-md: 0 14px 38px rgba(11, 19, 22, 0.11), 0 3px 8px rgba(11, 19, 22, 0.07);
+  --shadow-lg: 0 32px 70px rgba(6, 12, 14, 0.22);
+  --shadow-accent: 0 10px 30px rgba(var(--accent-rgb), 0.30);
+
+  --nav-h: 76px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* The mobile drawer parks off-canvas to the right when closed. `hidden` on
+     body alone clips it visually but the document still reports the wider
+     scroll width, which is a real horizontal scroll on narrow phones. `clip`
+     removes it from the scroll area without creating a scroll container, so
+     position: sticky and smooth scrolling keep working. */
+  overflow-x: clip;
+}
+
+/* Anchor targets clear the fixed nav when scrolled to. */
+:where([id]) { scroll-margin-top: calc(var(--nav-h) + 18px); }
+
+/* Visible keyboard focus (mouse clicks stay ring-free). */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+/* Display headings. Bodoni is a Didone: high stroke contrast, so it wants
+   tight tracking, generous size and normal (not bold) weight to stay elegant.
+   font-optical-sizing keeps the hairlines from disappearing at large sizes. */
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  line-height: 1.06;
+  letter-spacing: var(--display-ls);
+  margin: 0;
+  color: var(--ink);
+  font-optical-sizing: auto;
+}
+/* Small headings drop back to the sans — Bodoni is too fragile here. */
+h4, h5, h6 {
+  font-family: var(--sans);
+  font-weight: 700;
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: -0.012em;
+  line-height: 1.35;
+}
+
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img, svg { max-width: 100%; display: block; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+strong { font-weight: 700; color: var(--ink); }
+
+::selection { background: var(--ink); color: #fff; }
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+.container--narrow { max-width: 780px; }
+
+.section { padding-block: clamp(56px, 7vw, 100px); }
+.section--tight { padding-block: clamp(40px, 5vw, 68px); }
+.section--alt { background: var(--wash-light); }
+.section--deep { background: var(--page-deep); }
+.section--dark { background: var(--wash-dark); color: #9fb0b6; }
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h4 { color: #fff; }
+.section--dark .lead { color: #9fb0b6; }
+.section--dark strong { color: #fff; }
+
+/* A hairline between same-coloured sections, so the page has structure
+   without a heavy border every time. */
+.section--ruled { border-top: 1px solid var(--line); }
+
+/* For a section that continues the block above it rather than opening a new
+   one — two stacked section paddings otherwise read as a hole in the page. */
+.section--flush-top { padding-top: 0; }
+
+/* ---------- Section openers ---------- */
+/* Small caps label above a section heading. Set in the mono face: on a site
+   about tech companies, data labels reading as data is the point. */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  margin: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+}
+.eyebrow--light { color: var(--accent-tint-2); }
+
+.section-title {
+  font-size: clamp(31px, 4.8vw, 56px);
+  max-width: 19ch;
+}
+.section-title--wide { max-width: 26ch; }
+
+.lead {
+  font-size: clamp(16.5px, 1.5vw, 19.5px);
+  color: var(--body);
+  max-width: 58ch;
+  margin-top: 20px;
+  line-height: 1.58;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  border: 1.5px solid transparent;
+  transition: transform 0.18s ease, background 0.2s ease, box-shadow 0.2s ease,
+    color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.btn-sm { padding: 10px 19px; font-size: 14px; }
+.btn-lg { padding: 16px 32px; font-size: 15.5px; }
+
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover { background: var(--accent-hover); box-shadow: var(--shadow-accent); transform: translateY(-2px); }
+
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: var(--ink-700); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn-outline:hover { border-color: var(--ink); background: rgba(14, 14, 16, 0.03); }
+
+.btn-outline-light { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+.btn-outline-light:hover { border-color: #fff; background: rgba(255, 255, 255, 0.09); }
+
+.btn-paper { background: var(--white); color: var(--ink); }
+.btn-paper:hover { background: #fff; box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+/* Shine sweep across the primary CTA — hover on desktop, one-shot on touch
+   (useReveal adds .is-swept the first time the button scrolls into view). */
+.btn-accent::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.38) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.btn-accent:hover::after { animation: sweep 0.75s ease; }
+@media (hover: none) and (pointer: coarse) {
+  .btn-accent.is-swept::after { animation: sweep 0.9s ease 0.15s; }
+}
+@keyframes sweep {
+  to { transform: translateX(120%); }
+}
+
+.arrow { transition: transform 0.2s ease; flex: none; }
+.btn:hover .arrow,
+.link-arrow:hover .arrow { transform: translateX(4px); }
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent-600);
+}
+.link-arrow:hover { color: var(--ink); }
+.link-arrow--light { color: var(--accent-tint-2); }
+.link-arrow--light:hover { color: #fff; }
+
+/* ---------- Wide tables scroll on small screens ---------- */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.72s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.72s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Screen-reader-only text (skip link target labels, visually hidden headings) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link — visible only when focused. */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 200;
+  background: var(--ink);
+  color: #fff;
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: top 0.18s ease;
+}
+.skip-link:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  html { scroll-behavior: auto; }
+  * { animation: none !important; }
+}

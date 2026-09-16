@@ -1,0 +1,22 @@
+{
+  "name": "aspire-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Aspire Agency — sales & marketing partner. Barcelona. Standalone marketing site.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/prerender.mjs",
+    "build:spa": "vite build",
+    "prerender": "node scripts/prerender.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.10"
+  }
+}

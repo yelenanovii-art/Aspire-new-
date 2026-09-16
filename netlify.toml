@@ -1,0 +1,51 @@
+# Build + security configuration for Netlify.
+#
+# The CSP below is strict: script-src is 'self' with no 'unsafe-inline'. That
+# works because every inline <script> in the build is type="application/ld+json"
+# (a data block, not executable JS), verified at build time. If you ever add an
+# inline executable <script>, this CSP will block it — hash it or move it to a
+# file rather than loosening the policy.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ── Security headers, applied to every response ─────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 'unsafe-inline' appears ONLY in style-src, because React writes inline
+    # style attributes (e.g. style={{ '--delay': '60ms' }}). Style injection is
+    # far lower risk than script injection, and script-src stays strict.
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
+    # Two years, all subdomains. Do NOT add "preload" until you are certain
+    # every current and future subdomain will always serve HTTPS: preload lists
+    # are slow and painful to get removed from.
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+
+    # The site uses none of these, so switch them all off rather than leaving
+    # them available to injected code.
+    Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), interest-cohort=()"
+
+# ── Caching ─────────────────────────────────────────────────────────────────
+# Vite fingerprints these filenames, so they can be cached permanently.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML must revalidate, or a deploy will not reach people who have visited.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
