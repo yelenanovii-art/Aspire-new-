@@ -113,15 +113,18 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Inter Tight sets every heading; Inter carries body text (one
-         superfamily, so nothing clashes). Bodoni Moda is loaded only for the
-         "Aspire." wordmark — see --wordmark in index.css. -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,400..600&display=swap"
-      rel="stylesheet"
-    />
+         superfamily, so nothing clashes). Bodoni Moda is used only for the
+         "Aspire." wordmark — see --wordmark in index.css.
+
+         All four are self-hosted from /fonts (see the @font-face block at the
+         top of index.css), so there is no request to Google and no preconnect
+         to any third party. Only the two families used above the fold are
+         preloaded; the wordmark and mono faces load normally. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/inter-latin-wght-normal.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/inter-tight-latin-wght-normal.woff2" />
     <!-- Icons generated from the wordmark's own "A" (scripts note: see
          public/brand/aspire-logo-light.png). The small sizes carry no accent
          dot: at 16px it would be a single pixel. -->

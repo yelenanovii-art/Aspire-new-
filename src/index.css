@@ -1,9 +1,54 @@
 /* ============================================================
    Aspire Agency
-   Near-black ink on white paper. Coral used sparingly.
-   Bodoni Moda display (echoes the "Aspire." wordmark) + Inter text.
+   Near-black ink on white paper. Deep teal used sparingly.
+   Inter Tight display + Inter text; Bodoni Moda is the wordmark only.
    Tokens, resets, typography, buttons, utilities.
    ============================================================ */
+
+/* ── Self-hosted fonts ───────────────────────────────────────
+   Served from our own origin rather than fonts.googleapis.com, so no visitor
+   IP is handed to a third party. That matters for a Barcelona business with a
+   GDPR notice, and it lets the CSP drop every external origin.
+
+   One variable file per family covers every weight we use (160KB for all
+   four, latin subset only, which carries the full Spanish character set).
+   Files come from @fontsource-variable/* v5.3.0; to update, reinstall those
+   packages and re-copy files/<family>-latin-wght-normal.woff2 into
+   public/fonts/. Declared under the plain family names so every existing
+   font-family token keeps working untouched.
+   ──────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/bodoni-moda-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 :root {
   /* Ink. Not a neutral black: every dark carries a trace of the accent's hue,
