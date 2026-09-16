@@ -18,6 +18,13 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# scripts/prerender.mjs drives a headless Chrome to write static HTML per
+# route, and deliberately fails the build rather than shipping a JS-only site
+# if it cannot find one. Netlify's image has no Chrome, so this plugin
+# installs one and exports CHROME_PATH, which findChrome() looks for.
+[[plugins]]
+  package = "netlify-plugin-chromium"
+
 # ── Security headers, applied to every response ─────────────────────────────
 [[headers]]
   for = "/*"

@@ -1,6 +1,7 @@
 # Aspire — Agency Website
 
-Marketing site for Aspire Agency Marketing (Barcelona). Multi-page, prerendered
+Marketing site for Aspire Agency (Barcelona), registered as Aspire Agency
+Marketing. Multi-page, prerendered
 for search, built on the brand's own monochrome identity with a single deep-teal
 accent.
 
@@ -187,9 +188,15 @@ VITE_SOCIAL_LINKEDIN=https://www.linkedin.com/company/...
 
 ## Deploy
 
-Deploy `dist/` to any static host. On Netlify the included `public/_redirects`
-handles the SPA fallback; the prerendered `dist/<route>/index.html` files take
-precedence, so crawlers get real HTML and visitors still get the SPA.
+Deploy `dist/` to any static host. Every route is prerendered to its own
+`dist/<route>/index.html`, so there is deliberately **no** SPA catch-all: a
+`/*  /index.html  200` rule would answer unknown URLs with the home page at
+HTTP 200, which hides `dist/404.html` and reads as a soft 404 to crawlers.
+Unknown URLs should fall through to `404.html` with a real 404 status.
+
+`netlify.toml` owns the build command, the Chrome plugin the prerender needs,
+the security headers (a strict CSP naming no external origin) and the cache
+rules. Check those first if a header is not arriving in production.
 
 The prerender step needs Chrome. It finds it automatically on macOS, and on
 Netlify via `netlify-plugin-chromium` (which sets `CHROME_PATH`). Without
