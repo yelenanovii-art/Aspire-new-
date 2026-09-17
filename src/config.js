@@ -31,7 +31,9 @@ export const bookAttrs = BOOKING_URL ? { target: '_blank', rel: 'noopener norefe
 // shipping a dead link — it goes live automatically once filled in.
 const cleanSocial = (u) => (!u || /your-|example|placeholder/i.test(u) ? '' : u)
 export const SOCIAL = {
-  linkedin: cleanSocial(import.meta.env.VITE_SOCIAL_LINKEDIN || ''),
+  // Public company page, recovered from the Wix site's admin link
+  // (company 87186403). Env var still overrides if it ever changes.
+  linkedin: cleanSocial(import.meta.env.VITE_SOCIAL_LINKEDIN || 'https://www.linkedin.com/company/87186403/'),
   instagram: cleanSocial(import.meta.env.VITE_SOCIAL_INSTAGRAM || ''),
   youtube: cleanSocial(import.meta.env.VITE_SOCIAL_YOUTUBE || ''),
 }
