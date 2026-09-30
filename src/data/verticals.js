@@ -78,8 +78,6 @@ export const ESTATE = {
       alt: 'Open kitchen with a stone island under a vaulted timber ceiling' },
     { id: 'villa-terrace', src: '/media/estate/villa-terrace.webp', label: 'Terrace', ratio: '3 / 2',
       alt: 'Stone villa terrace set for dining beneath a cypress tree' },
-    { id: 'detail-deck', src: '/media/estate/detail-deck.webp', label: 'On board', ratio: '3 / 2',
-      alt: 'Champagne poured into a glass on a yacht deck above turquoise water' },
     { id: 'villa-aerial', src: '/media/estate/villa-aerial.webp', label: 'Estate from the air', ratio: '16 / 9', span: 2,
       alt: 'Aerial panorama of a villa estate in the Tuscan hills at dusk' },
     { id: 'villa-overhead', src: '/media/estate/villa-overhead.webp', label: 'Overhead', ratio: '4 / 5',
@@ -90,8 +88,6 @@ export const ESTATE = {
       alt: 'A shaded timber terrace with loungers opening onto the garden' },
     { id: 'yacht-moored', src: '/media/estate/yacht-moored.webp', label: 'At her berth', ratio: '3 / 2',
       alt: 'A motor yacht at anchor below a clifftop villa on a wooded headland' },
-    { id: 'on-deck', src: '/media/estate/on-deck.webp', label: 'On deck', ratio: '3 / 2',
-      alt: 'Two guests relaxing on the aft deck of a motor yacht at anchor' },
   ],
   // Alternates already processed and sitting in public/media/estate/, ready to
   // swap into the gallery: lodge-deck, villa-overhead, villa-coast,

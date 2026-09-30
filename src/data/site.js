@@ -86,7 +86,7 @@ export const COMPARE = {
 export const SERVICES = [
   {
     slug: 'sales',
-    photo: { src: '/media/pages/svc-sales.webp', alt: 'Delegates in conversation at an evening reception during a trade show' },
+    photo: { src: '/media/pages/svc-sales.webp', alt: 'Two people in conversation beside a product display at a trade show' },
     n: '01',
     nav: 'Sales, in person and digital',
     title: 'Sales, in person and digital',
