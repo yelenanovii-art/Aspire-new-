@@ -136,7 +136,7 @@ export const SERVICES = [
   },
   {
     slug: 'business-development',
-    photo: { src: '/media/pages/svc-bizdev.webp', alt: 'The team gathered outside the Integrated Systems Europe venue in Barcelona' },
+    photo: { src: '/media/pages/svc-bizdev.webp', alt: 'Two people in conversation beside an exhibition stand' },
     n: '02',
     nav: 'Business development',
     title: 'Business development',
@@ -457,8 +457,6 @@ export const PAGE_MEDIA = {
     { src: '/media/pages/svc-meeting.webp',
       alt: 'Two people in conversation beside an exhibition stand' },
   ],
-  contact: { src: '/media/pages/contact-venue.webp',
-    alt: 'The Integrated Systems Europe venue in Barcelona under a clear sky' },
   ai: { src: '/media/pages/ai-led.webp',
     alt: 'A performer in front of a full height LED wall on a show floor' },
 }
@@ -468,7 +466,7 @@ export const PAGE_MEDIA = {
 // show in Barcelona.
 export const WORK_BAND = [
   { src: '/media/work/ise-team.webp',
-    alt: 'The team photographed together outside the Integrated Systems Europe venue in Barcelona' },
+    alt: 'Organisers gathered outside the Integrated Systems Europe venue in Barcelona' },
   { src: '/media/work/ise-floor.webp',
     alt: 'Crowded exhibition floor at Integrated Systems Europe under gantry signage' },
   { src: '/media/work/ise-installation.webp',
