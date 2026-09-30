@@ -435,39 +435,48 @@ export const TEAM = [
 // photographs carry no event metadata, and a wrong show name on a client's
 // stand is worse than no name. Add the real ones when you know them.
 // ---------------------------------------------------------------------------
+// Three wide frames for the About page, cut from the same event masters as
+// the carousel but landscape, since they run three-up rather than as a strip.
+export const ABOUT_BAND = [
+  { src: '/media/about/in-barcelona.webp',
+    alt: 'A conference group photographed in front of Casa Batlló in Barcelona' },
+  { src: '/media/about/the-group.webp',
+    alt: 'A large group of delegates photographed together outdoors on a lawn' },
+  { src: '/media/about/awards.webp',
+    alt: 'Four people holding awards on a red carpet beside a sponsor banner' },
+]
+
 export const ONSITE = [
-  { src: '/media/events/filming-stand.webp', caption: 'Filming a demo on the stand',
-    alt: 'Two people filming a product demonstration on a phone at an exhibition stand' },
-  { src: '/media/events/on-the-floor.webp', caption: 'Working the floor',
-    alt: 'Two of the team reviewing something on a phone at a conference' },
-  { src: '/media/events/on-the-mic.webp', caption: 'Presenting',
-    alt: 'Speaking into a microphone at an event' },
-  { src: '/media/events/capturing-talk.webp', caption: 'Capturing a talk',
-    alt: 'A camera on a tripod filming a speaker on stage' },
-  { src: '/media/events/studio-setup.webp', caption: 'Lighting a set',
-    alt: 'Studio lighting and a camera tripod set up for an interview' },
-  { src: '/media/events/stand-team.webp', caption: 'On the stand',
-    alt: 'The team with clients at an exhibition stand' },
   { src: '/media/events/on-stage.webp', caption: 'On stage',
     alt: 'Two people shaking hands on a stage at an event' },
-  { src: '/media/events/show-floor.webp', caption: 'Show floor, after dark',
-    alt: 'A lit installation on an exhibition show floor' },
-  // Captions below describe only what is visible in each frame. Where an event
-  // name is not on the signage it is left out rather than guessed.
   { src: '/media/events/idm-stand.webp', caption: 'On the stand for Interactive Digital Media',
     alt: 'An exhibition stand branded for Interactive Digital Media, with a presenter beside the display' },
-  { src: '/media/events/awards-stage.webp', caption: 'Awards night',
-    alt: 'A line of award winners holding trophies on a lit stage' },
   { src: '/media/events/awards-night.webp', caption: 'On the red carpet',
     alt: 'Four people holding awards on a red carpet beside a sponsor banner' },
+  { src: '/media/events/filming-stand.webp', caption: 'Filming a demo on the stand',
+    alt: 'Two people filming a product demonstration on a phone at an exhibition stand' },
   { src: '/media/events/barcelona-group.webp', caption: 'Delegates in Barcelona',
     alt: 'A large group photographed in front of Casa Batlló in Barcelona' },
-  { src: '/media/events/team-offsite.webp', caption: 'The whole group, outdoors',
-    alt: 'A large conference group photographed together on a lawn' },
-  { src: '/media/events/push-beyond.webp', caption: 'Push Beyond',
-    alt: 'Attendees gathered beside a large letter sculpture under a Push Beyond banner' },
+  { src: '/media/events/on-the-mic.webp', caption: 'Presenting',
+    alt: 'Speaking into a microphone at an event' },
   { src: '/media/events/nrw-stand.webp', caption: 'On the stand in North Rhine Westphalia',
     alt: 'Two people talking at a trade stand with product screens behind them' },
+  { src: '/media/events/capturing-talk.webp', caption: 'Capturing a talk',
+    alt: 'A camera on a tripod filming a speaker on stage' },
+  { src: '/media/events/awards-stage.webp', caption: 'Awards night',
+    alt: 'A line of award winners holding trophies on a lit stage' },
+  { src: '/media/events/on-the-floor.webp', caption: 'Working the floor',
+    alt: 'Two of the team reviewing something on a phone at a conference' },
+  { src: '/media/events/push-beyond.webp', caption: 'Push Beyond',
+    alt: 'Attendees gathered beside a large letter sculpture under a Push Beyond banner' },
+  { src: '/media/events/studio-setup.webp', caption: 'Lighting a set',
+    alt: 'Studio lighting and a camera tripod set up for an interview' },
+  { src: '/media/events/team-offsite.webp', caption: 'The whole group, outdoors',
+    alt: 'A large conference group photographed together on a lawn' },
+  { src: '/media/events/stand-team.webp', caption: 'On the stand',
+    alt: 'The team with clients at an exhibition stand' },
+  { src: '/media/events/show-floor.webp', caption: 'Show floor, after dark',
+    alt: 'A lit installation on an exhibition show floor' },
 ]
 
 // ---------------------------------------------------------------------------

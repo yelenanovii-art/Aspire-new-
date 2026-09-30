@@ -5,7 +5,7 @@ import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import CTABand from '../components/CTABand'
 import { bookHref, bookAttrs, COMPANY, SITE_URL } from '../config'
-import { VALUES, STATS, TEAM } from '../data/site'
+import { VALUES, STATS, TEAM, ABOUT_BAND } from '../data/site'
 import { useJsonLd } from '../hooks/useJsonLd'
 
 export default function About() {
@@ -108,6 +108,26 @@ export default function About() {
             lede="You will meet all four. There is no account manager between you and the person running your account."
           />
           <Team />
+        </div>
+      </section>
+
+      {/* The roster above says who they are; this says where they actually
+          are. Wide frames rather than the home page's portrait strip, because
+          three-up needs the room. */}
+      <section className="section section--tight">
+        <div className="container">
+          <SectionHead
+            eyebrow="In the field"
+            title="Most of the work happens on site."
+            lede="Conferences, stands, shoots and client events across Europe, which is where the content comes from and where most of the pipeline starts."
+          />
+          <ul className="band">
+            {ABOUT_BAND.map((p, i) => (
+              <li className="band__item reveal" style={{ '--delay': `${i * 70}ms` }} key={p.src}>
+                <img src={p.src} alt={p.alt} width="900" height="563" loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
