@@ -268,7 +268,10 @@
 
 .nav__scrim {
   position: fixed;
-  inset: 0;
+  /* Starts BELOW the bar. The scrim is a child of <header class="nav">, so
+     with inset:0 it painted over the header's own background and turned the
+     solid white bar grey (255*0.56 + 8*0.44 = 146). */
+  inset: var(--nav-h) 0 0 0;
   background: rgba(14, 14, 16, 0.42);
   opacity: 0;
   visibility: hidden;
@@ -2830,25 +2833,26 @@
    backdrop-filter is doing the readability work here, so everything below is
    guarded: without it a translucent panel over a photograph is unreadable, and
    the @supports fallback goes solid instead. */
-.nav--open {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+/* .nav.nav--open, not .nav--open: the base rule is .nav:not(.nav--over-dark),
+   which is (0,2,0) and outranks a lone class. Matching its specificity and
+   sitting later is what lets this win.
+   Solid, not translucent: glass looked right over a plain ground, but the hero
+   headline read straight through it, which is the opposite of what a menu has
+   to do. */
+.nav.nav--open {
+  background: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom-color: rgba(11, 19, 22, 0.08);
 }
 /* The bar is glass now, so its contents are dark regardless of what is behind. */
 .nav--open .nav__burger span { background: var(--ink); }
 
 .nav__drawer {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: saturate(180%) blur(26px);
-  -webkit-backdrop-filter: saturate(180%) blur(26px);
-  border-left: 1px solid rgba(255, 255, 255, 0.55);
-  /* A hairline inner highlight is what separates glass from "slightly
-     transparent panel": it catches the edge the way real glass does. */
-  box-shadow:
-    inset 1px 0 0 rgba(255, 255, 255, 0.6),
-    -18px 0 48px -24px rgba(11, 19, 22, 0.45);
+  /* Opaque. Nothing behind the panel should be legible through it. */
+  background: #fff;
+  border-left: 1px solid rgba(11, 19, 22, 0.08);
+  box-shadow: -18px 0 48px -24px rgba(11, 19, 22, 0.5);
 }
 .nav__drawer-h { color: var(--muted); }
 .nav__drawer-link { color: var(--ink); }
@@ -2859,7 +2863,4 @@
    lifts contrast for the drawer text at the same time. */
 .nav--open .nav__scrim { background: rgba(8, 14, 16, 0.44); }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .nav--open { background: #fff; }
-  .nav__drawer { background: #fff; box-shadow: -18px 0 48px -24px rgba(11, 19, 22, 0.45); }
-}
+
