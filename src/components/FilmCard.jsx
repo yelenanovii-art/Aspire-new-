@@ -19,12 +19,18 @@ export default function FilmCard({ src, poster, label, note, ratio = '16 / 9', s
     videoRef.current?.pause?.()
   }
 
+  // "16 / 9" -> 1.78. Falls back to 1 so a malformed ratio cannot collapse a card.
+  const ar = (() => {
+    const [w, h] = String(ratio).split('/').map((n) => parseFloat(n))
+    return w > 0 && h > 0 ? w / h : 1
+  })()
+
   const fine = typeof window !== 'undefined' &&
     window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
   return (
     <figure
-      className="film"
+      className={`film ${ar >= 1 ? 'film--wide' : 'film--tall'}`}
       style={{ aspectRatio: ratio, '--span': span }}
       onPointerEnter={fine ? play : undefined}
       onPointerLeave={fine ? stop : undefined}

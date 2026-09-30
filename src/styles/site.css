@@ -2465,15 +2465,25 @@
    31. Film
    ============================================================ */
 .film-grid {
+  /* Four columns, with landscape films taking two. The old layout hard-coded
+     one vertical beside two stacked horizontals, which only held for exactly
+     three films. Justifying a mixed row was worse: sharing a row with a 16:9
+     squeezes a 9:16 down to about 135px, too small to watch. Letting each
+     orientation fill its own row keeps both at a usable size. */
   display: grid;
-  /* The vertical reel is twice as tall as the horizontal cuts, so it takes the
-     left column outright and the two landscape frames stack beside it. */
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(14px, 1.8vw, 22px);
   margin-top: clamp(34px, 4.5vw, 50px);
   align-items: start;
 }
-.film-grid > :first-child { grid-row: span 2; }
+.film-grid > .film--wide { grid-column: span 2; }
+.film-grid > .film--tall { grid-column: span 1; }
+
+@media (max-width: 1000px) {
+  .film-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .film-grid > .film--wide { grid-column: span 2; }
+}
+
 
 .film {
   position: relative;
@@ -2535,7 +2545,8 @@
 
 @media (max-width: 820px) {
   .film-grid { grid-template-columns: 1fr; }
-  .film-grid > :first-child { grid-row: auto; }
+  .film-grid > .film--wide,
+  .film-grid > .film--tall { grid-column: span 1; }
 }
 
 /* ── Specialisms (home) ──────────────────────────────────────────────────────
@@ -2913,4 +2924,16 @@
   border-left: 10px solid currentColor;
   border-top: 6.5px solid transparent;
   border-bottom: 6.5px solid transparent;
+}
+
+/* The ISE films carry their own burned-in question across the lower third and
+   the client's lockup at the very bottom, so a caption pinned to the bottom of
+   a tall card lands on top of both. There is no clean frame to poster from —
+   the question is present from the first second — so the caption moves to the
+   top on portrait cards, where only the centred scoreboard sits and the left
+   is clear. The play control stays bottom-left. */
+.film--tall .film__cap {
+  inset: 0 0 auto 0;
+  padding: 14px 16px 44px 16px;
+  background: linear-gradient(180deg, rgba(6, 12, 14, 0.86), transparent);
 }
