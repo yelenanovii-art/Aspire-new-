@@ -377,8 +377,11 @@ export const CLIENTS = [
   { name: 'De Interim Notaris', logo: '/brand/clients/de-interim-notaris.webp' },
   { name: 'The Craft Cigar Club', logo: '/brand/clients/craft-cigar-club.webp' },
   { name: 'RCK Consulting', logo: '/brand/clients/rck.webp' },
-  // No mark in the media library for these two, so they run as set wordmarks.
-  { name: 'Shoreline 7' },
+  { name: 'Interactive Digital Media', logo: '/brand/clients/idm.webp' },
+  { name: 'AnyMessage', logo: '/brand/clients/anymessage.webp' },
+  { name: 'RatTech', logo: '/brand/clients/rattech.webp' },
+  { name: 'ABC Kloak', logo: '/brand/clients/abc-kloak.webp' },
+  // No mark supplied for this one, so it runs as a set wordmark.
   { name: 'Coaching BV' },
 ]
 
@@ -547,12 +550,14 @@ export const TESTIMONIALS = [
     initials: 'RC',
   },
   {
+    // Verbatim LinkedIn recommendation, 17 February 2025. Cécile managed Elena
+    // directly across two ISE shows.
     quote:
-      'I was very impressed by the results. There was very clear and constant communication, and she gave a lot of personal, in depth attention. I highly recommend Aspire for Elena’s creativity and passion for outstanding service.',
-    short: 'Very clear and constant communication, and a lot of personal, in depth attention.',
-    name: 'Shoreline 7',
-    role: 'Sports',
-    initials: 'S7',
+      'I had the chance to work with Elena for two ISE shows on ISE’s social media channels. Elena executed her work perfectly and beyond expectations. In addition, she is a very proactive person with creative and engaging ideas, which makes a difference and is really welcome in marketing. She has a strong ability to work under pressure, always with a smile and the positive energy she spreads. Besides she has a great presence and excellent people skills. I would highly recommend Elena to anyone who needs support for marketing and social media and I really hope to collaborate with her again in the future.',
+    short: 'Elena executed her work perfectly and beyond expectations, with creative and engaging ideas and a strong ability to work under pressure.',
+    name: 'Cécile Laurent',
+    role: 'Social Media Manager, Integrated Systems Europe',
+    initials: 'CL',
   },
   {
     quote:
