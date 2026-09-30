@@ -11,6 +11,7 @@ import { useGlow, useSpotlight } from '../hooks/useInteractions'
 import Compare from '../components/Compare'
 import Team from '../components/Team'
 import Carousel from '../components/Carousel'
+import Specialisms from '../components/Specialisms'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES, CASES, CLIENTS, STATS, STEPS, PROBLEM, FAQ, PERFORMANCE } from '../data/site'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -152,6 +153,13 @@ export default function Home() {
               </li>
             ))}
           </ol>
+
+          <SectionHead
+            eyebrow="Specialisms"
+            title="Two markets we go deeper in."
+            lede="Property, yachting and custom AI systems each have their own buyers and their own tooling, so they get their own practice rather than sitting inside a general retainer."
+          />
+          <Specialisms />
         </div>
       </section>
 

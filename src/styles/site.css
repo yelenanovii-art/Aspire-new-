@@ -2520,3 +2520,142 @@
   .film-grid { grid-template-columns: 1fr; }
   .film-grid > :first-child { grid-row: auto; }
 }
+
+/* ── Specialisms (home) ──────────────────────────────────────────────────────
+   Two whole verticals, promoted beneath the four core disciplines. Each card
+   leads with the visual its own page leads with, so the difference in the work
+   is legible before any copy is read. */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: 22px;
+  margin-top: 40px;
+}
+.spec {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-fill);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.4,0,.2,1), border-color .3s, box-shadow .3s;
+}
+.spec:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-tint-2);
+  box-shadow: 0 18px 40px -28px rgba(var(--accent-rgb), .55);
+}
+.spec:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.spec__media {
+  display: block;
+  /* Without an explicit width, aspect-ratio resolves against the panel
+     variant's content height and the media area ends up narrower than its
+     card. Pin the width so the ratio only ever drives height. */
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--wash-dark);
+}
+.spec__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+.spec:hover .spec__media img { transform: scale(1.035); }
+
+/* The AI card has no photograph, so it gets the product's own shape instead of
+   a stock image: a reduced version of the dashboard on /ai-systems. */
+.spec__media--panel {
+  display: grid;
+  place-items: center;
+  padding: 26px;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(var(--accent-rgb), .22), transparent 70%),
+    var(--wash-dark);
+}
+.spec__panel {
+  display: block;
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .10);
+  color: var(--accent-tint-2);
+}
+.spec__panel-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  margin-bottom: 12px;
+}
+.spec__panel-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.spec__panel-sync {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .5);
+}
+.spec__spark { display: block; width: 100%; height: 44px; }
+.spec__panel-metrics { display: flex; gap: 26px; margin-top: 12px; }
+.spec__metric { display: flex; flex-direction: column; gap: 2px; }
+.spec__metric-v {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 19px;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
+.spec__metric-k {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .55);
+}
+
+.spec__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 26px 26px;
+  flex: 1;
+}
+.spec__label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.spec__title {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(22px, 2.4vw, 27px);
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  line-height: 1.12;
+}
+.spec__blurb { color: var(--body); font-size: 15px; line-height: 1.6; }
+.spec__go {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: auto; padding-top: 14px;
+  font-weight: 600; font-size: 14.5px;
+  color: var(--accent);
+}
+.spec__go svg { transition: transform .25s cubic-bezier(.4,0,.2,1); }
+.spec:hover .spec__go svg { transform: translateX(4px); }
+
+@media (max-width: 620px) {
+  .spec__body { padding: 20px 20px 22px; }
+  .spec__panel-metrics { gap: 18px; }
+}
