@@ -460,6 +460,11 @@
 .marquee__group li img[src*="craft-cigar-club"] { height: clamp(27px, 2.7vw, 36px); }
 .marquee__group li img[src*="de-interim"] { height: clamp(28px, 2.8vw, 38px); }
 @keyframes marquee { to { transform: translateX(-50%); } }
+/* The track is shorter on narrow screens, so a fixed duration makes the strip
+   crawl there: ~25px/s at 375px against ~38px/s on desktop. Shorten the cycle
+   so the perceived speed matches instead of the clock. */
+@media (max-width: 860px) { .marquee__track { animation-duration: 26s; } }
+@media (max-width: 520px) { .marquee__track { animation-duration: 20s; } }
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
   .marquee { -webkit-mask-image: none; mask-image: none; }
@@ -2708,4 +2713,94 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .band__item img { transition: none; }
+}
+
+/* ── Client marks inside cases and reviews ───────────────────────────────────
+   The logo files are flat #0b1316 ink on transparent, so on a dark ground they
+   have to be inverted rather than recoloured: there is no fill to restyle. */
+.case-card__logo {
+  height: 22px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: .8;
+}
+.case-card:hover .case-card__logo { opacity: 1; }
+.section--dark .case-card__logo,
+.case-card--on-dark .case-card__logo { filter: invert(1); opacity: .85; }
+
+.quote__logo {
+  height: 24px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  flex: none;
+  opacity: .82;
+}
+.quote--light .quote__logo,
+.section--dark .quote__logo { filter: invert(1); opacity: .9; }
+
+.pull__logo {
+  height: 26px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  opacity: .8;
+  margin-bottom: 4px;
+}
+.section--dark .pull__logo,
+.pull-section .pull__logo { filter: invert(1); opacity: .88; }
+
+/* ── Mobile: shorten the home page ───────────────────────────────────────────
+   At 375px the page ran 14,946px, about eighteen screens. Nobody scrolls that
+   far, so on narrow screens the long lists collapse to a lead item and the
+   existing link carries the reader to the full page instead. Everything cut
+   here already has a dedicated page: /work, /services, /about. */
+@media (max-width: 720px) {
+  /* Sections are generous by design on desktop; that generosity is what turns
+     twelve sections into eighteen screens on a phone. */
+  .section { padding-block: clamp(44px, 9vw, 60px); }
+  .section--tight { padding-block: clamp(34px, 7vw, 46px); }
+
+  /* Proof: one case, then "All six cases" does the work. */
+  .work-grid--lead .case-card:nth-of-type(n + 2) { display: none; }
+
+  /* Questions: three, then the CTA below answers the rest in person. */
+  .faq-section .faq__item:nth-of-type(n + 4) { display: none; }
+
+  /* The verticals keep their images but stop being half a screen each. */
+  .practice__media { aspect-ratio: 16 / 9; }
+  .practice__body { padding: 18px 18px 20px; }
+  .practice__blurb { font-size: 14.5px; }
+
+  /* Each service row is already a link to its own page, so on a phone it
+     becomes exactly that: title and arrow. The blurb and tags are the pitch,
+     and the pitch lives on the page the row opens. ~305px a row down to ~90. */
+  .svc-row__blurb,
+  .svc-row__tags { display: none; }
+  .svc-row__link { padding-block: 18px; }
+
+  /* Same for the two verticals: the photograph is the sell on desktop, but on
+     a phone it costs half a screen each to say what the title already says. */
+  .practice__media { display: none; }
+
+  /* The comparison table is the densest block on the page and already scrolls
+     horizontally; it does not also need desktop's vertical air. */
+  .cmp__scroll { margin-top: 20px; }
+  .cmp__table th,
+  .cmp__table td { padding-block: 11px; }
+  .cmp__table { font-size: 14px; }
+
+  /* The roster repeats /about in full. On a phone the heading plus "Meet the
+     team" says the same thing in a tenth of the height, and the bios are one
+     tap away rather than a screen of scrolling. */
+  .team--roster .team__bio { display: none; }
+  .team--roster .team__card { padding-block: 14px; }
+
+  /* Steps and problems keep their headings; the elaboration goes, because by
+     this point the reader is deciding whether to book, not studying. */
+  .step__body p { display: none; }
+  .prob__body p { font-size: 14.5px; }
+  .steps { gap: 14px; }
+  .prob-list { gap: 16px; }
 }

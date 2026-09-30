@@ -1,5 +1,5 @@
 import { ArrowRight } from './Icons'
-import { serviceBySlug } from '../data/site'
+import { serviceBySlug, logoFor } from '../data/site'
 
 // A client case, used on the home page, /work and the service pages.
 //
@@ -17,7 +17,14 @@ export default function CaseCard({ c, i = 0, compact = false, showServices = fal
       id={compact ? undefined : c.slug}
     >
       <div className="case-card__top">
-        <span className="case-card__client">{c.client}</span>
+        {logoFor(c.client) ? (
+          // The mark identifies the client faster than the name does; the name
+          // stays as the accessible label rather than being dropped.
+          <img className="case-card__logo" src={logoFor(c.client)} alt={c.client}
+               height="22" loading="lazy" decoding="async" />
+        ) : (
+          <span className="case-card__client">{c.client}</span>
+        )}
         <span className="case-card__sector">{c.sector}</span>
       </div>
 

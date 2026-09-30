@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { TESTIMONIALS } from '../data/site'
+import { TESTIMONIALS, logoFor } from '../data/site'
 
 // A client quote set at display size in the wordmark's Didone.
 //
@@ -23,6 +23,10 @@ export default function PullQuote() {
       <blockquote key={i} className="pull__text">{t.short || t.quote}</blockquote>
       <figcaption className="pull__by">
         <span className="pull__rule" aria-hidden="true" />
+        {logoFor(t.company) && (
+          <img className="pull__logo" src={logoFor(t.company)} alt="" height="26"
+               loading="lazy" decoding="async" />
+        )}
         <span className="pull__name">{t.name}</span>
         <span className="pull__role">{t.role}</span>
       </figcaption>

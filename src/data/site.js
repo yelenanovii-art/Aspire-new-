@@ -388,6 +388,13 @@ export const CLIENTS = [
   { name: 'Coaching BV' },
 ]
 
+// Resolve a client's logo by the name used in CASES and TESTIMONIALS, so both
+// read from the same CLIENTS list rather than repeating paths.
+const LOGO_BY_NAME = Object.fromEntries(
+  CLIENTS.filter((c) => c.logo).map((c) => [c.name.toLowerCase(), c.logo])
+)
+export const logoFor = (name) => (name ? LOGO_BY_NAME[name.toLowerCase()] : undefined)
+
 // ---------------------------------------------------------------------------
 // The team. Four specialists, one discipline each.
 // VERIFY: the live Wix site claims "a combined six languages". That count was
@@ -575,6 +582,7 @@ export const TESTIMONIALS = [
     short: 'Elena built a clear step by step strategy that was easy to implement. We have seen a lot of growth, especially on LinkedIn.',
     name: 'RCK Consulting',
     role: 'Tech consulting',
+    company: 'RCK Consulting',
     initials: 'RC',
   },
   {
@@ -585,6 +593,7 @@ export const TESTIMONIALS = [
     short: 'Elena executed her work perfectly and beyond expectations, with creative and engaging ideas and a strong ability to work under pressure.',
     name: 'Cécile Laurent',
     role: 'Social Media Manager, Integrated Systems Europe',
+    company: 'Integrated Systems Europe',
     initials: 'CL',
   },
   {

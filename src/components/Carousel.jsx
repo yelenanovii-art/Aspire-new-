@@ -48,10 +48,10 @@ export default function Carousel() {
       <ul className="onsite__track" ref={ref} tabIndex={0} aria-label="Photographs of the team working onsite">
         {ONSITE.map((p) => (
           <li className="onsite__item" key={p.src}>
-            <figure>
-              <img src={p.src} alt={p.alt} loading="lazy" width="1000" height="1333" />
-              <figcaption>{p.caption}</figcaption>
-            </figure>
+            {/* No visible caption: the alt text still describes each frame for
+                screen readers and search, but the strip reads as photography
+                rather than a labelled contact sheet. */}
+            <img src={p.src} alt={p.alt} loading="lazy" width="1000" height="1333" />
           </li>
         ))}
       </ul>

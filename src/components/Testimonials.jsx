@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { TESTIMONIALS } from '../data/site'
+import { TESTIMONIALS, logoFor } from '../data/site'
 
 // Rotating client quotes. Auto-advance is suppressed under reduced motion,
 // and pauses while the reader is hovering or has focus inside the panel.
@@ -26,7 +26,12 @@ export default function Testimonials({ light = false }) {
     >
       <blockquote key={i} className="quote__text">{t.quote}</blockquote>
       <figcaption className="quote__by">
-        <span className="quote__avatar" aria-hidden="true">{t.initials}</span>
+        {logoFor(t.company) ? (
+          <img className="quote__logo" src={logoFor(t.company)} alt={t.company}
+               height="24" loading="lazy" decoding="async" />
+        ) : (
+          <span className="quote__avatar" aria-hidden="true">{t.initials}</span>
+        )}
         <span className="quote__meta">
           <strong>{t.name}</strong>
           <span>Client of Aspire</span>
