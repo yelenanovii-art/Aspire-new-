@@ -125,6 +125,17 @@ export default function ServiceDetail({ service }) {
       </section>
 
       {/* ── Cross-links ──────────────────────────────────────────────── */}
+      {s.photo && (
+        <section className="section section--tight">
+          <div className="container">
+            <figure className="page-banner reveal">
+              <img src={s.photo.src} alt={s.photo.alt} width="1920" height="720"
+                   loading="lazy" decoding="async" />
+            </figure>
+          </div>
+        </section>
+      )}
+
       <section className="section section--tight section--ruled">
         <div className="container">
           <h2 className="related__h">The other three</h2>

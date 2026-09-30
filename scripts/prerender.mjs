@@ -62,7 +62,14 @@ const IMAGES = {
   '/': ONSITE.map((o) => o.src),
   '/about': [...TEAM.filter((m) => m.photo).map((m) => m.photo), ...ABOUT_BAND.map((b) => b.src)],
   [`/${ESTATE.slug}`]: [ESTATE.film.src, ...ESTATE.gallery.filter((g) => g.src).map((g) => g.src)],
-  '/services/content-creation': FILM.map((f) => f.poster),
+  ...Object.fromEntries(
+    SERVICES.filter((sv) => sv.photo).map((sv) => [`/services/${sv.slug}`, [sv.photo.src]])
+  ),
+  '/services/content-creation': [
+    ...FILM.map((f) => f.poster),
+    ...(SERVICES.find((sv) => sv.slug === 'content-creation')?.photo
+      ? [SERVICES.find((sv) => sv.slug === 'content-creation').photo.src] : []),
+  ],
   '/work': WORK_BAND.map((b) => b.src),
   '/services': PAGE_MEDIA.services.map((m) => m.src),
   '/contact': [PAGE_MEDIA.contact.src],

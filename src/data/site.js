@@ -86,6 +86,7 @@ export const COMPARE = {
 export const SERVICES = [
   {
     slug: 'sales',
+    photo: { src: '/media/pages/svc-sales.webp', alt: 'Delegates in conversation at an evening reception during a trade show' },
     n: '01',
     nav: 'Sales, in person and digital',
     title: 'Sales, in person and digital',
@@ -135,6 +136,7 @@ export const SERVICES = [
   },
   {
     slug: 'business-development',
+    photo: { src: '/media/pages/svc-bizdev.webp', alt: 'The team gathered outside the Integrated Systems Europe venue in Barcelona' },
     n: '02',
     nav: 'Business development',
     title: 'Business development',
@@ -184,6 +186,7 @@ export const SERVICES = [
   },
   {
     slug: 'social-media',
+    photo: { src: '/media/pages/svc-social.webp', alt: 'Someone filming a lit display on a phone at an exhibition' },
     n: '03',
     nav: 'Social media management',
     title: 'Social media management',
@@ -233,6 +236,7 @@ export const SERVICES = [
   },
   {
     slug: 'content-creation',
+    photo: { src: '/media/pages/svc-content.webp', alt: 'A flamenco performer under stage light in front of an LED backdrop' },
     n: '04',
     nav: 'Content creation',
     title: 'Content creation',
