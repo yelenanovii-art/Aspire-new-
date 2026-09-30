@@ -73,7 +73,6 @@ const IMAGES = {
   ],
   '/work': WORK_BAND.map((b) => b.src),
   '/services': PAGE_MEDIA.services.map((m) => m.src),
-  [`/${AI.slug}`]: [PAGE_MEDIA.ai.src],
 }
 const imageTags = (r) =>
   (IMAGES[r] || [])

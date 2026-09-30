@@ -50,13 +50,11 @@ export default function Services() {
             eyebrow="In practice"
             title="What this looks like on the ground."
           />
-          <ul className="band">
-            {PAGE_MEDIA.services.map((m, i) => (
-              <li className="band__item reveal" style={{ '--delay': `${i * 70}ms` }} key={m.src}>
-                <img src={m.src} alt={m.alt} width="1440" height="900" loading="lazy" decoding="async" />
-              </li>
-            ))}
-          </ul>
+          {/* One establishing frame, not a preview of the four pages below. */}
+          <figure className="page-banner reveal">
+            <img src={PAGE_MEDIA.services[0].src} alt={PAGE_MEDIA.services[0].alt}
+                 width="1440" height="900" loading="lazy" decoding="async" />
+          </figure>
         </div>
       </section>
 

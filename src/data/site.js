@@ -452,13 +452,7 @@ export const PAGE_MEDIA = {
   services: [
     { src: '/media/pages/svc-floor.webp',
       alt: 'Crowded exhibition floor at a trade show, seen from above' },
-    { src: '/media/pages/svc-capture.webp',
-      alt: 'A visitor filming a large lit display on a phone' },
-    { src: '/media/pages/svc-meeting.webp',
-      alt: 'Two people in conversation beside an exhibition stand' },
   ],
-  ai: { src: '/media/pages/ai-led.webp',
-    alt: 'A performer in front of a full height LED wall on a show floor' },
 }
 
 // Frames from the Integrated Systems Europe engagement, which is one of the
@@ -471,12 +465,6 @@ export const WORK_BAND = [
     alt: 'Crowded exhibition floor at Integrated Systems Europe under gantry signage' },
   { src: '/media/work/ise-installation.webp',
     alt: 'Two visitors in front of a full height LED installation on the show floor' },
-  { src: '/media/work/ise-networking.webp',
-    alt: 'Two delegates talking with drinks at an evening reception' },
-  { src: '/media/work/ise-filming.webp',
-    alt: 'A visitor filming a city skyline on a phone from a viewing deck' },
-  { src: '/media/work/ise-arrival.webp',
-    alt: 'Two figures silhouetted in a lit corridor entering the venue' },
 ]
 
 // Three wide frames for the About page, cut from the same event masters as

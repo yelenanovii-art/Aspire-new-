@@ -4,7 +4,6 @@ import DashboardDemo from '../components/DashboardDemo'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
 import { bookHref, bookAttrs } from '../config'
-import { PAGE_MEDIA } from '../data/site'
 import { AI } from '../data/verticals'
 import Magnetic from '../components/Magnetic'
 import { useGlow, useSpotlight } from '../hooks/useInteractions'
@@ -89,14 +88,6 @@ export default function AiSystems() {
       </section>
 
       {/* ── Process ──────────────────────────────────────────────────── */}
-      <section className="section section--tight">
-        <div className="container">
-          <figure className="page-banner reveal">
-            <img src={PAGE_MEDIA.ai.src} alt={PAGE_MEDIA.ai.alt}
-                 width="1920" height="720" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-      </section>
 
       <section className="section section--alt">
         <div className="container approach__layout">
