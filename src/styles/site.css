@@ -2756,7 +2756,9 @@
    far, so on narrow screens the long lists collapse to a lead item and the
    existing link carries the reader to the full page instead. Everything cut
    here already has a dedicated page: /work, /services, /about. */
-@media (max-width: 720px) {
+/* 860px, not 720: between those two the page keeps its full desktop layout in
+   a narrow column, which came out TALLER than the phone version. */
+@media (max-width: 860px) {
   /* Sections are generous by design on desktop; that generosity is what turns
      twelve sections into eighteen screens on a phone. */
   .section { padding-block: clamp(44px, 9vw, 60px); }
@@ -2797,10 +2799,14 @@
   .team--roster .team__bio { display: none; }
   .team--roster .team__card { padding-block: 14px; }
 
-  /* Steps and problems keep their headings; the elaboration goes, because by
-     this point the reader is deciding whether to book, not studying. */
-  .step__body p { display: none; }
+  /* The whole "how it works" section goes on a phone. It is the longest block
+     with no page of its own, and its call to action is already covered twice:
+     once in the hero and again in the closing band. The comparison table
+     stays, since that is the argument that actually converts.
+     Still in the DOM for crawlers; hidden only on narrow screens. */
+  .approach { display: none; }
+
+  /* Problems keep their headings and a tighter body. */
   .prob__body p { font-size: 14.5px; }
-  .steps { gap: 14px; }
   .prob-list { gap: 16px; }
 }
