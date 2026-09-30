@@ -154,6 +154,13 @@ export default function Home() {
             ))}
           </ol>
 
+          <p className="svc-list__fit">
+            Not sure which of the four you need?{' '}
+            <a className="link-arrow" href="/fit">
+              Answer six questions <ArrowRight />
+            </a>
+          </p>
+
           <SectionHead
             eyebrow="Specialisms"
             title="Two markets we go deeper in."

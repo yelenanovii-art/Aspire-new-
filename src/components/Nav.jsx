@@ -45,7 +45,7 @@ const NAV = [
         ],
       },
     ],
-    featured: { to: '/services', label: 'How the four disciplines work as one plan' },
+    featured: { to: '/fit', label: 'Not sure which one? Answer six questions' },
   },
   { type: 'link', to: '/work', label: 'Work' },
   { type: 'link', to: '/about', label: 'About' },

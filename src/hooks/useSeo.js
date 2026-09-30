@@ -34,6 +34,11 @@ const META = {
     d: 'Founded in Barcelona in 2022. Four specialists covering sales, content, paid acquisition and custom AI systems, working across Europe with B2B tech companies.',
     k: 'about Aspire, Elena Novikova, B2B tech agency Barcelona, marketing team',
   },
+  '/fit': {
+    t: 'Find Out Where Your Growth Should Start',
+    d: 'Six questions that match your company to the growth discipline to start with, plus a short written plan for the first ninety days. Free, no obligation.',
+    k: 'growth assessment, marketing quiz, which marketing service, B2B growth plan',
+  },
   '/contact': {
     t: 'Book a Free 15 Minute Call',
     d: 'Tell us where growth is stuck. We reply within one business day to book your free 15 minute call. No obligation, and you leave with a view either way.',

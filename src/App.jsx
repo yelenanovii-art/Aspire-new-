@@ -15,6 +15,7 @@ import { Privacy, Terms, Cookies } from './pages/Legal'
 import NotFound from './pages/NotFound'
 import RealEstate from './pages/RealEstate'
 import AiSystems from './pages/AiSystems'
+import Fit from './pages/Fit'
 import CookieConsent from './components/CookieConsent'
 import { SERVICES } from './data/site'
 
@@ -22,6 +23,7 @@ import { SERVICES } from './data/site'
 // and are generated from the content data, so adding a service to
 // src/data/site.js adds its route, its nav entry and its footer link.
 const ROUTES = {
+  '/fit': Fit,
   '/': Home,
   '/services': Services,
   '/real-estate': RealEstate,

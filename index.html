@@ -152,6 +152,15 @@
       <textarea name="message"></textarea>
       <input type="text" name="_subject" />
       <input type="text" name="source" />
+      <!-- Quiz answers ride along on the same form. Netlify only stores fields
+           that appear in this static declaration, so they are listed here. -->
+      <input type="text" name="quiz_match" />
+      <input type="text" name="quiz_sector" />
+      <input type="text" name="quiz_source" />
+      <input type="text" name="quiz_break" />
+      <input type="text" name="quiz_live" />
+      <input type="text" name="quiz_team" />
+      <input type="text" name="quiz_data" />
     </form>
 
     <script type="module" src="/src/main.jsx"></script>

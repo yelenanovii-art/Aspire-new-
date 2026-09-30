@@ -29,6 +29,7 @@ const ROUTES = [
   `/${AI.slug}`,
   '/work',
   '/about',
+  '/fit',
   '/contact',
   '/privacy',
   '/terms',
@@ -37,7 +38,7 @@ const ROUTES = [
 
 // Search-priority hints, highest first. Anything unlisted gets the default.
 const PRIORITY = {
-  '/': '1.0', '/services': '0.9', '/contact': '0.9',
+  '/': '1.0', '/services': '0.9', '/contact': '0.9', '/fit': '0.9',
   [`/${ESTATE.slug}`]: '0.9', [`/${AI.slug}`]: '0.9',
   '/work': '0.8', '/about': '0.8',
 }

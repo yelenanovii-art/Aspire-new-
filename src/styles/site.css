@@ -2937,3 +2937,117 @@
   padding: 14px 16px 44px 16px;
   background: linear-gradient(180deg, rgba(6, 12, 14, 0.86), transparent);
 }
+
+/* ── Growth fit quiz ─────────────────────────────────────────────────────────
+   One card that changes contents, rather than a long scrolling form: the whole
+   point is that it feels shorter than it is. */
+.quiz {
+  background: var(--card-fill);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(11, 19, 22, .04), 0 18px 40px -30px rgba(11, 19, 22, .3);
+}
+.quiz__bar { display: block; height: 3px; background: var(--line-soft); }
+.quiz__bar-fill {
+  display: block; height: 100%;
+  background: var(--accent);
+  transition: width .35s cubic-bezier(.4, 0, .2, 1);
+}
+.quiz__step { padding: clamp(24px, 4vw, 40px); }
+.quiz__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+.quiz__q {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: var(--display-ls);
+  line-height: 1.16;
+  color: var(--ink);
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+.quiz__help { color: var(--muted); font-size: 15px; margin: 0 0 22px; max-width: 58ch; }
+
+.quiz__options { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.quiz__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 18px;
+  text-align: left;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--page);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .18s, background .18s, transform .18s;
+}
+.quiz__option svg { color: var(--accent); opacity: 0; transition: opacity .18s, transform .18s; flex: none; }
+.quiz__option:hover { border-color: var(--accent); transform: translateX(2px); }
+.quiz__option:hover svg { opacity: 1; transform: translateX(3px); }
+.quiz__option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.quiz__option.is-chosen { border-color: var(--accent); background: var(--accent-tint); }
+.quiz__option.is-chosen svg { opacity: 1; }
+
+.quiz__back {
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.quiz__back:hover { color: var(--ink); }
+
+.quiz__gate {
+  margin-top: 22px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--page-alt);
+}
+.quiz__gate-head {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.quiz__gate-note { font-size: 14.5px; color: var(--body); margin: 0 0 18px; max-width: 56ch; }
+
+.quiz__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.fit__foot { text-align: center; margin-top: 26px; color: var(--body); }
+
+@media (max-width: 620px) {
+  .quiz__option { padding: 14px 15px; font-size: 15.5px; }
+  .quiz__gate { padding: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quiz__bar-fill, .quiz__option, .quiz__option svg { transition: none; }
+}
+
+/* Entry to the fit quiz, right after the four disciplines: the reader has just
+   been shown four things and the obvious question is which one is theirs. */
+.svc-list__fit {
+  margin: clamp(22px, 3vw, 32px) 0 0;
+  padding-top: clamp(18px, 2.4vw, 24px);
+  border-top: 1px solid var(--line-soft);
+  color: var(--body);
+  font-size: 15.5px;
+}
