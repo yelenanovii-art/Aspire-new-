@@ -99,32 +99,39 @@ export default function Carousel() {
     io.observe(el)
     start()
 
-    // A manual scroll means the reader is driving. Hand it back and wait.
+    // Manual control hands it over for a while. The test is genuine intent to
+    // drive THIS strip, not any wheel event that happens to land on it: the
+    // band spans the page, so scrolling down to reach it almost always puts the
+    // cursor over it, and treating that as interaction paused the strip the
+    // instant it appeared. Only a horizontal wheel counts.
     let idle
     const onManual = () => {
       pause()
       window.clearTimeout(idle)
       idle = window.setTimeout(resume, 6000)
     }
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) onManual()
+    }
 
-    el.addEventListener('pointerenter', pause)
-    el.addEventListener('pointerleave', resume)
+    // No pointerenter pause. It is the conventional touch, but with no captions
+    // left to read it only meant the strip froze whenever someone looked at it,
+    // which is the one moment it should be moving. Keyboard focus still pauses,
+    // and the arrows take over whenever someone wants to drive.
     el.addEventListener('focusin', pause)
     el.addEventListener('focusout', resume)
     el.addEventListener('touchstart', onManual, { passive: true })
-    el.addEventListener('wheel', onManual, { passive: true })
+    el.addEventListener('wheel', onWheel, { passive: true })
     document.addEventListener('visibilitychange', () => (document.hidden ? stop() : resume()))
 
     return () => {
       stop()
       io.disconnect()
       window.clearTimeout(idle)
-      el.removeEventListener('pointerenter', pause)
-      el.removeEventListener('pointerleave', resume)
       el.removeEventListener('focusin', pause)
       el.removeEventListener('focusout', resume)
       el.removeEventListener('touchstart', onManual)
-      el.removeEventListener('wheel', onManual)
+      el.removeEventListener('wheel', onWheel)
     }
   }, [])
 
