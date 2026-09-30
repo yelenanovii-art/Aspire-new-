@@ -2395,70 +2395,14 @@
 /* ============================================================
    30. Onsite carousel
    ============================================================ */
-.onsite { position: relative; margin-top: clamp(28px, 3.6vw, 40px); }
 
 /* A real scroll container: swipe is the browser's own, and the whole thing
    still works with no JavaScript. */
-.onsite__track {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  /* Bleed to the viewport edge so the row reads as continuing off-screen, while
-     the first card still lines up with the page's text column. Once the
-     viewport is wider than --maxw the container is centred, so the inset is the
-     centring offset plus the gutter, not the gutter alone. */
-  --edge: max(var(--gutter), calc(50vw - var(--maxw) / 2 + var(--gutter)));
-  padding: 4px var(--edge) 20px;
-  scroll-padding-left: var(--edge);
-  margin-inline: calc(50% - 50vw);
-  scrollbar-width: none;
-}
-.onsite__track::-webkit-scrollbar { display: none; }
-.onsite__track:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: var(--radius); }
 
-.onsite__item { flex: 0 0 auto; scroll-snap-align: start; width: clamp(210px, 22vw, 280px); }
-.onsite__item figure { margin: 0; display: grid; gap: 11px; }
-.onsite__item img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: var(--radius);
-  background: var(--page-alt);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.onsite__item:hover img { transform: translateY(-4px); }
-.onsite__item figcaption {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
 
-.onsite__nav { display: flex; gap: 9px; justify-content: flex-end; padding-inline: var(--gutter); max-width: var(--maxw); margin: 6px auto 0; }
-.onsite__btn {
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--line-strong);
-  display: grid;
-  place-items: center;
-  color: var(--ink);
-  background: var(--white);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-}
-.onsite__btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); color: #fff; }
-.onsite__btn:disabled { opacity: 0.3; cursor: default; }
-.onsite__arrow--back { display: inline-flex; transform: rotate(180deg); }
-.onsite__head { margin-bottom: 0; }
 
 @media (max-width: 620px) {
-  .onsite__item { width: 68vw; }
   /* Buttons are redundant next to a thumb, and the row is already swipeable. */
-  .onsite__nav { display: none; }
 }
 
 /* ============================================================
@@ -3053,4 +2997,60 @@
   border-top: 1px solid var(--line-soft);
   color: var(--body);
   font-size: 15.5px;
+}
+
+/* ── On-site photo marquee ───────────────────────────────────────────────────
+   Same mechanism as the client logo strip above it: one track holding two
+   identical groups, animated by half its own width so the seam never shows.
+   A CSS animation rather than a timer, because the timer version kept being
+   stopped by things nobody could see. */
+.onsite {
+  position: relative;
+  margin-top: clamp(28px, 3.6vw, 40px);
+  overflow: hidden;
+  /* Fade both edges instead of cutting a photograph off mid-frame. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.onsite__track {
+  display: flex;
+  width: max-content;
+  animation: onsiteScroll 70s linear infinite;
+}
+.onsite:hover .onsite__track { animation-play-state: paused; }
+
+.onsite__group {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  padding-right: 16px;
+  margin: 0;
+  list-style: none;
+}
+.onsite__item {
+  flex: 0 0 auto;
+  width: clamp(210px, 22vw, 280px);
+  margin: 0;
+}
+.onsite__item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+@keyframes onsiteScroll {
+  to { transform: translateX(-50%); }
+}
+
+/* Reduced motion stops the logos, so it stops this too — the two strips should
+   not disagree about whether the page is moving. The photographs stay, wrapped
+   onto lines, so nothing is lost by holding still. */
+@media (prefers-reduced-motion: reduce) {
+  .onsite__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+  .onsite__group:nth-child(2) { display: none; }
+  .onsite { -webkit-mask-image: none; mask-image: none; }
+  .onsite__group { flex-wrap: wrap; justify-content: center; }
 }
