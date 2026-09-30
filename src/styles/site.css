@@ -244,12 +244,21 @@
   font-weight: 500;
   color: var(--ink-600);
   border-bottom: 1px solid var(--line);
-  opacity: 0;
-  transform: translateX(14px);
 }
-.nav--open .nav__drawer-link {
-  animation: drawerIn 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-  animation-delay: calc(var(--i, 0) * 40ms + 90ms);
+/* These links used to start at opacity:0 and be revealed ONLY by the stagger
+   animation. With Reduce Motion on — a common phone setting — that animation
+   never runs, so the menu opened with the headings visible and every link
+   invisible. Readability must not depend on motion: the hidden start state now
+   sits behind no-preference and the stagger is purely an enhancement. */
+@media (prefers-reduced-motion: no-preference) {
+  .nav__drawer-link {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  .nav--open .nav__drawer-link {
+    animation: drawerIn 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 40ms + 90ms);
+  }
 }
 @keyframes drawerIn { to { opacity: 1; transform: none; } }
 .nav__drawer-link.is-active { color: var(--accent-600); font-weight: 600; }
@@ -2809,4 +2818,48 @@
   /* Problems keep their headings and a tighter body. */
   .prob__body p { font-size: 14.5px; }
   .prob-list { gap: 16px; }
+}
+
+/* ── Mobile menu: frosted glass ──────────────────────────────────────────────
+   Opening the drawer clears .nav--over-dark, so the bar falls back to 86%
+   white. Over the dark hero that composites to a muddy grey, and the logo has
+   just switched to its dark version, so the header washes out exactly when it
+   needs to be legible. Raise the bar to real frosted glass while open, and
+   give the drawer the same treatment.
+
+   backdrop-filter is doing the readability work here, so everything below is
+   guarded: without it a translucent panel over a photograph is unreadable, and
+   the @supports fallback goes solid instead. */
+.nav--open {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom-color: rgba(11, 19, 22, 0.08);
+}
+/* The bar is glass now, so its contents are dark regardless of what is behind. */
+.nav--open .nav__burger span { background: var(--ink); }
+
+.nav__drawer {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(26px);
+  -webkit-backdrop-filter: saturate(180%) blur(26px);
+  border-left: 1px solid rgba(255, 255, 255, 0.55);
+  /* A hairline inner highlight is what separates glass from "slightly
+     transparent panel": it catches the edge the way real glass does. */
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.6),
+    -18px 0 48px -24px rgba(11, 19, 22, 0.45);
+}
+.nav__drawer-h { color: var(--muted); }
+.nav__drawer-link { color: var(--ink); }
+/* The dividing rules read as dirt against glass unless they are lightened. */
+.nav__drawer-link { border-bottom-color: rgba(11, 19, 22, 0.08); }
+
+/* Darker scrim: the glass needs something behind it to sit against, and it
+   lifts contrast for the drawer text at the same time. */
+.nav--open .nav__scrim { background: rgba(8, 14, 16, 0.44); }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav--open { background: #fff; }
+  .nav__drawer { background: #fff; box-shadow: -18px 0 48px -24px rgba(11, 19, 22, 0.45); }
 }
