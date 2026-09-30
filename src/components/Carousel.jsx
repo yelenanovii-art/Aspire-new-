@@ -33,6 +33,92 @@ export default function Carousel() {
     }
   }, [update])
 
+  // ── Auto-advance ──────────────────────────────────────────────────────────
+  // Steps one card at a time rather than scrolling continuously, so it always
+  // rests on a snap point and never leaves a photo half cut off. It stops for
+  // anything that reads as intent — hover, focus, touch, a manual scroll — and
+  // never starts at all under reduced motion.
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let timer = null
+    let paused = false
+    // Starts true, not false. Gating the start on the observer firing means a
+    // missed or unsupported callback leaves the strip permanently still; this
+    // way the observer can only ever pause it.
+    let onScreen = true
+
+    const step = () => {
+      if (paused || !onScreen || document.hidden) return
+      const card = el.querySelector('.onsite__item')
+      const dx = card ? card.getBoundingClientRect().width + 16 : el.clientWidth * 0.8
+      const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8
+      // Loop back rather than stopping dead at the last frame.
+      el.scrollTo({ left: end ? 0 : el.scrollLeft + dx, behavior: 'smooth' })
+    }
+
+    const start = () => {
+      if (timer) return
+      timer = window.setInterval(step, 3800)
+    }
+    const stop = () => {
+      window.clearInterval(timer)
+      timer = null
+    }
+
+    const pause = () => {
+      paused = true
+      stop()
+    }
+    const resume = () => {
+      paused = false
+      if (onScreen) start()
+    }
+
+    // Off-screen it should not run at all: a timer scrolling something nobody
+    // can see is wasted work and fights the reader when they arrive.
+    const io = new IntersectionObserver(
+      ([e]) => {
+        onScreen = e.isIntersecting
+        if (onScreen && !paused) start()
+        else stop()
+      },
+      { threshold: 0.25 }
+    )
+    io.observe(el)
+    start()
+
+    // A manual scroll means the reader is driving. Hand it back and wait.
+    let idle
+    const onManual = () => {
+      pause()
+      window.clearTimeout(idle)
+      idle = window.setTimeout(resume, 6000)
+    }
+
+    el.addEventListener('pointerenter', pause)
+    el.addEventListener('pointerleave', resume)
+    el.addEventListener('focusin', pause)
+    el.addEventListener('focusout', resume)
+    el.addEventListener('touchstart', onManual, { passive: true })
+    el.addEventListener('wheel', onManual, { passive: true })
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : resume()))
+
+    return () => {
+      stop()
+      io.disconnect()
+      window.clearTimeout(idle)
+      el.removeEventListener('pointerenter', pause)
+      el.removeEventListener('pointerleave', resume)
+      el.removeEventListener('focusin', pause)
+      el.removeEventListener('focusout', resume)
+      el.removeEventListener('touchstart', onManual)
+      el.removeEventListener('wheel', onManual)
+    }
+  }, [])
+
   const nudge = (dir) => {
     const el = ref.current
     if (!el) return
