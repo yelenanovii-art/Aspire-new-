@@ -2471,15 +2471,18 @@
      squeezes a 9:16 down to about 135px, too small to watch. Letting each
      orientation fill its own row keeps both at a usable size. */
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(14px, 1.8vw, 22px);
+  /* Five, not four. A landscape film takes two columns and a portrait one, so
+     the current reel of one landscape and three portraits totals five units:
+     on a four column grid the last card wrapped alone onto a row of its own. */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 18px);
   margin-top: clamp(34px, 4.5vw, 50px);
   align-items: start;
 }
 .film-grid > .film--wide { grid-column: span 2; }
 .film-grid > .film--tall { grid-column: span 1; }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .film-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .film-grid > .film--wide { grid-column: span 2; }
 }

@@ -527,6 +527,8 @@ export const FILM = [
     label: 'Listing walkthrough', note: 'North Carolina, horizontal', ratio: '16 / 9', span: 1 },
   { id: 'reel-villa', src: '/media/film/reel-villa.mp4', poster: '/media/film/reel-villa.webp',
     label: 'Vertical reel', note: 'Tuscany, for Reels and Shorts', ratio: '9 / 16', span: 1 },
+  { id: 'yacht-sail', src: '/media/film/yacht-sail.mp4', poster: '/media/film/yacht-sail.webp',
+    label: 'On the water', note: 'Charter catamaran under sail, vertical', ratio: '9 / 16', span: 1 },
   { id: 'ise-trivia-halls', src: '/media/film/ise-trivia-halls.mp4', poster: '/media/film/ise-trivia-halls.webp',
     label: 'Event series', note: 'Integrated Systems Europe, cut for Reels', ratio: '9 / 16', span: 1 },
 ]
