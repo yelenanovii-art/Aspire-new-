@@ -41,7 +41,13 @@ export default function Carousel() {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Reduce Motion used to stop this dead. That reads the preference too
+    // literally: it asks for less ANIMATION, and a strip of photographs that
+    // never changes is not what someone wants either. So it still advances,
+    // but cuts between frames instead of sliding, and waits longer between
+    // them. Hover, focus and the arrows still pause and drive it, which is the
+    // control WCAG asks for on anything that moves by itself.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     let timer = null
     let paused = false
@@ -56,12 +62,15 @@ export default function Carousel() {
       const dx = card ? card.getBoundingClientRect().width + 16 : el.clientWidth * 0.8
       const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8
       // Loop back rather than stopping dead at the last frame.
-      el.scrollTo({ left: end ? 0 : el.scrollLeft + dx, behavior: 'smooth' })
+      el.scrollTo({
+        left: end ? 0 : el.scrollLeft + dx,
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      })
     }
 
     const start = () => {
       if (timer) return
-      timer = window.setInterval(step, 3800)
+      timer = window.setInterval(step, reduceMotion ? 6000 : 3800)
     }
     const stop = () => {
       window.clearInterval(timer)
