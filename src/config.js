@@ -10,7 +10,11 @@ export const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || ''
 
 // ── Canonical site origin (no trailing slash) ───────────────────────────────
 // Used for canonical URLs, Open Graph URLs, sitemap.xml and structured data.
-export const SITE_URL = 'https://www.aspireagencymarketing.com'
+// Apex, not www. Netlify serves the apex and 301s www to it, so a www
+// canonical pointed every page at a URL that redirects. This string drives
+// canonicals, OG urls, the sitemap and the structured data, so it has to match
+// the host that actually answers 200.
+export const SITE_URL = 'https://aspireagencymarketing.com'
 
 // ── "Book a free discovery call" destination ────────────────────────────────
 // Drop in a Calendly / Cal.com / Google Calendar scheduling link and every

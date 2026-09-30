@@ -12,11 +12,12 @@
 import { execFileSync, spawn } from 'node:child_process'
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { SERVICES } from '../src/data/site.js'
+import { SERVICES, ABOUT_BAND } from '../src/data/site.js'
 import { ESTATE, AI } from '../src/data/verticals.js'
 import { TEAM, ONSITE, FILM } from '../src/data/site.js'
 
-const SITE_URL = 'https://www.aspireagencymarketing.com'
+// Must match src/config.js: the apex is what Netlify answers 200 on.
+const SITE_URL = 'https://aspireagencymarketing.com'
 
 // Static routes, then one per service from the content data — so adding a
 // service to src/data/site.js adds its prerendered page and sitemap entry.
@@ -59,7 +60,7 @@ const today = new Date().toISOString().slice(0, 10)
 // be discoverable in image search, not just the pages that contain it.
 const IMAGES = {
   '/': ONSITE.map((o) => o.src),
-  '/about': TEAM.filter((m) => m.photo).map((m) => m.photo),
+  '/about': [...TEAM.filter((m) => m.photo).map((m) => m.photo), ...ABOUT_BAND.map((b) => b.src)],
   [`/${ESTATE.slug}`]: [ESTATE.film.src, ...ESTATE.gallery.filter((g) => g.src).map((g) => g.src)],
   '/services/content-creation': FILM.map((f) => f.poster),
 }

@@ -4,12 +4,34 @@ import Gallery from '../components/Gallery'
 import MediaSlot from '../components/MediaSlot'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
-import { bookHref, bookAttrs } from '../config'
+import { bookHref, bookAttrs, SITE_URL } from '../config'
 import { ESTATE } from '../data/verticals'
 import { useGlow, useSpotlight } from '../hooks/useInteractions'
+import { useJsonLd } from '../hooks/useJsonLd'
 
 export default function RealEstate() {
   const e = ESTATE
+
+  // The film plate now carries real footage, so declare it. Without this the
+  // page has video Google cannot see, and video is the one rich result this
+  // page can realistically win.
+  useJsonLd(
+    /\.(mp4|webm|mov)$/i.test(e.film.src || '')
+      ? 'aspire-estate-video'
+      : null,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: 'Aerial film of a Tuscan villa estate',
+      description:
+        'Cinematic aerial walkthrough of a villa estate in the Tuscan hills, shot and cut by Aspire for a property listing.',
+      thumbnailUrl: SITE_URL + (e.film.poster || ''),
+      contentUrl: SITE_URL + e.film.src,
+      uploadDate: '2026-09-30',
+      isFamilyFriendly: true,
+      publisher: { '@id': SITE_URL + '/#organization' },
+    }
+  )
   const heroGlow = useGlow()
   const grids = useSpotlight()
   return (

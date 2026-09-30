@@ -42,15 +42,15 @@ const META = {
   [`/${ESTATE.slug}`]: { t: ESTATE.metaTitle, d: ESTATE.metaDesc, k: ESTATE.keywords },
   [`/${AI.slug}`]: { t: AI.metaTitle, d: AI.metaDesc, k: AI.keywords },
   '/cookies': {
-    t: 'Cookie Policy',
+    t: 'Cookie Policy and Your Choices',
     d: 'What Aspire stores on your device and why. No advertising cookies, no third party trackers, and analytics only if you allow them.',
   },
   '/privacy': {
-    t: 'Privacy Policy',
+    t: 'Privacy Policy and Your Data Rights',
     d: 'How Aspire Agency Marketing collects, uses and protects your personal data, how long we keep it, and your rights under the GDPR.',
   },
   '/terms': {
-    t: 'Terms of Use',
+    t: 'Terms of Use for This Website',
     d: 'The terms on which you may use the Aspire Agency Marketing website, including permitted use, intellectual property and limitation of liability.',
   },
   ...SERVICE_META,
@@ -78,6 +78,7 @@ const PAGE_SCHEMA_OWNERS = {
   'aspire-person': '/about',
   'aspire-film-video': '/services/content-creation',
   'aspire-team': '/about',
+  'aspire-estate-video': '/real-estate',
 }
 
 // Readable names for the final breadcrumb crumb.
