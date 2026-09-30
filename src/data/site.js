@@ -452,6 +452,22 @@ export const ONSITE = [
     alt: 'Two people shaking hands on a stage at an event' },
   { src: '/media/events/show-floor.webp', caption: 'Show floor, after dark',
     alt: 'A lit installation on an exhibition show floor' },
+  // Captions below describe only what is visible in each frame. Where an event
+  // name is not on the signage it is left out rather than guessed.
+  { src: '/media/events/idm-stand.webp', caption: 'On the stand for Interactive Digital Media',
+    alt: 'An exhibition stand branded for Interactive Digital Media, with a presenter beside the display' },
+  { src: '/media/events/awards-stage.webp', caption: 'Awards night',
+    alt: 'A line of award winners holding trophies on a lit stage' },
+  { src: '/media/events/awards-night.webp', caption: 'On the red carpet',
+    alt: 'Four people holding awards on a red carpet beside a sponsor banner' },
+  { src: '/media/events/barcelona-group.webp', caption: 'Delegates in Barcelona',
+    alt: 'A large group photographed in front of Casa Batlló in Barcelona' },
+  { src: '/media/events/team-offsite.webp', caption: 'The whole group, outdoors',
+    alt: 'A large conference group photographed together on a lawn' },
+  { src: '/media/events/push-beyond.webp', caption: 'Push Beyond',
+    alt: 'Attendees gathered beside a large letter sculpture under a Push Beyond banner' },
+  { src: '/media/events/nrw-stand.webp', caption: 'On the stand in North Rhine Westphalia',
+    alt: 'Two people talking at a trade stand with product screens behind them' },
 ]
 
 // ---------------------------------------------------------------------------
