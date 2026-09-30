@@ -381,7 +381,10 @@ export const CLIENTS = [
   { name: 'AnyMessage', logo: '/brand/clients/anymessage.webp' },
   { name: 'RatTech', logo: '/brand/clients/rattech.webp' },
   { name: 'ABC Kloak', logo: '/brand/clients/abc-kloak.webp' },
-  // No mark supplied for this one, so it runs as a set wordmark.
+  // No image mark for these two, so they run as set wordmarks. Veerpoint's
+  // own brand is typographic (type plus a coloured stop), so a wordmark is
+  // faithful rather than a fallback.
+  { name: 'Veerpoint' },
   { name: 'Coaching BV' },
 ]
 
