@@ -67,6 +67,22 @@ export default function ServiceDetail({ service }) {
       </section>
 
       {/* ── What's included ──────────────────────────────────────────── */}
+      {s.photo && (
+        <section className="section section--flush-top section--tight">
+          <div className="container">
+            <figure className="page-banner reveal">
+              <img
+                src={s.photo.src}
+                alt={s.photo.alt}
+                width="1920"
+                height="720"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </section>
+      )}
+
       <section className="section section--ruled">
         <div className="container">
           <SectionHead eyebrow="What it includes" title="What you actually get." />
@@ -125,16 +141,6 @@ export default function ServiceDetail({ service }) {
       </section>
 
       {/* ── Cross-links ──────────────────────────────────────────────── */}
-      {s.photo && (
-        <section className="section section--tight">
-          <div className="container">
-            <figure className="page-banner reveal">
-              <img src={s.photo.src} alt={s.photo.alt} width="1920" height="720"
-                   loading="lazy" decoding="async" />
-            </figure>
-          </div>
-        </section>
-      )}
 
       <section className="section section--tight section--ruled">
         <div className="container">
