@@ -531,23 +531,16 @@ export const ONSITE = [
 // to change.
 // ---------------------------------------------------------------------------
 export const FILM = [
-  // Property work and event work alternating, rather than three property films
-  // in a row: content creation is sold as both, so the reel should show both.
-  // The ISE trivia pieces are finished, branded social videos from that
-  // engagement, which is why they carry the client's name rather than a
-  // generic label.
-  { id: 'villa', src: '/media/film/villa.mp4', poster: '/media/film/villa.webp',
-    label: 'Property film', note: 'Tuscany, horizontal cut', ratio: '16 / 9', span: 1 },
-  { id: 'ise-trivia-halls', src: '/media/film/ise-trivia-halls.mp4', poster: '/media/film/ise-trivia-halls.webp',
-    label: 'Event series', note: 'Integrated Systems Europe, cut for Reels', ratio: '9 / 16', span: 1 },
-  { id: 'ise-trivia-hashtag', src: '/media/film/ise-trivia-hashtag.mp4', poster: '/media/film/ise-trivia-hashtag.webp',
-    label: 'On the floor', note: 'Integrated Systems Europe, vertical', ratio: '9 / 16', span: 1 },
+  // No duplicates. villa.mp4 is the film plate on /real-estate, so showing it
+  // here too made the same Tuscany aerial appear twice on the site. One trivia
+  // clip, not three: they are the same series, same format, same set — three
+  // of them read as one video pasted in repeatedly rather than a range of work.
   { id: 'lodge', src: '/media/film/lodge.mp4', poster: '/media/film/lodge.webp',
-    label: 'Listing walkthrough', note: 'North Carolina', ratio: '16 / 9', span: 1 },
+    label: 'Listing walkthrough', note: 'North Carolina, horizontal', ratio: '16 / 9', span: 1 },
   { id: 'reel-villa', src: '/media/film/reel-villa.mp4', poster: '/media/film/reel-villa.webp',
     label: 'Vertical reel', note: 'Tuscany, for Reels and Shorts', ratio: '9 / 16', span: 1 },
-  { id: 'ise-trivia-country', src: '/media/film/ise-trivia-country.mp4', poster: '/media/film/ise-trivia-country.webp',
-    label: 'Show floor series', note: 'Integrated Systems Europe, vertical', ratio: '9 / 16', span: 1 },
+  { id: 'ise-trivia-halls', src: '/media/film/ise-trivia-halls.mp4', poster: '/media/film/ise-trivia-halls.webp',
+    label: 'Event series', note: 'Integrated Systems Europe, cut for Reels', ratio: '9 / 16', span: 1 },
 ]
 
 // ---------------------------------------------------------------------------
