@@ -12,7 +12,7 @@
 import { execFileSync, spawn } from 'node:child_process'
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { SERVICES, ABOUT_BAND } from '../src/data/site.js'
+import { SERVICES, ABOUT_BAND, WORK_BAND, PAGE_MEDIA } from '../src/data/site.js'
 import { ESTATE, AI } from '../src/data/verticals.js'
 import { TEAM, ONSITE, FILM } from '../src/data/site.js'
 
@@ -63,6 +63,10 @@ const IMAGES = {
   '/about': [...TEAM.filter((m) => m.photo).map((m) => m.photo), ...ABOUT_BAND.map((b) => b.src)],
   [`/${ESTATE.slug}`]: [ESTATE.film.src, ...ESTATE.gallery.filter((g) => g.src).map((g) => g.src)],
   '/services/content-creation': FILM.map((f) => f.poster),
+  '/work': WORK_BAND.map((b) => b.src),
+  '/services': PAGE_MEDIA.services.map((m) => m.src),
+  '/contact': [PAGE_MEDIA.contact.src],
+  [`/${AI.slug}`]: [PAGE_MEDIA.ai.src],
 }
 const imageTags = (r) =>
   (IMAGES[r] || [])

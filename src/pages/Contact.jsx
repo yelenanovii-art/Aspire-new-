@@ -3,6 +3,7 @@ import { Mail, Phone, Pin, ArrowRight } from '../components/Icons'
 import Faq from '../components/Faq'
 import SectionHead from '../components/SectionHead'
 import { COMPANY, BOOKING_URL } from '../config'
+import { PAGE_MEDIA } from '../data/site'
 
 export default function Contact() {
   return (
@@ -48,6 +49,16 @@ export default function Contact() {
           <div className="contact-form-wrap reveal" style={{ '--delay': '80ms' }}>
             <LeadForm source="contact-page" />
           </div>
+        </div>
+      </section>
+
+      {/* A single wide frame so the page is not a form on white. */}
+      <section className="section section--tight">
+        <div className="container">
+          <figure className="page-banner reveal">
+            <img src={PAGE_MEDIA.contact.src} alt={PAGE_MEDIA.contact.alt}
+                 width="1920" height="720" loading="lazy" decoding="async" />
+          </figure>
         </div>
       </section>
 

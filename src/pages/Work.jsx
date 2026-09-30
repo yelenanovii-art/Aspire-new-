@@ -5,7 +5,7 @@ import Stat from '../components/Stat'
 import Testimonials from '../components/Testimonials'
 import Marquee from '../components/Marquee'
 import CTABand from '../components/CTABand'
-import { CASES, STATS, CLIENTS } from '../data/site'
+import { CASES, STATS, CLIENTS, WORK_BAND } from '../data/site'
 
 export default function Work() {
   return (
@@ -44,6 +44,26 @@ export default function Work() {
               <CaseCard c={c} i={i} showServices key={c.slug} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* The cases above are told in numbers; this is what the work looked
+          like. All six frames are from the ISE engagement listed above, not
+          stock event photography. */}
+      <section className="section section--tight">
+        <div className="container">
+          <SectionHead
+            eyebrow="On the ground"
+            title="A year at Integrated Systems Europe."
+            lede="Onsite marketing partner at the largest AV show in the world, in Barcelona. Stand presence, social coverage and the content cut from the floor while the show ran."
+          />
+          <ul className="band band--six">
+            {WORK_BAND.map((b, i) => (
+              <li className="band__item reveal" style={{ '--delay': `${i * 60}ms` }} key={b.src}>
+                <img src={b.src} alt={b.alt} width="1440" height="900" loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

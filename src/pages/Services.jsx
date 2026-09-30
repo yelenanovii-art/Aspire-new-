@@ -2,7 +2,7 @@ import { ArrowRight, Check } from '../components/Icons'
 import SectionHead from '../components/SectionHead'
 import CTABand from '../components/CTABand'
 import Faq from '../components/Faq'
-import { SERVICES, STEPS } from '../data/site'
+import { SERVICES, STEPS, PAGE_MEDIA } from '../data/site'
 
 export default function Services() {
   return (
@@ -40,6 +40,23 @@ export default function Services() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* The four disciplines above are described; this is them happening. */}
+      <section className="section section--tight">
+        <div className="container">
+          <SectionHead
+            eyebrow="In practice"
+            title="What this looks like on the ground."
+          />
+          <ul className="band">
+            {PAGE_MEDIA.services.map((m, i) => (
+              <li className="band__item reveal" style={{ '--delay': `${i * 70}ms` }} key={m.src}>
+                <img src={m.src} alt={m.alt} width="1440" height="900" loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
