@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 // A frame that holds a photo or a video once one exists, and an intentional
 // placeholder until then.
 //
@@ -10,10 +12,22 @@ const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src || '')
 export default function MediaSlot({ src, poster, label, hint, ratio = '3 / 2', span = 1, alt }) {
   const style = { aspectRatio: ratio, '--span': span }
 
+  // React sets `muted` as a DOM property, never as an attribute, so it does not
+  // survive into the prerendered HTML — and an autoplaying video without the
+  // muted ATTRIBUTE is blocked by every browser. Stamp it on directly so the
+  // static file carries it too.
+  const keepMuted = useCallback((el) => {
+    if (el) {
+      el.muted = true
+      el.setAttribute('muted', '')
+    }
+  }, [])
+
   if (src && isVideo(src)) {
     return (
       <figure className="slot slot--filled" style={style}>
         <video
+          ref={keepMuted}
           src={src}
           poster={poster}
           muted

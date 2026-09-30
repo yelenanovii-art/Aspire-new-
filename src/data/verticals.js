@@ -86,9 +86,13 @@ export const ESTATE = {
   // yacht-moored, on-deck.
   film: {
     id: 'villa-aerial',
-    src: '/media/estate/villa-aerial.webp',
+    // The film plate should show film. MediaSlot detects video from the
+    // extension and autoplays it muted and looping, with the still as poster
+    // so the frame is never empty while the clip loads.
+    src: '/media/film/villa.mp4',
+    poster: '/media/film/villa.webp',
     label: 'Tuscany, aerial',
-    alt: 'Aerial panorama of a villa estate in the Tuscan hills at dusk',
+    alt: 'Aerial film of a villa estate in the Tuscan hills at dusk',
     ratio: '16 / 9',
   },
 
