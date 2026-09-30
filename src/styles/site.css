@@ -2882,3 +2882,35 @@
 }
 .page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 620px) { .page-banner { aspect-ratio: 3 / 2; } }
+
+/* Play control shown when the film is not autoplaying (narrow screens, coarse
+   pointers, reduced motion). The poster carries the frame until then. */
+.slot--video { position: relative; }
+.slot__play {
+  position: absolute;
+  inset: auto 0 0 0;
+  margin: 0 auto 16px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 18px 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  background: rgba(8, 14, 16, 0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.slot__play:hover { background: rgba(8, 14, 16, 0.78); }
+.slot__play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.slot__play-icon {
+  width: 0; height: 0;
+  border-left: 10px solid currentColor;
+  border-top: 6.5px solid transparent;
+  border-bottom: 6.5px solid transparent;
+}

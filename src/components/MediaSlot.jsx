@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 // A frame that holds a photo or a video once one exists, and an intentional
 // placeholder until then.
@@ -24,21 +24,7 @@ export default function MediaSlot({ src, poster, label, hint, ratio = '3 / 2', s
   }, [])
 
   if (src && isVideo(src)) {
-    return (
-      <figure className="slot slot--filled" style={style}>
-        <video
-          ref={keepMuted}
-          src={src}
-          poster={poster}
-          muted
-          loop
-          playsInline
-          autoPlay
-          preload="metadata"
-          aria-label={alt || label}
-        />
-      </figure>
-    )
+    return <SlotVideo src={src} poster={poster} label={alt || label} style={style} keepMuted={keepMuted} />
   }
 
   if (src) {
@@ -62,6 +48,55 @@ export default function MediaSlot({ src, poster, label, hint, ratio = '3 / 2', s
         <span className="slot__label">{label}</span>
         {hint && <span className="slot__hint">{hint}</span>}
       </figcaption>
+    </figure>
+  )
+}
+
+// Autoplaying this costs a viewer the whole file — the clip on /real-estate is
+// 5.8MB, and `preload="metadata"` does not save them because autoplay overrides
+// it. So autoplay only where it is cheap and wanted: a wide screen, a fine
+// pointer, and no reduced-motion preference. Everywhere else the poster stands
+// until the viewer asks for it, which also fixes motion autoplaying for people
+// who asked for less of it.
+function SlotVideo({ src, poster, label, style, keepMuted }) {
+  const ref = useRef(null)
+  const [play, setPlay] = useState(false)
+
+  useEffect(() => {
+    const wide = window.matchMedia('(min-width: 861px) and (pointer: fine)').matches
+    const calm = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (wide && calm) setPlay(true)
+  }, [])
+
+  useEffect(() => {
+    const el = ref.current
+    if (play && el && el.paused) el.play().catch(() => {})
+  }, [play])
+
+  return (
+    <figure className="slot slot--filled slot--video" style={style}>
+      <video
+        ref={(el) => {
+          ref.current = el
+          keepMuted(el)
+        }}
+        // Only give the element a source once it is going to play. A <video>
+        // with a src starts fetching even without autoplay on some browsers.
+        src={play ? src : undefined}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        autoPlay={play || undefined}
+        preload={play ? 'auto' : 'none'}
+        aria-label={label}
+      />
+      {!play && (
+        <button type="button" className="slot__play" onClick={() => setPlay(true)}>
+          <span className="slot__play-icon" aria-hidden="true" />
+          Play film
+        </button>
+      )}
     </figure>
   )
 }
