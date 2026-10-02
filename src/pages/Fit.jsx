@@ -31,8 +31,8 @@ export default function Fit() {
           <h1 className="page-hero__title">Find out where to start.</h1>
           <p className="page-hero__lead">
             Six questions about how growth actually works in your company right now. At the end
-            you get the discipline to start with, and a short written plan for the first ninety
-            days if you want it.
+            you get the discipline to start with and a plan for the first ninety days, on the
+            spot rather than in an email next week.
           </p>
         </div>
       </section>
@@ -48,7 +48,7 @@ export default function Fit() {
           <SectionHead
             eyebrow="What you get"
             title="A plan, not a sales call."
-            lede="The plan says what to do first, what to leave alone this quarter, and what it should produce. It is written against your six answers rather than pulled from a template, and it is yours whether or not you ever work with us."
+            lede="What to start with, what to park this quarter, and what it should produce. It is built from your six answers rather than pulled from a template, it appears as soon as you ask for it, and it is yours whether or not you ever work with us."
             center
           />
           <p className="fit__foot">

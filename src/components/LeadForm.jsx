@@ -39,6 +39,9 @@ export default function LeadForm({
   successBody = 'Elena will be in touch within one business day to book your free 15-minute call. Talk soon.',
   source = 'contact',
   hidden,
+  // When set, the caller renders what happens next instead of the built in
+  // confirmation. The quiz uses it to show the plan in place of a thank you.
+  onSuccess,
 }) {
   const [sent, setSent] = useState(false)
   const [status, setStatus] = useState('idle') // idle | sending | error
@@ -53,7 +56,8 @@ export default function LeadForm({
     )
     if (res.ok) {
       setStatus('idle')
-      setSent(true)
+      if (onSuccess) onSuccess()
+      else setSent(true)
     } else {
       setStatus('error')
     }

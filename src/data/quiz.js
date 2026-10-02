@@ -144,3 +144,68 @@ export function matchFor(result) {
     second: second ? { title: second.title, href: `/services/${second.slug}` } : null,
   }
 }
+
+// ── The plan ────────────────────────────────────────────────────────────────
+//
+// Written here rather than promised by email, so the thing someone hands over
+// an address for arrives while they are still on the page. Each plan is built
+// from what that discipline actually includes on its own service page, so the
+// quiz cannot promise work the site does not describe.
+//
+// `first` is the thirty day move, `then` the rest of the quarter, `park` the
+// thing most people do too early, and `expect` what it should produce. The
+// bottleneck answer adds one line on top, because two companies matched to the
+// same discipline for different reasons should not read the same plan.
+export const PLANS = {
+  sales: {
+    first: 'Define the buyer properly, then build one list against it. Not a sector and a job title: the trigger that makes someone need this now. Most outreach fails on the list, not the message.',
+    then: 'Run one channel properly rather than four badly. Sequence it, follow up past the second touch, and put every interaction in the CRM the day it happens, so the pipeline is a record rather than a memory.',
+    park: 'Leave rebranding alone this quarter. A new logo moves nothing while nobody senior is having conversations.',
+    expect: 'Qualified conversations inside six weeks, and a pipeline you can forecast from by the end of the quarter.',
+  },
+  'business-development': {
+    first: 'Fix the positioning before anything is spent amplifying it. One sentence on who this is for and what changes for them, tested on people who were not in the room when it was written.',
+    then: 'Put that sentence through the website, the deck and the outreach so all three say the same thing, then open two or three partnerships where someone else already has the audience.',
+    park: 'Leave paid acquisition alone until the positioning is settled. Paying to send traffic at an unclear promise is how budgets disappear.',
+    expect: 'A clearer answer to "what do you do", a site that converts the traffic it already gets, and one or two partnerships worth more than a month of cold outreach.',
+  },
+  'social-media': {
+    first: 'Pick one channel where your buyers already are and commit to it for a quarter. Four half-run channels lose to one that posts consistently.',
+    then: 'Build a calendar from the questions your sales conversations keep answering, so the content feeds the pipeline rather than running beside it. Then community: reply to everything for ninety days.',
+    park: 'Leave follower count alone as a measure. Reach without conversations is a vanity line on a report.',
+    expect: 'A channel that produces inbound conversations rather than impressions, and a library of content the sales side can send directly.',
+  },
+  'content-creation': {
+    first: 'One shoot, planned around a quarter of output rather than a single post. Photography, long form and vertical cut from the same day is the difference between a content budget and a content problem.',
+    then: 'Build the templates and the branded visuals so the look holds when someone else posts, and put live capture on the next event you attend, which is the cheapest content you will ever make.',
+    park: 'Leave a studio set up alone for now. Location work at a real event beats a clean background nobody recognises.',
+    expect: 'Enough material to post consistently for a quarter, and something to show prospects that is not a slide.',
+  },
+  estate: {
+    first: 'Shoot one property properly and set the grade and framing rules on it. Consistency across a portfolio is what makes a brokerage feed read as expensive; one beautiful listing next to six phone photos does not.',
+    then: 'Cut every shoot long for the listing page and vertical for Reels on the same day, then run the channel the content lands on so the enquiries have somewhere to arrive.',
+    park: 'Leave drone permissions and exotic locations alone until the base look is consistent. The gap is rarely ambition.',
+    expect: 'A portfolio that looks like one brand, and listings that hold attention long enough to generate an enquiry.',
+  },
+  ai: {
+    first: 'Write down the report that gets rebuilt by hand every month and where each number comes from. That document is most of the build, and it usually shows two sources nobody trusts.',
+    then: 'Connect those sources into one dashboard that updates itself, then automate the step after the report: the alert, the handoff, the thing someone currently remembers to do.',
+    park: 'Leave anything described as an AI agent alone until the data is in one place and trusted. Automation on top of bad inputs produces confident nonsense faster.',
+    expect: 'The monthly rebuild gone, one place to look, and the hours it was eating back.',
+  },
+}
+
+// One line keyed to the bottleneck, so the plan speaks to why they are here.
+export const BOTTLENECK_NOTE = {
+  volume: 'You said the problem is not enough qualified conversations, so judge the first month on conversations started, not on anything that happens after them.',
+  stall: 'You said conversations stall. That is usually a follow up problem rather than a pitch problem: the fix is a sequence someone owns, not a better deck.',
+  proof: 'You said there is nothing good to show prospects. Treat that as the first deliverable, because every other channel is waiting on it.',
+  owner: 'You said nobody owns growth full time. Decide who owns it before anything else on this list, even if that person is you for one day a week.',
+}
+
+// Pick the plan for a result, plus the one line keyed to why they are here.
+export function planFor(result, answers) {
+  const key = result.route || result.primary?.slug
+  const plan = PLANS[key] || PLANS['business-development']
+  return { ...plan, note: BOTTLENECK_NOTE[answers?.break] || null }
+}

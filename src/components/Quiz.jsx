@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { ArrowRight } from './Icons'
 import LeadForm from './LeadForm'
-import { QUESTIONS, scoreQuiz, matchFor } from '../data/quiz'
+import { QUESTIONS, scoreQuiz, matchFor, planFor } from '../data/quiz'
 
 // Three stages: answer, then a gate, then the plan.
 //
@@ -12,10 +12,11 @@ import { QUESTIONS, scoreQuiz, matchFor } from '../data/quiz'
 export default function Quiz() {
   const [idx, setIdx] = useState(0)
   const [answers, setAnswers] = useState({})
-  const [stage, setStage] = useState('quiz') // quiz | gate | plan
+  const [stage, setStage] = useState('quiz') // quiz | gate | match | plan
 
   const result = useMemo(() => scoreQuiz(answers), [answers])
   const match = useMemo(() => matchFor(result), [result])
+  const plan = useMemo(() => planFor(result, answers), [result, answers])
   const q = QUESTIONS[idx]
   const pct = Math.round((Object.keys(answers).length / QUESTIONS.length) * 100)
 
@@ -82,17 +83,18 @@ export default function Quiz() {
           <div className="quiz__gate">
             <p className="quiz__gate-head">Where to send the plan</p>
             <p className="quiz__gate-note">
-              A short written plan for the first 90 days, based on these six answers: what to
-              start with, what to leave alone for now, and what it should produce. No charge,
-              and it is yours whether or not you work with us.
+              Your plan for the first 90 days appears on this page as soon as you send this:
+              what to start with, what to park, and what it should produce. No charge, and it
+              is yours whether or not you work with us.
             </p>
             <LeadForm
               fields={['name', 'company', 'email']}
-              submitLabel="Send me the plan"
-              note="One email with the plan. We never share your details."
+              submitLabel="Show me the plan"
+              note="Your plan appears straight away. We never share your details."
               successTitle="On its way."
               successBody="Elena will send your plan within one business day. If it raises questions, the first call is free."
               source="growth-quiz"
+              onSuccess={() => setStage('plan')}
               hidden={{
                 quiz_match: match.title,
                 ...Object.fromEntries(
@@ -102,18 +104,51 @@ export default function Quiz() {
             />
           </div>
 
-          <button type="button" className="quiz__back" onClick={() => setStage('plan')}>
-            Just show me the match
+          <button type="button" className="quiz__back" onClick={() => setStage('match')}>
+            Skip, just show me the match
           </button>
         </div>
       )}
 
-      {/* ── Plan: the match without the written follow-up ─────── */}
-      {stage === 'plan' && (
+      {/* ── Plan ──────────────────────────────────────────────── */}
+      {(stage === 'plan' || stage === 'match') && (
         <div className="quiz__step">
           <p className="quiz__count">Your match</p>
           <h3 className="quiz__q">{match.title}</h3>
           <p className="quiz__help">{match.line}</p>
+
+          {stage === 'plan' && plan.note && <p className="quiz__note">{plan.note}</p>}
+
+          {stage === 'plan' && (
+          <ol className="quiz__plan">
+            <li>
+              <span className="quiz__plan-when">First 30 days</span>
+              <p>{plan.first}</p>
+            </li>
+            <li>
+              <span className="quiz__plan-when">The rest of the quarter</span>
+              <p>{plan.then}</p>
+            </li>
+            <li>
+              <span className="quiz__plan-when">Park this for now</span>
+              <p>{plan.park}</p>
+            </li>
+            <li>
+              <span className="quiz__plan-when">What it should produce</span>
+              <p>{plan.expect}</p>
+            </li>
+          </ol>
+          )}
+
+          {stage === 'match' && (
+            <p className="quiz__note">
+              The ninety day plan for this is a few lines long and sits behind the form above,
+              which is the only thing we ask for.{' '}
+              <button type="button" className="quiz__inline" onClick={() => setStage('gate')}>
+                Go back and get it
+              </button>
+            </p>
+          )}
 
           <div className="quiz__actions">
             <a className="btn btn-accent" href={match.href}>

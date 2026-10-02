@@ -36,7 +36,7 @@ const META = {
   },
   '/fit': {
     t: 'Find Out Where Your Growth Should Start',
-    d: 'Six questions that match your company to the growth discipline to start with, plus a short written plan for the first ninety days. Free, no obligation.',
+    d: 'Six questions that match your company to the growth discipline to start with, plus a ninety day plan you get on the spot. Free, no obligation.',
     k: 'growth assessment, marketing quiz, which marketing service, B2B growth plan',
   },
   '/contact': {
