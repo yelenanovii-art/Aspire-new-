@@ -184,6 +184,60 @@
 .nav__actions { display: flex; align-items: center; gap: 10px; }
 .nav--over-dark .nav__cta { box-shadow: none; }
 
+/* Quiz shortcut.
+   A 38px target either side of the burger's 42px, so the two read as a pair
+   rather than as a control and an afterthought. It inverts to the accent on
+   hover, which is what separates it from a help icon. */
+.nav__quiz {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+.nav__quiz:hover,
+.nav__quiz:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.nav__quiz.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.nav--over-dark .nav__quiz { border-color: rgba(255, 255, 255, 0.34); color: #fff; }
+.nav--over-dark .nav__quiz:hover,
+.nav--over-dark .nav__quiz:focus-visible { background: #fff; border-color: #fff; color: var(--ink); }
+
+/* The name of the thing, for anyone who hovers before clicking. Pointer
+   devices only: on a touch screen it would either never show or show stuck. */
+.nav__quiz-tip {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+.nav__quiz:hover .nav__quiz-tip,
+.nav__quiz:focus-visible .nav__quiz-tip { opacity: 1; transform: none; }
+@media (hover: none), (max-width: 860px) {
+  .nav__quiz-tip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav__quiz, .nav__quiz-tip { transition: none; }
+}
+
 /* Burger */
 .nav__burger {
   display: none;

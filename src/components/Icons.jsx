@@ -15,6 +15,25 @@ export function Check({ size = 16 }) {
   )
 }
 
+// The quiz entry point in the nav bar. A question mark reads as "answer
+// something" at 19px in a way a target or a compass does not; the accent fill
+// on the button is what keeps it from reading as a help link.
+export function QuizMark({ size = 19 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7" />
+      <path
+        d="M9.35 9.6a2.75 2.75 0 1 1 3.5 2.65c-.75.23-1.05.75-1.05 1.5v.5"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="11.8" cy="17.1" r="1" fill="currentColor" />
+    </svg>
+  )
+}
+
 export function Pin({ size = 15 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">

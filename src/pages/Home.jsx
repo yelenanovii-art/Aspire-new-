@@ -72,7 +72,7 @@ export default function Home() {
                 question rather than naming a page, so the click is driven by
                 wanting the answer. Work is still one tap away in the nav. */}
             <a className="btn btn-outline-light btn-lg" href="/fit">
-              What is your growth score?
+              Find your match
             </a>
           </div>
 

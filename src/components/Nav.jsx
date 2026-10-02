@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Logo from './Logo'
-import { ArrowRight } from './Icons'
+import { ArrowRight, QuizMark } from './Icons'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES } from '../data/site'
 import { ESTATE, AI } from '../data/verticals'
@@ -45,7 +45,7 @@ const NAV = [
         ],
       },
     ],
-    featured: { to: '/fit', label: 'Not sure which one? Answer six questions' },
+    featured: { to: '/fit', label: 'Not sure which one? Find your match' },
   },
   { type: 'link', to: '/work', label: 'Work' },
   { type: 'link', to: '/about', label: 'About' },
@@ -131,6 +131,20 @@ export default function Nav({ path, onDark = false }) {
         </nav>
 
         <div className="nav__actions">
+          {/* The quiz needs a way in that survives the mobile bar, where
+              nav__cta is hidden and the only controls are the logo and the
+              burger. An icon button is small enough to sit there without
+              competing with "Book a free call", which is still the primary
+              action; the label rides along as a tooltip on pointer devices and
+              as the accessible name everywhere. */}
+          <a
+            className={`nav__quiz ${isActive('/fit') ? 'is-active' : ''}`}
+            href="/fit"
+            aria-label="Find your match: a six question quiz"
+          >
+            <QuizMark size={19} />
+            <span className="nav__quiz-tip" aria-hidden="true">Find your match</span>
+          </a>
           <a className="btn btn-accent btn-sm nav__cta" href={bookHref} {...bookAttrs}>
             Book a free call <ArrowRight />
           </a>
