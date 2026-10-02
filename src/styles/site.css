@@ -568,11 +568,22 @@
   .marquee__group li img[src*="de-interim"] { height: 38px; }
   .marquee-label { margin-bottom: 20px; }
 }
+/* Reduce Motion must stop the travel, but it should not replace the component.
+   Wrapping ten marks onto five stacked rows on a phone is a different thing
+   from a logo strip, and someone with the setting on would never see the strip
+   this page was designed around. Keep the single row and hand the scrolling
+   over to the reader: nothing moves until they move it. The edge fade stays,
+   since it now doubles as the hint that there is more to the right. */
 @media (prefers-reduced-motion: reduce) {
-  .marquee__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
-  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee__track { animation: none; }
+  .marquee {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .marquee::-webkit-scrollbar { display: none; }
   .marquee__group:nth-child(2) { display: none; }
-  .marquee__group { flex-wrap: wrap; justify-content: center; row-gap: 14px; }
+  .marquee__group { padding-right: 0; }
 }
 
 /* ---------- 5. Section heads ------------------------------------------ */
@@ -3140,13 +3151,20 @@
 }
 
 /* Reduced motion stops the logos, so it stops this too — the two strips should
-   not disagree about whether the page is moving. The photographs stay, wrapped
-   onto lines, so nothing is lost by holding still. */
+   not disagree about whether the page is moving. Both stay a single swipeable
+   row rather than wrapping, so the page keeps its shape either way. */
 @media (prefers-reduced-motion: reduce) {
-  .onsite__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+  .onsite__track { animation: none; }
+  .onsite {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .onsite::-webkit-scrollbar { display: none; }
   .onsite__group:nth-child(2) { display: none; }
-  .onsite { -webkit-mask-image: none; mask-image: none; }
-  .onsite__group { flex-wrap: wrap; justify-content: center; }
+  .onsite__group { padding-right: 0; }
+  .onsite__item { scroll-snap-align: center; }
 }
 
 /* The plan itself: four beats rather than a wall of advice. */
