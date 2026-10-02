@@ -1,8 +1,16 @@
 // ── Growth fit quiz ─────────────────────────────────────────────────────────
 //
-// Six questions that end in a named service rather than a score. A score would
-// be honest for a risk assessment; here the useful answer is "start with this
-// one", because that is the actual decision a visitor is trying to make.
+// Six questions that end in a score, an archetype and a plan.
+//
+// The first version asked what was running: a consultant's intake form. It was
+// accurate and nobody wants to fill it in, because being audited is not a
+// feeling anyone seeks out. These ask how the situation FEELS — the wince when
+// someone looks you up, the competitor you know is weaker winning anyway — and
+// the recognition is what carries someone to question six.
+//
+// The payoff is layered deliberately: a score to react to, a name for the
+// situation they are in, then the plan. The score and the name are the parts
+// people repeat to a colleague.
 //
 // Every option carries weights across the four disciplines. SPECIALISMS are
 // decided separately: they are a different buyer, not a heavier weighting, so
@@ -12,68 +20,67 @@ import { ESTATE, AI } from './verticals'
 
 export const QUESTIONS = [
   {
+    id: 'website',
+    q: 'Someone hears your name and looks you up before you ever speak. What do you feel?',
+    help: 'First reaction, not the considered one.',
+    options: [
+      { v: 'proud', label: 'Proud. It does the job', w: { sales: 3 }, pts: 20 },
+      { v: 'wince', label: 'A small wince. It is out of date', w: { bd: 3, content: 1 }, pts: 7 },
+      { v: 'invisible', label: 'Nothing, because almost nobody finds it', w: { bd: 2, social: 2 }, pts: 1 },
+      { v: 'mismatch', label: 'It does not look like the company we have become', w: { bd: 3 }, pts: 6 },
+    ],
+  },
+  {
+    id: 'pipeline',
+    q: 'It is Monday morning. Where is next quarter coming from?',
+    help: 'The honest answer, not the forecast.',
+    options: [
+      { v: 'referral', label: 'Referrals we cannot control or repeat', w: { sales: 3, bd: 1 }, pts: 5 },
+      { v: 'grind', label: 'Outbound we are grinding out ourselves', w: { sales: 2, content: 1 }, pts: 13 },
+      { v: 'trickle', label: 'Inbound, but it trickles', w: { social: 2, content: 2 }, pts: 18 },
+      { v: 'unknown', label: 'Genuinely, I do not know', w: { sales: 3, bd: 3 }, pts: 0 },
+    ],
+  },
+  {
+    id: 'rival',
+    q: 'A competitor you know is weaker keeps showing up everywhere. That feels like?',
+    options: [
+      { v: 'galling', label: 'Galling. We are better and quieter', w: { social: 3, content: 2 }, pts: 9 },
+      { v: 'fair', label: 'Fair enough. They market, we do not', w: { bd: 2, social: 2 }, pts: 11 },
+      { v: 'unnoticed', label: 'I have not been watching', w: { bd: 2 }, pts: 5 },
+      { v: 'why', label: 'Exactly why I am filling this in', w: { sales: 2, social: 2 }, pts: 4 },
+    ],
+  },
+  {
+    id: 'stuck',
+    q: 'Growth has not been fixed yet. What is the real reason?',
+    help: 'Everyone has one. Most people know what it is.',
+    options: [
+      { v: 'time', label: 'No time. We are delivering', w: { bd: 2, content: 2 }, pts: 14 },
+      { v: 'owner', label: 'Nobody actually owns it', w: { bd: 3, sales: 1 }, pts: 3 },
+      { v: 'burned', label: 'We tried an agency and got juniors', w: { sales: 2, bd: 2 }, pts: 9 },
+      { v: 'start', label: 'I do not know where to start', w: { bd: 3, social: 1 }, pts: 2 },
+    ],
+  },
+  {
+    id: 'win',
+    q: 'One thing lands in ninety days. Which would change how you feel most?',
+    options: [
+      { v: 'conversations', label: 'A calendar with real conversations in it', w: { sales: 3 }, pts: 8 },
+      { v: 'brand', label: 'A brand that finally matches the product', w: { bd: 3 }, pts: 8 },
+      { v: 'proof', label: 'Work we are not embarrassed to show', w: { content: 3, social: 1 }, pts: 8 },
+      { v: 'clarity', label: 'Numbers I can see without asking anyone', w: { bd: 1 }, pts: 8, route: 'ai' },
+    ],
+  },
+  {
     id: 'sector',
-    q: 'What do you sell, and who buys it?',
+    q: 'Last one. Who is actually buying?',
     help: 'This decides whether a specialist practice fits better than the general offer.',
     options: [
-      { v: 'b2b-tech', label: 'B2B software or hardware', w: { sales: 2, bd: 2 } },
-      { v: 'property', label: 'Property, developments or yachts', w: {}, route: 'estate' },
-      { v: 'services', label: 'Professional or consulting services', w: { bd: 2, social: 1 } },
-      { v: 'other', label: 'Something else', w: { bd: 1 } },
-    ],
-  },
-  {
-    id: 'source',
-    q: 'Where does new business come from today?',
-    help: 'Be honest about the main one, not the one you wish it were.',
-    options: [
-      { v: 'referral', label: 'Referrals and word of mouth', w: { sales: 3, bd: 1 } },
-      { v: 'outbound', label: 'Outbound we run ourselves', w: { sales: 2, content: 1 } },
-      { v: 'inbound', label: 'Inbound from content or search', w: { social: 2, content: 2 } },
-      { v: 'nothing', label: 'Nothing consistent', w: { sales: 3, bd: 3 } },
-    ],
-  },
-  {
-    id: 'break',
-    q: 'What breaks first?',
-    help: 'The bottleneck, not the symptom.',
-    options: [
-      { v: 'volume', label: 'Not enough qualified conversations', w: { sales: 3 } },
-      { v: 'stall', label: 'Conversations start then stall', w: { sales: 2, bd: 2 } },
-      { v: 'proof', label: 'Nothing good to show prospects', w: { content: 3, social: 1 } },
-      { v: 'owner', label: 'Nobody owns growth full time', w: { bd: 3, sales: 1 } },
-    ],
-  },
-  {
-    id: 'live',
-    q: 'Which of these are genuinely running?',
-    help: 'Running and maintained, not set up once.',
-    options: [
-      { v: 'crm', label: 'A CRM the team actually uses', w: { bd: 1, content: 1 } },
-      { v: 'channel', label: 'Regular posts on at least one channel', w: { sales: 2 } },
-      { v: 'paid', label: 'Paid acquisition', w: { content: 2, sales: 1 } },
-      { v: 'none', label: 'None of these yet', w: { bd: 2, social: 2 } },
-    ],
-  },
-  {
-    id: 'team',
-    q: 'Who works on growth right now?',
-    options: [
-      { v: 'founder', label: 'The founder, between everything else', w: { bd: 3, sales: 2 } },
-      { v: 'one', label: 'One generalist', w: { sales: 2, social: 1 } },
-      { v: 'team', label: 'A small team', w: { content: 2, social: 1 } },
-      { v: 'agency', label: 'An agency already', w: { bd: 2, content: 1 } },
-    ],
-  },
-  {
-    id: 'data',
-    q: 'How much of your reporting is manual?',
-    help: 'Spreadsheets rebuilt by hand every month are usually a systems problem, not a marketing one.',
-    options: [
-      { v: 'manual', label: 'Rebuilt by hand every month', w: {}, route: 'ai' },
-      { v: 'partial', label: 'Some of it is automated', w: { bd: 1 } },
-      { v: 'automated', label: 'It reports itself', w: { content: 1 } },
-      { v: 'none', label: 'We do not really report on it', w: { bd: 2 } },
+      { v: 'b2b-tech', label: 'B2B software or hardware buyers', w: { sales: 2, bd: 2 }, pts: 5 },
+      { v: 'property', label: 'Property, development or yachting buyers', w: {}, pts: 5, route: 'estate' },
+      { v: 'services', label: 'Businesses buying expertise', w: { bd: 2, social: 1 }, pts: 5 },
+      { v: 'other', label: 'Something else entirely', w: { bd: 1 }, pts: 5 },
     ],
   },
 ]
@@ -197,15 +204,75 @@ export const PLANS = {
 
 // One line keyed to the bottleneck, so the plan speaks to why they are here.
 export const BOTTLENECK_NOTE = {
-  volume: 'You said the problem is not enough qualified conversations, so judge the first month on conversations started, not on anything that happens after them.',
-  stall: 'You said conversations stall. That is usually a follow up problem rather than a pitch problem: the fix is a sequence someone owns, not a better deck.',
-  proof: 'You said there is nothing good to show prospects. Treat that as the first deliverable, because every other channel is waiting on it.',
-  owner: 'You said nobody owns growth full time. Decide who owns it before anything else on this list, even if that person is you for one day a week.',
+  time: 'You said there is no time because you are delivering. That is the healthiest reason on this list and the easiest to leave unfixed for a year, so the plan below is deliberately one thing at a time.',
+  owner: 'You said nobody owns growth. Decide who does before anything else here, even if that person is you for one day a week. Nothing below survives without it.',
+  burned: 'You said an agency gave you juniors. Judge the first month on who is actually in the room, not on the plan they present.',
+  start: 'You said you do not know where to start. That is what the first line below is for; ignore the rest until it is done.',
 }
 
 // Pick the plan for a result, plus the one line keyed to why they are here.
 export function planFor(result, answers) {
   const key = result.route || result.primary?.slug
   const plan = PLANS[key] || PLANS['business-development']
-  return { ...plan, note: BOTTLENECK_NOTE[answers?.break] || null }
+  return { ...plan, note: BOTTLENECK_NOTE[answers?.stuck] || null }
+}
+
+// ── Score and archetype ─────────────────────────────────────────────────────
+//
+// The score exists to be reacted to. It is deliberately not a grade out of ten
+// dressed up: it reads as a position on a scale people can imagine moving
+// along, which is the feeling the whole page is selling.
+//
+// The archetype is the line someone repeats to a colleague. Each one is
+// flattering about the company and unflattering about the situation, because
+// that is the combination people recognise themselves in rather than resist.
+// True ceiling: 20 + 18 + 11 + 14 + 8 + 6. Reaching it means almost nothing
+// is wrong, which should be rare on a page people visit because something is.
+export const MAX_SCORE = 76
+
+export const ARCHETYPES = {
+  secret: {
+    name: 'The Best Kept Secret',
+    line: 'The product is good and almost nobody knows. Everything you need already exists except the part that tells people about it, which is the cheapest gap on this list to close.',
+  },
+  bottleneck: {
+    name: 'The Founder Bottleneck',
+    line: 'Growth runs through one person who is also doing everything else. It works until it does not, and it never compounds, because the only thing holding it together is one calendar.',
+  },
+  scattered: {
+    name: 'Everywhere and Nowhere',
+    line: 'There is activity on several fronts and none of it is compounding. Four half-run channels lose to one that is run properly, and you almost certainly already know which one it should be.',
+  },
+  coasting: {
+    name: 'Running on Referrals',
+    line: 'The work is good enough that it sells itself, which is why nothing has been built. That is a strong position and a fragile one: referrals cannot be turned up when you need them.',
+  },
+  blind: {
+    name: 'Flying on Instruments You Cannot Read',
+    line: 'Decisions are being made on numbers nobody fully trusts, rebuilt by hand. The marketing question underneath it cannot be answered honestly until that is fixed.',
+  },
+}
+
+export function scoreOf(answers) {
+  let pts = 0
+  QUESTIONS.forEach((q) => {
+    const chosen = q.options.find((o) => o.v === answers[q.id])
+    if (chosen) pts += chosen.pts || 0
+  })
+  const pct = Math.max(0, Math.min(100, Math.round((pts / MAX_SCORE) * 100)))
+  const band = pct >= 72 ? 'Strong footing' : pct >= 45 ? 'Workable' : 'Plenty to build'
+  return { pts, pct, band }
+}
+
+export function archetypeOf(answers, result) {
+  // Most specific signal first. "No time" is the most common answer anyone
+  // gives, so testing it early swallowed everything else and three different
+  // companies came out as the same archetype.
+  if (result.route === 'ai' || answers.win === 'clarity') return ARCHETYPES.blind
+  if (answers.pipeline === 'referral') return ARCHETYPES.coasting
+  if (answers.stuck === 'owner') return ARCHETYPES.bottleneck
+  if (answers.rival === 'galling' || answers.website === 'invisible') return ARCHETYPES.secret
+  if (answers.pipeline === 'trickle' || answers.rival === 'fair') return ARCHETYPES.scattered
+  if (answers.stuck === 'time') return ARCHETYPES.bottleneck
+  return ARCHETYPES.secret
 }

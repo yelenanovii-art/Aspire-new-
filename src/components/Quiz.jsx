@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { ArrowRight } from './Icons'
 import LeadForm from './LeadForm'
-import { QUESTIONS, scoreQuiz, matchFor, planFor } from '../data/quiz'
+import { QUESTIONS, scoreQuiz, matchFor, planFor, scoreOf, archetypeOf } from '../data/quiz'
 
 // Three stages: answer, then a gate, then the plan.
 //
@@ -17,6 +17,8 @@ export default function Quiz() {
   const result = useMemo(() => scoreQuiz(answers), [answers])
   const match = useMemo(() => matchFor(result), [result])
   const plan = useMemo(() => planFor(result, answers), [result, answers])
+  const score = useMemo(() => scoreOf(answers), [answers])
+  const archetype = useMemo(() => archetypeOf(answers, result), [answers, result])
   const q = QUESTIONS[idx]
   const pct = Math.round((Object.keys(answers).length / QUESTIONS.length) * 100)
 
@@ -76,12 +78,30 @@ export default function Quiz() {
       {/* ── Gate: name the match, hold the plan ───────────────── */}
       {stage === 'gate' && (
         <div className="quiz__step">
-          <p className="quiz__count">Your match</p>
-          <h3 className="quiz__q">{match.title}</h3>
-          <p className="quiz__help">{match.line}</p>
+          <p className="quiz__count">Your result</p>
+
+          <div className="quiz__score">
+            <div className="quiz__dial" role="img" aria-label={`Growth readiness ${score.pct} out of 100`}>
+              <span className="quiz__dial-fill" style={{ '--pct': `${score.pct}%` }} />
+              <span className="quiz__dial-num">{score.pct}</span>
+            </div>
+            <div>
+              <p className="quiz__score-band">{score.band}</p>
+              <p className="quiz__score-note">
+                Growth readiness, out of 100. Most companies at your stage land between 40 and 65.
+              </p>
+            </div>
+          </div>
+
+          <h3 className="quiz__q quiz__archetype">{archetype.name}</h3>
+          <p className="quiz__help">{archetype.line}</p>
+
+          <p className="quiz__match-line">
+            <span>Start with</span> {match.title}
+          </p>
 
           <div className="quiz__gate">
-            <p className="quiz__gate-head">Where to send the plan</p>
+            <p className="quiz__gate-head">Unlock the ninety day plan</p>
             <p className="quiz__gate-note">
               Your plan for the first 90 days appears on this page as soon as you send this:
               what to start with, what to park, and what it should produce. No charge, and it
@@ -113,7 +133,7 @@ export default function Quiz() {
       {/* ── Plan ──────────────────────────────────────────────── */}
       {(stage === 'plan' || stage === 'match') && (
         <div className="quiz__step">
-          <p className="quiz__count">Your match</p>
+          <p className="quiz__count">{archetype.name} · {score.pct}/100</p>
           <h3 className="quiz__q">{match.title}</h3>
           <p className="quiz__help">{match.line}</p>
 
