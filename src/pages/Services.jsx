@@ -52,7 +52,10 @@ export default function Services() {
           />
           {/* One establishing frame, not a preview of the four pages below. */}
           <figure className="page-banner reveal">
-            <img src={PAGE_MEDIA.services[0].src} alt={PAGE_MEDIA.services[0].alt}
+            <img src={PAGE_MEDIA.services[0].src}
+                 srcSet={`${PAGE_MEDIA.services[0].src.replace(/\.webp$/, '-760.webp')} 760w, ${PAGE_MEDIA.services[0].src} 1440w`}
+                 sizes="(max-width: 860px) 90vw, 1068px"
+                 alt={PAGE_MEDIA.services[0].alt}
                  width="1440" height="900" loading="lazy" decoding="async" />
           </figure>
         </div>

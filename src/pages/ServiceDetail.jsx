@@ -71,8 +71,15 @@ export default function ServiceDetail({ service }) {
         <section className="section section--flush-top section--tight">
           <div className="container">
             <figure className="page-banner reveal">
+              {/* The banner is 1068px on desktop, which at 2x genuinely wants
+                  the full 1920. On a phone the same box is 350px, so the full
+                  file is five times the pixels that can be shown — by far the
+                  heaviest thing on these pages. The pair lets the browser
+                  choose; sizes mirrors the real box at each width. */}
               <img
                 src={s.photo.src}
+                srcSet={`${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} 1920w`}
+                sizes="(max-width: 860px) 90vw, 1068px"
                 alt={s.photo.alt}
                 width="1920"
                 height="720"
