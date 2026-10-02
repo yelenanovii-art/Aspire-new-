@@ -4,7 +4,8 @@ import Gallery from '../components/Gallery'
 import MediaSlot from '../components/MediaSlot'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
-import { bookHref, bookAttrs, SITE_URL } from '../config'
+import { bookHrefFrom, bookAttrs, SITE_URL } from '../config'
+import { ESTATE_ORIGIN } from '../lib/leadRouting'
 import { ESTATE } from '../data/verticals'
 import { useGlow, useSpotlight } from '../hooks/useInteractions'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -48,7 +49,9 @@ export default function RealEstate() {
           <h1 className="estate-hero__title reveal" style={{ '--delay': '60ms' }}>{e.h1}</h1>
           <p className="estate-hero__lede reveal" style={{ '--delay': '120ms' }}>{e.lede}</p>
           <div className="estate-hero__actions reveal" style={{ '--delay': '180ms' }}>
-            <a className="btn btn-accent btn-lg" href={bookHref} {...bookAttrs}>
+            {/* Tagged so an enquiry finished on /contact still arrives in the
+                property and charter pipeline rather than the general one. */}
+            <a className="btn btn-accent btn-lg" href={bookHrefFrom(ESTATE_ORIGIN)} {...bookAttrs}>
               Book a free call <ArrowRight />
             </a>
             <a className="btn btn-outline-light btn-lg" href="#portfolio">See the work</a>
@@ -127,6 +130,7 @@ export default function RealEstate() {
         title="Bring us a listing."
         body="Send one property or one vessel and we will tell you exactly how we would shoot it. Fifteen minutes, free."
         secondary={{ to: '/services/content-creation', label: 'All content services' }}
+        from={ESTATE_ORIGIN}
       />
     </div>
   )

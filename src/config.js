@@ -29,6 +29,13 @@ export const BOOKING_URL = isPlaceholder(BOOKING_URL_RAW) ? '' : BOOKING_URL_RAW
 export const bookHref = BOOKING_URL || '/contact'
 export const bookAttrs = BOOKING_URL ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
+// The same booking action, tagged with where it was clicked, so an enquiry
+// finished on /contact still records the page that sent it. Only meaningful
+// while booking falls back to our own form: an external booking tool does not
+// post to us, so there is nothing to carry.
+export const bookHrefFrom = (origin) =>
+  BOOKING_URL ? bookHref : `/contact?from=${encodeURIComponent(origin)}`
+
 // ── Social profiles (footer) ────────────────────────────────────────────────
 // Paste the real profile URLs here (or set VITE_SOCIAL_* in .env.local). Until
 // one is set the footer still shows the icon but renders it inert rather than

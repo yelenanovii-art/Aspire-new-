@@ -1,5 +1,5 @@
 import { ArrowRight } from './Icons'
-import { bookHref, bookAttrs } from '../config'
+import { bookHref, bookHrefFrom, bookAttrs } from '../config'
 import Magnetic from './Magnetic'
 import { useGlow } from '../hooks/useInteractions'
 
@@ -10,6 +10,9 @@ export default function CTABand({
   body = 'Tell us where you want to grow. We will come back with a plan, whether or not you run it with us.',
   cta = 'Book a free discovery call',
   secondary,
+  // Tags the primary action with the page it was clicked on, so the enquiry
+  // lands in the right pipeline once it is finished on /contact.
+  from,
 }) {
   const glow = useGlow()
   return (
@@ -21,7 +24,7 @@ export default function CTABand({
         <p className="cta-band__body reveal" style={{ '--delay': '110ms' }}>{body}</p>
         <div className="cta-band__actions reveal" style={{ '--delay': '160ms' }}>
           <Magnetic>
-            <a className="btn btn-accent btn-lg" href={bookHref} {...bookAttrs}>
+            <a className="btn btn-accent btn-lg" href={from ? bookHrefFrom(from) : bookHref} {...bookAttrs}>
               {cta} <ArrowRight />
             </a>
           </Magnetic>

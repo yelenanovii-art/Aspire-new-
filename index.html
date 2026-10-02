@@ -163,6 +163,25 @@
       <input type="text" name="quiz_data" />
     </form>
 
+    <!-- The property and charter pipeline, kept as its own form so those
+         enquiries arrive separately rather than being picked out of one pile.
+         Same fields as aspire-lead plus `from`, which records which CTA the
+         visitor arrived on. Netlify detects forms by scanning this HTML at
+         build time and stores only the fields declared here, so this block and
+         src/lib/leadRouting.js have to stay in step. -->
+    <form name="aspire-lead-real-estate" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="text" name="email" />
+      <input type="text" name="phone" />
+      <input type="text" name="interest" />
+      <textarea name="message"></textarea>
+      <input type="text" name="_subject" />
+      <input type="text" name="source" />
+      <input type="text" name="from" />
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

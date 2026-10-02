@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight, Check } from './Icons'
 import { submitForm } from '../lib/submitForm'
+import { leadFormFor, originParam, currentPathname, LEAD_FORM_ESTATE } from '../lib/leadRouting'
 import { COMPANY } from '../config'
 import { SERVICES } from '../data/site'
 
@@ -17,6 +18,10 @@ const FIELD_DEFS = {
     options: [
       ['not-sure', 'Not sure yet, help me work it out'],
       ...SERVICES.map((s) => [s.slug, s.title]),
+      // These two route the submission to the property and charter form, so
+      // the values have to stay in step with ESTATE_INTERESTS in leadRouting.
+      ['real-estate', 'Real estate content'],
+      ['yachting', 'Yachting and charter content'],
       ['everything', 'A combination of the above'],
     ],
   },
@@ -51,6 +56,9 @@ export default function LeadForm({
   successBody = 'Elena will be in touch within one business day to book your free 15-minute call. Talk soon.',
   source = 'contact',
   hidden,
+  // Overrides the routing below. Left unset everywhere so far: the three
+  // rules in leadRouting already resolve the quiz to the default form.
+  formName,
   // When set, the caller renders what happens next instead of the built in
   // confirmation. The quiz uses it to show the plan in place of a thank you.
   onSuccess,
@@ -65,9 +73,22 @@ export default function LeadForm({
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.currentTarget))
     setStatus('sending')
+    // Decided at submit time, not at render: the interest select is one of the
+    // three things that can route an enquiry, and it is only known now.
+    const from = originParam()
+    const target =
+      formName ||
+      leadFormFor({ path: currentPathname(), from, interest: data.interest })
     const res = await submitForm(
-      { _subject: `Aspire website: ${submitLabel}`, source, ...data },
-      { formName: 'aspire-lead' }
+      {
+        _subject: `Aspire website: ${submitLabel}`,
+        source,
+        // Only the estate form declares `from`, and Netlify drops undeclared
+        // fields, so there is nothing to record on the default form.
+        ...(target === LEAD_FORM_ESTATE && from ? { from } : {}),
+        ...data,
+      },
+      { formName: target }
     )
     if (res.ok) {
       setStatus('idle')
