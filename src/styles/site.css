@@ -3128,6 +3128,14 @@
 }
 
 /* The plan itself: four beats rather than a wall of advice. */
+/* The plan still arrives when delivery fails, so this has to read as an
+   honest caveat rather than an error that blocks it. */
+.quiz__note--warn {
+  border-left: 2px solid var(--accent);
+  padding-left: 14px;
+  color: var(--body);
+}
+
 .quiz__plan { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 16px; }
 .quiz__plan li {
   padding: 16px 18px;

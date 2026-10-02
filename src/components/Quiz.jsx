@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { ArrowRight } from './Icons'
 import LeadForm from './LeadForm'
 import { QUESTIONS, scoreQuiz, matchFor, planFor, scoreOf, archetypeOf } from '../data/quiz'
+import { COMPANY } from '../config'
 
 // Three stages: answer, then a gate, then the plan.
 //
@@ -13,6 +14,9 @@ export default function Quiz() {
   const [idx, setIdx] = useState(0)
   const [answers, setAnswers] = useState({})
   const [stage, setStage] = useState('quiz') // quiz | gate | match | plan
+  // False when the send failed: the plan is still owed, but we should not
+  // imply we have their details when we do not.
+  const [delivered, setDelivered] = useState(true)
 
   const result = useMemo(() => scoreQuiz(answers), [answers])
   const match = useMemo(() => matchFor(result), [result])
@@ -114,7 +118,10 @@ export default function Quiz() {
               successTitle="On its way."
               successBody="Elena will send your plan within one business day. If it raises questions, the first call is free."
               source="growth-quiz"
-              onSuccess={() => setStage('plan')}
+              onSuccess={(res) => {
+                setDelivered(res?.delivered !== false)
+                setStage('plan')
+              }}
               hidden={{
                 quiz_match: match.title,
                 ...Object.fromEntries(
@@ -136,6 +143,18 @@ export default function Quiz() {
           <p className="quiz__count">{archetype.name} · {score.pct}/100</p>
           <h3 className="quiz__q">{match.title}</h3>
           <p className="quiz__help">{match.line}</p>
+
+          {stage === 'plan' && !delivered && (
+            <p className="quiz__note quiz__note--warn" role="alert">
+              Your plan is below as promised. One thing though: we could not file
+              your details from here, so nobody at our end has them. If you want us
+              to go through this with you,{' '}
+              <a href={`mailto:${COMPANY.email}?subject=${encodeURIComponent('My growth plan: ' + match.title)}`}>
+                email {COMPANY.email}
+              </a>
+              .
+            </p>
+          )}
 
           {stage === 'plan' && plan.note && <p className="quiz__note">{plan.note}</p>}
 

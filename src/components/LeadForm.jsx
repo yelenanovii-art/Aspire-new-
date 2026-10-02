@@ -28,6 +28,18 @@ const FIELD_DEFS = {
   },
 }
 
+// Turns what someone already typed into a ready-to-send email. A failed form
+// usually means retyping everything into a blank message, which most people
+// will not do, so the lead dies with the request.
+function mailtoFallback(to, subject, data) {
+  if (!data) return `mailto:${to}`
+  const body = Object.entries(data)
+    .filter(([k, v]) => k !== 'bot-field' && String(v).trim())
+    .map(([k, v]) => `${k.replace(/^quiz_/, 'Q: ').replace(/_/g, ' ')}: ${v}`)
+    .join('\n')
+  return `mailto:${to}?subject=${encodeURIComponent(`Aspire website: ${subject}`)}&body=${encodeURIComponent(body)}`
+}
+
 // Fields that sit nicely two-up on wide screens.
 const PAIR = new Set(['name', 'company', 'email', 'phone'])
 
@@ -45,6 +57,9 @@ export default function LeadForm({
 }) {
   const [sent, setSent] = useState(false)
   const [status, setStatus] = useState('idle') // idle | sending | error
+  // Kept so a failed send can still be rescued as a pre-filled email rather
+  // than asking someone to type everything a second time.
+  const [typed, setTyped] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -56,10 +71,17 @@ export default function LeadForm({
     )
     if (res.ok) {
       setStatus('idle')
-      if (onSuccess) onSuccess()
+      if (onSuccess) onSuccess({ delivered: true })
       else setSent(true)
     } else {
-      setStatus('error')
+      // Delivery is our problem, not the visitor's. Where the form buys
+      // something — the quiz trades an email for a plan — hand over what was
+      // promised anyway and say plainly that we could not file their details.
+      // Withholding it would punish them for our outage and lose the lead
+      // twice over.
+      setTyped(data)
+      if (onSuccess) onSuccess({ delivered: false })
+      else setStatus('error')
     }
   }
 
@@ -118,8 +140,11 @@ export default function LeadForm({
 
       {status === 'error' && (
         <p className="form-error" role="alert">
-          Something went wrong sending that. Please try again, or email{' '}
-          <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> directly.
+          We could not send that from here. Nothing you typed is lost —{' '}
+          <a href={mailtoFallback(COMPANY.email, submitLabel, typed)}>
+            send it as an email instead
+          </a>
+          , already filled in, or try again.
         </p>
       )}
       {note && <p className="form-note">{note}</p>}
