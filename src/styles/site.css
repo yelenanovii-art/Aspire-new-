@@ -477,6 +477,21 @@
    so the perceived speed matches instead of the clock. */
 @media (max-width: 860px) { .marquee__track { animation-duration: 26s; } }
 @media (max-width: 520px) { .marquee__track { animation-duration: 20s; } }
+
+/* Below 860px the vw term in each height collapses and every logo lands on its
+   clamp floor, which left a 28px strip under "Trusted by" that read as empty
+   space rather than as the moving row of names it is. A mark 24px tall on a
+   390px screen is proportionally half what 31px is on a 1280px one. Set the
+   mobile heights outright, tighten the gap so more than one name is on screen
+   at a time, and carry a little more ink, since a smaller mark at 0.72 goes
+   faint on a phone in daylight. */
+@media (max-width: 860px) {
+  .marquee__group { gap: 30px; padding-right: 30px; }
+  .marquee__group li img { height: 32px; max-width: 150px; opacity: 0.86; }
+  .marquee__group li img[src*="craft-cigar-club"] { height: 36px; }
+  .marquee__group li img[src*="de-interim"] { height: 38px; }
+  .marquee-label { margin-bottom: 20px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
   .marquee { -webkit-mask-image: none; mask-image: none; }
@@ -2534,6 +2549,9 @@
   overflow: hidden;
   background: var(--wash-dark);
 }
+/* The photograph ships inside a <picture> so mobile can opt out of the fetch;
+   the wrapper must not become a box of its own between the two. */
+.practice__media picture { display: contents; }
 .practice__media img {
   width: 100%; height: 100%;
   object-fit: cover;

@@ -30,10 +30,18 @@ export default function Carousel() {
               <li className="onsite__item" key={`${dup}-${p.src}`}>
                 <img
                   src={p.src}
+                  // Each item is 210px wide on a phone and 280px on a desktop,
+                  // so a 600px file is two to three times the pixels a common
+                  // 2x phone can show. The pair lets the browser do that sum
+                  // itself: 2x mobile and 1x desktop take the 420, 3x mobile
+                  // and 2x desktop take the 600. Fifteen photographs, so it is
+                  // the heaviest block on the page by a wide margin.
+                  srcSet={`${p.src.replace('.webp', '-420.webp')} 420w, ${p.src} 600w`}
+                  sizes="(max-width: 860px) 210px, 280px"
                   alt={dup === 0 ? p.alt : ''}
                   loading="lazy"
-                  width="1000"
-                  height="1333"
+                  width="600"
+                  height="800"
                 />
               </li>
             ))}

@@ -25,13 +25,26 @@ export default function Specialisms() {
     <div className="practice-grid">
       <a className="practice practice--estate reveal" href={`/${ESTATE.slug}`} data-spot>
         <span className="practice__media" aria-hidden="true">
-          <img
-            src="/media/estate/villa-pool.webp"
-            alt=""
-            width="800"
-            height="600"
-            decoding="async"
-          />
+          {/* Below 860px .practice__media is display:none, and a lazy image that
+              can never intersect the viewport is one Chrome gives up on and
+              fetches straight away — so the phone was paying 211KB for a
+              photograph it never showed, the heaviest asset on the page. A
+              media-gated <picture> candidate costs mobile 70 bytes instead.
+              Keep the breakpoint in step with the rule that hides the box. */}
+          <picture>
+            <source
+              media="(max-width: 860px)"
+              srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            />
+            <img
+              src="/media/estate/villa-pool.webp"
+              alt=""
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </span>
         <span className="practice__body">
           <span className="practice__label">Specialism</span>
