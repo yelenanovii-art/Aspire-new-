@@ -211,6 +211,28 @@
 .nav--over-dark .nav__quiz:hover,
 .nav--over-dark .nav__quiz:focus-visible { background: #fff; border-color: #fff; color: var(--ink); }
 
+/* Unanswered rows sit back so the filled one carries the mark; on hover the
+   selection moves from the first option to the second, which is the smallest
+   gesture that says these are answers rather than a list. The row the pip is
+   on has to brighten in step with it, or the pip arrives somewhere dim. */
+.choicemark__row { opacity: 0.45; transition: opacity 0.4s ease; }
+.choicemark__row--1 { opacity: 1; }
+.choicemark__pick { transition: transform 0.42s cubic-bezier(0.22, 0.7, 0.15, 1); }
+
+.nav__quiz:hover .choicemark__row--1,
+.nav__quiz:focus-visible .choicemark__row--1,
+.nav__quiz.is-active .choicemark__row--1 { opacity: 0.45; }
+.nav__quiz:hover .choicemark__row--2,
+.nav__quiz:focus-visible .choicemark__row--2,
+.nav__quiz.is-active .choicemark__row--2 { opacity: 1; }
+.nav__quiz:hover .choicemark__pick,
+.nav__quiz:focus-visible .choicemark__pick,
+.nav__quiz.is-active .choicemark__pick { transform: translateY(5.5px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .choicemark__row, .choicemark__pick { transition: none; }
+}
+
 /* The name of the thing, for anyone who hovers before clicking. Pointer
    devices only: on a touch screen it would either never show or show stuck. */
 .nav__quiz-tip {

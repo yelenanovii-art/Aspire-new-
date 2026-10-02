@@ -15,21 +15,37 @@ export function Check({ size = 16 }) {
   )
 }
 
-// The quiz entry point in the nav bar. A question mark reads as "answer
-// something" at 19px in a way a target or a compass does not; the accent fill
-// on the button is what keeps it from reading as a help link.
-export function QuizMark({ size = 19 }) {
+// The quiz entry point in the nav bar.
+//
+// Three options with the chosen one filled — the shape of the question the
+// quiz actually asks. A question mark sat here first and read as "help", and a
+// score ring read as a loading spinner once it sat inside the button's own
+// circle. This survives being 20px wide, which is the whole job.
+//
+// The filled pip is a single element that slides down a row rather than two
+// circles cross-fading, so the selection reads as moving rather than blinking.
+const CHOICE_ROWS = [
+  { y: 6.5, w: 18.5 },
+  { y: 12, w: 15.5 },
+  { y: 17.5, w: 17 },
+]
+
+export function ChoiceMark({ size = 20 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7" />
-      <path
-        d="M9.35 9.6a2.75 2.75 0 1 1 3.5 2.65c-.75.23-1.05.75-1.05 1.5v.5"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="11.8" cy="17.1" r="1" fill="currentColor" />
+    <svg className="choicemark" width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      {/* The rows run from x=2.6 to x=18.5, so their optical centre is 10.55
+          against a box centre of 12 — enough to look nudged left inside a
+          round button. Shift the whole mark rather than restating every
+          coordinate; the pip's own translateY composes with this. */}
+      <g transform="translate(1.45 0)">
+      {CHOICE_ROWS.map((r, i) => (
+        <g className={`choicemark__row choicemark__row--${i + 1}`} key={r.y}>
+          <circle cx="5.2" cy={r.y} r="2.6" stroke="currentColor" strokeWidth="1.5" />
+          <path d={`M10.5 ${r.y}H${r.w}`} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </g>
+      ))}
+      <circle className="choicemark__pick" cx="5.2" cy="6.5" r="2.6" fill="currentColor" />
+      </g>
     </svg>
   )
 }

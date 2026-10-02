@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Logo from './Logo'
-import { ArrowRight, QuizMark } from './Icons'
+import { ArrowRight, ChoiceMark } from './Icons'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES } from '../data/site'
 import { ESTATE, AI } from '../data/verticals'
@@ -142,7 +142,7 @@ export default function Nav({ path, onDark = false }) {
             href="/fit"
             aria-label="Find your match: a six question quiz"
           >
-            <QuizMark size={19} />
+            <ChoiceMark size={20} />
             <span className="nav__quiz-tip" aria-hidden="true">Find your match</span>
           </a>
           <a className="btn btn-accent btn-sm nav__cta" href={bookHref} {...bookAttrs}>
