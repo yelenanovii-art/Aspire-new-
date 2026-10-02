@@ -3143,3 +3143,13 @@
   .quiz__dial { width: 76px; height: 76px; }
   .quiz__dial-num { font-size: 25px; }
 }
+
+/* Sets the price of the second hero CTA before anyone clicks it. */
+.hero__cta-note {
+  margin: 14px 0 0;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}

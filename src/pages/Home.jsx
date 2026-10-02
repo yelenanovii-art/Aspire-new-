@@ -66,8 +66,19 @@ export default function Home() {
                 Book a free 15 minute call <ArrowRight />
               </a>
             </Magnetic>
-            <a className="btn btn-outline-light btn-lg" href="/work">See the work</a>
+            {/* The second slot was "See the work", which browses and captures
+                nothing. The quiz is the lower-commitment path for the larger
+                group who are not ready to book a call yet, and it asks a
+                question rather than naming a page, so the click is driven by
+                wanting the answer. Work is still one tap away in the nav. */}
+            <a className="btn btn-outline-light btn-lg" href="/fit">
+              What is your growth score?
+            </a>
           </div>
+
+          <p className="hero__cta-note reveal" style={{ '--delay': '205ms' }}>
+            Six questions, two minutes, no sales call.
+          </p>
 
           {/* With the readout panel gone, the proof moves inline so the hero
               still answers "why should I believe you" above the fold. */}
