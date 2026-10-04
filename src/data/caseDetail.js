@@ -1,0 +1,186 @@
+// Long form content for the case study pages, keyed by the slug in CASES.
+//
+// Kept beside CASES rather than inside it because the card and the page want
+// different things: a card needs one line and one number, a page needs the
+// problem, the sequence and what it produced. Merging them would make every
+// card import six paragraphs it never renders.
+//
+// Nothing here claims a result that is not already evidenced in CASES. Where
+// the outcome is a number we have, it is used; where it is not, the page
+// describes the work rather than inventing a figure, because a case study
+// that overstates is worse than no case study to the kind of buyer these
+// pages are written for.
+export const CASE_DETAIL = {
+  bunq: {
+    metaTitle: 'BUNQ Spain: Partnership-Led Market Entry',
+    metaDesc:
+      'How Aspire built a Spanish partner network from nothing for BUNQ and onboarded over a thousand users in the first two and a half months.',
+    summary:
+      'A neobank with no local presence, entering a market where recognition does not travel. Partnerships were the route in.',
+    challenge:
+      'BUNQ arrived in Spain with a product people liked elsewhere and almost no local footprint. Recognition built in the Netherlands does not cross a border on its own, and paid acquisition into a market you do not yet understand is an expensive way to learn. What the launch needed was other organisations already trusted by the people BUNQ wanted, and a reason for those organisations to care.',
+    approach: [
+      {
+        h: 'Map who actually has the audience',
+        p: 'We built the partner landscape against overlap with BUNQ users rather than name recognition. A smaller organisation whose members are exactly the target is worth more than a large one whose audience merely includes them.',
+      },
+      {
+        h: 'Open the conversations in person',
+        p: 'A foreign bank asking for a partnership is a cold email most people delete. We secured the meetings directly and had them face to face, which is also how you find out quickly which partners were never going to move.',
+      },
+      {
+        h: 'Run the partnership after the handshake',
+        p: 'Signing is the start. We handled onboarding, the co-marketing that followed, and tracked which partners produced real users rather than announcements.',
+      },
+    ],
+    outcome: [
+      'Over 1,000 new users onboarded in the first two and a half months.',
+      'A local partner network built from nothing, structured around acquisition rather than press.',
+      'A clear read on which partner types convert in this market, and which do not.',
+    ],
+  },
+
+  siltest: {
+    metaTitle: 'SilTest Semiconductors: Two Years of Compounding B2B Growth',
+    metaDesc:
+      'How Aspire grew a technical semiconductor audience on LinkedIn, then added business development, a website, conferences and onsite sales over two years.',
+    summary:
+      'A technical audience that ignores consumer tactics, and a buying cycle too long for a campaign to prove anything.',
+    challenge:
+      'Semiconductor buyers are engineers and procurement specialists. They do not respond to urgency, they are unmoved by branding, and they are perfectly happy to ignore a company for a year before they need it. That makes the usual proof points useless: a three month campaign ends before this audience has finished deciding. The only thing that works is being consistently present until the moment they are ready.',
+    approach: [
+      {
+        h: 'Start with one channel, done properly',
+        p: 'LinkedIn first, and only LinkedIn. One channel maintained consistently beats four maintained occasionally, and it gave us a read on what this audience actually engages with before we spent anywhere else.',
+      },
+      {
+        h: 'Add scope as the audience earned it',
+        p: 'Business development came once there was an audience worth converting. We built the website so inbound interest had somewhere to land instead of leaking.',
+      },
+      {
+        h: 'Meet them where they already are',
+        p: 'We represented SilTest at major conferences and drove sales onsite — for a technical sector, the show floor is still where the real conversations happen.',
+      },
+    ],
+    outcome: [
+      'Two years in and still running, which for this buying cycle is the result.',
+      'A technical B2B audience that engages rather than scrolls past.',
+      'Four disciplines added in sequence, each justified by the one before it.',
+    ],
+  },
+
+  ise: {
+    metaTitle: 'Integrated Systems Europe: Live Onsite Marketing',
+    metaDesc:
+      'How Aspire ran live social, real-time content capture and onsite engagement for the largest AV show in the world, as onsite marketing partner for a year.',
+    summary:
+      'The largest AV show in the world, where the audience that matters is mostly the one not in the room.',
+    challenge:
+      'A show of this size generates more happening at once than any team can cover, and the window is days rather than months. Content captured and published next week has missed the point entirely. The harder problem is that most of the people you want to reach are not at the show at all — so the job is not documenting the event, it is making the event legible to everyone following from elsewhere.',
+    approach: [
+      {
+        h: 'Agree the plan before the doors open',
+        p: 'A strategic marketing plan signed off upfront, so that decisions during the show were about execution rather than direction. There is no time to agree a strategy mid-floor.',
+      },
+      {
+        h: 'Capture and publish in the same hour',
+        p: 'High quality content shot in real time and the social accounts run live through the show, so what people saw online matched what was happening on the floor.',
+      },
+      {
+        h: 'Give the audience something to do',
+        p: 'Instagram challenges and trivia games turned passive viewers into participants, which is what lifted interaction and pushed reach past the people physically present.',
+      },
+    ],
+    outcome: [
+      'A year as onsite marketing partner across the show.',
+      'Engagement mechanics that widened reach well beyond attendees.',
+      'Content live during the event rather than after it.',
+    ],
+    quoteName: 'Cécile Laurent',
+  },
+
+  rck: {
+    metaTitle: 'RCK Consulting: Four Workstreams Run as One Strategy',
+    metaDesc:
+      'How Aspire runs website, lead generation, CRM and conference representation for RCK Consulting as a single growth strategy rather than four suppliers.',
+    summary:
+      'Four things most companies buy from four suppliers, none of whom talk to each other.',
+    challenge:
+      'RCK needed a website, lead generation, a CRM that reflected reality, and someone to represent them at conferences. Bought separately, those become four relationships with four opinions: the site says one thing, outreach says another, the CRM records neither, and nobody owns the conference follow-up. The cost is not the invoices, it is that no single person can tell you what is working.',
+    approach: [
+      {
+        h: 'One strategy, then four workstreams',
+        p: 'The plan came first and the workstreams were derived from it, so the website, the outreach and the conference presence argue the same case in the same voice.',
+      },
+      {
+        h: 'A CRM that matches what happened',
+        p: 'Every conversation recorded, so the pipeline is a record rather than an estimate — and it stays RCK’s when the engagement ends.',
+      },
+      {
+        h: 'Represented in the room',
+        p: 'We attend conferences and client meetings as part of their team, with follow-up sent while the conversation is still warm.',
+      },
+    ],
+    outcome: [
+      'Four workstreams running against one plan rather than four briefs.',
+      'A pipeline the client owns and can read.',
+      'Growth in the social accounts, LinkedIn especially.',
+    ],
+    quoteName: 'RCK Consulting',
+  },
+
+  'de-interim-notaris': {
+    metaTitle: 'De Interim Notaris: An SEO-Led Website Build',
+    metaDesc:
+      'How Aspire designed and built a website for a Netherlands notarial practice with the SEO strategy underneath it, so clients searching could find them.',
+    summary:
+      'A practice whose clients were already searching for exactly this service, and not finding them.',
+    challenge:
+      'Legal services are one of the clearest cases of intent-led search: nobody looks for a notary casually. The demand already existed and was being answered by someone else. A brochure site would not have changed that — being online and being findable are different problems, and only the second one produces clients.',
+    approach: [
+      {
+        h: 'Design around how the practice works',
+        p: 'A clean, user-friendly site structured to match the services the practice actually offers, so a visitor can tell within seconds whether they are in the right place.',
+      },
+      {
+        h: 'Build the SEO in, not on',
+        p: 'The search strategy shaped the structure rather than being retrofitted afterwards — the pages exist because people search for those things.',
+      },
+    ],
+    outcome: [
+      'A professional presence that reflects the practice.',
+      'Found through search by people already looking, without paying for every click.',
+    ],
+  },
+
+  'craft-cigar-club': {
+    metaTitle: 'The Craft Cigar Club: Two Revenue Lines at Once',
+    metaDesc:
+      'How Aspire grows membership and corporate venue rentals for an exclusive members lounge in central Barcelona through lead generation and direct outreach.',
+    summary:
+      'A private members lounge selling two different things to two different buyers.',
+    challenge:
+      'The Craft Cigar Club is both a premium members experience and an event space. Those are not the same sale: an individual choosing a membership and a company booking a venue respond to different things, on different timelines, through different channels. Treating them as one audience is the quickest way to do neither well.',
+    approach: [
+      {
+        h: 'Separate the two sales',
+        p: 'Membership and corporate venue hire run as distinct lines with their own targeting and outreach, rather than one message hoping to land with both.',
+      },
+      {
+        h: 'Outreach and closing, not just leads',
+        p: 'We generate the leads and close them. Handing over a list and calling it lead generation leaves the hardest part with the client.',
+      },
+      {
+        h: 'Alongside the in-house team',
+        p: 'We work with their marketing team on the wider growth plan rather than around it, so the outreach and the brand stay recognisably the same business.',
+      },
+    ],
+    outcome: [
+      'Two revenue lines grown in parallel.',
+      'Membership base expanded through direct outreach.',
+      'Corporate venue rentals driven alongside it.',
+    ],
+  },
+}
+
+export const caseDetailFor = (slug) => CASE_DETAIL[slug]

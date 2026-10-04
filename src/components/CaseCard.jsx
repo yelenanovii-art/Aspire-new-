@@ -1,5 +1,6 @@
 import { ArrowRight } from './Icons'
 import { serviceBySlug, logoFor } from '../data/site'
+import { caseDetailFor } from '../data/caseDetail'
 
 // A client case, used on the home page, /work and the service pages.
 //
@@ -9,6 +10,12 @@ import { serviceBySlug, logoFor } from '../data/site'
 // same height — outside, a card whose tags wrapped to three lines pulled its
 // own body shorter than its neighbours'.
 export default function CaseCard({ c, i = 0, compact = false, showServices = false }) {
+  // The card used to end in "Start yours", pointing at /contact. On a page
+  // that already carries its own call to action that was a second, weaker one
+  // competing with it — and it threw away the more useful click, which is the
+  // reader wanting to know what actually happened. Where the engagement has a
+  // page, the card leads there instead.
+  const hasPage = Boolean(caseDetailFor(c.slug))
   return (
     <article
       className={`case-card ${compact ? 'case-card--compact' : ''} reveal`}
@@ -41,8 +48,11 @@ export default function CaseCard({ c, i = 0, compact = false, showServices = fal
             body copy is hidden. On the full card it restates the body and the
             metric directly above it. */}
         {compact && <span className="case-card__result">{c.result}</span>}
-        <a className="link-arrow case-card__cta" href="/contact">
-          Start yours <ArrowRight size={15} />
+        <a
+          className="link-arrow case-card__cta"
+          href={hasPage ? `/work/${c.slug}` : '/contact'}
+        >
+          {hasPage ? 'Read the case' : 'Start yours'} <ArrowRight size={15} />
         </a>
       </div>
 

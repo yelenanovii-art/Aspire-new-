@@ -152,6 +152,10 @@
       <textarea name="message"></textarea>
       <input type="text" name="_subject" />
       <input type="text" name="source" />
+      <!-- Which page sent the enquiry, from the ?from= on the CTA that was
+           clicked. Netlify stores only declared fields, so attribution has to
+           be named here or it is silently dropped. -->
+      <input type="text" name="from" />
       <!-- Quiz answers ride along on the same form. Netlify only stores fields
            that appear in this static declaration, so they are listed here. -->
       <input type="text" name="quiz_match" />

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
+import { CASE_DETAIL } from '../data/caseDetail'
 import { SITE_URL } from '../config'
-import { SERVICES } from '../data/site'
+import { SERVICES, CASES } from '../data/site'
 import { ESTATE, AI } from '../data/verticals'
 
 // Per-route <title>, meta description, canonical URL, Open Graph and JSON-LD.
@@ -11,6 +12,22 @@ import { ESTATE, AI } from '../data/verticals'
 // it here, so a service is described in exactly one place.
 const SERVICE_META = Object.fromEntries(
   SERVICES.map((s) => [`/services/${s.slug}`, { t: s.metaTitle, d: s.metaDesc, k: s.keywords }])
+)
+
+// Case studies describe themselves in src/data/caseDetail.js, for the same
+// reason the services do: one place per subject.
+const CASE_META = Object.fromEntries(
+  CASES.map((c) => {
+    const d = CASE_DETAIL[c.slug] || {}
+    return [
+      `/work/${c.slug}`,
+      {
+        t: d.metaTitle || `${c.client}: ${c.result}`,
+        d: d.metaDesc || c.body,
+        k: `${c.client}, ${c.sector}, B2B case study, ${c.services.join(', ')}`,
+      },
+    ]
+  })
 )
 
 const META = {
@@ -59,6 +76,7 @@ const META = {
     d: 'The terms on which you may use the Aspire Agency Marketing website, including permitted use, intellectual property and limitation of liability.',
   },
   ...SERVICE_META,
+  ...CASE_META,
 }
 
 // One title template for the whole site: META holds the bare page name and the
@@ -107,6 +125,9 @@ const SEG_NAME = {
   privacy: 'Privacy Policy',
   terms: 'Terms of Use',
   ...Object.fromEntries(SERVICES.map((s) => [s.slug, s.title])),
+  // Case slugs are client names in the trail, and none of them collide with a
+  // service slug.
+  ...Object.fromEntries(CASES.map((c) => [c.slug, c.client])),
 }
 
 function setMeta(key, value, attr = 'name') {

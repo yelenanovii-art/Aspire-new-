@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight, Check } from './Icons'
 import { submitForm } from '../lib/submitForm'
-import { leadFormFor, originParam, currentPathname, LEAD_FORM_ESTATE } from '../lib/leadRouting'
+import { leadFormFor, originParam, currentPathname } from '../lib/leadRouting'
 import { COMPANY } from '../config'
 import { SERVICES } from '../data/site'
 
@@ -83,9 +83,10 @@ export default function LeadForm({
       {
         _subject: `Aspire website: ${submitLabel}`,
         source,
-        // Only the estate form declares `from`, and Netlify drops undeclared
-        // fields, so there is nothing to record on the default form.
-        ...(target === LEAD_FORM_ESTATE && from ? { from } : {}),
+        // Both declarations carry `from`, so whichever form this lands on
+        // records which page sent the enquiry — otherwise a case study or a
+        // specialism page can never be credited with the lead it produced.
+        ...(from ? { from } : {}),
         ...data,
       },
       { formName: target }

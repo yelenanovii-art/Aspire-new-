@@ -3104,6 +3104,140 @@
   font-size: 15.5px;
 }
 
+/* ── Case study pages ────────────────────────────────────────────────────────
+   One engagement at length. The structure repeats across all six so they read
+   as a set that can be compared, rather than six differently-shaped brochures.
+   Narrow measure throughout: this is the one part of the site people actually
+   read end to end. */
+.casepage__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(26px, 5vw, 56px);
+  margin-top: clamp(26px, 3.4vw, 38px);
+  padding-top: clamp(22px, 2.8vw, 30px);
+  border-top: 1px solid var(--line);
+}
+.casepage__fact { display: grid; gap: 4px; }
+.casepage__fact-v {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(30px, 3.6vw, 44px);
+  line-height: 1;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+}
+/* A client name is a word, not a figure, so it does not take the figure size. */
+.casepage__fact-v--sm { font-size: clamp(19px, 1.9vw, 23px); }
+.casepage__fact-k {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.casepage__logo { display: block; margin-top: 26px; width: auto; opacity: 0.8; }
+
+.casepage__prose {
+  font-size: clamp(16.5px, 1.25vw, 18px);
+  line-height: 1.72;
+  color: var(--body);
+  max-width: 68ch;
+}
+
+.casepage__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(22px, 2.6vw, 32px); }
+.casepage__step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(16px, 2vw, 26px);
+  align-items: start;
+  padding-top: clamp(20px, 2.4vw, 26px);
+  border-top: 1px solid var(--line);
+}
+.casepage__step:first-child { border-top: 0; padding-top: 0; }
+.casepage__step-n {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--accent-600);
+  padding-top: 4px;
+}
+.casepage__step h3 {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(18px, 1.5vw, 21px);
+  letter-spacing: var(--display-ls);
+  margin: 0 0 7px;
+}
+.casepage__step p { margin: 0; color: var(--body); line-height: 1.66; max-width: 60ch; }
+
+.casepage__outcome { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.casepage__outcome li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--body);
+  line-height: 1.6;
+  max-width: 62ch;
+}
+/* A rule rather than a tick: these are findings, not a feature checklist. */
+.casepage__outcome li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.72em;
+  width: 14px; height: 2px;
+  background: var(--accent);
+}
+
+.casepage__quote { margin: 0; }
+.casepage__quote blockquote {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: var(--display-w-light);
+  font-size: clamp(19px, 1.9vw, 25px);
+  line-height: 1.46;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  border-left: 2px solid var(--accent);
+  padding-left: clamp(18px, 2.2vw, 28px);
+}
+.casepage__quote figcaption {
+  display: grid;
+  gap: 2px;
+  margin-top: 18px;
+  padding-left: clamp(20px, 2.2vw, 30px);
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.casepage__quote figcaption strong { color: var(--ink); font-weight: 600; }
+
+.casepage__svcs { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.casepage__svcs a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  color: var(--ink);
+  transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
+}
+.casepage__svcs a:hover {
+  border-color: var(--line-strong);
+  background: var(--card-fill);
+  transform: translateX(3px);
+}
+.casepage__back { margin-top: clamp(26px, 3vw, 34px); }
+
+@media (max-width: 620px) {
+  .casepage__step { grid-template-columns: 1fr; gap: 8px; }
+  .casepage__step-n { padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .casepage__svcs a:hover { transform: none; }
+}
+
 /* ── On-site photo marquee ───────────────────────────────────────────────────
    Same mechanism as the client logo strip above it: one track holding two
    identical groups, animated by half its own width so the seam never shows.
