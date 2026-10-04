@@ -1,0 +1,97 @@
+import SectionHead from '../components/SectionHead'
+import CTABand from '../components/CTABand'
+import { ArrowRight } from '../components/Icons'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { SITE_URL } from '../config'
+import { INSIGHTS_BY_DATE } from '../data/insights'
+
+const fmt = (iso) =>
+  new Date(iso + 'T00:00:00Z').toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  })
+
+// The index. Deliberately a short list rather than a paginated feed: six
+// pieces that each answer a question a prospect has actually asked beats a
+// stream nobody finishes, and it is the honest shape for a four person team
+// that writes when it has something to say.
+export default function Insights() {
+  useJsonLd('aspire-insights-list', {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Insights',
+    url: `${SITE_URL}/insights`,
+    description:
+      'Written pieces on B2B sales, social for technical audiences, trade shows, CRM and market entry, from the engagements we run.',
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    hasPart: INSIGHTS_BY_DATE.map((a) => ({
+      '@type': 'Article',
+      headline: a.title,
+      url: `${SITE_URL}/insights/${a.slug}`,
+      datePublished: a.date,
+      description: a.dek,
+    })),
+  })
+
+  return (
+    <>
+      <section className="page-hero">
+        <div className="container page-hero__inner">
+          <p className="eyebrow">Insights</p>
+          <h1 className="page-hero__title">What we have learned doing the work.</h1>
+          <p className="page-hero__lead">
+            Six pieces, each answering a question a client actually asked us. Every number
+            quoted is from one of our own engagements — we would rather write six things worth
+            reading than twenty that rank.
+          </p>
+        </div>
+      </section>
+
+      <section className="section section--flush-top">
+        <div className="container">
+          <ul className="posts">
+            {INSIGHTS_BY_DATE.map((a, i) => (
+              <li className="posts__item reveal" key={a.slug} style={{ '--delay': `${i * 60}ms` }}>
+                <a className="posts__link" href={`/insights/${a.slug}`}>
+                  <div className="posts__meta">
+                    <time dateTime={a.date}>{fmt(a.date)}</time>
+                    <span aria-hidden="true">·</span>
+                    <span>{a.minutes} min read</span>
+                  </div>
+                  <h2 className="posts__title">{a.title}</h2>
+                  <p className="posts__dek">{a.dek}</p>
+                  <span className="posts__go">
+                    Read it <ArrowRight size={15} />
+                  </span>
+                </a>
+                <ul className="posts__tags">
+                  {a.tags.map((t) => <li key={t}>{t}</li>)}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section--alt">
+        <div className="container container--narrow">
+          <SectionHead
+            eyebrow="Rather skip the reading"
+            title="Six questions, and we will tell you where to start."
+            lede="If you would rather not work out which of these applies to you, the fit check does it in two minutes and sends you a ninety day plan."
+            center
+          />
+          <p className="fit__foot">
+            <a className="link-arrow" href="/fit">Find your match <ArrowRight /></a>
+          </p>
+        </div>
+      </section>
+
+      <CTABand
+        title="Something here sound familiar?"
+        body="Tell us where growth is stuck and we will come back with a plan, whether or not you run it with us. Fifteen minutes, free."
+        secondary={{ to: '/work', label: 'See the client cases' }}
+        from="insights"
+      />
+    </>
+  )
+}

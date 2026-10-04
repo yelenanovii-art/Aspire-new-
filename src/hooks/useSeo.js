@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { CASE_DETAIL } from '../data/caseDetail'
+import { INSIGHTS } from '../data/insights'
 import { SITE_URL } from '../config'
 import { SERVICES, CASES } from '../data/site'
 import { ESTATE, AI } from '../data/verticals'
@@ -28,6 +29,14 @@ const CASE_META = Object.fromEntries(
       },
     ]
   })
+)
+
+// Articles describe themselves in src/data/insights.js.
+const INSIGHT_META = Object.fromEntries(
+  INSIGHTS.map((a) => [
+    `/insights/${a.slug}`,
+    { t: a.metaTitle || a.title, d: a.metaDesc || a.dek, k: a.keywords || a.tags.join(', ') },
+  ])
 )
 
 const META = {
@@ -77,6 +86,12 @@ const META = {
   },
   ...SERVICE_META,
   ...CASE_META,
+  '/insights': {
+    t: 'Insights on B2B Sales and Marketing',
+    d: 'Written pieces on B2B outbound, social for technical audiences, trade shows, CRM and market entry, drawn from the engagements we run.',
+    k: 'B2B marketing insights, sales articles, outbound strategy, technical audience marketing',
+  },
+  ...INSIGHT_META,
 }
 
 // One title template for the whole site: META holds the bare page name and the
@@ -128,6 +143,8 @@ const SEG_NAME = {
   // Case slugs are client names in the trail, and none of them collide with a
   // service slug.
   ...Object.fromEntries(CASES.map((c) => [c.slug, c.client])),
+  insights: 'Insights',
+  ...Object.fromEntries(INSIGHTS.map((a) => [a.slug, a.title])),
 }
 
 function setMeta(key, value, attr = 'name') {

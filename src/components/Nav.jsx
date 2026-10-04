@@ -48,6 +48,7 @@ const NAV = [
     featured: { to: '/fit', label: 'Not sure which one? Find your match' },
   },
   { type: 'link', to: '/work', label: 'Work' },
+  { type: 'link', to: '/insights', label: 'Insights' },
   { type: 'link', to: '/about', label: 'About' },
   { type: 'link', to: '/contact', label: 'Contact' },
 ]

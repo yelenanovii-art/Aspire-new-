@@ -17,8 +17,11 @@ import RealEstate from './pages/RealEstate'
 import AiSystems from './pages/AiSystems'
 import Fit from './pages/Fit'
 import CaseStudy from './pages/CaseStudy'
+import Insights from './pages/Insights'
+import Article from './pages/Article'
 import CookieConsent from './components/CookieConsent'
 import { SERVICES, CASES } from './data/site'
+import { INSIGHTS } from './data/insights'
 
 // One entry per crawlable URL. The four service pages share a single component
 // and are generated from the content data, so adding a service to
@@ -39,6 +42,8 @@ const ROUTES = {
     SERVICES.map((s) => [`/services/${s.slug}`, () => <ServiceDetail service={s} />])
   ),
   ...Object.fromEntries(CASES.map((c) => [`/work/${c.slug}`, () => <CaseStudy c={c} />])),
+  '/insights': Insights,
+  ...Object.fromEntries(INSIGHTS.map((a) => [`/insights/${a.slug}`, () => <Article a={a} />])),
 }
 
 // Old URLs from the previous site, redirected to their canonical page so
