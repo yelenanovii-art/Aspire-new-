@@ -7,8 +7,11 @@ import { bookHref, bookAttrs } from '../config'
 import { AI } from '../data/verticals'
 import Magnetic from '../components/Magnetic'
 import { useGlow, useSpotlight } from '../hooks/useInteractions'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { faqSchema } from '../lib/faqSchema'
 
 export default function AiSystems() {
+  useJsonLd('aspire-faq-ai-systems', faqSchema(AI.faq))
   const heroGlow = useGlow()
   const grids = useSpotlight()
   return (

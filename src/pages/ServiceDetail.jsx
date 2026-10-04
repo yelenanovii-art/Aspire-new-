@@ -7,6 +7,7 @@ import { bookHref, bookAttrs } from '../config'
 import { SERVICES, caseBySlug, FILM } from '../data/site'
 import FilmCard from '../components/FilmCard'
 import { useJsonLd } from '../hooks/useJsonLd'
+import { faqSchema } from '../lib/faqSchema'
 import { SITE_URL } from '../config'
 
 // One component renders all four service pages — the route table passes the
@@ -34,6 +35,10 @@ export default function ServiceDetail({ service }) {
         }
       : null
   )
+  // One id per slug, so the block belongs to this page and is stripped
+  // from every other one.
+  useJsonLd(`aspire-faq-${s.slug}`, faqSchema(s.faq))
+
   const cases = (s.proof?.caseSlugs || []).map(caseBySlug).filter(Boolean)
   const others = SERVICES.filter((o) => o.slug !== s.slug)
 

@@ -9,6 +9,7 @@ import { ESTATE_ORIGIN } from '../lib/leadRouting'
 import { ESTATE } from '../data/verticals'
 import { useGlow, useSpotlight } from '../hooks/useInteractions'
 import { useJsonLd } from '../hooks/useJsonLd'
+import { faqSchema } from '../lib/faqSchema'
 
 export default function RealEstate() {
   const e = ESTATE
@@ -33,6 +34,8 @@ export default function RealEstate() {
       publisher: { '@id': SITE_URL + '/#organization' },
     }
   )
+
+  useJsonLd('aspire-faq-real-estate', faqSchema(e.faq))
   const heroGlow = useGlow()
   const grids = useSpotlight()
   return (

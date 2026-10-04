@@ -80,6 +80,15 @@ const SITE_MODIFIED = '2026-09-11' // bump on major content changes
 // owning page keeps the copy its own component just injected.
 const PAGE_SCHEMA_OWNERS = {
   'aspire-home-faq': '/',
+  // One FAQPage per service and specialism. The SPA shell is served for any
+  // URL that has not been prerendered, so without an owner a block could ride
+  // along onto a page whose questions it does not answer.
+  'aspire-faq-sales': '/services/sales',
+  'aspire-faq-business-development': '/services/business-development',
+  'aspire-faq-social-media': '/services/social-media',
+  'aspire-faq-content-creation': '/services/content-creation',
+  'aspire-faq-real-estate': '/real-estate',
+  'aspire-faq-ai-systems': '/ai-systems',
   'aspire-person': '/about',
   'aspire-film-video': '/services/content-creation',
   'aspire-team': '/about',
