@@ -54,8 +54,8 @@ export default function Work() {
         <div className="container">
           <SectionHead
             eyebrow="On the ground"
-            title="A year at Integrated Systems Europe."
-            lede="Onsite marketing partner at the largest AV show in the world, in Barcelona. Stand presence, social coverage and the content cut from the floor while the show ran."
+            title="Three years at Integrated Systems Europe."
+            lede="One of the largest audio visual conferences in the world, held in Barcelona each year. We help run the show floors and plan and execute the social support, through the week and the run-up to it."
           />
           <ul className="band band--six">
             {WORK_BAND.map((b, i) => (

@@ -116,7 +116,7 @@ export const INSIGHTS = [
       'A practical sequence for B2B trade shows: what to book before you arrive, how to work the floor, and why the week after decides whether the stand paid for itself.',
     keywords: 'trade show strategy, B2B conference sales, exhibition lead follow up, event marketing',
     intro:
-      'A stand is one of the largest single line items in a B2B marketing budget and one of the least measured. We spent a year as onsite marketing partner at Integrated Systems Europe, the largest AV show in the world, and the pattern that separates a show that paid for itself from one that did not is consistent.',
+      'A stand is one of the largest single line items in a B2B marketing budget and one of the least measured. We have worked Integrated Systems Europe in Barcelona for three years, one of the largest audio visual conferences in the world, and the pattern that separates a show that paid for itself from one that did not is consistent.',
     sections: [
       {
         h: 'The show is mostly won before it opens',

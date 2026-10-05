@@ -126,7 +126,7 @@ export const SERVICES = [
       },
       {
         q: 'Will you actually attend conferences with us?',
-        a: 'Yes. Onsite representation is core to this service. We spent a full year onsite with Integrated Systems Europe and represent RCK Consulting at their industry events.',
+        a: 'Yes. Onsite representation is core to this service. We have worked with Integrated Systems Europe for the last three years — they run one of the largest audio visual conferences in the world, held annually in Barcelona — helping their team run the show floors and planning and executing social media support through the week and the run-up to it. For SilTest Semiconductors we attend as an external sales agency: generating leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers afterwards to grow the pipeline.',
       },
       {
         q: 'How quickly does outreach produce meetings?',
@@ -272,7 +272,7 @@ export const SERVICES = [
     faq: [
       {
         q: 'Where do you shoot?',
-        a: 'Barcelona as standard, and we travel for events and on location work. A full year of live capture for ISE was exactly that.',
+        a: 'Barcelona as standard, and we travel for events and on location work. Three years of live capture at ISE, in Barcelona each year, is exactly that.',
       },
       {
         q: 'Do we get the raw files?',
@@ -322,7 +322,7 @@ export const SERVICES = [
     faq: [
       {
         q: 'Do you travel to the event?',
-        a: 'Yes, anywhere. This is project work scoped to a specific show rather than a retainer, so the engagement is the run-up, the event itself and the follow-up week. We have worked shows for Integrated Systems Europe, SilTest Semiconductors and Interactive Digital Media.',
+        a: 'Yes, anywhere. This is project work scoped to a specific show rather than a retainer, so the engagement is the run-up, the event itself and the follow-up week. We have worked with Integrated Systems Europe for three years, helping run the show floors and the social support at their annual Barcelona conference; with SilTest Semiconductors as an external sales agency, generating leads ahead of the show, booking and taking the meetings and handing them over qualified afterwards; and with Interactive Digital Media.',
       },
       {
         q: 'How far in advance do you need to start?',
@@ -376,13 +376,13 @@ export const CASES = [
     slug: 'ise',
     client: 'Integrated Systems Europe',
     sector: 'Live events',
-    title: 'Live onsite marketing and real time content for the largest AV show in the world.',
+    title: 'Three years running the show floors and social for one of the largest AV shows in the world.',
     result: 'Instagram challenges and trivia that pulled the floor in',
-    metric: '1',
-    metricSuffix: ' year',
-    metricLabel: 'as onsite marketing partner',
+    metric: '3',
+    metricSuffix: ' years',
+    metricLabel: 'running the show floors and social',
     body:
-      'A strategic marketing plan agreed upfront, then executed live across the event. We captured high quality content in real time, ran the social accounts through the show, and introduced engagement tactics including Instagram challenges and trivia games to lift interaction and widen reach well beyond the people physically present.',
+      'Integrated Systems Europe runs one of the largest audio visual conferences in the world, held each year in Barcelona. We have worked with their team for three years, helping run the show floors and planning and executing the social media support through the week and the run-up to it. A strategic plan agreed upfront, then executed live: content captured in real time, the accounts run through the show, and engagement tactics including Instagram challenges and trivia games to widen reach well beyond the people physically present.',
     services: ['content-creation', 'social-media', 'sales'],
   },
   {

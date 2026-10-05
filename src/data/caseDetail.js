@@ -59,7 +59,7 @@ export const CASE_DETAIL = {
       },
       {
         h: 'Meet them where they already are',
-        p: 'We represented SilTest at major conferences and drove sales onsite — for a technical sector, the show floor is still where the real conversations happen.',
+        p: 'We attend major conferences as their external sales agency: generating leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers to their team afterwards. For a technical sector the show floor is still where the real conversations happen.',
       },
     ],
     outcome: [
@@ -70,21 +70,21 @@ export const CASE_DETAIL = {
   },
 
   ise: {
-    metaTitle: 'Integrated Systems Europe: Live Onsite Marketing',
+    metaTitle: 'Integrated Systems Europe: Three Years on the Show Floor',
     metaDesc:
-      'How Aspire ran live social, real-time content capture and onsite engagement for the largest AV show in the world, as onsite marketing partner for a year.',
+      'How Aspire has run show floor support, live social and real-time content capture for Integrated Systems Europe in Barcelona across three years.',
     summary:
-      'The largest AV show in the world, where the audience that matters is mostly the one not in the room.',
+      'One of the largest audio visual conferences in the world, held in Barcelona each year, where the audience that matters is mostly the one not in the room.',
     challenge:
       'A show of this size generates more happening at once than any team can cover, and the window is days rather than months. Content captured and published next week has missed the point entirely. The harder problem is that most of the people you want to reach are not at the show at all — so the job is not documenting the event, it is making the event legible to everyone following from elsewhere.',
     approach: [
       {
-        h: 'Agree the plan before the doors open',
-        p: 'A strategic marketing plan signed off upfront, so that decisions during the show were about execution rather than direction. There is no time to agree a strategy mid-floor.',
+        h: 'Plan in the run-up, not on the floor',
+        p: 'The work starts well before the doors do: a strategic plan signed off upfront and the social support built out in the weeks leading in, so every decision during the show is about execution rather than direction. There is no time to agree a strategy mid-floor.',
       },
       {
-        h: 'Capture and publish in the same hour',
-        p: 'High quality content shot in real time and the social accounts run live through the show, so what people saw online matched what was happening on the floor.',
+        h: 'Run the floors and publish in the same hour',
+        p: 'We help their team run the show floors while capturing in real time and running the accounts live through the show, so what people saw online matched what was happening on the floor.',
       },
       {
         h: 'Give the audience something to do',
@@ -92,7 +92,7 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'A year as onsite marketing partner across the show.',
+      'Three years working the show, and still going.',
       'Engagement mechanics that widened reach well beyond attendees.',
       'Content live during the event rather than after it.',
     ],
