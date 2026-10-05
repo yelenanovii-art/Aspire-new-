@@ -3,7 +3,7 @@ import { ESTATE, AI } from '../data/verticals'
 
 // The two specialist practices, promoted on the home page.
 //
-// These sit apart from SERVICES on purpose: the four disciplines are what any
+// These sit apart from SERVICES on purpose: the five disciplines are what any
 // client buys, whereas these are whole verticals with their own buyers. They
 // were previously reachable only from the nav, which buried them.
 //

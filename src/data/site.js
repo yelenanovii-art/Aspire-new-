@@ -284,6 +284,60 @@ export const SERVICES = [
       },
     ],
   },
+  {
+    slug: 'events',
+    n: '05',
+    nav: 'Events and conferences',
+    title: 'Events and conferences',
+    blurb:
+      'Extra hands for the week your pipeline is decided. Meetings booked before you land, leads captured on the floor, live marketing, and the follow-up sent while it still counts. Project based, worldwide.',
+    h1: 'A conference is five days. Most of its value is lost in the sixth.',
+    lede:
+      'We join your team for the run-up, the show and the week after: pre-booked meetings in the diary before you arrive, lead capture and sales conversations on the floor, social and content published live, and follow-up sent while the conversation is still warm. Scoped to the event rather than a retainer, and we travel.',
+    metaTitle: 'Conference and Event Marketing and Sales Support',
+    metaDesc:
+      'Project-based conference support for B2B tech: pre-booked meetings, onsite lead capture and sales, live social and content, and structured follow-up. Worldwide, scoped per event.',
+    keywords:
+      'conference marketing, trade show sales support, event lead generation, exhibition staff, onsite marketing, B2B events',
+    tags: ['Pre-booked meetings', 'Onsite lead capture', 'Live content', 'Follow-up'],
+    includes: [
+      {
+        h: 'Meetings booked before you arrive',
+        p: 'Walk-up traffic is the least valuable thing a stand produces. We work the attendee and exhibitor lists in the weeks before and put real conversations in the diary, so day one starts with a schedule rather than hope.',
+      },
+      {
+        h: 'Lead capture and sales on the floor',
+        p: 'We attend as your team: stand cover, badge scanning with a note of what was actually discussed, and the sales conversations themselves. A scanned badge with no context is a name nobody remembers by the following week.',
+      },
+      {
+        h: 'Marketing published while it is happening',
+        p: 'Content shot and posted in the same hour, your channels run live through the show, and engagement mechanics that reach the people who did not travel — at ISE that meant Instagram challenges and trivia that pulled in far more than the floor could hold.',
+      },
+      {
+        h: 'Follow-up in the week that decides it',
+        p: 'Every contact and next step written into your CRM during the show, and follow-up sent while you are still fresh in mind. The stand cost is already spent by then; this is the only part still deciding whether it returns anything.',
+      },
+    ],
+    proof: { caseSlugs: ['ise', 'siltest'] },
+    faq: [
+      {
+        q: 'Do you travel to the event?',
+        a: 'Yes, anywhere. This is project work scoped to a specific show rather than a retainer, so the engagement is the run-up, the event itself and the follow-up week. We have worked shows for Integrated Systems Europe, SilTest Semiconductors and Interactive Digital Media.',
+      },
+      {
+        q: 'How far in advance do you need to start?',
+        a: 'Four to six weeks is comfortable. The meetings that matter are booked in advance, and that outreach needs time to run. We can work a shorter window, but it moves the value towards onsite capture and follow-up and away from a full diary on day one.',
+      },
+      {
+        q: 'Can you work alongside our own team on the stand?',
+        a: 'That is usually how it goes. We add capacity rather than replace anyone: your people take the technical conversations while we keep the diary moving, capture the content and make sure nothing leaves the floor unrecorded.',
+      },
+      {
+        q: 'What do we keep afterwards?',
+        a: 'Everything. The leads, the notes, the content and the follow-up sequences all sit in your systems, recorded as they happen. If we never work another show together you still have the pipeline from this one.',
+      },
+    ],
+  },
 ]
 
 export const serviceBySlug = (slug) => SERVICES.find((s) => s.slug === slug)
@@ -572,7 +626,7 @@ export const STEPS = [
   {
     n: '03',
     title: 'We execute',
-    body: 'Sales, business development, social and content, run by the four specialists who do that work. You always know who is doing what.',
+    body: 'Sales, business development, social, content and events, run by the specialists who do that work. You always know who is doing what.',
     meta: 'Week 2 onward',
   },
   {
@@ -589,7 +643,7 @@ export const STEPS = [
 export const VALUES = [
   {
     title: 'Specialists, not generalists',
-    body: 'Four people, four disciplines. The person shooting your video is not the person managing your pipeline, and neither of them is learning on your account.',
+    body: 'Four people, each with their own discipline. The person shooting your video is not the person managing your pipeline, and neither of them is learning on your account.',
   },
   {
     title: 'Strategies built on your data',
@@ -646,7 +700,7 @@ export const FAQ = [
     a: 'It depends on scope, and we would rather scope it properly than quote blind. Pricing is on request and the free 15 minute call exists to work out what you actually need first.',
   },
   {
-    q: 'Do we have to buy all four services?',
+    q: 'Do we have to buy all five services?',
     a: 'No, and most clients start with one. They tend to expand once it is producing. RCK Consulting began with a website and now runs four workstreams with us.',
   },
   {

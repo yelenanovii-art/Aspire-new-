@@ -12,7 +12,7 @@
 // situation they are in, then the plan. The score and the name are the parts
 // people repeat to a colleague.
 //
-// Every option carries weights across the four disciplines. SPECIALISMS are
+// Every option carries weights across the five disciplines. SPECIALISMS are
 // decided separately: they are a different buyer, not a heavier weighting, so
 // a property or yachting answer routes there outright.
 import { SERVICES } from './site'
@@ -38,6 +38,13 @@ export const QUESTIONS = [
       { v: 'referral', label: 'Referrals we cannot control or repeat', w: { sales: 3, bd: 1 }, pts: 5 },
       { v: 'grind', label: 'Outbound we are grinding out ourselves', w: { sales: 2, content: 1 }, pts: 13 },
       { v: 'trickle', label: 'Inbound, but it trickles', w: { social: 2, content: 2 }, pts: 18 },
+      // The events buyer identifies themselves here, and weighting cannot carry
+      // it: sales accumulates across several answers, so an events-shaped
+      // company still came out as sales no matter how heavy this was made.
+      // It routes instead, for the same reason the specialisms do — project
+      // work around a show is a different shape from a retainer, not a
+      // heavier lean. A specialism still wins over it, see matchFor.
+      { v: 'shows', label: 'The conferences we attend, and little else', w: { events: 3, sales: 1 }, pts: 10, routeService: 'events' },
       { v: 'unknown', label: 'Genuinely, I do not know', w: { sales: 3, bd: 3 }, pts: 0 },
     ],
   },
@@ -66,7 +73,7 @@ export const QUESTIONS = [
     id: 'win',
     q: 'One thing lands in ninety days. Which would change how you feel most?',
     options: [
-      { v: 'conversations', label: 'A calendar with real conversations in it', w: { sales: 3 }, pts: 8 },
+      { v: 'conversations', label: 'A calendar with real conversations in it', w: { sales: 3, events: 1 }, pts: 8 },
       { v: 'brand', label: 'A brand that finally matches the product', w: { bd: 3 }, pts: 8 },
       { v: 'proof', label: 'Work we are not embarrassed to show', w: { content: 3, social: 1 }, pts: 8 },
       { v: 'clarity', label: 'Numbers I can see without asking anyone', w: { bd: 1 }, pts: 8, route: 'ai' },
@@ -91,18 +98,21 @@ const SLUG = {
   bd: 'business-development',
   social: 'social-media',
   content: 'content-creation',
+  events: 'events',
 }
 
 export function scoreQuiz(answers) {
-  const totals = { sales: 0, bd: 0, social: 0, content: 0 }
+  const totals = { sales: 0, bd: 0, social: 0, content: 0, events: 0 }
   let route = null
+  let routeService = null
 
   QUESTIONS.forEach((question) => {
     const chosen = question.options.find((o) => o.v === answers[question.id])
     if (!chosen) return
     // A specialism wins outright: those buyers are not better served by a
-    // heavier weighting on one of the four, they are a different practice.
+    // heavier weighting on one of the five, they are a different practice.
     if (chosen.route && !route) route = chosen.route
+    if (chosen.routeService && !routeService) routeService = chosen.routeService
     Object.entries(chosen.w || {}).forEach(([k, n]) => {
       totals[k] += n
     })
@@ -115,6 +125,7 @@ export function scoreQuiz(answers) {
   const answered = QUESTIONS.filter((q) => answers[q.id]).length
   return {
     route,
+    routeService,
     answered,
     complete: answered === QUESTIONS.length,
     primary: ranked[0],
@@ -141,6 +152,20 @@ export function matchFor(result) {
       line: 'Rebuilding the same report by hand every month is a systems problem. That is a dashboard and a few integrations, not a marketing retainer.',
     }
   }
+  // Checked after the two specialisms on purpose: a property or yachting
+  // buyer who also exhibits is still better served by that practice.
+  if (result.routeService === 'events') {
+    const ev = SERVICES.find((s) => s.slug === 'events')
+    if (ev) {
+      return {
+        kind: 'service',
+        title: ev.title,
+        href: `/services/${ev.slug}`,
+        line: ev.blurb,
+        second: { title: 'Sales, in person and digital', href: '/services/sales' },
+      }
+    }
+  }
   const svc = SERVICES.find((s) => s.slug === result.primary?.slug)
   const second = SERVICES.find((s) => s.slug === result.secondary?.slug)
   return {
@@ -164,6 +189,12 @@ export function matchFor(result) {
 // bottleneck answer adds one line on top, because two companies matched to the
 // same discipline for different reasons should not read the same plan.
 export const PLANS = {
+  events: {
+    first: 'Pick the one show that matters most this year and work backwards from it. Pull the attendee and exhibitor lists, mark who is genuinely worth a meeting, and start the outreach four to six weeks out. A full diary on day one is decided now, not on the floor.',
+    then: 'Run the show itself as three jobs rather than one: keep the diary moving, capture and publish while it is happening, and record every conversation with the detail that makes follow-up possible. Then send that follow-up within days, not weeks.',
+    park: 'Do not redesign the stand this cycle. A better-looking stand with an empty diary still produces an empty pipeline.',
+    expect: 'A calendar of booked meetings before you travel, a recorded lead list instead of a pile of scans, and follow-up out while they still remember the conversation.',
+  },
   sales: {
     first: 'Define the buyer properly, then build one list against it. Not a sector and a job title: the trigger that makes someone need this now. Most outreach fails on the list, not the message.',
     then: 'Run one channel properly rather than four badly. Sequence it, follow up past the second touch, and put every interaction in the CRM the day it happens, so the pipeline is a record rather than a memory.',

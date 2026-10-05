@@ -10,7 +10,7 @@ import { useJsonLd } from '../hooks/useJsonLd'
 import { faqSchema } from '../lib/faqSchema'
 import { SITE_URL } from '../config'
 
-// One component renders all four service pages — the route table passes the
+// One component renders all five service pages — the route table passes the
 // slug, and everything else comes from src/data/site.js. Adding a service is a
 // data edit plus one route entry, never a new page component.
 export default function ServiceDetail({ service }) {

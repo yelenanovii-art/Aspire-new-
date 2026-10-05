@@ -6,7 +6,7 @@ import { useJsonLd } from '../hooks/useJsonLd'
 import { SITE_URL } from '../config'
 
 // A six question route into the right service, with the written plan gated on
-// an email. It exists because "which of your four services do I need" is the
+// an email. It exists because "which of your five services do I need" is the
 // question most first-time visitors actually have, and a services index makes
 // them answer it themselves.
 export default function Fit() {
@@ -63,7 +63,7 @@ export default function Fit() {
       <CTABand
         title="Already know what you need?"
         body="Skip the questions and tell us where growth is stuck. Fifteen minutes, free, no obligation."
-        secondary={{ to: '/services', label: 'See all four disciplines' }}
+        secondary={{ to: '/services', label: 'See all five disciplines' }}
       />
     </>
   )

@@ -143,7 +143,7 @@ export default function Home() {
           <SectionHead
             index="03"
             eyebrow="What we do"
-            title="Four disciplines, run as one plan."
+            title="Five disciplines, run as one plan."
             lede="Most companies buy these from four suppliers who never speak. Run together, the content fills the social, the social warms the outreach, and the outreach closes."
           />
 

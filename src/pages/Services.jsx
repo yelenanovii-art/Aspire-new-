@@ -14,7 +14,7 @@ export default function Services() {
             A full sales and marketing team. <em>Without hiring one.</em>
           </h1>
           <p className="lead reveal" style={{ '--delay': '120ms' }}>
-            Four services, run together or on their own. Most clients start with one and
+            Five services, run together or on their own. Most clients start with one and
             expand once it is producing. RCK Consulting started with a website and now runs
             four workstreams with us.
           </p>
@@ -43,7 +43,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* The four disciplines above are described; this is them happening. */}
+      {/* The five disciplines above are described; this is them happening. */}
       <section className="section section--tight">
         <div className="container">
           <SectionHead

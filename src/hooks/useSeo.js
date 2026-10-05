@@ -42,12 +42,12 @@ const INSIGHT_META = Object.fromEntries(
 const META = {
   '/': {
     t: 'Sales and Marketing for B2B Tech',
-    d: 'The outsourced sales and marketing team for B2B tech companies. Four specialists in Barcelona covering sales, business development, social and content.',
+    d: 'The outsourced sales and marketing team for B2B tech companies. Four specialists in Barcelona covering sales, business development, social, content and conference support.',
     k: 'B2B tech marketing agency, sales agency Barcelona, lead generation, social media management',
   },
   '/services': {
     t: 'B2B Sales and Marketing Services',
-    d: 'Four disciplines run as one plan: in person and digital sales, business development, social media management and content creation.',
+    d: 'Five disciplines run as one plan: in person and digital sales, business development, social media management, content creation, and event and conference support.',
     k: 'B2B sales services, business development, social media management, content creation',
   },
   '/work': {
@@ -120,6 +120,7 @@ const PAGE_SCHEMA_OWNERS = {
   'aspire-faq-business-development': '/services/business-development',
   'aspire-faq-social-media': '/services/social-media',
   'aspire-faq-content-creation': '/services/content-creation',
+  'aspire-faq-events': '/services/events',
   'aspire-faq-real-estate': '/real-estate',
   'aspire-faq-ai-systems': '/ai-systems',
   'aspire-person': '/about',
