@@ -667,6 +667,56 @@
   letter-spacing: var(--display-ls);
   line-height: 1.12;
 }
+/* A service that is bought differently from the other four — scoped to a date
+   rather than a month — gets a chip saying so and a rule in the accent, which
+   is enough to pull the eye to the last row of five without shouting. */
+.svc-row__flag {
+  display: inline-block;
+  margin-left: 12px;
+  transform: translateY(-3px);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  border: 1px solid var(--accent-tint-2);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.svc-row--flagged { border-left: 2px solid var(--accent); }
+.svc-row--flagged .svc-row__link { padding-left: 16px; }
+.svc-row--flagged .svc-row__link:hover { padding-left: 28px; }
+.svc-row--flagged .svc-row__n { color: var(--accent-600); }
+
+/* The same chip in the services menu, where the row is much tighter. */
+.nav__menu-flag {
+  display: inline-block;
+  margin-left: 9px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  border: 1px solid var(--accent-tint-2);
+  border-radius: 999px;
+  padding: 2px 7px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+  /* At this width the title already wraps; a chip trailing the last word
+     reads as orphaned, so it drops to its own line. fit-content keeps it a
+     chip — a plain block stretches the full column and reads as an input. */
+  .svc-row__flag { display: block; width: fit-content; margin: 10px 0 0; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-row--flagged .svc-row__link:hover { padding-left: 16px; }
+}
+
 .svc-row__blurb { font-size: 16px; color: var(--body); max-width: 62ch; line-height: 1.55; }
 .svc-row__tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 3px; }
 .svc-row__tags span {

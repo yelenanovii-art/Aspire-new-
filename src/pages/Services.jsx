@@ -92,7 +92,7 @@ export default function Services() {
             items={[
               {
                 q: 'Which service should we start with?',
-                a: 'If nobody knows who you are, business development. If they know you but nothing is converting, sales. If the pipeline works but the brand is quiet, social and content. The free call exists to answer exactly this.',
+                a: 'If nobody knows who you are, business development. If they know you but nothing is converting, sales. If the pipeline works but the brand is quiet, social and content. If a conference is where your buyers already are, events. The free call exists to answer exactly this.',
               },
               {
                 q: 'Can we run more than one at once?',

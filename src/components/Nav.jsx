@@ -34,6 +34,7 @@ const NAV = [
           to: `/services/${s.slug}`,
           label: s.nav,
           desc: firstSentence(s.blurb),
+          flag: s.flag,
         })),
       },
       {
@@ -84,7 +85,10 @@ export default function Nav({ path, onDark = false }) {
 
   const MenuLink = ({ it }) => (
     <a href={it.to} role="menuitem" className={`nav__menu-link ${isActive(it.to) ? 'is-active' : ''}`}>
-      <span className="nav__menu-label">{it.label}</span>
+      <span className="nav__menu-label">
+        {it.label}
+        {it.flag && <span className="nav__menu-flag">{it.flag}</span>}
+      </span>
       {it.desc && <span className="nav__menu-desc">{it.desc}</span>}
     </a>
   )

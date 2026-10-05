@@ -83,11 +83,11 @@ export default function ServiceDetail({ service }) {
                   choose; sizes mirrors the real box at each width. */}
               <img
                 src={s.photo.src}
-                srcSet={`${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} 1920w`}
+                srcSet={`${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} ${s.photo.w || 1920}w`}
                 sizes="(max-width: 860px) 90vw, 1068px"
                 alt={s.photo.alt}
-                width="1920"
-                height="720"
+                width={s.photo.w || 1920}
+                height={s.photo.h || 720}
                 decoding="async"
               />
             </figure>

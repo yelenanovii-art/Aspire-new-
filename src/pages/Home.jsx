@@ -149,11 +149,18 @@ export default function Home() {
 
           <ol className="svc-list">
             {SERVICES.map((s, i) => (
-              <li className="svc-row reveal" style={{ '--delay': `${i * 60}ms` }} key={s.slug}>
+              <li
+                className={`svc-row reveal ${s.flag ? 'svc-row--flagged' : ''}`}
+                style={{ '--delay': `${i * 60}ms` }}
+                key={s.slug}
+              >
                 <a className="svc-row__link" href={`/services/${s.slug}`}>
                   <span className="svc-row__n">{s.n}</span>
                   <span className="svc-row__main">
-                    <span className="svc-row__title">{s.title}</span>
+                    <span className="svc-row__title">
+                      {s.title}
+                      {s.flag && <span className="svc-row__flag">{s.flag}</span>}
+                    </span>
                     <span className="svc-row__blurb">{s.blurb}</span>
                     <span className="svc-row__tags">
                       {s.tags.map((t) => <span key={t}>{t}</span>)}
@@ -166,7 +173,7 @@ export default function Home() {
           </ol>
 
           <p className="svc-list__fit">
-            Not sure which of the four you need?{' '}
+            Not sure which of the five you need?{' '}
             <a className="link-arrow" href="/fit">
               Answer six questions <ArrowRight />
             </a>

@@ -69,7 +69,7 @@ export const COMPARE = {
       label: 'Scope',
       hire: 'Sales or marketing, rarely both',
       agency: 'Whatever that agency happens to sell',
-      aspire: 'Sales, business development, social and content, run as one plan',
+      aspire: 'Sales, business development, social, content and events, run as one plan',
     },
     {
       label: 'If it is not working',
@@ -286,9 +286,22 @@ export const SERVICES = [
   },
   {
     slug: 'events',
+    // Narrower than the other four banners, so the width rides on the data
+    // rather than being hardcoded in the component.
+    photo: {
+      src: '/media/pages/svc-events.webp',
+      w: 1440,
+      h: 540,
+      alt: 'Crowded exhibition floor at Integrated Systems Europe under the gantry signage',
+    },
     n: '05',
     nav: 'Events and conferences',
     title: 'Events and conferences',
+    // Surfaced as a chip on the home list and in the services menu. It says
+    // what makes this one different from the other four — they are retainers,
+    // this is scoped to a date — rather than making a claim about demand that
+    // nothing on the page could support.
+    flag: 'Project based, worldwide',
     blurb:
       'Extra hands for the week your pipeline is decided. Meetings booked before you land, leads captured on the floor, live marketing, and the follow-up sent while it still counts. Project based, worldwide.',
     h1: 'A conference is five days. Most of its value is lost in the sixth.',
@@ -370,7 +383,7 @@ export const CASES = [
     metricLabel: 'and still running',
     body:
       'We started with LinkedIn. As the partnership grew we added business development, built their website, represented them at major conferences and drove onsite sales. Two years in we still run their social growth. For a technical audience this is the only thing that works: consistent presence, maintained long enough to compound.',
-    services: ['social-media', 'business-development', 'sales'],
+    services: ['events', 'social-media', 'business-development', 'sales'],
   },
   {
     slug: 'ise',
@@ -383,7 +396,7 @@ export const CASES = [
     metricLabel: 'running the show floors and social',
     body:
       'Integrated Systems Europe runs one of the largest audio visual conferences in the world, held each year in Barcelona. We have worked with their team for three years, helping run the show floors and planning and executing the social media support through the week and the run-up to it. A strategic plan agreed upfront, then executed live: content captured in real time, the accounts run through the show, and engagement tactics including Instagram challenges and trivia games to widen reach well beyond the people physically present.',
-    services: ['content-creation', 'social-media', 'sales'],
+    services: ['events', 'content-creation', 'social-media', 'sales'],
   },
   {
     slug: 'rck',

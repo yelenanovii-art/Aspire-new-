@@ -148,6 +148,36 @@ async function waitForServer(url, tries = 40) {
   return false
 }
 
+// Chrome occasionally dies mid-render for reasons that have nothing to do with
+// the page — a crashpad failure, or the machine being under memory pressure
+// with a browser already open. It surfaced as the build failing on a different
+// route every run, which is the worst kind of failure because it looks like a
+// content bug. One retry after a short pause clears it; a route that fails
+// twice is a real problem and should still stop the build.
+function renderRoute(url) {
+  const args = [
+    '--headless=new',
+    '--disable-gpu',
+    '--no-sandbox',
+    '--virtual-time-budget=6000',
+    '--run-all-compositor-stages-before-draw',
+    '--dump-dom',
+    url,
+  ]
+  const opts = { encoding: 'utf8', maxBuffer: 1024 * 1024 * 128 }
+  try {
+    return execFileSync(CHROME, args, opts)
+  } catch (first) {
+    console.log(`  retrying ${url} after a render failure`)
+    execFileSync('/bin/sleep', ['2'])
+    try {
+      return execFileSync(CHROME, args, opts)
+    } catch {
+      throw first
+    }
+  }
+}
+
 const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'ignore' })
 
 try {
@@ -156,19 +186,7 @@ try {
 
   let n = 0
   for (const route of ROUTES) {
-    const html = execFileSync(
-      CHROME,
-      [
-        '--headless=new',
-        '--disable-gpu',
-        '--no-sandbox',
-        '--virtual-time-budget=6000',
-        '--run-all-compositor-stages-before-draw',
-        '--dump-dom',
-        `http://localhost:${PORT}${route}`,
-      ],
-      { encoding: 'utf8', maxBuffer: 1024 * 1024 * 128 }
-    )
+    const html = renderRoute(`http://localhost:${PORT}${route}`)
     const outDir = route === '/' ? DIST : join(DIST, route)
     mkdirSync(outDir, { recursive: true })
     const doc = html.trimStart().toLowerCase().startsWith('<!doctype') ? html : '<!doctype html>\n' + html
@@ -180,19 +198,7 @@ try {
   // useSeo stamps those "noindex, follow". Render one such path and write it as
   // 404.html, which Netlify (and most static hosts) serve for unknown URLs.
   // Deliberately NOT in ROUTES, so it stays out of sitemap.xml.
-  const notFound = execFileSync(
-    CHROME,
-    [
-      '--headless=new',
-      '--disable-gpu',
-      '--no-sandbox',
-      '--virtual-time-budget=6000',
-      '--run-all-compositor-stages-before-draw',
-      '--dump-dom',
-      `http://localhost:${PORT}/_404`,
-    ],
-    { encoding: 'utf8', maxBuffer: 1024 * 1024 * 128 }
-  )
+  const notFound = renderRoute(`http://localhost:${PORT}/_404`)
   if (!/noindex/.test(notFound)) throw new Error('404 render is missing its noindex tag')
   const notFoundDoc = notFound.trimStart().toLowerCase().startsWith('<!doctype')
     ? notFound

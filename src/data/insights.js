@@ -149,7 +149,7 @@ export const INSIGHTS = [
     ],
     takeaway:
       'Book meetings before you arrive, publish in the same hour you capture, and follow up while they still remember the conversation.',
-    related: { services: ['sales', 'content-creation'], cases: ['ise'] },
+    related: { services: ['events', 'sales', 'content-creation'], cases: ['ise'] },
   },
 
   {
