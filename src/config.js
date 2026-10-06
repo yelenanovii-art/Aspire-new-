@@ -21,7 +21,8 @@ export const SITE_URL = 'https://aspireagencymarketing.com'
 // primary CTA on the site points at it instead of the contact form. Until a
 // real URL is set, all CTAs fall back to the working /contact page — never a
 // dead or placeholder link.
-const BOOKING_URL_RAW = import.meta.env.VITE_BOOKING_URL || ''
+const BOOKING_URL_RAW =
+  import.meta.env.VITE_BOOKING_URL || 'https://calendar.app.google/NsYNjAokyEy1Nfj58'
 const isPlaceholder = (u) => !u || /your-|example|placeholder|calendly\.com\/$/i.test(u)
 export const BOOKING_URL = isPlaceholder(BOOKING_URL_RAW) ? '' : BOOKING_URL_RAW
 
@@ -30,9 +31,14 @@ export const bookHref = BOOKING_URL || '/contact'
 export const bookAttrs = BOOKING_URL ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
 // The same booking action, tagged with where it was clicked, so an enquiry
-// finished on /contact still records the page that sent it. Only meaningful
-// while booking falls back to our own form: an external booking tool does not
-// post to us, so there is nothing to carry.
+// finished on /contact still records the page that sent it.
+//
+// Now that booking goes to a calendar, this only tags the people who take the
+// form instead — someone who books a slot never touches our form, so there is
+// nothing to carry and nothing to record. That is the right trade (a booked
+// meeting beats a form fill) but it does mean the property and charter form
+// loses the CTA route into it. The other two routes still hold: a submission
+// made on /real-estate, and the two estate options in the interest select.
 export const bookHrefFrom = (origin) =>
   BOOKING_URL ? bookHref : `/contact?from=${encodeURIComponent(origin)}`
 
