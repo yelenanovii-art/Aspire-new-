@@ -28,6 +28,7 @@ const ROUTES = [
   ...SERVICES.map((s) => `/services/${s.slug}`),
   `/${ESTATE.slug}`,
   `/${AI.slug}`,
+  '/tech',
   '/work',
   ...CASES.map((c) => `/work/${c.slug}`),
   '/insights',

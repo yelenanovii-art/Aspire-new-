@@ -15,6 +15,7 @@ import { Privacy, Terms, Cookies } from './pages/Legal'
 import NotFound from './pages/NotFound'
 import RealEstate from './pages/RealEstate'
 import AiSystems from './pages/AiSystems'
+import Tech from './pages/Tech'
 import Fit from './pages/Fit'
 import CaseStudy from './pages/CaseStudy'
 import Insights from './pages/Insights'
@@ -32,6 +33,7 @@ const ROUTES = {
   '/services': Services,
   '/real-estate': RealEstate,
   '/ai-systems': AiSystems,
+  '/tech': Tech,
   '/work': Work,
   '/about': About,
   '/contact': Contact,

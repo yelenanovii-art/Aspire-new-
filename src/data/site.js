@@ -374,11 +374,11 @@ export const CASES = [
     sector: 'Fintech',
     title: 'Partnership coordinator for BUNQ entering the Spanish market.',
     result: 'A local partner network built from nothing',
-    metric: '1,000',
+    metric: '300',
     metricSuffix: '+',
     metricLabel: 'new users in the first 2.5 months',
     body:
-      'Aspire acts as partnership coordinator for BUNQ in Spain, driving strategic collaborations and user acquisition. We secured the key meetings, identified the partners worth having, and onboarded over a thousand new users inside the first two and a half months. The focus is B2B partnerships that accelerate growth rather than one off campaigns.',
+      'Aspire acts as partnership coordinator for BUNQ in Spain, driving strategic collaborations and user acquisition. We secured the key meetings, identified the partners worth having, and onboarded over 300 new users inside the first two and a half months. The focus is B2B partnerships that accelerate growth rather than one off campaigns.',
     services: ['sales', 'business-development'],
   },
   {

@@ -1,9 +1,9 @@
 import { ArrowRight } from './Icons'
-import { ESTATE, AI } from '../data/verticals'
+import { ESTATE, AI, TECH } from '../data/verticals'
 
 // The two specialist practices, promoted on the home page.
 //
-// These sit apart from SERVICES on purpose: the five disciplines are what any
+// These sit apart from SERVICES on purpose: the five services are what any
 // client buys, whereas these are whole verticals with their own buyers. They
 // were previously reachable only from the nav, which buried them.
 //
@@ -22,7 +22,32 @@ export default function Specialisms() {
     .join(' ')
 
   return (
-    <div className="practice-grid">
+    <div className="practice-grid practice-grid--three">
+      <a className="practice practice--tech reveal" href={`/${TECH.slug}`} data-spot>
+        <span className="practice__media practice__media--mark" aria-hidden="true">
+          {/* No photograph for this one yet, so a drawn mark rather than
+              borrowing a frame that belongs to another page. */}
+          <svg viewBox="0 0 64 44" className="practice__chip" role="presentation">
+            <rect x="12" y="8" width="40" height="28" rx="4" stroke="currentColor" strokeWidth="2" fill="none" />
+            <rect x="22" y="18" width="20" height="8" rx="1.5" stroke="currentColor" strokeWidth="2" fill="none" />
+            {[18, 26, 34, 42].map((x) => (
+              <g key={x}>
+                <path d={`M${x} 8V2`} stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d={`M${x} 36v6`} stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </g>
+            ))}
+          </svg>
+        </span>
+        <span className="practice__body">
+          <span className="practice__label">Specialism</span>
+          <span className="practice__title">{TECH.cardTitle}</span>
+          <span className="practice__blurb">{TECH.cardResult} Most of our client list already sells here.</span>
+          <span className="practice__go">
+            See how it works <ArrowRight size={16} />
+          </span>
+        </span>
+      </a>
+
       <a className="practice practice--estate reveal" href={`/${ESTATE.slug}`} data-spot>
         <span className="practice__media" aria-hidden="true">
           {/* Below 860px .practice__media is display:none, and a lazy image that
@@ -48,13 +73,13 @@ export default function Specialisms() {
         </span>
         <span className="practice__body">
           <span className="practice__label">Specialism</span>
-          <span className="practice__title">{ESTATE.nav}</span>
+          <span className="practice__title">Make a property sell before anyone visits</span>
           <span className="practice__blurb">
-            Listing photography, cinematic walkthroughs and drone work for property,
-            plus on-water filming for charter and brokerage. Shot, cut and posted.
+            Buyers decide from the listing. Cinematic walkthroughs, drone and on-water
+            filming that get the viewing booked.
           </span>
           <span className="practice__go">
-            See the work <ArrowRight size={16} />
+            See how it works <ArrowRight size={16} />
           </span>
         </span>
       </a>
@@ -82,13 +107,13 @@ export default function Specialisms() {
         </span>
         <span className="practice__body">
           <span className="practice__label">Specialism</span>
-          <span className="practice__title">{AI.nav}</span>
+          <span className="practice__title">Stop rebuilding the same report every month</span>
           <span className="practice__blurb">
-            Custom dashboards, internal tools and integrations built on the data you
-            already have, sitting across your CRM, inbox and ad accounts.
+            One dashboard across your CRM, inbox and ad accounts, so the numbers are
+            there when you need them instead of a day's work away.
           </span>
           <span className="practice__go">
-            See what we build <ArrowRight size={16} />
+            See how it works <ArrowRight size={16} />
           </span>
         </span>
       </a>

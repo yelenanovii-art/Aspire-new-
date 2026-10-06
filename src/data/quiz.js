@@ -12,7 +12,7 @@
 // situation they are in, then the plan. The score and the name are the parts
 // people repeat to a colleague.
 //
-// Every option carries weights across the five disciplines. SPECIALISMS are
+// Every option carries weights across the five services. SPECIALISMS are
 // decided separately: they are a different buyer, not a heavier weighting, so
 // a property or yachting answer routes there outright.
 import { SERVICES } from './site'

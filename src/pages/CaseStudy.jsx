@@ -131,7 +131,7 @@ export default function CaseStudy({ c }) {
 
       <section className="section section--ruled">
         <div className="container container--narrow">
-          <SectionHead eyebrow="Disciplines used" title="What this was built from." />
+          <SectionHead eyebrow="Services used" title="What this was built from." />
           <ul className="casepage__svcs">
             {services.map((s) => (
               <li className="reveal" key={s.slug}>

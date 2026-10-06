@@ -3,7 +3,7 @@ import Logo from './Logo'
 import { ArrowRight, ChoiceMark } from './Icons'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES } from '../data/site'
-import { ESTATE, AI } from '../data/verticals'
+import { ESTATE, AI, TECH } from '../data/verticals'
 
 // A blurb that is already a single sentence keeps its own full stop; appending
 // one unconditionally produced "…and Instagram.." in the menu.
@@ -15,8 +15,8 @@ const firstSentence = (t) => {
 // Navigation is four top level items, not six.
 //
 // Everything Aspire sells lives under one "Services" panel, split into two
-// labelled groups: the four growth disciplines that apply to any client, and
-// the two specialisms that only some clients need. Real Estate and AI Systems
+// labelled groups: the five growth services that apply to any client, and
+// the three specialisms that only some clients need. Tech, Real Estate and
 // previously sat both inside the dropdown and beside it, which is why the bar
 // read as a list rather than a structure.
 const NAV = [
@@ -25,7 +25,9 @@ const NAV = [
     label: 'Services',
     to: '/services',
     // Any path under these lights the Services item as current.
-    match: (p) => p.startsWith('/services') || p === `/${ESTATE.slug}` || p === `/${AI.slug}`,
+    match: (p) =>
+      p.startsWith('/services') ||
+      [TECH.slug, ESTATE.slug, AI.slug].some((sl) => p === `/${sl}`),
     columns: [
       {
         heading: 'Growth services',
@@ -41,7 +43,8 @@ const NAV = [
         heading: 'Specialisms',
         note: 'Where we go deeper',
         items: [
-          { to: `/${ESTATE.slug}`, label: `${ESTATE.nav} and yachting`, desc: ESTATE.navDesc },
+          { to: `/${TECH.slug}`, label: TECH.nav, desc: TECH.navDesc },
+          { to: `/${ESTATE.slug}`, label: `${ESTATE.nav} and Yachting`, desc: ESTATE.navDesc },
           { to: `/${AI.slug}`, label: AI.nav, desc: AI.navDesc },
         ],
       },

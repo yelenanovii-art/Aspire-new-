@@ -19,7 +19,7 @@ export default function Fit() {
     operatingSystem: 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
     description:
-      'Six questions that match a B2B company to the growth discipline to start with, and a written 90 day plan by email.',
+      'Six questions that match a B2B company to the growth service to start with, and a written 90 day plan by email.',
     publisher: { '@id': `${SITE_URL}/#organization` },
   })
 
@@ -31,7 +31,7 @@ export default function Fit() {
           <h1 className="page-hero__title">Find out where to start.</h1>
           <p className="page-hero__lead">
             Six questions about how growth actually works in your company right now. At the end
-            you get the discipline to start with and a plan for the first ninety days, on the
+            you get the service to start with and a plan for the first ninety days, on the
             spot rather than in an email next week.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function Fit() {
       <CTABand
         title="Already know what you need?"
         body="Skip the questions and tell us where growth is stuck. Fifteen minutes, free, no obligation."
-        secondary={{ to: '/services', label: 'See all five disciplines' }}
+        secondary={{ to: '/services', label: 'See all five services' }}
       />
     </>
   )

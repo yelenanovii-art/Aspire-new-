@@ -9,10 +9,13 @@ import CTABand from '../components/CTABand'
 import Magnetic from '../components/Magnetic'
 import { useGlow, useSpotlight } from '../hooks/useInteractions'
 import Compare from '../components/Compare'
-import Team from '../components/Team'
 import Carousel from '../components/Carousel'
 import Specialisms from '../components/Specialisms'
 import EventsBand from '../components/EventsBand'
+import ServiceCarousel from '../components/ServiceCarousel'
+import EventsPromo from '../components/EventsPromo'
+import CountUp from '../components/CountUp'
+import PartnerQuote from '../components/PartnerQuote'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES, CASES, CLIENTS, STATS, STEPS, PROBLEM, FAQ, PERFORMANCE } from '../data/site'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -86,12 +89,36 @@ export default function Home() {
           <dl className="hero__stats reveal" style={{ '--delay': '230ms' }}>
             {STATS.map((s) => (
               <div key={s.label}>
-                <dt>{s.plain ? s.value : `${s.value.toLocaleString()}${s.suffix || ''}`}</dt>
+                <dt>
+                  <CountUp
+                    value={s.plain ? String(s.value) : `${s.value.toLocaleString()}${s.suffix || ''}`}
+                    plain={s.plain}
+                  />
+                </dt>
                 <dd>{s.label}</dd>
               </div>
             ))}
           </dl>
         </div>
+      </section>
+
+      {/* A real frame from the floor rather than stock, directly under the
+          hero. The gradient is doing two jobs: it ties the band to the dark
+          hero above it so the join does not read as a seam, and it keeps the
+          caption legible over a busy photograph. */}
+      <section className="herophoto" aria-hidden="false">
+        <img
+          src="/media/pages/svc-bizdev.webp"
+          srcSet="/media/pages/svc-bizdev-760.webp 760w, /media/pages/svc-bizdev.webp 1920w"
+          sizes="100vw"
+          alt="Two people in conversation beside an exhibition stand at a technology conference"
+          width="1920"
+          height="720"
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="herophoto__veil" aria-hidden="true" />
+        <p className="herophoto__cap">On the floor at Integrated Systems Europe, Barcelona.</p>
       </section>
 
       <section className="logos">
@@ -144,34 +171,11 @@ export default function Home() {
           <SectionHead
             index="03"
             eyebrow="What we do"
-            title="Five disciplines, run as one plan."
+            title="Five services, run as one plan."
             lede="Most companies buy these from four suppliers who never speak. Run together, the content fills the social, the social warms the outreach, and the outreach closes."
           />
 
-          <ol className="svc-list">
-            {SERVICES.map((s, i) => (
-              <li
-                className={`svc-row reveal ${s.flag ? 'svc-row--flagged' : ''}`}
-                style={{ '--delay': `${i * 60}ms` }}
-                key={s.slug}
-              >
-                <a className="svc-row__link" href={`/services/${s.slug}`}>
-                  <span className="svc-row__n">{s.n}</span>
-                  <span className="svc-row__main">
-                    <span className="svc-row__title">
-                      {s.title}
-                      {s.flag && <span className="svc-row__flag">{s.flag}</span>}
-                    </span>
-                    <span className="svc-row__blurb">{s.blurb}</span>
-                    <span className="svc-row__tags">
-                      {s.tags.map((t) => <span key={t}>{t}</span>)}
-                    </span>
-                  </span>
-                  <span className="svc-row__go" aria-hidden="true"><ArrowRight size={18} /></span>
-                </a>
-              </li>
-            ))}
-          </ol>
+          <ServiceCarousel />
 
           <p className="svc-list__fit">
             Not sure which of the five you need?{' '}
@@ -182,8 +186,8 @@ export default function Home() {
 
           <SectionHead
             eyebrow="Specialisms"
-            title="Two markets we go deeper in."
-            lede="Property, yachting and custom AI systems each have their own buyers and their own tooling, so they get their own practice rather than sitting inside a general retainer."
+            title="Selling in a market where trust is everything? We know it from the inside."
+            lede="Some industries do not buy from strangers. We have worked inside them, so we know who decides, what they need to hear, and how to get you in the room."
           />
           <Specialisms />
         </div>
@@ -204,7 +208,7 @@ export default function Home() {
 
           <div className="stat-grid stat-grid--bordered stat-grid--three">
             {[PERFORMANCE.leads, PERFORMANCE.engagement, PERFORMANCE.conversion].map((m) => (
-              <Stat key={m.label} staticText={m.value} label={m.label} note={m.note} />
+              <Stat key={m.label} staticText={<CountUp value={m.value} />} label={m.label} note={m.note} />
             ))}
           </div>
 
@@ -212,6 +216,8 @@ export default function Home() {
             <h3 className="work__h">Selected client cases</h3>
             <a className="link-arrow reveal" href="/work">All six cases <ArrowRight /></a>
           </div>
+
+          <PartnerQuote />
 
           <div className="work-grid work-grid--lead">
             {CASES.slice(0, 3).map((c, i) => (
@@ -251,24 +257,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 7. Who does it ───────────────────────────────────────────── */}
-      <section className="section section--dark team-section" id="team">
-        <div className="container">
-          <SectionHead
-            index="06"
-            eyebrow="The team"
-            title="Four specialists. You will know all of them."
-            lede="Not an account manager relaying messages to a junior team. The person shooting your video is not the person running your pipeline, and neither of them is learning on your account."
-            light
-          />
-          {/* Roster only. The portraits belong on /about, where there is room
-              to give them the space they deserve. */}
-          <Team photos={false} />
-          <a className="link-arrow link-arrow--light reveal team-section__more" href="/about">
-            Meet the team <ArrowRight />
-          </a>
-        </div>
-      </section>
 
       {/* ── 7b. The same four, on site ───────────────────────────────── */}
       <section className="section section--tight onsite-section">
@@ -302,6 +290,8 @@ export default function Home() {
           <Faq items={FAQ} idPrefix="home-faq" />
         </div>
       </section>
+
+      <EventsPromo />
 
       <CTABand
         title="Tell us where growth is stuck."

@@ -266,7 +266,7 @@ export const INSIGHTS = [
         h: 'Borrow trust before you buy attention',
         p: [
           'At launch you have no audience, no local proof and no feel for which messages land. Paid spend in that state is tuition: you are paying for data you could have got another way.',
-          'Partnerships invert it. Instead of persuading strangers one at a time, you borrow the trust of an organisation those people already rely on. When BUNQ entered Spain, that was the route in — and the first two and a half months produced over a thousand new users.',
+          'Partnerships invert it. Instead of persuading strangers one at a time, you borrow the trust of an organisation those people already rely on. When BUNQ entered Spain, that was the route in — and the first two and a half months produced over 300 new users.',
         ],
       },
       {

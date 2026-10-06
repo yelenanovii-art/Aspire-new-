@@ -9,6 +9,38 @@
 // ---------------------------------------------------------------------------
 // Real estate and yachting
 // ---------------------------------------------------------------------------
+// ── Tech ────────────────────────────────────────────────────────────────────
+// The first specialism, and the one most of the client list already sits in.
+// Placeholder copy where marked: the page exists so the nav, the home section
+// and the footer can all point somewhere real, and the words get replaced once
+// Elena has written them.
+export const TECH = {
+  slug: 'tech',
+  nav: 'Tech',
+  navDesc: 'B2B marketing and sales for tech companies',
+  // Benefit-led, for the home card
+  cardTitle: 'Sell to technical buyers without sounding like everyone else',
+  cardResult: 'A pipeline built on the terms your buyers actually use.',
+  h1: 'We have sat on your side of the demo.',
+  lede:
+    'PLACEHOLDER. Semiconductors, AV, SaaS and hardware: technical buyers who read the spec before the brochure, procurement cycles measured in quarters, and a sale that is won by being useful long before anyone is ready. Most of the client list is already here.',
+  metaTitle: 'B2B Marketing and Sales for Tech Companies',
+  metaDesc:
+    'Marketing and sales for B2B technology companies: semiconductors, AV, SaaS and hardware. Built around long technical buying cycles rather than consumer funnels.',
+  keywords: 'B2B tech marketing, technology marketing agency, semiconductor marketing, SaaS sales, hardware marketing',
+  tags: ['Technical audiences', 'Long cycles', 'Procurement', 'Conference-led'],
+  includes: [
+    { h: 'Written for people who check', p: 'PLACEHOLDER. Technical buyers assess a company by how precisely it talks about its own work. Vague competence claims read as nothing to say.' },
+    { h: 'Built for the real cycle', p: 'PLACEHOLDER. A three month campaign ends before this audience has finished deciding, so the plan is built to still be present when they are ready.' },
+    { h: 'Where the conversations happen', p: 'PLACEHOLDER. For most technical sectors the show floor is still where the real conversations start, so the plan usually runs through the calendar of events.' },
+  ],
+  faq: [
+    { q: 'What counts as a tech company here?', a: 'PLACEHOLDER. Semiconductors, audio visual, SaaS, hardware and the companies that sell into them. If your buyer reads a datasheet before a brochure, this is the right page.' },
+    { q: 'Do you need to understand our product?', a: 'PLACEHOLDER. Enough to be precise, which is the part that earns trust with this audience. We work alongside your technical people rather than guessing.' },
+  ],
+  proofCaseSlugs: ['siltest', 'bunq'],
+}
+
 export const ESTATE = {
   slug: 'real-estate',
   nav: 'Real Estate',

@@ -2,7 +2,7 @@ import Logo from './Logo'
 import { SOCIAL, COMPANY } from '../config'
 import { LinkedIn, Instagram, YouTube, Mail, Phone, Pin } from './Icons'
 import { SERVICES } from '../data/site'
-import { ESTATE, AI } from '../data/verticals'
+import { ESTATE, AI, TECH } from '../data/verticals'
 import { openCookieSettings } from '../lib/consent'
 
 // One footer social button. Renders a live link when its URL is configured in
@@ -46,7 +46,8 @@ export default function Footer() {
             {SERVICES.map((s) => (
               <a key={s.slug} href={`/services/${s.slug}`}>{s.nav}</a>
             ))}
-            <a href={`/${ESTATE.slug}`}>{ESTATE.nav} and yachting</a>
+            <a href={`/${TECH.slug}`}>{TECH.nav}</a>
+            <a href={`/${ESTATE.slug}`}>{ESTATE.nav} and Yachting</a>
             <a href={`/${AI.slug}`}>{AI.nav}</a>
           </nav>
 

@@ -14,7 +14,7 @@ export const CASE_DETAIL = {
   bunq: {
     metaTitle: 'BUNQ Spain: Partnership-Led Market Entry',
     metaDesc:
-      'How Aspire built a Spanish partner network from nothing for BUNQ and onboarded over a thousand users in the first two and a half months.',
+      'How Aspire built a Spanish partner network from nothing for BUNQ and onboarded over 300 users in the first two and a half months.',
     summary:
       'A neobank with no local presence, entering a market where recognition does not travel. Partnerships were the route in.',
     challenge:
@@ -34,7 +34,7 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'Over 1,000 new users onboarded in the first two and a half months.',
+      'Over 300 new users onboarded in the first two and a half months.',
       'A local partner network built from nothing, structured around acquisition rather than press.',
       'A clear read on which partner types convert in this market, and which do not.',
     ],
@@ -65,7 +65,7 @@ export const CASE_DETAIL = {
     outcome: [
       'Two years in and still running, which for this buying cycle is the result.',
       'A technical B2B audience that engages rather than scrolls past.',
-      'Four disciplines added in sequence, each justified by the one before it.',
+      'Four services added in sequence, each justified by the one before it.',
     ],
   },
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { CASE_DETAIL } from '../data/caseDetail'
+import { TECH } from '../data/verticals'
 import { INSIGHTS } from '../data/insights'
 import { SITE_URL } from '../config'
 import { SERVICES, CASES } from '../data/site'
@@ -47,12 +48,12 @@ const META = {
   },
   '/services': {
     t: 'B2B Sales and Marketing Services',
-    d: 'Five disciplines run as one plan: in person and digital sales, business development, social media management, content creation, and event and conference support.',
+    d: 'Five services run as one plan: in person and digital sales, business development, social media management, content creation, and event and conference support.',
     k: 'B2B sales services, business development, social media management, content creation',
   },
   '/work': {
     t: 'Client Cases and Results',
-    d: 'Six engagements across fintech, semiconductors, live events, legal and hospitality, including 1,000 new users onboarded for BUNQ in 2.5 months.',
+    d: 'Six engagements across fintech, semiconductors, live events, legal and hospitality, including 300 new users onboarded for BUNQ in 2.5 months.',
     k: 'case studies, client results, BUNQ, ISE, SilTest, B2B agency results',
   },
   '/about': {
@@ -62,7 +63,7 @@ const META = {
   },
   '/fit': {
     t: 'Find Out Where Your Growth Should Start',
-    d: 'Six questions that match your company to the growth discipline to start with, plus a ninety day plan you get on the spot. Free, no obligation.',
+    d: 'Six questions that match your company to the growth service to start with, plus a ninety day plan you get on the spot. Free, no obligation.',
     k: 'growth assessment, marketing quiz, which marketing service, B2B growth plan',
   },
   '/contact': {
@@ -86,6 +87,7 @@ const META = {
   },
   ...SERVICE_META,
   ...CASE_META,
+  '/tech': { t: TECH.metaTitle, d: TECH.metaDesc, k: TECH.keywords },
   '/insights': {
     t: 'Insights on B2B Sales and Marketing',
     d: 'Written pieces on B2B outbound, social for technical audiences, trade shows, CRM and market entry, drawn from the engagements we run.',
@@ -121,6 +123,7 @@ const PAGE_SCHEMA_OWNERS = {
   'aspire-faq-social-media': '/services/social-media',
   'aspire-faq-content-creation': '/services/content-creation',
   'aspire-faq-events': '/services/events',
+  'aspire-faq-tech': '/tech',
   'aspire-faq-real-estate': '/real-estate',
   'aspire-faq-ai-systems': '/ai-systems',
   'aspire-person': '/about',
@@ -133,6 +136,7 @@ const PAGE_SCHEMA_OWNERS = {
 const SEG_NAME = {
   services: 'Services',
   'real-estate': 'Real Estate and Yachting',
+  tech: 'Tech',
   'ai-systems': 'AI Systems',
   cookies: 'Cookie Policy',
   work: 'Our Work',

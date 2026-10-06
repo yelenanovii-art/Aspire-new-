@@ -43,7 +43,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* The five disciplines above are described; this is them happening. */}
+      {/* The five services above are described; this is them happening. */}
       <section className="section section--tight">
         <div className="container">
           <SectionHead

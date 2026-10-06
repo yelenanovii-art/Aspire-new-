@@ -94,16 +94,23 @@
 
 /* Dropdown */
 .nav__group { position: relative; }
+/* The 6px gap under the trigger was a dead zone: the pointer crossed it, the
+   group stopped being hovered and the panel closed before it could be reached.
+   The panel now starts flush and carries its own transparent lead-in, so the
+   whole path from item to options stays inside the hover target. The delay is
+   on the closing half only — opening should feel immediate, closing should
+   forgive a cursor that cuts a corner. */
 .nav__menu {
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;
+  padding-top: 10px;
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
   min-width: 320px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  transition: opacity 0.18s ease 0.2s, transform 0.18s ease 0.2s, visibility 0s linear 0.38s;
 }
 .nav__group:hover .nav__menu,
 .nav__group:focus-within .nav__menu {
@@ -111,6 +118,7 @@
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+  transition-delay: 0s, 0s, 0s;
 }
 .nav__menu-inner {
   background: var(--white);
@@ -171,15 +179,27 @@
   margin-top: 8px;
   padding: 13px 16px;
   border-radius: var(--radius-sm);
-  background: var(--wash-light);
-  border: 1px solid var(--line);
-  font-size: 13.5px;
+  /* Matched to .btn-accent: same fill, same radius, same weight, so the two
+     primary actions in the header read as the same kind of thing. */
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--ink);
-  transition: border-color 0.2s ease, color 0.2s ease;
+  color: #fff;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
-.nav__mega-featured:hover { border-color: var(--accent); color: var(--accent-600); }
-.nav__mega-featured svg { color: var(--accent-600); flex: none; }
+.nav__mega-featured:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.nav__mega-featured svg { color: #fff; flex: none; }
+@media (prefers-reduced-motion: reduce) {
+  .nav__mega-featured:hover { transform: none; }
+}
 
 .nav__actions { display: flex; align-items: center; gap: 10px; }
 .nav--over-dark .nav__cta { box-shadow: none; }
@@ -692,9 +712,14 @@
 .svc-row--flagged .svc-row__n { color: var(--accent-600); }
 
 /* The same chip in the services menu, where the row is much tighter. */
+/* The chip used to trail the label inline, which pushed it off the dropdown's
+   left edge and sat it on a different baseline from every other row. It now
+   drops under the label on the same left edge, between the label and the
+   description, with the row's own spacing. */
+.nav__menu-label { display: block; }
 .nav__menu-flag {
   display: inline-block;
-  margin-left: 9px;
+  margin: 5px 0 1px;
   font-family: var(--mono);
   font-size: 9.5px;
   letter-spacing: 0.09em;
@@ -2649,7 +2674,7 @@
 }
 
 /* ── Specialisms (home) ──────────────────────────────────────────────────────
-   Two whole verticals, promoted beneath the four core disciplines. Each card
+   Whole verticals, promoted beneath the five core services. Each card
    leads with the visual its own page leads with, so the difference in the work
    is legible before any copy is read. */
 .practice-grid {
@@ -3167,10 +3192,12 @@
   .quiz__bar-fill, .quiz__option, .quiz__option svg { transition: none; }
 }
 
-/* Entry to the fit quiz, right after the five disciplines: the reader has just
+/* Entry to the fit quiz, right after the five services: the reader has just
    been shown four things and the obvious question is which one is theirs. */
 .svc-list__fit {
-  margin: clamp(22px, 3vw, 32px) 0 0;
+  /* The carousel used to be a bordered list that supplied its own gap; it no
+     longer does, so the space before the specialisms heading lives here. */
+  margin: clamp(22px, 3vw, 32px) 0 clamp(48px, 6vw, 76px);
   padding-top: clamp(18px, 2.4vw, 24px);
   border-top: 1px solid var(--line-soft);
   color: var(--body);
@@ -3378,6 +3405,256 @@
 }
 
 .band__foot { margin: clamp(22px, 2.8vw, 30px) 0 0; }
+
+/* ── Hero photograph band ────────────────────────────────────────────────────
+   Full bleed under the dark hero. The veil is a gradient from the hero's own
+   ink at the top to nothing at the bottom, so the two sections read as one
+   piece rather than a photo pasted beneath a header. */
+.herophoto { position: relative; overflow: hidden; aspect-ratio: 21 / 9; }
+.herophoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.herophoto__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--ink) 0%, rgba(11, 19, 22, 0.42) 36%, rgba(11, 19, 22, 0.14) 70%, rgba(11, 19, 22, 0.5) 100%);
+  pointer-events: none;
+}
+.herophoto__cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  margin: 0 auto;
+  max-width: var(--maxw);
+  padding: 0 var(--gutter) clamp(14px, 2.4vw, 22px);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+@media (max-width: 620px) { .herophoto { aspect-ratio: 16 / 10; } }
+
+/* ── Services, as a stack of cards ───────────────────────────────────────────
+   The cards sit on top of each other; only the front one is in normal flow,
+   the rest are absolutely placed behind it, pushed down, scaled back and
+   dimmed so the depth is obvious without labelling it. */
+.svcx { margin-top: clamp(36px, 5vw, 56px); }
+.svcx__stage {
+  position: relative;
+  display: grid;
+  /* The tallest card sets the height so the stage does not jump between
+     cards of different copy lengths. */
+  min-height: 330px;
+}
+.svcx__card {
+  grid-area: 1 / 1;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: clamp(24px, 3vw, 36px);
+  transform: translateY(calc(var(--d) * 22px)) scale(calc(1 - var(--d) * 0.055));
+  opacity: calc(1 - var(--d) * 0.28);
+  z-index: calc(10 - var(--d));
+  transition: transform 0.55s cubic-bezier(0.22, 0.7, 0.15, 1),
+    opacity 0.45s ease;
+  pointer-events: none;
+}
+.svcx__card.is-front { pointer-events: auto; }
+.svcx__n {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--accent-600);
+  margin: 0 0 10px;
+}
+.svcx__title {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(22px, 2.6vw, 31px);
+  line-height: 1.12;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  margin: 0;
+  max-width: 20ch;
+}
+.svcx__benefit {
+  margin: 12px 0 0;
+  color: var(--body);
+  line-height: 1.6;
+  font-size: 15.5px;
+  max-width: 56ch;
+}
+.svcx__points { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 8px; }
+.svcx__points li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  color: var(--body);
+}
+.svcx__points li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 11px; height: 2px;
+  background: var(--accent);
+}
+.svcx__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 20px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--accent-600);
+}
+.svcx__more:hover .arrow { transform: translateX(3px); }
+
+.svcx__stage { padding-bottom: 46px; }
+
+.svcx__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: clamp(22px, 3vw, 30px);
+}
+.svcx__arrow {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  flex: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.svcx__arrow:first-child svg { transform: rotate(180deg); }
+.svcx__arrow:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.svcx__dots { list-style: none; display: flex; gap: 9px; margin: 0; padding: 0; }
+.svcx__dots button {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.svcx__dots button.is-on { background: var(--accent); transform: scale(1.3); }
+
+@media (max-width: 620px) { .svcx__stage { min-height: 400px; } }
+@media (prefers-reduced-motion: reduce) {
+  .svcx__card { transition: none; }
+  .svcx__more:hover .arrow { transform: none; }
+  .svcx__dots button.is-on { transform: none; }
+}
+
+/* ── Partnership quote ───────────────────────────────────────────────────── */
+.pq {
+  margin: clamp(26px, 3.4vw, 36px) 0 0;
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--card-fill);
+  max-width: 62ch;
+}
+.pq blockquote { margin: 0; color: var(--ink); line-height: 1.6; font-size: 16px; }
+.pq figcaption { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; font-size: 13.5px; color: var(--muted); }
+.pq figcaption strong { color: var(--ink); font-weight: 600; }
+/* While the words are placeholder it has to look like one, so it cannot be
+   mistaken for a real testimonial. */
+.pq--placeholder { border-style: dashed; border-left-style: solid; }
+.pq__flag {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  border: 1px solid var(--accent-tint-2);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+/* ── Events pop-up ───────────────────────────────────────────────────────── */
+.promo {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(8, 14, 16, 0.62);
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 40px);
+  animation: promoFade 0.26s ease both;
+}
+.promo__box {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  display: grid;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  animation: promoIn 0.3s cubic-bezier(0.22, 0.7, 0.15, 1) both;
+}
+@media (min-width: 761px) { .promo__box { grid-template-columns: 0.9fr 1.1fr; } }
+.promo__media { margin: 0; overflow: hidden; }
+.promo__media img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 180px; }
+.promo__body { padding: clamp(24px, 3.4vw, 40px); }
+.promo__eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  margin: 0;
+}
+.promo__title {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.14;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  margin: 12px 0 0;
+  text-wrap: balance;
+}
+.promo__stat { display: flex; align-items: baseline; gap: 12px; margin: 20px 0 0; }
+.promo__stat-v {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: var(--display-ls);
+  color: var(--accent-600);
+}
+.promo__stat-k { font-size: 14px; color: var(--body); line-height: 1.4; max-width: 18ch; }
+.promo__lead { margin: 16px 0 0; color: var(--body); line-height: 1.6; font-size: 15px; }
+.promo__cta { margin-top: 22px; }
+.promo__close {
+  position: absolute;
+  top: 10px; right: 10px;
+  z-index: 2;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+.promo__close:hover { background: #fff; border-color: var(--line-strong); }
+@keyframes promoFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes promoIn { from { opacity: 0; transform: scale(0.96) translateY(8px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) {
+  .promo, .promo__box { animation: none; }
+}
+
+/* Three specialisms rather than two. */
+.practice-grid--three { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+.practice__media--mark { display: grid; place-items: center; background: var(--wash-dark); }
+.practice__chip { width: 56%; max-width: 180px; color: var(--accent-tint-2); }
 
 /* ── Events feature band ─────────────────────────────────────────────────────
    Dark, because it lands between the light services section and the alt-toned
