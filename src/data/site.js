@@ -615,7 +615,11 @@ export const FILM = [
   { id: 'yacht-sail', src: '/media/film/yacht-sail.mp4', poster: '/media/film/yacht-sail.webp',
     label: 'On the water', note: 'Charter catamaran under sail, vertical', ratio: '9 / 16', span: 1 },
   { id: 'ise-trivia-halls', src: '/media/film/ise-trivia-halls.mp4', poster: '/media/film/ise-trivia-halls.webp',
-    label: 'Event series', note: 'Integrated Systems Europe, cut for Reels', ratio: '9 / 16', span: 1 },
+    label: 'Event series', note: 'Integrated Systems Europe, trivia cut for Reels', ratio: '9 / 16', span: 1 },
+  // Narrated rather than b-roll, and the only one here with burned-in
+  // subtitles — which is the point, since the grid plays muted.
+  { id: 'ise26-showfloor', src: '/media/film/ise26-showfloor.mp4', poster: '/media/film/ise26-showfloor.webp',
+    label: 'Show floor walkthrough', note: 'Integrated Systems Europe 2026, captioned for social', ratio: '9 / 16', span: 1 },
 ]
 
 // ---------------------------------------------------------------------------

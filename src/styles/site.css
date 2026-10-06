@@ -2617,10 +2617,13 @@
      squeezes a 9:16 down to about 135px, too small to watch. Letting each
      orientation fill its own row keeps both at a usable size. */
   display: grid;
-  /* Five, not four. A landscape film takes two columns and a portrait one, so
-     the current reel of one landscape and three portraits totals five units:
-     on a four column grid the last card wrapped alone onto a row of its own. */
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  /* Three, not five. A landscape film takes two columns and a portrait one, so
+     one landscape and four portraits totals six units — which fills three
+     columns over two rows exactly, with nothing orphaned. It is also the
+     larger layout: a portrait gets a third of the width rather than a fifth,
+     roughly 370px instead of 235px, which is the difference between watching
+     a vertical film and squinting at it. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(12px, 1.4vw, 18px);
   margin-top: clamp(34px, 4.5vw, 50px);
   align-items: start;
