@@ -4,6 +4,10 @@ import Gallery from '../components/Gallery'
 import MediaSlot from '../components/MediaSlot'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
+import PlaybookPopup from '../components/PlaybookPopup'
+import PlaybookForm from '../components/PlaybookForm'
+import PlaybookCover from '../components/PlaybookCover'
+import { PLAYBOOK } from '../data/playbook'
 import { bookHrefFrom, bookAttrs, SITE_URL } from '../config'
 import { ESTATE_ORIGIN } from '../lib/leadRouting'
 import { ESTATE } from '../data/verticals'
@@ -121,6 +125,23 @@ export default function RealEstate() {
           </div>
         </div>
       </section>
+
+      {/* The lead magnet, directly above the band that asks for a call. Both
+          exist on purpose: that one asks for a meeting, this asks for an email
+          from the larger group who are not ready to book one. */}
+      <section className="section pbband">
+        <div className="container pbband__inner">
+          <PlaybookCover className="pbband__cover" />
+          <div className="pbband__body">
+            <p className="eyebrow">Free guide</p>
+            <h2 className="pbband__title">{PLAYBOOK.band.headline}</h2>
+            <p className="pbband__sub">{PLAYBOOK.band.subline}</p>
+            <PlaybookForm placement="footer" />
+          </div>
+        </div>
+      </section>
+
+      <PlaybookPopup />
 
       {/* Questions and the call to action sat one above the other, each in a
           narrow centred column with a lot of empty page either side. Paired,

@@ -3901,6 +3901,196 @@
   .cta-band--boxed .cta-band__actions .btn { flex: 0 1 auto; }
 }
 
+/* ── Lead magnet: the listing playbook ───────────────────────────────────────
+   Two placements, one form. The cover is drawn rather than an image because no
+   cover artwork exists yet — a grey rectangle would read as a broken asset. */
+.pbcover {
+  flex: none;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 3 / 4;
+  border-radius: 10px;
+  padding: 2px;
+  background: linear-gradient(150deg, var(--accent-tint-2), var(--accent) 48%, #0a4a57);
+  box-shadow: 0 18px 40px -16px rgba(11, 40, 48, 0.45);
+}
+.pbcover__inner {
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(165deg, #0f6475 0%, #072e37 100%);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(18px, 2vw, 26px);
+  color: #fff;
+}
+.pbcover__eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-tint-2);
+}
+.pbcover__title {
+  margin-top: auto;
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.1;
+  letter-spacing: var(--display-ls);
+}
+.pbcover__rule { display: block; width: 34px; height: 2px; background: var(--accent-tint-2); margin: 14px 0; }
+.pbcover__by { font-size: 12.5px; color: rgba(255, 255, 255, 0.72); line-height: 1.4; }
+.pbcover__mark {
+  margin-top: 16px;
+  font-family: var(--wordmark);
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── The form itself ─────────────────────────────────────────────────────── */
+.pbf { display: grid; gap: 14px; margin-top: clamp(18px, 2.2vw, 24px); }
+.pbf__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .pbf__row { grid-template-columns: 1fr; } }
+/* Off-screen rather than display:none — some bots skip hidden fields. */
+.pbf__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.pbf .field { display: grid; gap: 6px; }
+.pbf .field > span { font-size: 13px; font-weight: 600; color: var(--ink); }
+.pbf__consent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.45;
+}
+.pbf__consent input { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--accent); }
+.pbf__consent a { color: var(--accent-600); text-decoration: underline; }
+.pbf__submit { justify-content: center; }
+.pbf__print { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+.pbf--done { display: grid; gap: 12px; justify-items: start; }
+.pbf__tick {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  background: var(--accent-tint);
+  color: var(--accent-600);
+}
+.pbf__done-h {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(19px, 1.9vw, 23px);
+  color: var(--ink);
+}
+.pbf__warn { margin: 0; font-size: 13px; color: var(--body); max-width: 46ch; }
+.pbf__dl { margin-top: 4px; }
+.pbf__second { font-size: 14px; }
+
+/* ── End-of-page band ────────────────────────────────────────────────────── */
+.pbband__inner {
+  display: grid;
+  gap: clamp(26px, 3.4vw, 54px);
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .pbband__inner { grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); }
+}
+.pbband__cover { max-width: 300px; }
+@media (max-width: 859px) { .pbband__cover { max-width: 190px; } }
+.pbband__title {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1.1;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  margin: 12px 0 0;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.pbband__sub { margin: 14px 0 0; color: var(--body); line-height: 1.62; max-width: 56ch; }
+
+/* ── Pop-up ──────────────────────────────────────────────────────────────── */
+.pbp {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  background: rgba(8, 14, 16, 0.6);
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 40px);
+  animation: pbpFade 0.25s ease both;
+}
+.pbp__box {
+  position: relative;
+  width: min(880px, 100%);
+  /* Never the full screen on a phone, and never taller than the viewport —
+     the close button has to stay reachable. */
+  max-height: min(88vh, 760px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  animation: pbpIn 0.3s cubic-bezier(0.22, 0.7, 0.15, 1) both;
+}
+@media (min-width: 780px) { .pbp__box { grid-template-columns: 0.72fr 1fr; } }
+.pbp__media {
+  display: grid;
+  place-items: center;
+  padding: clamp(22px, 3vw, 34px);
+  background:
+    radial-gradient(70% 70% at 30% 20%, rgba(13, 92, 107, 0.14), transparent 70%),
+    var(--wash-light);
+}
+@media (max-width: 779px) {
+  /* The cover shrinks to a strip on a phone so the form stays above the fold
+     of the dialog. */
+  .pbp__media { padding: 18px; }
+  .pbp__media .pbcover { max-width: 128px; }
+}
+.pbp__body { padding: clamp(22px, 3vw, 38px); }
+.pbp__eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+.pbp__title {
+  margin: 10px 0 0;
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(21px, 2.4vw, 29px);
+  line-height: 1.14;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  text-wrap: balance;
+}
+.pbp__sub { margin: 12px 0 0; font-size: 14.5px; line-height: 1.58; color: var(--body); }
+.pbp__close {
+  position: absolute;
+  top: 10px; right: 10px;
+  z-index: 3;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+.pbp__close:hover { background: #fff; border-color: var(--line-strong); }
+@keyframes pbpFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes pbpIn { from { opacity: 0; transform: scale(0.96) translateY(8px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { .pbp, .pbp__box { animation: none; } }
+
 /* ── Events feature band ─────────────────────────────────────────────────────
    Dark, because it lands between the light services section and the alt-toned
    proof section and the page already alternates; a third light block there
