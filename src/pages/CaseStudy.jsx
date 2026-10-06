@@ -151,7 +151,13 @@ export default function CaseStudy({ c }) {
       <CTABand
         title={`Have a problem like ${c.client}'s?`}
         body="Tell us where growth is stuck and we will come back with a plan, whether or not you run it with us. Fifteen minutes, free."
-        secondary={{ to: '/fit', label: 'Not sure? Find your match' }}
+        // A conference engagement should offer the practice that ran it; the
+        // quiz is the right fallback only when nothing more specific fits.
+        secondary={
+          c.services.includes('events')
+            ? { to: '/services/events', label: 'See the events service' }
+            : { to: '/fit', label: 'Not sure? Find your match' }
+        }
         from={`case-${c.slug}`}
       />
     </>

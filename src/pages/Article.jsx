@@ -127,7 +127,11 @@ export default function Article({ a }) {
       <CTABand
         title="Want this applied to your company?"
         body="Fifteen minutes, free. Tell us where growth is stuck and we will come back with a plan, whether or not you run it with us."
-        secondary={{ to: '/fit', label: 'Or answer six questions' }}
+        secondary={
+          (a.related?.services || []).includes('events')
+            ? { to: '/services/events', label: 'See the events service' }
+            : { to: '/fit', label: 'Or answer six questions' }
+        }
         from={`insight-${a.slug}`}
       />
     </>

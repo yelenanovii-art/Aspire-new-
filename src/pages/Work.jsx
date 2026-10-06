@@ -64,6 +64,13 @@ export default function Work() {
               </li>
             ))}
           </ul>
+          {/* The band is the events practice in pictures; without this the
+              reader has no way from it into the thing being sold. */}
+          <p className="band__foot reveal">
+            <a className="link-arrow" href="/services/events">
+              This is our events and conferences service <ArrowRight size={15} />
+            </a>
+          </p>
         </div>
       </section>
 

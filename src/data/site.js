@@ -135,156 +135,6 @@ export const SERVICES = [
     ],
   },
   {
-    slug: 'business-development',
-    photo: { src: '/media/pages/svc-bizdev.webp', alt: 'Two people in conversation beside an exhibition stand' },
-    n: '02',
-    nav: 'Business development',
-    title: 'Business development',
-    blurb:
-      'Branding, website, positioning and audience. The work that links marketing to sales instead of running beside it.',
-    h1: 'The growth work that makes the sales work land.',
-    lede:
-      'Outreach converts far better when the buyer recognises the name, understands the offer in ten seconds, and finds a website that backs it up. This is where we build all three and connect them to the pipeline rather than running them as separate projects.',
-    metaTitle: 'Business Development for Tech Companies',
-    metaDesc:
-      'Positioning, branding, website and audience growth wired directly into your sales pipeline. Long term B2B growth from Aspire in Barcelona.',
-    keywords: 'business development, B2B positioning, branding, website, SEO, audience growth',
-    tags: ['Positioning', 'Branding', 'Website', 'Partnerships'],
-    includes: [
-      {
-        h: 'Positioning and messaging',
-        p: 'One clear sentence for what you do and who it is for, then applied consistently across the site, the deck, the outreach and the feed.',
-      },
-      {
-        h: 'Brand and visual identity',
-        p: 'A coherent look that survives contact with a slide deck, a LinkedIn banner and a conference stand. Not just a logo file.',
-      },
-      {
-        h: 'Website and SEO',
-        p: 'A site built to convert and to be found. Real structure, real copy, and the SEO groundwork that gets it ranking for what buyers actually search.',
-      },
-      {
-        h: 'Partnerships and audience',
-        p: 'Finding the partners and channels that put you in front of the right buyers faster than cold outreach alone can.',
-      },
-    ],
-    proof: { caseSlugs: ['de-interim-notaris', 'rck', 'bunq'] },
-    faq: [
-      {
-        q: 'Is this a rebrand?',
-        a: 'Only if it needs to be. Most engagements start with positioning and the website, because that is usually where the gap between what you do and what people understand is widest.',
-      },
-      {
-        q: 'Do you build the website yourselves?',
-        a: 'Yes. We have built and shipped sites for De Interim Notaris, RCK Consulting, SilTest and Coaching BV, covering structure, copy, design and SEO setup.',
-      },
-      {
-        q: 'How does this connect to the sales work?',
-        a: 'Directly. The positioning becomes the outreach messaging, and the website becomes the page prospects land on. Running them together is the entire point.',
-      },
-    ],
-  },
-  {
-    slug: 'social-media',
-    photo: { src: '/media/pages/svc-social.webp', alt: 'Someone filming a lit display on a phone at an exhibition' },
-    n: '03',
-    nav: 'Social media management',
-    title: 'Social media management',
-    blurb:
-      'Strategy, calendar, content and analytics across LinkedIn, YouTube, TikTok and Instagram.',
-    h1: 'Show up every week, or do not bother showing up.',
-    lede:
-      'Social only works when it is relentless. We build the content plan, run the calendar, create and post, handle the replies, and report on what actually moved. The channel compounds instead of restarting every quarter.',
-    metaTitle: 'Social Media Management for B2B Tech',
-    metaDesc:
-      'LinkedIn, YouTube, TikTok and Instagram managed end to end: strategy, calendar, posting, community and analytics. B2B first, from Barcelona.',
-    keywords: 'social media management, LinkedIn, YouTube, TikTok, Instagram, B2B social, tech',
-    tags: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram'],
-    includes: [
-      {
-        h: 'Channel strategy',
-        p: 'Which platforms deserve your effort, what each one is for, and the content pillars that give you something worth saying every week.',
-      },
-      {
-        h: 'Content plan and calendar',
-        p: 'Planned ahead and agreed with you, so publishing never depends on somebody finding a spare hour on a Friday.',
-      },
-      {
-        h: 'Creation, posting and community',
-        p: 'We write, design, schedule and publish, then handle the comments and messages that turn a post into a conversation.',
-      },
-      {
-        h: 'Analytics and iteration',
-        p: 'Monthly reporting on reach, engagement and what arrived as a lead, with the plan adjusted against it.',
-      },
-    ],
-    proof: { caseSlugs: ['siltest', 'ise', 'rck'] },
-    faq: [
-      {
-        q: 'Which platform should we be on?',
-        a: 'For most B2B tech companies, LinkedIn first and everything else second. We would rather run one channel properly than four badly.',
-      },
-      {
-        q: 'Do we have to appear on camera?',
-        a: 'It helps, but no. Plenty of what we run is written, designed or filmed around the work rather than around the founder.',
-      },
-      {
-        q: 'How long before it shows results?',
-        a: 'Engagement moves within weeks. Audience and inbound take a few months of consistency. SilTest was a two year LinkedIn led engagement, and that is the timescale on which it really pays.',
-      },
-    ],
-  },
-  {
-    slug: 'content-creation',
-    photo: { src: '/media/pages/svc-content.webp', alt: 'A flamenco performer under stage light in front of an LED backdrop' },
-    n: '04',
-    nav: 'Content creation',
-    title: 'Content creation',
-    blurb:
-      'Photo, video and branded visuals made for your identity. YouTube, LinkedIn, Shorts, Reels and live events.',
-    h1: 'Content that looks like you, not like a stock library.',
-    lede:
-      'Good strategy dies without something worth posting. We shoot and edit the photography, video and branded visuals that fill the calendar. On location, at your events, or wherever the work actually happens.',
-    metaTitle: 'Content Creation: Photo and Video',
-    metaDesc:
-      'Photography, video and branded visuals for YouTube, LinkedIn, Shorts and Reels, shot on location and at live events. Content creation from Aspire, Barcelona.',
-    keywords: 'content creation, video production, photography, Reels, Shorts, event content',
-    tags: ['Photo', 'Video', 'Reels and Shorts', 'Live events'],
-    includes: [
-      {
-        h: 'Photography',
-        p: 'Team, product and on location shoots that give you a library to draw on for months, not one usable frame.',
-      },
-      {
-        h: 'Video',
-        p: 'Long form for YouTube and short form for Reels, Shorts and TikTok, cut from the same shoot so one filming day feeds the whole calendar.',
-      },
-      {
-        h: 'Branded visuals',
-        p: 'Graphics, thumbnails and templates that hold the identity steady across every channel and every post.',
-      },
-      {
-        h: 'Live event capture',
-        p: 'Filming and publishing in real time from conferences, while the audience is still in the room.',
-      },
-    ],
-    proof: { caseSlugs: ['ise', 'craft-cigar-club', 'siltest'] },
-    faq: [
-      {
-        q: 'Where do you shoot?',
-        a: 'Barcelona as standard, and we travel for events and on location work. Three years of live capture at ISE, in Barcelona each year, is exactly that.',
-      },
-      {
-        q: 'Do we get the raw files?',
-        a: 'Yes. Everything we shoot for you is yours, raw files included.',
-      },
-      {
-        q: 'Can we book content without the social management?',
-        a: 'You can, though most clients run the two together. The calendar is what makes the shoot worth doing.',
-      },
-    ],
-  },
-  {
     slug: 'events',
     // Narrower than the other four banners, so the width rides on the data
     // rather than being hardcoded in the component.
@@ -294,7 +144,7 @@ export const SERVICES = [
       h: 540,
       alt: 'Crowded aisle between exhibition stands at Integrated Systems Europe in Barcelona',
     },
-    n: '05',
+    n: '02',
     nav: 'Events and conferences',
     title: 'Events and conferences',
     // Surfaced as a chip on the home list and in the services menu. It says
@@ -357,6 +207,156 @@ export const SERVICES = [
       {
         q: 'What do we keep afterwards?',
         a: 'Everything. The leads, the notes, the content and the follow-up sequences all sit in your systems, recorded as they happen. If we never work another show together you still have the pipeline from this one.',
+      },
+    ],
+  },
+  {
+    slug: 'business-development',
+    photo: { src: '/media/pages/svc-bizdev.webp', alt: 'Two people in conversation beside an exhibition stand' },
+    n: '03',
+    nav: 'Business development',
+    title: 'Business development',
+    blurb:
+      'Branding, website, positioning and audience. The work that links marketing to sales instead of running beside it.',
+    h1: 'The growth work that makes the sales work land.',
+    lede:
+      'Outreach converts far better when the buyer recognises the name, understands the offer in ten seconds, and finds a website that backs it up. This is where we build all three and connect them to the pipeline rather than running them as separate projects.',
+    metaTitle: 'Business Development for Tech Companies',
+    metaDesc:
+      'Positioning, branding, website and audience growth wired directly into your sales pipeline. Long term B2B growth from Aspire in Barcelona.',
+    keywords: 'business development, B2B positioning, branding, website, SEO, audience growth',
+    tags: ['Positioning', 'Branding', 'Website', 'Partnerships'],
+    includes: [
+      {
+        h: 'Positioning and messaging',
+        p: 'One clear sentence for what you do and who it is for, then applied consistently across the site, the deck, the outreach and the feed.',
+      },
+      {
+        h: 'Brand and visual identity',
+        p: 'A coherent look that survives contact with a slide deck, a LinkedIn banner and a conference stand. Not just a logo file.',
+      },
+      {
+        h: 'Website and SEO',
+        p: 'A site built to convert and to be found. Real structure, real copy, and the SEO groundwork that gets it ranking for what buyers actually search.',
+      },
+      {
+        h: 'Partnerships and audience',
+        p: 'Finding the partners and channels that put you in front of the right buyers faster than cold outreach alone can.',
+      },
+    ],
+    proof: { caseSlugs: ['de-interim-notaris', 'rck', 'bunq'] },
+    faq: [
+      {
+        q: 'Is this a rebrand?',
+        a: 'Only if it needs to be. Most engagements start with positioning and the website, because that is usually where the gap between what you do and what people understand is widest.',
+      },
+      {
+        q: 'Do you build the website yourselves?',
+        a: 'Yes. We have built and shipped sites for De Interim Notaris, RCK Consulting, SilTest and Coaching BV, covering structure, copy, design and SEO setup.',
+      },
+      {
+        q: 'How does this connect to the sales work?',
+        a: 'Directly. The positioning becomes the outreach messaging, and the website becomes the page prospects land on. Running them together is the entire point.',
+      },
+    ],
+  },
+  {
+    slug: 'social-media',
+    photo: { src: '/media/pages/svc-social.webp', alt: 'Someone filming a lit display on a phone at an exhibition' },
+    n: '04',
+    nav: 'Social media management',
+    title: 'Social media management',
+    blurb:
+      'Strategy, calendar, content and analytics across LinkedIn, YouTube, TikTok and Instagram.',
+    h1: 'Show up every week, or do not bother showing up.',
+    lede:
+      'Social only works when it is relentless. We build the content plan, run the calendar, create and post, handle the replies, and report on what actually moved. The channel compounds instead of restarting every quarter.',
+    metaTitle: 'Social Media Management for B2B Tech',
+    metaDesc:
+      'LinkedIn, YouTube, TikTok and Instagram managed end to end: strategy, calendar, posting, community and analytics. B2B first, from Barcelona.',
+    keywords: 'social media management, LinkedIn, YouTube, TikTok, Instagram, B2B social, tech',
+    tags: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram'],
+    includes: [
+      {
+        h: 'Channel strategy',
+        p: 'Which platforms deserve your effort, what each one is for, and the content pillars that give you something worth saying every week.',
+      },
+      {
+        h: 'Content plan and calendar',
+        p: 'Planned ahead and agreed with you, so publishing never depends on somebody finding a spare hour on a Friday.',
+      },
+      {
+        h: 'Creation, posting and community',
+        p: 'We write, design, schedule and publish, then handle the comments and messages that turn a post into a conversation.',
+      },
+      {
+        h: 'Analytics and iteration',
+        p: 'Monthly reporting on reach, engagement and what arrived as a lead, with the plan adjusted against it.',
+      },
+    ],
+    proof: { caseSlugs: ['siltest', 'ise', 'rck'] },
+    faq: [
+      {
+        q: 'Which platform should we be on?',
+        a: 'For most B2B tech companies, LinkedIn first and everything else second. We would rather run one channel properly than four badly.',
+      },
+      {
+        q: 'Do we have to appear on camera?',
+        a: 'It helps, but no. Plenty of what we run is written, designed or filmed around the work rather than around the founder.',
+      },
+      {
+        q: 'How long before it shows results?',
+        a: 'Engagement moves within weeks. Audience and inbound take a few months of consistency. SilTest was a two year LinkedIn led engagement, and that is the timescale on which it really pays.',
+      },
+    ],
+  },
+  {
+    slug: 'content-creation',
+    photo: { src: '/media/pages/svc-content.webp', alt: 'A flamenco performer under stage light in front of an LED backdrop' },
+    n: '05',
+    nav: 'Content creation',
+    title: 'Content creation',
+    blurb:
+      'Photo, video and branded visuals made for your identity. YouTube, LinkedIn, Shorts, Reels and live events.',
+    h1: 'Content that looks like you, not like a stock library.',
+    lede:
+      'Good strategy dies without something worth posting. We shoot and edit the photography, video and branded visuals that fill the calendar. On location, at your events, or wherever the work actually happens.',
+    metaTitle: 'Content Creation: Photo and Video',
+    metaDesc:
+      'Photography, video and branded visuals for YouTube, LinkedIn, Shorts and Reels, shot on location and at live events. Content creation from Aspire, Barcelona.',
+    keywords: 'content creation, video production, photography, Reels, Shorts, event content',
+    tags: ['Photo', 'Video', 'Reels and Shorts', 'Live events'],
+    includes: [
+      {
+        h: 'Photography',
+        p: 'Team, product and on location shoots that give you a library to draw on for months, not one usable frame.',
+      },
+      {
+        h: 'Video',
+        p: 'Long form for YouTube and short form for Reels, Shorts and TikTok, cut from the same shoot so one filming day feeds the whole calendar.',
+      },
+      {
+        h: 'Branded visuals',
+        p: 'Graphics, thumbnails and templates that hold the identity steady across every channel and every post.',
+      },
+      {
+        h: 'Live event capture',
+        p: 'Filming and publishing in real time from conferences, while the audience is still in the room.',
+      },
+    ],
+    proof: { caseSlugs: ['ise', 'craft-cigar-club', 'siltest'] },
+    faq: [
+      {
+        q: 'Where do you shoot?',
+        a: 'Barcelona as standard, and we travel for events and on location work. Three years of live capture at ISE, in Barcelona each year, is exactly that.',
+      },
+      {
+        q: 'Do we get the raw files?',
+        a: 'Yes. Everything we shoot for you is yours, raw files included.',
+      },
+      {
+        q: 'Can we book content without the social management?',
+        a: 'You can, though most clients run the two together. The calendar is what makes the shoot worth doing.',
       },
     ],
   },

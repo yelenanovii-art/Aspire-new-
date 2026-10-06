@@ -12,6 +12,7 @@ import Compare from '../components/Compare'
 import Team from '../components/Team'
 import Carousel from '../components/Carousel'
 import Specialisms from '../components/Specialisms'
+import EventsBand from '../components/EventsBand'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES, CASES, CLIENTS, STATS, STEPS, PROBLEM, FAQ, PERFORMANCE } from '../data/site'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -187,6 +188,9 @@ export default function Home() {
           <Specialisms />
         </div>
       </section>
+
+      {/* ── 4b. The one bought per show ──────────────────────────────── */}
+      <EventsBand />
 
       {/* ── 5. Proof ─────────────────────────────────────────────────── */}
       <section className="section section--alt work" id="work">
