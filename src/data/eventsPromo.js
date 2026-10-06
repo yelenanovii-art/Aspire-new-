@@ -15,9 +15,9 @@ export const EVENTS_PROMO = {
   ctaNote: 'Free 20-minute call. No prep needed.',
   // Its own frame: the service banner and the home band use different ones.
   photo: {
-    src: '/media/pages/promo-ise26.webp',
-    w: 1080,
-    h: 675,
-    alt: 'The Pitching Stage at Integrated Systems Europe 2026',
+    src: '/media/pages/promo-crowd.webp',
+    w: 1000,
+    h: 1250,
+    alt: 'A packed exhibition floor at Integrated Systems Europe',
   },
 }
