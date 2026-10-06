@@ -19,6 +19,13 @@ import { SITE_URL } from '../config'
 // "The other three" and went stale the moment a fifth service existed, which
 // is exactly the kind of thing nobody re-reads.
 const COUNT_WORD = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+
+// Portrait or landscape, read off the ratio the data already carries, so a new
+// film is sorted into the right row by its own shape and nothing else.
+const isTall = (f) => {
+  const [w, h] = String(f.ratio || '16 / 9').split('/').map((n) => parseFloat(n))
+  return w > 0 && h > 0 ? w / h < 1 : false
+}
 export default function ServiceDetail({ service }) {
   const s = service
 
@@ -176,8 +183,20 @@ export default function ServiceDetail({ service }) {
               lede="One shoot feeds the long cut, the listing page and the vertical reel. Hover any frame to watch it move."
               light
             />
-            <div className="film-grid">
-              {FILM.map((f) => <FilmCard key={f.id} {...f} />)}
+            {/* Two rows on purpose. Mixing orientations in one grid squeezed
+                every vertical down to share a row with a 16:9, which is the
+                difference between watching a vertical film and squinting at
+                one. Verticals sit together at a usable size; the horizontals
+                take the full width of the same container underneath.
+                Both rows are built from the list, so adding films to FILM in
+                src/data/site.js is the only edit needed. */}
+            <div className="film-rail">
+              {FILM.filter(isTall).map((f, i) => <FilmCard key={f.id} index={i} {...f} />)}
+            </div>
+            <div className="film-wides">
+              {FILM.filter((f) => !isTall(f)).map((f, i) => (
+                <FilmCard key={f.id} index={FILM.filter(isTall).length + i} {...f} />
+              ))}
             </div>
           </div>
         </section>
@@ -237,14 +256,6 @@ export default function ServiceDetail({ service }) {
         </section>
       )}
 
-      {/* ── FAQ ──────────────────────────────────────────────────────── */}
-      <section className="section">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="Questions" title={`${s.title}, answered.`} center />
-          <Faq items={s.faq} idPrefix={`svc-${s.slug}`} />
-        </div>
-      </section>
-
       {/* ── Cross-links ──────────────────────────────────────────────── */}
 
       {/* An optional second photograph, after the questions and before the
@@ -286,10 +297,26 @@ export default function ServiceDetail({ service }) {
         </div>
       </section>
 
-      <CTABand
-        title={`Want ${s.title.toLowerCase()} handled properly?`}
-        body="Fifteen minutes, free, no obligation. You will leave the call knowing what we would do first."
-      />
+      {/* The questions and the call to action closed the page one under the
+          other, which left a narrow column down the middle and a lot of empty
+          margin. Side by side on desktop, the same pairing /about uses;
+          stacked again below 1000px with the questions first, since that is
+          the order they are read in. */}
+      <section className="section pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
+            <SectionHead eyebrow="Questions" title={`${s.title}, answered.`} />
+            <Faq items={s.faq} idPrefix={`svc-${s.slug}`} />
+          </div>
+          <div className="pair__b">
+            <CTABand
+              boxed
+              title={`Want ${s.title.toLowerCase()} handled properly?`}
+              body="Fifteen minutes, free, no obligation. You will leave the call knowing what we would do first."
+            />
+          </div>
+        </div>
+      </section>
     </>
   )
 }

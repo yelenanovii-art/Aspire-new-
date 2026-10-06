@@ -1,60 +1,126 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-// A film still that becomes the film.
+// A film that plays itself once it is on screen.
 //
-// The poster is a sharp, properly graded image; the clip is small and soft by
-// comparison, so the still is what you see until you ask for motion. The video
-// element carries no `src` until first interaction, so a page with three of
-// these costs three images to load, not three videos.
-export default function FilmCard({ src, poster, label, note, ratio = '16 / 9', span = 1 }) {
-  const [armed, setArmed] = useState(false)
+// It used to hold its poster until you hovered it, which kept the page light
+// but meant most visitors never saw anything move — on a phone there is no
+// hover at all, so every card needed a tap. Now the clips are display-sized
+// and cheap enough to run: each one arms when it scrolls in, plays muted on a
+// loop, and pauses the moment it leaves, so only what is on screen is decoding.
+//
+// `index` staggers the starts. Five videos calling play() in the same frame
+// makes a phone stutter visibly; a few hundred milliseconds apart they come up
+// one after another and nothing drops.
+export default function FilmCard({ src, poster, label, note, ratio = '16 / 9', index = 0 }) {
+  const host = useRef(null)
   const videoRef = useRef(null)
+  // armed: the element may have a source. playing: it is actually running.
+  const [armed, setArmed] = useState(false)
+  const [playing, setPlaying] = useState(false)
+  // True when the browser refused to autoplay, so the control stops being
+  // decoration and becomes the way in.
+  const [blocked, setBlocked] = useState(false)
 
-  const play = () => {
+  // Someone who asked for less motion gets the poster and a button, which is
+  // the whole point of the preference. Everyone else gets it playing.
+  const calm = () =>
+    typeof window !== 'undefined' &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  useEffect(() => {
+    const el = host.current
+    if (!el || typeof IntersectionObserver === 'undefined') return undefined
+
+    let timer = 0
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Arm a screen early so the first frames are decoded by the time the
+          // card is actually readable, rather than starting from black.
+          setArmed(true)
+          if (!calm()) return
+          timer = window.setTimeout(() => setPlaying(true), index * 240)
+        } else {
+          window.clearTimeout(timer)
+          setPlaying(false)
+        }
+      },
+      { rootMargin: '300px 0px', threshold: 0.01 }
+    )
+    io.observe(el)
+    return () => {
+      window.clearTimeout(timer)
+      io.disconnect()
+    }
+  }, [index])
+
+  // play() and pause() are driven from state rather than called inline, so a
+  // card that scrolls past mid-stagger cannot end up playing off screen.
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (playing) {
+      const p = v.play()
+      if (p?.catch) p.catch(() => setBlocked(true))
+    } else if (!v.paused) {
+      v.pause()
+    }
+  }, [playing, armed])
+
+  // React assigns `muted` as a property and never writes the attribute, which
+  // means the prerendered HTML ships without it — and a video that is not
+  // muted in the markup is one no browser will autoplay. Stamp it on directly.
+  const keepMuted = (el) => {
+    videoRef.current = el
+    if (el) {
+      el.muted = true
+      el.setAttribute('muted', '')
+    }
+  }
+
+  const toggle = () => {
     setArmed(true)
-    // The element exists on the next paint; play() is safe to call late.
-    requestAnimationFrame(() => videoRef.current?.play?.().catch(() => {}))
-  }
-  const stop = () => {
-    videoRef.current?.pause?.()
+    setBlocked(false)
+    setPlaying((p) => !p)
   }
 
-  // "16 / 9" -> 1.78. Falls back to 1 so a malformed ratio cannot collapse a card.
-  const ar = (() => {
+  const tall = (() => {
     const [w, h] = String(ratio).split('/').map((n) => parseFloat(n))
-    return w > 0 && h > 0 ? w / h : 1
+    return w > 0 && h > 0 ? w / h < 1 : false
   })()
 
-  const fine = typeof window !== 'undefined' &&
-    window.matchMedia('(hover: hover) and (pointer: fine)').matches
-
   return (
-    <figure
-      className={`film ${ar >= 1 ? 'film--wide' : 'film--tall'}`}
-      style={{ aspectRatio: ratio, '--span': span }}
-      onPointerEnter={fine ? play : undefined}
-      onPointerLeave={fine ? stop : undefined}
-    >
-      <img src={poster} alt={label} loading="lazy" />
-      {armed && (
-        <video ref={videoRef} src={src} muted loop playsInline preload="none" aria-label={label} />
-      )}
+    <figure className={`film ${tall ? 'film--tall' : 'film--wide'}`} style={{ aspectRatio: ratio }} ref={host}>
+      {/* The poster is always in the markup, so the frame is never an empty
+          box while the clip loads or if it never does. */}
+      <img src={poster} alt={label} loading="lazy" decoding="async" />
+      <video
+        ref={keepMuted}
+        src={armed ? src : undefined}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        preload={armed ? 'auto' : 'none'}
+        aria-label={label}
+        className={playing ? 'is-live' : ''}
+      />
 
-      {/* On touch there is no hover, so the control is the control. */}
       <button
         type="button"
-        className={`film__play ${armed ? 'is-playing' : ''}`}
-        onClick={() => (armed ? stop() : play())}
-        aria-label={armed ? `Pause ${label}` : `Play ${label}`}
+        className={`film__play ${playing ? 'is-playing' : ''}`}
+        onClick={toggle}
+        aria-label={playing ? `Pause ${label}` : `Play ${label}`}
       >
         <svg width="15" height="17" viewBox="0 0 15 17" fill="currentColor" aria-hidden="true">
-          {armed ? <path d="M2 1h4v15H2zM9 1h4v15H9z" /> : <path d="M2 1l12 7.5L2 16z" />}
+          {playing ? <path d="M2 1h4v15H2zM9 1h4v15H9z" /> : <path d="M2 1l12 7.5L2 16z" />}
         </svg>
       </button>
 
       <figcaption className="film__cap">
         <span className="film__label">{label}</span>
         {note && <span className="film__note">{note}</span>}
+        {blocked && <span className="film__note">Tap to play</span>}
       </figcaption>
     </figure>
   )

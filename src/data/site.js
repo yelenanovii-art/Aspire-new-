@@ -689,6 +689,26 @@ export const FILM = [
   // subtitles — which is the point, since the grid plays muted.
   { id: 'ise26-showfloor', src: '/media/film/ise26-showfloor.mp4', poster: '/media/film/ise26-showfloor.webp',
     label: 'Show floor walkthrough', note: 'Integrated Systems Europe 2026, captioned for social', ratio: '9 / 16', span: 1 },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // ADD NEW FILMS HERE
+  //
+  // Copy one line above and change the five fields. Nothing else needs editing:
+  // the page sorts portrait and landscape into their own rows off the ratio,
+  // and both rows grow on their own.
+  //
+  //   id      unique, any short string
+  //   src     /media/film/<name>.mp4  (file goes in public/media/film/)
+  //   poster  /media/film/<name>.webp — required, it is the frame shown while
+  //           the clip loads and the one a reader sees if it never does
+  //   ratio   '9 / 16' portrait, '16 / 9' landscape
+  //   label   what it is   note  where it was shot or what it is for
+  //
+  // Export each clip at the size it is shown rather than full resolution:
+  // portrait 540x960, landscape 1280x720, h264, no audio track, and run it
+  // through faststart. Five clips autoplay on this page at once, so a 7MB
+  // export is felt immediately. Roughly 3MB each is the ceiling.
+  // ───────────────────────────────────────────────────────────────────────────
 ]
 
 // ---------------------------------------------------------------------------
