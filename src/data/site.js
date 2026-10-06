@@ -331,6 +331,15 @@ export const SERVICES = [
         p: 'Every contact and next step written into your CRM during the show, and follow-up sent while you are still fresh in mind. The stand cost is already spent by then; this is the only part still deciding whether it returns anything.',
       },
     ],
+    photoLower: {
+      // Its own copy rather than the one /about uses: that box is 343px and
+      // was right-sized to 900w, which this 990px slot would upscale.
+      src: '/media/about/the-group-wide.webp',
+      w: 1440,
+      h: 900,
+      alt: 'A large group of delegates photographed together outdoors on a lawn',
+      caption: 'The kind of room we are hired to work. Delegates at a client event.',
+    },
     proof: { caseSlugs: ['ise', 'siltest'] },
     faq: [
       {

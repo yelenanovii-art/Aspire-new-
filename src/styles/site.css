@@ -2986,15 +2986,38 @@
 }
 
 /* A single wide frame, used where a page is otherwise all type. */
+/* 16:9, not 8:3. These are photographs of people, and a letterbox that
+   shallow cut the tops off heads — on business development and content
+   creation the crop landed mid-forehead. The frames are 1920x720, so a taller
+   box cannot reveal headroom that is not in the file; what it does is take the
+   width down instead, which brings the subject up larger and stops the band
+   reading as a slot cut through the middle of someone. */
 .page-banner {
   margin: 0;
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 8 / 3;
+  aspect-ratio: 16 / 9;
   background: var(--page-alt);
 }
 .page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 620px) { .page-banner { aspect-ratio: 3 / 2; } }
+
+/* The optional lower photograph. Wider and shallower than the banner on
+   purpose — it is a group shot, where the width is the point. */
+.svc-wide { margin: 0; }
+.svc-wide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  background: var(--page-alt);
+}
+.svc-wide figcaption {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--muted);
+  max-width: 62ch;
+}
 
 /* Play control shown when the film is not autoplaying (narrow screens, coarse
    pointers, reduced motion). The poster carries the frame until then. */

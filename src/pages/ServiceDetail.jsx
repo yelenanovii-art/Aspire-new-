@@ -13,6 +13,11 @@ import { SITE_URL } from '../config'
 // One component renders all five service pages — the route table passes the
 // slug, and everything else comes from src/data/site.js. Adding a service is a
 // data edit plus one route entry, never a new page component.
+//
+// The related heading counts the others rather than naming a number. It said
+// "The other three" and went stale the moment a fifth service existed, which
+// is exactly the kind of thing nobody re-reads.
+const COUNT_WORD = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
 export default function ServiceDetail({ service }) {
   const s = service
 
@@ -154,9 +159,32 @@ export default function ServiceDetail({ service }) {
 
       {/* ── Cross-links ──────────────────────────────────────────────── */}
 
+      {/* An optional second photograph, after the questions and before the
+          other services. Only set where there is a frame that says something
+          the banner cannot — on events, the size of the crowd we work. */}
+      {s.photoLower && (
+        <section className="section section--tight">
+          <div className="container">
+            <figure className="svc-wide reveal">
+              <img
+                src={s.photoLower.src}
+                srcSet={`${s.photoLower.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photoLower.src} ${s.photoLower.w}w`}
+                alt={s.photoLower.alt}
+                width={s.photoLower.w}
+                height={s.photoLower.h}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 860px) 92vw, 1068px"
+              />
+              {s.photoLower.caption && <figcaption>{s.photoLower.caption}</figcaption>}
+            </figure>
+          </div>
+        </section>
+      )}
+
       <section className="section section--tight section--ruled">
         <div className="container">
-          <h2 className="related__h">The other three</h2>
+          <h2 className="related__h">The other {COUNT_WORD[others.length] || others.length}</h2>
           <div className="related">
             {others.map((o) => (
               <a className="related__card reveal" href={`/services/${o.slug}`} key={o.slug}>
