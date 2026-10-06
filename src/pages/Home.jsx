@@ -281,20 +281,27 @@ export default function Home() {
       </section>
 
       {/* ── 9. Objections ────────────────────────────────────────────── */}
-      <section className="section section--alt faq-section">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="Questions" title="Before you book the call." center />
-          <Faq items={FAQ} idPrefix="home-faq" />
+      {/* Questions and the call to action sat one above the other, each in a
+          narrow centred column with a lot of empty page either side. Paired,
+          they fill the width and the CTA is beside the objections it answers. */}
+      <section className="section section--alt faq-section pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
+              <SectionHead eyebrow="Questions" title="Before you book the call." />
+              <Faq items={FAQ} idPrefix="home-faq" />
+          </div>
+          <div className="pair__b">
+            <CTABand
+              boxed
+            title="Tell us where growth is stuck."
+            body="Fifteen minutes, free, no obligation. You leave with a view on what to do first, whether or not you run it with us."
+            secondary={{ to: '/services', label: 'See what we do' }}
+            />
+          </div>
         </div>
       </section>
 
       <EventsPromo />
-
-      <CTABand
-        title="Tell us where growth is stuck."
-        body="Fifteen minutes, free, no obligation. You leave with a view on what to do first, whether or not you run it with us."
-        secondary={{ to: '/services', label: 'See what we do' }}
-      />
     </div>
   )
 }

@@ -119,18 +119,25 @@ export default function AiSystems() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="Questions" title="The ones that come up first." center />
-          <Faq items={AI.faq} idPrefix="ai-faq" />
+      {/* Questions and the call to action sat one above the other, each in a
+          narrow centred column with a lot of empty page either side. Paired,
+          they fill the width and the CTA is beside the objections it answers. */}
+      <section className="section pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
+              <SectionHead eyebrow="Questions" title="The ones that come up first." />
+              <Faq items={AI.faq} idPrefix="ai-faq" />
+          </div>
+          <div className="pair__b">
+            <CTABand
+              boxed
+            title="Tell us what you rebuild every week."
+            body="If it lives in a spreadsheet and somebody updates it by hand, it is probably a system. Fifteen minutes, free, and you leave with a view on whether it is worth building."
+            secondary={{ to: '/contact', label: 'Contact us' }}
+            />
+          </div>
         </div>
       </section>
-
-      <CTABand
-        title="Tell us what you rebuild every week."
-        body="If it lives in a spreadsheet and somebody updates it by hand, it is probably a system. Fifteen minutes, free, and you leave with a view on whether it is worth building."
-        secondary={{ to: '/contact', label: 'Contact us' }}
-      />
     </div>
   )
 }

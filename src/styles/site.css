@@ -1237,11 +1237,44 @@
 .contact-meta a, .contact-meta span:not(.contact-meta__k) { font-size: 16px; color: var(--ink); line-height: 1.5; overflow-wrap: anywhere; }
 .contact-meta a:hover { color: var(--accent-600); }
 
+/* The form panel, in the same glass language as the service cards: a brand
+   blue wash sits behind it for the blur to act on, and the panel is a
+   translucent gradient with a light inner edge along the top. Without the
+   wash behind it a translucent panel on a white page is just a white panel. */
 .contact-form-wrap {
-  background: var(--wash-light);
-  border: 1px solid var(--line);
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(158deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 251, 0.78) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 20px 50px -20px rgba(11, 40, 48, 0.3),
+    0 2px 10px -4px rgba(11, 40, 48, 0.1);
   border-radius: var(--radius-lg);
   padding: clamp(26px, 3.4vw, 40px);
+}
+.contact-form-wrap::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -8% -5% -6%;
+  border-radius: 30px;
+  background:
+    radial-gradient(58% 62% at 20% 16%, rgba(13, 92, 107, 0.16), transparent 70%),
+    radial-gradient(55% 60% at 86% 82%, rgba(143, 201, 212, 0.24), transparent 72%),
+    linear-gradient(160deg, rgba(13, 92, 107, 0.07), rgba(13, 92, 107, 0.02));
+  pointer-events: none;
+}
+/* The inputs stay opaque so the text on them is never competing with whatever
+   the blur has picked up underneath. */
+.contact-form-wrap .field input,
+.contact-form-wrap .field textarea,
+.contact-form-wrap .field select { background: rgba(255, 255, 255, 0.96); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .contact-form-wrap { background: var(--wash-light); border-color: var(--line); }
 }
 .contact-form { display: grid; gap: 17px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -3515,8 +3548,9 @@
   position: relative;
   display: grid;
   /* The tallest card sets the height so the stage does not jump between
-     cards of different copy lengths. */
-  min-height: 330px;
+     cards of different copy lengths. Taller now the photograph has to have
+     real presence rather than being a sliver. */
+  min-height: 420px;
 }
 .svcx__card {
   grid-area: 1 / 1;
@@ -3533,7 +3567,11 @@
     0 18px 44px -18px rgba(11, 40, 48, 0.3),
     0 2px 10px -4px rgba(11, 40, 48, 0.12);
   border-radius: 18px;
-  padding: clamp(30px, 3.6vw, 46px);
+  /* Padding moved onto the text half: the photograph runs to the card edge. */
+  padding: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   transform: translateY(calc(var(--d) * 22px)) scale(calc(1 - var(--d) * 0.055));
   opacity: calc(1 - var(--d) * 0.28);
   z-index: calc(10 - var(--d));
@@ -3558,6 +3596,64 @@
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .svcx__card { background: #fff; border-color: var(--line); }
 }
+.svcx__text {
+  padding: clamp(30px, 3.6vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* The copy sits optically centred against a full-height photograph rather
+   than pinned to the top of it. */
+.svcx__text > .svcx__more { margin-top: auto; }
+
+.svcx__media { position: relative; overflow: hidden; }
+.svcx__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.01);
+  transition: transform 0.7s cubic-bezier(0.22, 0.7, 0.15, 1);
+}
+.is-front:hover .svcx__media img { transform: scale(1.06); }
+/* A gradient from the glass into the photograph, so the two halves read as
+   one card rather than a panel with a picture stuck to it. */
+.svcx__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(243, 250, 251, 0.96) 0%,
+    rgba(243, 250, 251, 0.45) 14%,
+    rgba(11, 40, 48, 0) 42%,
+    rgba(11, 40, 48, 0.42) 100%
+  );
+  pointer-events: none;
+}
+/* The number again, large and ghosted into the photograph — the one piece of
+   ornament on the card, and it earns its place by saying where you are in a
+   set of five. */
+.svcx__ghost {
+  position: absolute;
+  right: clamp(14px, 1.6vw, 22px);
+  bottom: clamp(6px, 1vw, 12px);
+  z-index: 2;
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(64px, 8vw, 128px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  user-select: none;
+}
+@supports not ((-webkit-text-stroke: 1px white)) {
+  .svcx__ghost { color: rgba(255, 255, 255, 0.3); }
+}
+
 .svcx__n {
   font-family: var(--mono);
   font-size: 12px;
@@ -3638,7 +3734,20 @@
 }
 .svcx__dots button.is-on { background: var(--accent); transform: scale(1.3); }
 
-@media (max-width: 620px) { .svcx__stage { min-height: 400px; } }
+@media (max-width: 860px) {
+  /* Photograph above the copy, and shallow: on a phone it is establishing the
+     service, not carrying it. */
+  .svcx__card { grid-template-columns: 1fr; }
+  .svcx__media { order: -1; aspect-ratio: 16 / 7; }
+  .svcx__media::before {
+    background: linear-gradient(180deg, rgba(11, 40, 48, 0.1) 0%, rgba(243, 250, 251, 0.9) 100%);
+  }
+  .svcx__ghost { font-size: clamp(52px, 14vw, 80px); bottom: 2px; }
+  /* Stacked, the ghosted number and the small one end up a few lines apart
+     and read as a mistake rather than an echo. The photograph keeps it. */
+  .svcx__card .svcx__n { display: none; }
+  .svcx__stage { min-height: 520px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .svcx__card { transition: none; }
   .svcx__card.is-front:hover { transform: none; }
@@ -3735,14 +3844,14 @@
 .practice__media--mark { display: grid; place-items: center; background: var(--wash-dark); }
 .practice__chip { width: 56%; max-width: 180px; color: var(--accent-tint-2); }
 
-/* ── About: the quotes and the CTA, side by side ─────────────────────────────
-   Stacked, these two left the foot of the page mostly white space. Two columns
-   on desktop, aligned at the top with a rule between them; stacked again below
-   1000px with the quotes first, which is the order that makes sense when they
-   are read one after the other. */
-.about-close__grid { display: grid; gap: clamp(32px, 4vw, 56px); align-items: start; }
+/* ── A closing pair: two blocks side by side instead of stacked ───────────────
+   Used at the foot of /about (quotes + CTA) and the home page (questions +
+   CTA). Stacked, these left a lot of white space either side of a narrow
+   column. Two columns on desktop with a rule between them; stacked again
+   below 1000px, first block first, which is the order they read in. */
+.pair__grid { display: grid; gap: clamp(32px, 4vw, 56px); align-items: start; }
 @media (min-width: 1000px) {
-  .about-close__grid {
+  .pair__grid {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: clamp(44px, 5vw, 76px);
     /* Equal height columns: the card fills its column and the actions sit at
@@ -3750,14 +3859,14 @@
        rule running past nothing. */
     align-items: stretch;
   }
-  .about-close__cta { display: flex; }
+  .pair__b { display: flex; }
   .cta-band--boxed { display: flex; width: 100%; }
   .cta-band--boxed .cta-band__inner { display: flex; flex-direction: column; width: 100%; }
   .cta-band--boxed .cta-band__actions { margin-top: auto; padding-top: clamp(22px, 2.6vw, 30px); }
   /* The separation is a rule rather than more space, so the two read as two
      things rather than one that drifted apart. */
-  .about-close__cta { position: relative; }
-  .about-close__cta::before {
+  .pair__b { position: relative; }
+  .pair__b::before {
     content: "";
     position: absolute;
     left: calc(clamp(44px, 5vw, 76px) / -2);

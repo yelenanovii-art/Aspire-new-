@@ -88,15 +88,35 @@ export default function ServiceCarousel() {
               hidden={!visible}
               style={{ '--d': d }}
             >
-              <p className="svcx__n">{s.n}</p>
-              <h3 className="svcx__title">{s.title}</h3>
-              <p className="svcx__benefit">{s.blurb}</p>
-              <ul className="svcx__points">
-                {s.includes.slice(0, 3).map((inc) => <li key={inc.h}>{inc.h}</li>)}
-              </ul>
-              <a className="svcx__more" href={`/services/${s.slug}`} tabIndex={d === 0 ? 0 : -1}>
-                Learn more <ArrowRight size={15} />
-              </a>
+              <div className="svcx__text">
+                <p className="svcx__n">{s.n}</p>
+                <h3 className="svcx__title">{s.title}</h3>
+                <p className="svcx__benefit">{s.blurb}</p>
+                <ul className="svcx__points">
+                  {s.includes.slice(0, 3).map((inc) => <li key={inc.h}>{inc.h}</li>)}
+                </ul>
+                <a className="svcx__more" href={`/services/${s.slug}`} tabIndex={d === 0 ? 0 : -1}>
+                  Learn more <ArrowRight size={15} />
+                </a>
+              </div>
+
+              {/* The right half used to be white space. It now carries the
+                  service's own photograph, which is also what makes one card
+                  distinguishable from the next at a glance — five near
+                  identical text panels was the thing that read as cheap. */}
+              {s.photo && (
+                <div className="svcx__media" aria-hidden="true">
+                  <img
+                    src={s.photo.src}
+                    srcSet={`${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} ${s.photo.w || 1920}w`}
+                    sizes="(max-width: 860px) 92vw, 46vw"
+                    alt=""
+                    loading={d === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                  <span className="svcx__ghost">{s.n}</span>
+                </div>
+              )}
             </article>
           )
         })}

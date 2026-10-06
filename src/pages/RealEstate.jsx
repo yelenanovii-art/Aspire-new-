@@ -122,19 +122,26 @@ export default function RealEstate() {
         </div>
       </section>
 
-      <section className="section section--alt">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="Questions" title="Before the shoot." center />
-          <Faq items={e.faq} idPrefix="estate-faq" />
+      {/* Questions and the call to action sat one above the other, each in a
+          narrow centred column with a lot of empty page either side. Paired,
+          they fill the width and the CTA is beside the objections it answers. */}
+      <section className="section section--alt pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
+              <SectionHead eyebrow="Questions" title="Before the shoot." />
+              <Faq items={e.faq} idPrefix="estate-faq" />
+          </div>
+          <div className="pair__b">
+            <CTABand
+              boxed
+            title="Bring us a listing."
+            body="Send one property or one vessel and we will tell you exactly how we would shoot it. Fifteen minutes, free."
+            secondary={{ to: '/services/content-creation', label: 'All content services' }}
+            from={ESTATE_ORIGIN}
+            />
+          </div>
         </div>
       </section>
-
-      <CTABand
-        title="Bring us a listing."
-        body="Send one property or one vessel and we will tell you exactly how we would shoot it. Fifteen minutes, free."
-        secondary={{ to: '/services/content-creation', label: 'All content services' }}
-        from={ESTATE_ORIGIN}
-      />
     </div>
   )
 }

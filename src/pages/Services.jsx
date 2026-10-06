@@ -84,37 +84,44 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="Questions" title="Choosing where to start." center />
-          <Faq
-            idPrefix="services-faq"
-            items={[
-              {
-                q: 'Which service should we start with?',
-                a: 'If nobody knows who you are, business development. If they know you but nothing is converting, sales. If the pipeline works but the brand is quiet, social and content. If a conference is where your buyers already are, events. The free call exists to answer exactly this.',
-              },
-              {
-                q: 'Can we run more than one at once?',
-                a: 'Yes, and they work better together. The content fills the social calendar, the social warms the outreach, and the outreach closes. That is how the RCK Consulting engagement runs.',
-              },
-              {
-                q: 'Are these fixed packages?',
-                a: 'No. Scope is built around what you actually need after the discovery call, not picked off a pricing page.',
-              },
-              {
-                q: 'How long is a typical engagement?',
-                a: 'Project work can be a few weeks; the ongoing services are where it compounds. SilTest ran for two years and ISE for a full event year.',
-              },
-            ]}
-          />
+      {/* Questions and the call to action sat one above the other, each in a
+          narrow centred column with a lot of empty page either side. Paired,
+          they fill the width and the CTA is beside the objections it answers. */}
+      <section className="section pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
+              <SectionHead eyebrow="Questions" title="Choosing where to start." />
+              <Faq
+                idPrefix="services-faq"
+                items={[
+                  {
+                    q: 'Which service should we start with?',
+                    a: 'If nobody knows who you are, business development. If they know you but nothing is converting, sales. If the pipeline works but the brand is quiet, social and content. If a conference is where your buyers already are, events. The free call exists to answer exactly this.',
+                  },
+                  {
+                    q: 'Can we run more than one at once?',
+                    a: 'Yes, and they work better together. The content fills the social calendar, the social warms the outreach, and the outreach closes. That is how the RCK Consulting engagement runs.',
+                  },
+                  {
+                    q: 'Are these fixed packages?',
+                    a: 'No. Scope is built around what you actually need after the discovery call, not picked off a pricing page.',
+                  },
+                  {
+                    q: 'How long is a typical engagement?',
+                    a: 'Project work can be a few weeks; the ongoing services are where it compounds. SilTest ran for two years and ISE for a full event year.',
+                  },
+                ]}
+              />
+          </div>
+          <div className="pair__b">
+            <CTABand
+              boxed
+            title="Not sure which one you need?"
+            body="That is exactly what the free 15 minute call is for. We will tell you where we would start, and say so if it is not us."
+            />
+          </div>
         </div>
       </section>
-
-      <CTABand
-        title="Not sure which one you need?"
-        body="That is exactly what the free 15 minute call is for. We will tell you where we would start, and say so if it is not us."
-      />
     </>
   )
 }

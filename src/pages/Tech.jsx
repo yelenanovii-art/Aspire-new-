@@ -73,18 +73,25 @@ export default function Tech() {
         </section>
       )}
 
-      <section className="section">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="Questions" title="Tech, answered." center />
-          <Faq items={t.faq} idPrefix="tech-faq" />
+      {/* Questions and the call to action sat one above the other, each in a
+          narrow centred column with a lot of empty page either side. Paired,
+          they fill the width and the CTA is beside the objections it answers. */}
+      <section className="section pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
+              <SectionHead eyebrow="Questions" title="Tech, answered." />
+              <Faq items={t.faq} idPrefix="tech-faq" />
+          </div>
+          <div className="pair__b">
+            <CTABand
+              boxed
+            title="Selling something technical?"
+            body="Tell us who buys it and how long they take. Fifteen minutes, free, and you leave with a view either way."
+            secondary={{ to: '/services', label: 'See all five services' }}
+            />
+          </div>
         </div>
       </section>
-
-      <CTABand
-        title="Selling something technical?"
-        body="Tell us who buys it and how long they take. Fifteen minutes, free, and you leave with a view either way."
-        secondary={{ to: '/services', label: 'See all five services' }}
-      />
     </>
   )
 }

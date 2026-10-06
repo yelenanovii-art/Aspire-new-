@@ -162,13 +162,13 @@ export default function About() {
       {/* The quotes and the call to action used to stack, which left the
           bottom of the page mostly empty. Side by side on desktop, stacked
           again below it with the quotes first. */}
-      <section className="section about-close">
-        <div className="container about-close__grid">
-          <div className="about-close__quotes">
+      <section className="section pair">
+        <div className="container pair__grid">
+          <div className="pair__a">
             <SectionHead eyebrow="In their words" title="What clients say afterwards." />
             <Testimonials />
           </div>
-          <div className="about-close__cta">
+          <div className="pair__b">
             <CTABand
               boxed
               title="Want to know if we are a fit?"
