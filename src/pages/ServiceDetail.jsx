@@ -1,5 +1,6 @@
 import { ArrowRight, Check } from '../components/Icons'
 import SectionHead from '../components/SectionHead'
+import MediaSlot from '../components/MediaSlot'
 import CaseCard from '../components/CaseCard'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
@@ -77,7 +78,20 @@ export default function ServiceDetail({ service }) {
       </section>
 
       {/* ── What's included ──────────────────────────────────────────── */}
-      {s.photo && (
+      {/* A film takes the banner slot where one exists; MediaSlot handles the
+          autoplay, the muted attribute the prerender would otherwise drop, and
+          holding the source back on narrow screens. */}
+      {s.film && (
+        <section className="section section--flush-top section--tight">
+          <div className="container">
+            <div className="page-banner page-banner--film reveal">
+              <MediaSlot {...s.film} />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {!s.film && s.photo && (
         <section className="section section--flush-top section--tight">
           <div className="container">
             <figure className="page-banner reveal">

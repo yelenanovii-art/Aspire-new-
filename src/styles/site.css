@@ -3113,6 +3113,10 @@
   background: var(--page-alt);
 }
 .page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* MediaSlot brings its own aspect ratio, so the wrapper stops imposing one and
+   just supplies the rounded frame. */
+.page-banner--film { aspect-ratio: auto; background: none; }
+.page-banner--film .slot { margin: 0; border-radius: 12px; overflow: hidden; }
 @media (max-width: 620px) { .page-banner { aspect-ratio: 3 / 2; } }
 
 /* The optional lower photograph. Wider and shallower than the banner on
@@ -3996,7 +4000,9 @@
   text-transform: uppercase;
   color: var(--muted);
 }
-.casepage__logo { display: block; margin-top: 26px; width: auto; opacity: 0.8; }
+/* Full strength and larger. At 30px and 0.8 opacity a thin wordmark like
+   bunq's was technically on the page and practically invisible. */
+.casepage__logo { display: block; margin-top: 26px; width: auto; height: 38px; opacity: 1; }
 
 .casepage__prose {
   font-size: clamp(16.5px, 1.25vw, 18px);

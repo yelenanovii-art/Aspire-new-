@@ -69,7 +69,7 @@ export default function CaseStudy({ c }) {
 
           {logoFor(c.client) && (
             <img className="casepage__logo reveal" src={logoFor(c.client)} alt={c.client}
-                 height="30" style={{ '--delay': '220ms' }} />
+                 height="38" style={{ '--delay': '220ms' }} />
           )}
         </div>
       </section>

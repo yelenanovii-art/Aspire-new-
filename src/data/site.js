@@ -138,6 +138,14 @@ export const SERVICES = [
     slug: 'events',
     // Narrower than the other four banners, so the width rides on the data
     // rather than being hardcoded in the component.
+    // A film rather than a still at the top of this page. The photo stays as
+    // the poster source and the fallback where video cannot autoplay.
+    film: {
+      src: '/media/film/ise26-waving.mp4',
+      poster: '/media/film/ise26-waving.webp',
+      alt: 'Crowds waving from the show floor at Integrated Systems Europe 2026',
+      ratio: '16 / 9',
+    },
     photo: {
       src: '/media/pages/svc-events.webp',
       w: 1440,
@@ -502,18 +510,17 @@ export const TEAM = [
     name: 'Nika Spir',
     photo: '/photos/team/nika-spir.webp',
     initials: 'NS',
-    role: 'Ads specialist',
-    discipline: 'Paid and performance',
+    role: 'Marketing consultant',
+    discipline: 'Strategy and campaigns',
     bio: 'Digital marketing degree in London, then a specialism in paid acquisition. Runs anything with a budget attached to it.',
   },
   {
     name: 'Selin Sehin',
     photo: '/photos/team/selin-sehin.webp',
     initials: 'SS',
-    // Role, discipline and bio are not written yet. Left empty rather than
-    // guessed: the card renders without them and shows "Profile to follow",
-    // so nothing on the page claims something we have not been told.
-    pending: true,
+    role: 'Ads specialist',
+    discipline: 'Paid and performance',
+    // Bio still to come; the card renders without it.
   },
   {
     name: 'Mattis Maerz',
