@@ -24,7 +24,21 @@ export default function Testimonials({ light = false }) {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <blockquote key={i} className="quote__text">{t.quote}</blockquote>
+      {/* All three are rendered, stacked in one grid cell, with the inactive
+          ones faded out. Trimming them to a similar length gets the line
+          counts close, but only reserving the tallest guarantees the panel
+          never resizes mid-rotation — at any width, on any wrap. */}
+      <div className="quote__stage">
+        {TESTIMONIALS.map((item, idx) => (
+          <blockquote
+            key={item.name}
+            className={`quote__text ${idx === i ? 'is-on' : ''}`}
+            aria-hidden={idx !== i}
+          >
+            {item.quote}
+          </blockquote>
+        ))}
+      </div>
       <figcaption className="quote__by">
         {logoFor(t.company) ? (
           <img className="quote__logo" src={logoFor(t.company)} alt={t.company}

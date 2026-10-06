@@ -1004,6 +1004,25 @@
   align-content: start;
 }
 .quote--light { background: var(--white); }
+/* One cell, three quotes on top of each other: the cell is as tall as the
+   longest, so the panel holds its height through the whole rotation. */
+.quote__stage { display: grid; }
+.quote__stage > .quote__text {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+  animation: none;
+}
+.quote__stage > .quote__text.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .quote__stage > .quote__text { transition: none; }
+}
+
 .quote__text {
   margin: 0;
   font-family: var(--display);

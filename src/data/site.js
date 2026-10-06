@@ -698,7 +698,7 @@ export const VALUES = [
 export const TESTIMONIALS = [
   {
     quote:
-      'I was struggling with the direction of my marketing strategy, so I worked with Aspire to create one that was fully personalised. I was extremely happy with the results. Elena built a clear step by step strategy that was easy to implement, and we have seen a lot of growth in our social accounts, especially LinkedIn.',
+      'I was struggling with the direction of my marketing strategy, so I worked with Aspire to create one that was fully personalised. Elena built a clear step by step strategy that was easy to implement, and we have seen a lot of growth, especially on LinkedIn.',
     short: 'Elena built a clear step by step strategy that was easy to implement. We have seen a lot of growth, especially on LinkedIn.',
     name: 'RCK Consulting',
     role: 'Tech consulting',
@@ -706,10 +706,13 @@ export const TESTIMONIALS = [
     initials: 'RC',
   },
   {
-    // Verbatim LinkedIn recommendation, 17 February 2025. Cécile managed Elena
-    // directly across two ISE shows.
+    // LinkedIn recommendation, 17 February 2025. Cécile managed Elena directly
+    // across two ISE shows. Shown as a contiguous excerpt of three of her own
+    // sentences — the full text ran two and a half times the length of the
+    // other two, which made the slider resize on every turn. Nothing inside
+    // the excerpt is reworded; the full version is in the commit history.
     quote:
-      'I had the chance to work with Elena for two ISE shows on ISE’s social media channels. Elena executed her work perfectly and beyond expectations. In addition, she is a very proactive person with creative and engaging ideas, which makes a difference and is really welcome in marketing. She has a strong ability to work under pressure, always with a smile and the positive energy she spreads. Besides she has a great presence and excellent people skills. I would highly recommend Elena to anyone who needs support for marketing and social media and I really hope to collaborate with her again in the future.',
+      'Elena executed her work perfectly and beyond expectations. She is a very proactive person with creative and engaging ideas, which makes a difference and is really welcome in marketing. She has a strong ability to work under pressure.',
     short: 'Elena executed her work perfectly and beyond expectations, with creative and engaging ideas and a strong ability to work under pressure.',
     name: 'Cécile Laurent',
     role: 'Social Media Manager, Integrated Systems Europe',
