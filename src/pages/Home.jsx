@@ -107,17 +107,17 @@ export default function Home() {
           caption legible over a busy photograph. */}
       <section className="herophoto" aria-hidden="false">
         <img
-          src="/media/pages/svc-bizdev.webp"
-          srcSet="/media/pages/svc-bizdev-760.webp 760w, /media/pages/svc-bizdev.webp 1920w"
+          src="/media/pages/hero-ise26.webp"
+          srcSet="/media/pages/hero-ise26-760.webp 760w, /media/pages/hero-ise26.webp 1920w"
           sizes="100vw"
-          alt="Two people in conversation beside an exhibition stand at a technology conference"
+          alt="The Aspire team in a working meeting with a client at Integrated Systems Europe 2026"
           width="1920"
-          height="720"
+          height="823"
           loading="lazy"
           decoding="async"
         />
         <span className="herophoto__veil" aria-hidden="true" />
-        <p className="herophoto__cap">On the floor at Integrated Systems Europe, Barcelona.</p>
+        <p className="herophoto__cap">Integrated Systems Europe 2026, Barcelona.</p>
       </section>
 
       <section className="logos">

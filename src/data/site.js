@@ -142,7 +142,7 @@ export const SERVICES = [
       src: '/media/pages/svc-events.webp',
       w: 1440,
       h: 540,
-      alt: 'Crowded aisle between exhibition stands at Integrated Systems Europe in Barcelona',
+      alt: 'The outdoor audio demo area at Integrated Systems Europe 2026 in Barcelona',
     },
     n: '02',
     nav: 'Events and conferences',
@@ -507,6 +507,15 @@ export const TEAM = [
     bio: 'Digital marketing degree in London, then a specialism in paid acquisition. Runs anything with a budget attached to it.',
   },
   {
+    name: 'Selin Sehin',
+    photo: '/photos/team/selin-sehin.webp',
+    initials: 'SS',
+    // Role, discipline and bio are not written yet. Left empty rather than
+    // guessed: the card renders without them and shows "Profile to follow",
+    // so nothing on the page claims something we have not been told.
+    pending: true,
+  },
+  {
     name: 'Mattis Maerz',
     initials: 'MM',
     role: 'AI systems',
@@ -536,11 +545,11 @@ export const PAGE_MEDIA = {
 // show in Barcelona.
 export const WORK_BAND = [
   { src: '/media/work/ise-team.webp',
-    alt: 'Organisers gathered outside the Integrated Systems Europe venue in Barcelona' },
+    alt: 'A presenter interviewing four people on the Pitching Stage at Integrated Systems Europe 2026' },
   { src: '/media/work/ise-floor.webp',
-    alt: 'Crowded exhibition floor at Integrated Systems Europe under gantry signage' },
+    alt: 'A large group photographed on the Pitching Stage at Integrated Systems Europe 2026' },
   { src: '/media/work/ise-installation.webp',
-    alt: 'Two visitors in front of a full height LED installation on the show floor' },
+    alt: 'Visitors among the loudspeaker arrays in the outdoor audio demo area' },
 ]
 
 // Three wide frames for the About page, cut from the same event masters as

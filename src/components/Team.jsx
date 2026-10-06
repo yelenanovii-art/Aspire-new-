@@ -1,9 +1,9 @@
 import { TEAM } from '../data/site'
 
-// Four named people, each with their discipline.
+// The named team, each with their discipline.
 //
 // The portrait leads the card at full bleed rather than sitting inside it as a
-// thumbnail: this section's whole argument is that you will know all four, so
+// thumbnail: this section's whole argument is that you will know all of them, so
 // the faces have to be the first thing you see, not an icon beside a job title.
 export default function Team({ compact = false, photos = true }) {
   return (
@@ -20,10 +20,13 @@ export default function Team({ compact = false, photos = true }) {
             </div>
           )}
           <div className="team__body">
-            <span className="team__role">{m.role}</span>
+            {/* A card with no role would lose its top line and sit shorter than
+                its neighbours, so a pending profile says so rather than
+                rendering a gap. */}
+            <span className="team__role">{m.role || (m.pending ? 'Profile to follow' : '')}</span>
             <h3 className="team__name">{m.name}</h3>
-            <span className="team__discipline">{m.discipline}</span>
-            {!compact && <p className="team__bio">{m.bio}</p>}
+            {m.discipline && <span className="team__discipline">{m.discipline}</span>}
+            {!compact && m.bio && <p className="team__bio">{m.bio}</p>}
           </div>
         </li>
       ))}

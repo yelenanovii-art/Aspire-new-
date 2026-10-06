@@ -47,12 +47,12 @@ export default function EventsBand() {
               read as one picture repeated. Three different frames, same
               treatment. */}
           <img
-            src="/media/pages/svc-sales.webp"
-            srcSet="/media/pages/svc-sales-760.webp 760w, /media/pages/svc-sales.webp 1920w"
+            src="/media/pages/evb-ise26.webp"
+            srcSet="/media/pages/evb-ise26-760.webp 760w, /media/pages/evb-ise26.webp 1240w"
             sizes="(max-width: 940px) 92vw, 46vw"
             alt=""
-            width="1920"
-            height="720"
+            width="1240"
+            height="775"
             loading="lazy"
             decoding="async"
           />

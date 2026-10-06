@@ -1631,12 +1631,28 @@
 /* ============================================================
    20. Team
    ============================================================ */
+/* Flex rather than grid, because the team is an odd number: an auto-fit grid
+   leaves the fifth card stranded against the left edge of its own row, which
+   is the thing that read as unbalanced. Wrapping flex centres whatever is on
+   the last row at every width. */
 .team {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(232px, 100%), 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: clamp(18px, 2.2vw, 26px);
   margin-top: clamp(34px, 4.5vw, 50px);
 }
+.team > .team__card {
+  flex: 1 1 210px;
+  max-width: 260px;
+  min-width: 0;
+}
+/* Wide enough for all five: flex-basis 0 means the line never has a reason to
+   wrap, so they sit as five equal columns and stretch to a common height. */
+@media (min-width: 1040px) {
+  .team > .team__card { flex: 1 1 0%; max-width: none; }
+}
+@media (max-width: 520px) { .team > .team__card { flex-basis: 100%; max-width: 340px; } }
 .team__card {
   border-radius: var(--radius);
   overflow: hidden;
@@ -1671,7 +1687,7 @@
 
 /* Roster: no portrait, so the card becomes a credential rather than a profile.
    A rule at the top carries the structure the image used to. */
-.team--roster { grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+.team--roster > .team__card { flex-basis: 190px; max-width: 240px; }
 .team.team--roster .team__card {
   background: none;
   border: 0;
