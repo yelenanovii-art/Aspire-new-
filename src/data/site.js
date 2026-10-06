@@ -292,7 +292,7 @@ export const SERVICES = [
       src: '/media/pages/svc-events.webp',
       w: 1440,
       h: 540,
-      alt: 'Crowded exhibition floor at Integrated Systems Europe under the gantry signage',
+      alt: 'Crowded aisle between exhibition stands at Integrated Systems Europe in Barcelona',
     },
     n: '05',
     nav: 'Events and conferences',
