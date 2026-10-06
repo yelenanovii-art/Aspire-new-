@@ -15,7 +15,6 @@ import EventsBand from '../components/EventsBand'
 import ServiceCarousel from '../components/ServiceCarousel'
 import EventsPromo from '../components/EventsPromo'
 import CountUp from '../components/CountUp'
-import PartnerQuote from '../components/PartnerQuote'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES, CASES, CLIENTS, STATS, STEPS, PROBLEM, FAQ, PERFORMANCE } from '../data/site'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -216,8 +215,6 @@ export default function Home() {
             <h3 className="work__h">Selected client cases</h3>
             <a className="link-arrow reveal" href="/work">All six cases <ArrowRight /></a>
           </div>
-
-          <PartnerQuote />
 
           <div className="work-grid work-grid--lead">
             {CASES.slice(0, 3).map((c, i) => (

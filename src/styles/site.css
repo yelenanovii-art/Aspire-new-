@@ -181,20 +181,29 @@
   border-radius: var(--radius-sm);
   /* Matched to .btn-accent: same fill, same radius, same weight, so the two
      primary actions in the header read as the same kind of thing. */
-  background: var(--accent);
-  border: 1px solid var(--accent);
+  background:
+    linear-gradient(168deg, #116b7d 0%, var(--accent) 55%, #0a4a57 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.26) inset,
+    0 6px 18px -8px rgba(11, 40, 48, 0.5);
   border-radius: 999px;
   padding: 13px 20px;
   font-size: 14px;
   font-weight: 600;
   color: #fff;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 .nav__mega-featured:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background:
+    linear-gradient(168deg, #15798c 0%, #0f6475 55%, #0b5160 100%);
+  border-color: rgba(255, 255, 255, 0.38);
   color: #fff;
   transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.34) inset,
+    0 10px 26px -10px rgba(11, 40, 48, 0.55),
+    0 0 26px -6px rgba(13, 92, 107, 0.45);
 }
 .nav__mega-featured svg { color: #fff; flex: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -3436,7 +3445,26 @@
    The cards sit on top of each other; only the front one is in normal flow,
    the rest are absolutely placed behind it, pushed down, scaled back and
    dimmed so the depth is obvious without labelling it. */
-.svcx { margin-top: clamp(36px, 5vw, 56px); }
+/* Glass only reads as glass when there is something behind it. The section is
+   white, so the stage carries a soft brand-blue wash for the cards to blur and
+   sit on; without it a translucent card on white is just a white card. */
+.svcx {
+  position: relative;
+  margin-top: clamp(36px, 5vw, 56px);
+  isolation: isolate;
+}
+.svcx::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -6% -4% 8%;
+  border-radius: 28px;
+  background:
+    radial-gradient(60% 70% at 18% 20%, rgba(13, 92, 107, 0.16), transparent 70%),
+    radial-gradient(55% 65% at 85% 75%, rgba(143, 201, 212, 0.22), transparent 72%),
+    linear-gradient(160deg, rgba(13, 92, 107, 0.07), rgba(13, 92, 107, 0.02));
+  pointer-events: none;
+}
 .svcx__stage {
   position: relative;
   display: grid;
@@ -3446,19 +3474,44 @@
 }
 .svcx__card {
   grid-area: 1 / 1;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  padding: clamp(24px, 3vw, 36px);
+  /* Translucent white over the wash, blurred, with a light inner edge along
+     the top so it catches a highlight the way glass does. Kept light rather
+     than tinted so the ink stays at full contrast on it. */
+  background:
+    linear-gradient(158deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 249, 251, 0.82) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+  backdrop-filter: blur(16px) saturate(1.12);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 18px 44px -18px rgba(11, 40, 48, 0.3),
+    0 2px 10px -4px rgba(11, 40, 48, 0.12);
+  border-radius: 18px;
+  padding: clamp(30px, 3.6vw, 46px);
   transform: translateY(calc(var(--d) * 22px)) scale(calc(1 - var(--d) * 0.055));
   opacity: calc(1 - var(--d) * 0.28);
   z-index: calc(10 - var(--d));
   transition: transform 0.55s cubic-bezier(0.22, 0.7, 0.15, 1),
-    opacity 0.45s ease;
+    opacity 0.45s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
   pointer-events: none;
 }
 .svcx__card.is-front { pointer-events: auto; }
+.svcx__card.is-front:hover {
+  transform: translateY(-5px) scale(1.004);
+  border-color: rgba(143, 201, 212, 0.95);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 0 0 1px rgba(13, 92, 107, 0.07),
+    0 26px 60px -22px rgba(11, 40, 48, 0.36),
+    0 0 44px -8px rgba(13, 92, 107, 0.25);
+}
+/* Where the browser cannot blur, a solid card is better than a washed-out one
+   that never resolves. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .svcx__card { background: #fff; border-color: var(--line); }
+}
 .svcx__n {
   font-family: var(--mono);
   font-size: 12px;
@@ -3542,37 +3595,9 @@
 @media (max-width: 620px) { .svcx__stage { min-height: 400px; } }
 @media (prefers-reduced-motion: reduce) {
   .svcx__card { transition: none; }
+  .svcx__card.is-front:hover { transform: none; }
   .svcx__more:hover .arrow { transform: none; }
   .svcx__dots button.is-on { transform: none; }
-}
-
-/* ── Partnership quote ───────────────────────────────────────────────────── */
-.pq {
-  margin: clamp(26px, 3.4vw, 36px) 0 0;
-  padding: clamp(20px, 2.6vw, 28px);
-  border: 1px solid var(--line);
-  border-left: 2px solid var(--accent);
-  border-radius: var(--radius-sm);
-  background: var(--card-fill);
-  max-width: 62ch;
-}
-.pq blockquote { margin: 0; color: var(--ink); line-height: 1.6; font-size: 16px; }
-.pq figcaption { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; font-size: 13.5px; color: var(--muted); }
-.pq figcaption strong { color: var(--ink); font-weight: 600; }
-/* While the words are placeholder it has to look like one, so it cannot be
-   mistaken for a real testimonial. */
-.pq--placeholder { border-style: dashed; border-left-style: solid; }
-.pq__flag {
-  display: inline-block;
-  margin-bottom: 10px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-600);
-  border: 1px solid var(--accent-tint-2);
-  border-radius: 999px;
-  padding: 3px 9px;
 }
 
 /* ── Events pop-up ───────────────────────────────────────────────────────── */
@@ -3619,7 +3644,13 @@
   margin: 12px 0 0;
   text-wrap: balance;
 }
-.promo__stat { display: flex; align-items: baseline; gap: 12px; margin: 20px 0 0; }
+/* The number sat beside its label, which put the label off the column's left
+   edge and on a different baseline from everything above it. Stacked, both
+   start where the headline and body do. */
+.promo__stat {
+  display: block;
+  margin: clamp(20px, 2.6vw, 26px) 0 clamp(20px, 2.6vw, 26px);
+}
 .promo__stat-v {
   font-family: var(--display);
   font-weight: var(--display-w);
@@ -3628,7 +3659,9 @@
   letter-spacing: var(--display-ls);
   color: var(--accent-600);
 }
-.promo__stat-k { font-size: 14px; color: var(--body); line-height: 1.4; max-width: 18ch; }
+.promo__stat-v { display: block; }
+.promo__stat-k { display: block; margin-top: 2px; font-size: 14px; color: var(--body); line-height: 1.4; max-width: 30ch; }
+.promo__note { margin: 11px 0 0; font-size: 12.5px; color: var(--muted); }
 .promo__lead { margin: 16px 0 0; color: var(--body); line-height: 1.6; font-size: 15px; }
 .promo__cta { margin-top: 22px; }
 .promo__close {

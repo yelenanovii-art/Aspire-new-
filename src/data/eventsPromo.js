@@ -1,23 +1,23 @@
-// Copy for the events pop-up, kept here so the number and the words can be
+// Copy for the events pop-up, kept here so the words and the number can be
 // changed without touching the component.
 export const EVENTS_PROMO = {
   // Set `enabled: false` to switch the pop-up off entirely.
   enabled: true,
-  delayMs: 7000,
-  // How long a dismissal is respected, in days.
-  dismissDays: 7,
+  delayMs: 6000,
   eyebrow: 'Events and conferences',
-  headline: 'Turn your next conference into a booked calendar.',
+  headline: 'Heading to a conference soon? We plug into your team and get you the meetings.',
   // The proof figure. Edit these two lines and nothing else moves.
   statValue: '80',
   statLabel: 'meetings booked per conference week',
   body:
-    'We work the run-up, the floor and the follow-up with your team, so the week produces a pipeline instead of a badge scan pile.',
-  ctaLabel: 'Book your event strategy call',
+    'Weeks of planning. Chasing replies. Running between halls, hoping the right people have time for you. We work alongside your team from first outreach to final follow-up, so you arrive with a full calendar and focus on the conversations that matter.',
+  ctaLabel: "Let's plan your conference",
+  ctaNote: 'Free 20-minute call. No prep needed.',
+  // Its own frame: the service banner and the home band use different ones.
   photo: {
-    src: '/media/pages/svc-events.webp',
-    w: 1440,
-    h: 540,
-    alt: 'Crowded aisle between exhibition stands at a technology conference',
+    src: '/media/pages/svc-bizdev.webp',
+    w: 1920,
+    h: 720,
+    alt: 'Two people in conversation beside an exhibition stand at a conference',
   },
 }

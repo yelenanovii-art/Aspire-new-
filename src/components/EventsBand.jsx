@@ -42,13 +42,17 @@ export default function EventsBand() {
         </div>
 
         <figure className="evb__media reveal" style={{ '--delay': '90ms' }} aria-hidden="true">
+          {/* Deliberately not s.photo: the service page, this band and the
+              pop-up all used the same show-floor frame, so the events content
+              read as one picture repeated. Three different frames, same
+              treatment. */}
           <img
-            src={s.photo.src}
-            srcSet={`${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} ${s.photo.w}w`}
+            src="/media/pages/svc-sales.webp"
+            srcSet="/media/pages/svc-sales-760.webp 760w, /media/pages/svc-sales.webp 1920w"
             sizes="(max-width: 940px) 92vw, 46vw"
             alt=""
-            width={s.photo.w}
-            height={s.photo.h}
+            width="1920"
+            height="720"
             loading="lazy"
             decoding="async"
           />
