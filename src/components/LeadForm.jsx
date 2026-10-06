@@ -162,7 +162,7 @@ export default function LeadForm({
 
       {status === 'error' && (
         <p className="form-error" role="alert">
-          We could not send that from here. Nothing you typed is lost —{' '}
+          We could not send that from here. Nothing you typed is lost.{' '}
           <a href={mailtoFallback(COMPANY.email, submitLabel, typed)}>
             send it as an email instead
           </a>

@@ -87,7 +87,7 @@ export default function Tech() {
               boxed
             title="Selling something technical?"
             body="Tell us who buys it and how long they take. Fifteen minutes, free, and you leave with a view either way."
-            secondary={{ to: '/services', label: 'See all five services' }}
+            secondary={{ to: '/services', label: 'See all six services' }}
             />
           </div>
         </div>

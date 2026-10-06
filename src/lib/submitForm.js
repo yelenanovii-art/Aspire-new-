@@ -29,7 +29,7 @@ export async function submitForm(data, { formName = 'aspire-lead' } = {}) {
 
   if (import.meta.env.DEV) {
     console.warn(
-      `[submitForm] Netlify Forms cannot run on the Vite dev server — "${formName}" ` +
+      `[submitForm] Netlify Forms cannot run on the Vite dev server: "${formName}" ` +
         'was NOT sent. Use `netlify dev` or a deploy preview to test delivery.'
     )
     return { ok: true, configured: false }

@@ -25,7 +25,7 @@ export const INSIGHTS = [
       {
         h: 'Month one is not for booking meetings',
         p: [
-          'The first month buys you information, not pipeline. You are testing three things at once — whether the target list is right, whether the message lands, and whether the people replying are the people who can buy — and until those are separated you cannot fix anything, because a bad week could be any of them.',
+          'The first month buys you information, not pipeline. You are testing three things at once: whether the target list is right, whether the message lands, and whether the people replying are the people who can buy, and until those are separated you cannot fix anything, because a bad week could be any of them.',
           'We put sequences live inside two weeks. The fortnight before that is spent building the list against a real buyer profile: sector, size, region, and some signal that now is a sensible time to be talking to them. A scraped database sent to everyone will produce replies. They will be the wrong replies, and you will spend month two unpicking that.',
         ],
       },
@@ -46,7 +46,7 @@ export const INSIGHTS = [
       {
         h: 'When the cycle is longer than the engagement',
         p: [
-          'Some sectors will not fit this shape at all. Semiconductor buyers are engineers and procurement specialists who are perfectly happy to ignore you for a year until they need you. A three-month campaign ends before that audience has finished deciding, which is why we started SilTest on one channel and stayed on it — two years in, that engagement is still running.',
+          'Some sectors will not fit this shape at all. Semiconductor buyers are engineers and procurement specialists who are perfectly happy to ignore you for a year until they need you. A three-month campaign ends before that audience has finished deciding, which is why we started SilTest on one channel and stayed on it. Two years in, that engagement is still running.',
           'If your buying cycle is measured in quarters, judge the first ninety days on whether the right conversations started, not on whether they closed. Anyone promising closed revenue in that window is either selling to a different market than yours or not telling you the truth.',
         ],
       },
@@ -68,7 +68,7 @@ export const INSIGHTS = [
       'Why engineers and procurement specialists ignore standard B2B social content, what they do engage with, and why consistency beats campaign thinking for technical audiences.',
     keywords: 'LinkedIn for B2B tech, technical audience social media, semiconductor marketing, engineer marketing',
     intro:
-      'A company with a genuinely good product writes a post about it, gets eleven likes — nine from their own staff — and concludes that LinkedIn does not work for their sector. It usually does. The content is just written for a reader who does not exist.',
+      'A company with a genuinely good product writes a post about it, gets eleven likes, nine from their own staff, and concludes that LinkedIn does not work for their sector. It usually does. The content is just written for a reader who does not exist.',
     sections: [
       {
         h: 'Urgency does not work on people who cannot be hurried',
@@ -80,7 +80,7 @@ export const INSIGHTS = [
       {
         h: 'Specificity is the credibility test',
         p: [
-          'Engineers assess a company by how precisely it talks about its own work. Vague competence claims read as nothing to say. A post that names the constraint, the tradeoff and the number is one they can check — and being checkable is the point.',
+          'Engineers assess a company by how precisely it talks about its own work. Vague competence claims read as nothing to say. A post that names the constraint, the tradeoff and the number is one they can check, and being checkable is the point.',
           'This is uncomfortable for marketing teams, because precision means committing to claims someone can argue with. That is exactly why it builds trust with this audience and why generic content does not.',
         ],
       },
@@ -122,7 +122,7 @@ export const INSIGHTS = [
         h: 'The show is mostly won before it opens',
         p: [
           'Walk-up traffic is the least valuable thing a stand produces. The meetings that matter are the ones booked in advance with people who were coming anyway, and that outreach has to start weeks out, not days.',
-          'Agree the plan before the doors open. During the show there is no time to decide direction — every decision on the floor should be about execution. We sign off the strategy upfront for exactly this reason.',
+          'Agree the plan before the doors open. During the show there is no time to decide direction: every decision on the floor should be about execution. We sign off the strategy upfront for exactly this reason.',
         ],
       },
       {
@@ -143,7 +143,7 @@ export const INSIGHTS = [
         h: 'The follow-up window is shorter than you think',
         p: [
           'Badge scans are not leads. A scanned badge with no note is a name you will not remember in a fortnight, and your prospect has just had four hundred conversations too.',
-          'Send follow-up while the conversation is still warm — during the show where possible, within days at the outside. Record what was actually discussed against the contact in the CRM, not just that they visited. The stand cost is already sunk; the follow-up is the only variable left that decides whether it returns anything.',
+          'Send follow-up while the conversation is still warm: during the show where possible, within days at the outside. Record what was actually discussed against the contact in the CRM, not just that they visited. The stand cost is already sunk; the follow-up is the only variable left that decides whether it returns anything.',
         ],
       },
     ],
@@ -169,14 +169,14 @@ export const INSIGHTS = [
       {
         h: 'A freelancer is depth in one thing',
         p: [
-          'If you know precisely what you need — a website, a paid account managed, a content run — a good freelancer is usually the best value available, and often better at that one thing than a generalist agency.',
+          'If you know precisely what you need, whether that is a website, a paid account managed or a content run, a good freelancer is usually the best value available, and often better at that one thing than a generalist agency.',
           'The cost is coverage and continuity. When they are unavailable, that function stops, and the strategy lives in their head rather than anywhere you can read it.',
         ],
       },
       {
         h: 'A hire is continuity, bought in advance',
         p: [
-          'An in-house hire is the right answer sooner than most agencies will tell you — particularly once there is enough work to keep someone busy and enough internal knowledge to make them effective.',
+          'An in-house hire is the right answer sooner than most agencies will tell you, particularly once there is enough work to keep someone busy and enough internal knowledge to make them effective.',
           'The risks are concentration and ramp. One person covers one discipline well and three badly, and you carry the recruitment time, the ramp-up, and the exposure if they leave in month seven.',
         ],
       },
@@ -225,20 +225,20 @@ export const INSIGHTS = [
         h: 'Record the thing that decides the next action',
         p: [
           'Most CRM hygiene advice asks for too much and therefore gets nothing. The minimum that makes a pipeline readable is small: what was discussed, what the next step is, and when it is due.',
-          'Everything else — fields, scores, custom objects — is optional until those three are reliable. A pipeline with three honest fields beats one with thirty that are mostly empty.',
+          'Everything else, fields, scores and custom objects, is optional until those three are reliable. A pipeline with three honest fields beats one with thirty that are mostly empty.',
         ],
       },
       {
         h: 'Whoever has the conversation writes it down',
         p: [
-          'When we run sales for a client, every contact, conversation and next step goes into their CRM, not ours. Partly that is hygiene. Mostly it is because the pipeline is theirs and stays theirs when the engagement ends — an agency that keeps the record has quietly made itself impossible to leave.',
+          'When we run sales for a client, every contact, conversation and next step goes into their CRM, not ours. Partly that is hygiene. Mostly it is because the pipeline is theirs and stays theirs when the engagement ends. An agency that keeps the record has quietly made itself impossible to leave.',
           'That is the question worth asking any outsourced team: if we stopped tomorrow, what do we keep? If the answer is a report rather than the pipeline itself, that is the problem to fix before the software.',
         ],
       },
       {
         h: 'When migrating genuinely is the answer',
         p: [
-          'If the tool cannot represent how you actually sell — multiple buying committees, long cycles, partner-sourced deals — then it is the tool, and you should move.',
+          'If the tool cannot represent how you actually sell, with multiple buying committees, long cycles or partner-sourced deals, then it is the tool, and you should move.',
           'Otherwise, fix the recording habit first. Do it in the system you have. If it works there, the migration becomes a straightforward decision rather than a rescue.',
         ],
       },
@@ -266,7 +266,7 @@ export const INSIGHTS = [
         h: 'Borrow trust before you buy attention',
         p: [
           'At launch you have no audience, no local proof and no feel for which messages land. Paid spend in that state is tuition: you are paying for data you could have got another way.',
-          'Partnerships invert it. Instead of persuading strangers one at a time, you borrow the trust of an organisation those people already rely on. When BUNQ entered Spain, that was the route in — and the first two and a half months produced over 300 new users.',
+          'Partnerships invert it. Instead of persuading strangers one at a time, you borrow the trust of an organisation those people already rely on. When BUNQ entered Spain, that was the route in, and the first two and a half months produced over 300 new users.',
         ],
       },
       {
@@ -287,7 +287,7 @@ export const INSIGHTS = [
         h: 'Signing is the start, not the result',
         p: [
           'A signed partnership that nobody activates produces an announcement and nothing else. The work is onboarding, the co-marketing that follows, and tracking which partners produce actual users.',
-          'By the end, you should be able to say which partner types convert in this market and which do not. That read is the asset — it is what makes the paid spend sensible when you eventually turn it on.',
+          'By the end, you should be able to say which partner types convert in this market and which do not. That read is the asset. It is what makes the paid spend sensible when you eventually turn it on.',
         ],
       },
     ],

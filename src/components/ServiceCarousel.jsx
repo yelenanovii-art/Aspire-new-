@@ -4,7 +4,7 @@ import { SERVICES } from '../data/site'
 
 const INTERVAL = 4500
 
-// The five services as a stack of cards, one in focus and the rest peeking
+// The six services as a stack of cards, one in focus and the rest peeking
 // behind it.
 //
 // The stack is the point: a list says "here are five things", a stack says

@@ -15,7 +15,7 @@ const firstSentence = (t) => {
 // Navigation is four top level items, not six.
 //
 // Everything Aspire sells lives under one "Services" panel, split into two
-// labelled groups: the five growth services that apply to any client, and
+// labelled groups: the six growth services that apply to any client, and
 // the three specialisms that only some clients need. Tech, Real Estate and
 // previously sat both inside the dropdown and beside it, which is why the bar
 // read as a list rather than a structure.

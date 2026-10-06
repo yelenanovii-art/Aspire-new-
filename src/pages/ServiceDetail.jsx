@@ -11,7 +11,7 @@ import { useJsonLd } from '../hooks/useJsonLd'
 import { faqSchema } from '../lib/faqSchema'
 import { SITE_URL } from '../config'
 
-// One component renders all five service pages — the route table passes the
+// One component renders all six service pages — the route table passes the
 // slug, and everything else comes from src/data/site.js. Adding a service is a
 // data edit plus one route entry, never a new page component.
 //
@@ -91,6 +91,16 @@ export default function ServiceDetail({ service }) {
         </section>
       )}
 
+      {/* No photograph for this service yet, so the frame states what belongs
+          there rather than being quietly absent. */}
+      {!s.film && !s.photo && s.photoTodo && (
+        <section className="section section--flush-top section--tight">
+          <div className="container">
+            <MediaSlot ratio="16 / 9" label={s.photoTodo.label} hint={s.photoTodo.hint} />
+          </div>
+        </section>
+      )}
+
       {!s.film && s.photo && (
         <section className="section section--flush-top section--tight">
           <div className="container">
@@ -110,6 +120,31 @@ export default function ServiceDetail({ service }) {
                 decoding="async"
               />
             </figure>
+          </div>
+        </section>
+      )}
+
+      {s.audience && (
+        <section className="section section--ruled">
+          <div className="container">
+            <SectionHead eyebrow="Who it is for" title="Two situations this is built for." />
+            <div className="spec-grid">
+              {s.audience.map((a, i) => (
+                <article className="spec" style={{ '--delay': `${i * 60}ms` }} key={a.h}>
+                  <span className="spec__check"><Check size={16} /></span>
+                  <div>
+                    <h3>{a.h}</h3>
+                    <p>{a.p}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="svc-list__fit">
+              Not sure which you are?{' '}
+              <a className="link-arrow" href={s.quiz ? s.quiz.to : '/fit'}>
+                Answer seven questions <ArrowRight />
+              </a>
+            </p>
           </div>
         </section>
       )}
@@ -149,6 +184,45 @@ export default function ServiceDetail({ service }) {
       )}
 
       {/* ── Proof ────────────────────────────────────────────────────── */}
+      {s.phases && (
+        <section className="section section--alt">
+          <div className="container">
+            <SectionHead eyebrow="How it runs" title="Three phases, ninety days." />
+            <ol className="phases">
+              {s.phases.map((ph, i) => (
+                <li className="phase reveal" key={ph.n} style={{ '--delay': `${i * 70}ms` }}>
+                  <span className="phase__n">{ph.n}</span>
+                  <h3 className="phase__h">{ph.h}</h3>
+                  <p className="phase__p">{ph.p}</p>
+                  <MediaSlot
+                    ratio="4 / 3"
+                    label={`${ph.h}, photograph to follow`}
+                    hint="TODO: image not yet supplied"
+                  />
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      {s.quiz && (
+        <section className="section section--tight">
+          <div className="container container--narrow">
+            <div className="quizcta reveal">
+              <div>
+                <p className="eyebrow">Free, two minutes</p>
+                <h2 className="quizcta__h">{s.quiz.label}</h2>
+                <p className="quizcta__p">{s.quiz.note}</p>
+              </div>
+              <a className="btn btn-accent btn-lg" href={s.quiz.to}>
+                Start the check <ArrowRight />
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
       {cases.length > 0 && (
         <section className="section section--alt">
           <div className="container">

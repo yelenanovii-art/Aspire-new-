@@ -48,7 +48,7 @@ const META = {
   },
   '/services': {
     t: 'B2B Sales and Marketing Services',
-    d: 'Five services run as one plan: in person and digital sales, business development, social media management, content creation, and event and conference support.',
+    d: 'Six services run as one plan: go-to-market strategy, in person and digital sales, events and conferences, business development, social media management and content creation.',
     k: 'B2B sales services, business development, social media management, content creation',
   },
   '/work': {
@@ -87,6 +87,11 @@ const META = {
   },
   ...SERVICE_META,
   ...CASE_META,
+  '/services/go-to-market/quiz': {
+    t: 'Go-to-Market Readiness Check',
+    d: 'Seven questions that score your go-to-market readiness out of ten, place you on the curve from validation to scale, and return three next steps. Free.',
+    k: 'go to market readiness, GTM quiz, market entry assessment, launch readiness',
+  },
   '/tech': { t: TECH.metaTitle, d: TECH.metaDesc, k: TECH.keywords },
   '/insights': {
     t: 'Insights on B2B Sales and Marketing',
@@ -124,6 +129,7 @@ const PAGE_SCHEMA_OWNERS = {
   'aspire-faq-content-creation': '/services/content-creation',
   'aspire-faq-events': '/services/events',
   'aspire-faq-tech': '/tech',
+  'aspire-gtm-quiz': '/services/go-to-market/quiz',
   'aspire-faq-real-estate': '/real-estate',
   'aspire-faq-ai-systems': '/ai-systems',
   'aspire-person': '/about',
@@ -149,6 +155,7 @@ const SEG_NAME = {
   // service slug.
   ...Object.fromEntries(CASES.map((c) => [c.slug, c.client])),
   insights: 'Insights',
+  quiz: 'Readiness check',
   ...Object.fromEntries(INSIGHTS.map((a) => [a.slug, a.title])),
 }
 

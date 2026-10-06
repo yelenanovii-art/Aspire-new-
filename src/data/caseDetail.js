@@ -40,6 +40,40 @@ export const CASE_DETAIL = {
     ],
   },
 
+  rattech: {
+    // No photography from either market yet.
+    photoTodo: { label: 'RatTech, Netherlands and UAE, photograph to follow', hint: 'TODO: image not yet supplied' },
+    metaTitle: 'RatTech: Go-to-Market for the Netherlands and the UAE',
+    metaDesc:
+      'How Aspire built RatTech go-to-market strategies for two new markets and booked around 60 meetings in one week in the UAE.',
+    summary:
+      'A Danish product with a proven home market, and two new countries that buy nothing the same way.',
+    challenge:
+      'RatTech sells digital, poison free rat control, and it works in Denmark. Neither the Netherlands nor the UAE buys it the way Denmark does. The buyers are different, the channels are different, and in the UAE the decision sits with property developers, private investors and mall operators rather than municipalities. Taking the Danish plan abroad unchanged would have tested the wrong message on the wrong people and called the result a market problem.',
+    approach: [
+      {
+        h: 'Two plans, not one translated',
+        p: 'Market and competitor research for each country, then the buyer map that goes with it. Who signs in the Netherlands is not who signs in the UAE, so the positioning, the pricing conversation and the proof points were written twice.',
+      },
+      {
+        h: 'A named list, not a scraped one',
+        p: 'Target accounts researched against the profile rather than filtered from a database: developers with portfolios where the problem is expensive, investors with exposure to it, and operators who feel it daily.',
+      },
+      {
+        h: 'Worked the list in person',
+        p: 'In the UAE we ran the outreach and then the week itself, booking into a calendar rather than collecting interest. Around sixty meetings inside one week, with the people who can actually sign.',
+      },
+    ],
+    outcome: [
+      'Around 60 meetings booked in one week in the UAE, with property developers, private investors and shopping mall operators.',
+      'Follow up rate after the week: [FOLLOW_UP_RATE]',
+      'Qualified opportunities from those meetings: [QUALIFIED_OPPORTUNITIES]',
+      'Deals or pilots agreed: [DEALS_OR_PILOTS]',
+      'Netherlands result: [NL_RESULT]',
+      'Measured over: [TIMEFRAME]',
+    ],
+  },
+
   siltest: {
     metaTitle: 'SilTest Semiconductors: Two Years of Compounding B2B Growth',
     metaDesc:
@@ -76,7 +110,7 @@ export const CASE_DETAIL = {
     summary:
       'One of the largest audio visual conferences in the world, held in Barcelona each year, where the audience that matters is mostly the one not in the room.',
     challenge:
-      'A show of this size generates more happening at once than any team can cover, and the window is days rather than months. Content captured and published next week has missed the point entirely. The harder problem is that most of the people you want to reach are not at the show at all — so the job is not documenting the event, it is making the event legible to everyone following from elsewhere.',
+      'A show of this size generates more happening at once than any team can cover, and the window is days rather than months. Content captured and published next week has missed the point entirely. The harder problem is that most of the people you want to reach are not at the show at all, so the job is not documenting the event, it is making the event legible to everyone following from elsewhere.',
     approach: [
       {
         h: 'Plan in the run-up, not on the floor',
@@ -114,7 +148,7 @@ export const CASE_DETAIL = {
       },
       {
         h: 'A CRM that matches what happened',
-        p: 'Every conversation recorded, so the pipeline is a record rather than an estimate — and it stays RCK’s when the engagement ends.',
+        p: 'Every conversation recorded, so the pipeline is a record rather than an estimate, and it stays RCK’s when the engagement ends.',
       },
       {
         h: 'Represented in the room',
@@ -136,7 +170,7 @@ export const CASE_DETAIL = {
     summary:
       'A practice whose clients were already searching for exactly this service, and not finding them.',
     challenge:
-      'Legal services are one of the clearest cases of intent-led search: nobody looks for a notary casually. The demand already existed and was being answered by someone else. A brochure site would not have changed that — being online and being findable are different problems, and only the second one produces clients.',
+      'Legal services are one of the clearest cases of intent-led search: nobody looks for a notary casually. The demand already existed and was being answered by someone else. A brochure site would not have changed that: being online and being findable are different problems, and only the second one produces clients.',
     approach: [
       {
         h: 'Design around how the practice works',
@@ -144,7 +178,7 @@ export const CASE_DETAIL = {
       },
       {
         h: 'Build the SEO in, not on',
-        p: 'The search strategy shaped the structure rather than being retrofitted afterwards — the pages exist because people search for those things.',
+        p: 'The search strategy shaped the structure rather than being retrofitted afterwards. The pages exist because people search for those things.',
       },
     ],
     outcome: [

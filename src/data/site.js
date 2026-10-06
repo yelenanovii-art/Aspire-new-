@@ -85,9 +85,62 @@ export const COMPARE = {
 // ---------------------------------------------------------------------------
 export const SERVICES = [
   {
+    slug: 'go-to-market',
+    n: '01',
+    nav: 'Go-to-market strategy',
+    title: 'Go-to-market strategy',
+    flag: 'Full setup and prep',
+    blurb:
+      'The plan before the spend. Research, positioning, pricing, channels and a target list, built so the execution services have something to run.',
+    h1: 'Know who buys, why, and in what order. Then launch.',
+    lede:
+      'A launch or a new market fails on the plan far more often than on the effort. We do the research, define who you are selling to, write the positioning, set the pricing and offer, choose the channels, and hand back a ninety day roadmap with the accounts to call and the numbers to judge it by. Then we can run it with you.',
+    metaTitle: 'Go-to-Market Strategy for B2B Tech',
+    metaDesc:
+      'Market and competitor research, ICP and buyer mapping, positioning, pricing, channel plan, target account list and a 90 day roadmap. Built for a first launch or a new country.',
+    keywords: 'go to market strategy, GTM, market entry, ICP, positioning, launch plan, B2B expansion',
+    tags: ['Research', 'ICP and positioning', 'Channel plan', '90 day roadmap'],
+    // No photograph for this page yet. The frame states what belongs there.
+    photoTodo: { label: 'Go-to-market, photograph to follow', hint: 'TODO: image not yet supplied' },
+    // Who it is for, shown above the phases.
+    audience: [
+      {
+        h: 'First go-to-market, no sales function yet',
+        p: 'The product is ready and nobody has sold it repeatably. You need to know who buys, what they need to hear, and what to do on day one rather than guessing in public.',
+      },
+      {
+        h: 'Expansion into a new country or segment',
+        p: 'It sells at home. A new market has different buyers, different channels and different objections, and the plan that worked once does not transfer unchanged.',
+      },
+    ],
+    includes: [
+      { h: 'Market and competitor research', p: 'Size, structure and who is already winning. What they charge, how they sell, and where the gap is that you can hold.' },
+      { h: 'ICP and buyer mapping', p: 'Who signs, who blocks, who uses it. The real buying committee rather than a job title, and the trigger that makes this urgent now.' },
+      { h: 'Positioning and messaging', p: 'One sentence for what you do and who it is for, then the proof points and objection handling underneath it.' },
+      { h: 'Channel and outreach plan', p: 'Which channels this buyer actually answers on, in what order, and what gets said on each.' },
+      { h: 'Pricing and offer', p: 'What it costs, how it is packaged, and the entry offer that gets a first yes without discounting the real price.' },
+      { h: 'Target account list', p: 'Named accounts and named people, researched against the ICP rather than scraped, so outreach starts with a list worth working.' },
+      { h: '90 day roadmap and KPIs', p: 'What happens in which week, who owns it, and the numbers that say whether it is working before the quarter ends.' },
+    ],
+    phases: [
+      { n: '01', h: 'Foundations', p: 'Research, ICP, positioning, pricing and offer. By the end of this phase you can say who buys, why, and what you charge, and defend all three.' },
+      { n: '02', h: 'First meetings', p: 'Target list built, channels chosen, messaging written and outreach live. The goal is real conversations with the right people, not volume.' },
+      { n: '03', h: 'Repeatable pipeline', p: 'What produced meetings gets scaled, what did not gets cut, and the roadmap moves from a plan into a process your team can run.' },
+    ],
+    // Pulls the readiness quiz CTA onto the page.
+    quiz: { to: '/services/go-to-market/quiz', label: 'Check your GTM readiness', note: 'Seven questions, two minutes, a score and three next steps.' },
+    proof: { caseSlugs: ['rattech', 'bunq', 'siltest'] },
+    faq: [
+      { q: 'How long does a go-to-market plan take?', a: 'Four to six weeks for the plan itself, depending on how much research the market needs. The ninety day roadmap starts the moment it is signed off.' },
+      { q: 'Do you run it as well, or only write it?', a: 'Either. Most clients have us build the plan and then run the first ninety days with the sales, content and events services. The plan is yours whether or not we execute it.' },
+      { q: 'We already sell at home. Is this the same work?', a: 'The structure is, the answers are not. A new country has different buyers, channels and objections. We did exactly this for RatTech in the Netherlands and the UAE.' },
+      { q: 'What do we get at the end?', a: 'A written plan covering research, ICP, positioning, pricing, channels and the target account list, plus a ninety day roadmap with KPIs. Yours to keep.' },
+    ],
+  },
+  {
     slug: 'sales',
     photo: { src: '/media/pages/svc-sales.webp', alt: 'Two people in conversation beside a product display at a trade show' },
-    n: '01',
+    n: '02',
     nav: 'Sales, in person and digital',
     title: 'Sales, in person and digital',
     blurb:
@@ -126,7 +179,7 @@ export const SERVICES = [
       },
       {
         q: 'Will you actually attend conferences with us?',
-        a: 'Yes. Onsite representation is core to this service. We have worked with Integrated Systems Europe for the last three years — they run one of the largest audio visual conferences in the world, held annually in Barcelona — helping their team run the show floors and planning and executing social media support through the week and the run-up to it. For SilTest Semiconductors we attend as an external sales agency: generating leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers afterwards to grow the pipeline.',
+        a: 'Yes. Onsite representation is core to this service. We have worked with Integrated Systems Europe for the last three years. They run one of the largest audio visual conferences in the world, held annually in Barcelona, and we help their team run the show floors and planning and executing social media support through the week and the run-up to it. For SilTest Semiconductors we attend as an external sales agency: generating leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers afterwards to grow the pipeline.',
       },
       {
         q: 'How quickly does outreach produce meetings?',
@@ -152,7 +205,7 @@ export const SERVICES = [
       h: 540,
       alt: 'The outdoor audio demo area at Integrated Systems Europe 2026 in Barcelona',
     },
-    n: '02',
+    n: '03',
     nav: 'Events and conferences',
     title: 'Events and conferences',
     // Surfaced as a chip on the home list and in the services menu. It says
@@ -182,7 +235,7 @@ export const SERVICES = [
       },
       {
         h: 'Marketing published while it is happening',
-        p: 'Content shot and posted in the same hour, your channels run live through the show, and engagement mechanics that reach the people who did not travel — at ISE that meant Instagram challenges and trivia that pulled in far more than the floor could hold.',
+        p: 'Content shot and posted in the same hour, your channels run live through the show, and engagement mechanics that reach the people who did not travel. At ISE that meant Instagram challenges and trivia that pulled in far more than the floor could hold.',
       },
       {
         h: 'Follow-up in the week that decides it',
@@ -221,24 +274,20 @@ export const SERVICES = [
   {
     slug: 'business-development',
     photo: { src: '/media/pages/svc-bizdev.webp', alt: 'Two people in conversation beside an exhibition stand' },
-    n: '03',
+    n: '04',
     nav: 'Business development',
     title: 'Business development',
     blurb:
-      'Branding, website, positioning and audience. The work that links marketing to sales instead of running beside it.',
+      'Branding, website and partnerships. The work that makes a company recognisable before anyone is asked to buy.',
     h1: 'The growth work that makes the sales work land.',
     lede:
-      'Outreach converts far better when the buyer recognises the name, understands the offer in ten seconds, and finds a website that backs it up. This is where we build all three and connect them to the pipeline rather than running them as separate projects.',
+      'Outreach converts far better when the buyer recognises the name and finds a website that backs it up. This is the brand, the site and the partnerships that carry it. The positioning those are built on is go-to-market work, and lives there.',
     metaTitle: 'Business Development for Tech Companies',
     metaDesc:
-      'Positioning, branding, website and audience growth wired directly into your sales pipeline. Long term B2B growth from Aspire in Barcelona.',
-    keywords: 'business development, B2B positioning, branding, website, SEO, audience growth',
-    tags: ['Positioning', 'Branding', 'Website', 'Partnerships'],
+      'Branding, website, SEO and partnerships wired directly into your sales pipeline. Long term B2B growth from Aspire in Barcelona.',
+    keywords: 'business development, branding, website, SEO, partnerships, audience growth',
+    tags: ['Branding', 'Website', 'SEO', 'Partnerships'],
     includes: [
-      {
-        h: 'Positioning and messaging',
-        p: 'One clear sentence for what you do and who it is for, then applied consistently across the site, the deck, the outreach and the feed.',
-      },
       {
         h: 'Brand and visual identity',
         p: 'A coherent look that survives contact with a slide deck, a LinkedIn banner and a conference stand. Not just a logo file.',
@@ -271,7 +320,7 @@ export const SERVICES = [
   {
     slug: 'social-media',
     photo: { src: '/media/pages/svc-social.webp', alt: 'Someone filming a lit display on a phone at an exhibition' },
-    n: '04',
+    n: '05',
     nav: 'Social media management',
     title: 'Social media management',
     blurb:
@@ -321,7 +370,7 @@ export const SERVICES = [
   {
     slug: 'content-creation',
     photo: { src: '/media/pages/svc-content.webp', alt: 'A flamenco performer under stage light in front of an LED backdrop' },
-    n: '05',
+    n: '06',
     nav: 'Content creation',
     title: 'Content creation',
     blurb:
@@ -453,6 +502,19 @@ export const CASES = [
     body:
       'A private members lounge in central Barcelona, offering both a premium cigar experience and an event space. We expand the membership base and drive corporate venue rentals through lead generation, direct outreach and deal closing, working alongside their marketing team on the wider growth plan.',
     services: ['sales', 'content-creation'],
+  },
+  {
+    slug: 'rattech',
+    client: 'RatTech',
+    sector: 'Clean tech',
+    title: 'Go-to-market for two new countries, and a week of meetings in Dubai.',
+    result: 'Sixty meetings booked in a single week',
+    metric: '60',
+    metricSuffix: '',
+    metricLabel: 'meetings in one week, UAE',
+    body:
+      'RatTech makes digital, poison free rat control in Denmark. We built the go-to-market strategy for two new markets, the Netherlands and the UAE: the research, the buyer mapping, the positioning and the target account list for each. In the UAE we then worked the list and booked around sixty meetings in one week with property developers, private investors and shopping mall operators.',
+    services: ['go-to-market', 'business-development', 'sales'],
   },
 ]
 
@@ -745,7 +807,7 @@ export const FAQ = [
     a: 'It depends on scope, and we would rather scope it properly than quote blind. Pricing is on request and the free 15 minute call exists to work out what you actually need first.',
   },
   {
-    q: 'Do we have to buy all five services?',
+    q: 'Do we have to buy all six services?',
     a: 'No, and most clients start with one. They tend to expand once it is producing. RCK Consulting began with a website and now runs four workstreams with us.',
   },
   {

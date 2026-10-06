@@ -16,6 +16,7 @@ import NotFound from './pages/NotFound'
 import RealEstate from './pages/RealEstate'
 import AiSystems from './pages/AiSystems'
 import Tech from './pages/Tech'
+import GtmQuizPage from './pages/GtmQuizPage'
 import Fit from './pages/Fit'
 import CaseStudy from './pages/CaseStudy'
 import Insights from './pages/Insights'
@@ -34,6 +35,7 @@ const ROUTES = {
   '/real-estate': RealEstate,
   '/ai-systems': AiSystems,
   '/tech': Tech,
+  '/services/go-to-market/quiz': GtmQuizPage,
   '/work': Work,
   '/about': About,
   '/contact': Contact,

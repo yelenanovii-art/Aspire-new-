@@ -2,6 +2,8 @@ import SectionHead from '../components/SectionHead'
 import CTABand from '../components/CTABand'
 import { ArrowRight } from '../components/Icons'
 import { useJsonLd } from '../hooks/useJsonLd'
+import Todo from '../components/Todo'
+import MediaSlot from '../components/MediaSlot'
 import { SITE_URL } from '../config'
 import { serviceBySlug, logoFor, TESTIMONIALS } from '../data/site'
 import { caseDetailFor } from '../data/caseDetail'
@@ -74,6 +76,14 @@ export default function CaseStudy({ c }) {
         </div>
       </section>
 
+      {d.photoTodo && (
+        <section className="section section--flush-top section--tight">
+          <div className="container">
+            <MediaSlot ratio="16 / 9" label={d.photoTodo.label} hint={d.photoTodo.hint} />
+          </div>
+        </section>
+      )}
+
       {d.challenge && (
         <section className="section section--ruled">
           <div className="container container--narrow">
@@ -108,7 +118,9 @@ export default function CaseStudy({ c }) {
             <SectionHead eyebrow="What it produced" title="The result." />
             <ul className="casepage__outcome">
               {d.outcome.map((o, i) => (
-                <li className="reveal" key={o} style={{ '--delay': `${i * 60}ms` }}>{o}</li>
+                <li className="reveal" key={o} style={{ '--delay': `${i * 60}ms` }}>
+                  <Todo text={o} />
+                </li>
               ))}
             </ul>
           </div>

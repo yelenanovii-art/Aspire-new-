@@ -40,7 +40,7 @@ export default function Insights() {
           <h1 className="page-hero__title">What we have learned doing the work.</h1>
           <p className="page-hero__lead">
             Six pieces, each answering a question a client actually asked us. Every number
-            quoted is from one of our own engagements — we would rather write six things worth
+            quoted is from one of our own engagements. We would rather write six things worth
             reading than twenty that rank.
           </p>
         </div>

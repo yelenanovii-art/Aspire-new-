@@ -170,14 +170,14 @@ export default function Home() {
           <SectionHead
             index="03"
             eyebrow="What we do"
-            title="Five services, run as one plan."
+            title="Six services, run as one plan."
             lede="Most companies buy these from four suppliers who never speak. Run together, the content fills the social, the social warms the outreach, and the outreach closes."
           />
 
           <ServiceCarousel />
 
           <p className="svc-list__fit">
-            Not sure which of the five you need?{' '}
+            Not sure which of the six you need?{' '}
             <a className="link-arrow" href="/fit">
               Answer six questions <ArrowRight />
             </a>

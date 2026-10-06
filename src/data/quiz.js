@@ -12,7 +12,7 @@
 // situation they are in, then the plan. The score and the name are the parts
 // people repeat to a colleague.
 //
-// Every option carries weights across the five services. SPECIALISMS are
+// Every option carries weights across the six services. SPECIALISMS are
 // decided separately: they are a different buyer, not a heavier weighting, so
 // a property or yachting answer routes there outright.
 import { SERVICES } from './site'
@@ -46,6 +46,10 @@ export const QUESTIONS = [
       // heavier lean. A specialism still wins over it, see matchFor.
       { v: 'shows', label: 'The conferences we attend, and little else', w: { events: 3, sales: 1 }, pts: 10, routeService: 'events' },
       { v: 'unknown', label: 'Genuinely, I do not know', w: { sales: 3, bd: 3 }, pts: 0 },
+      // Someone with no sales function yet, or opening a new country, needs
+      // the plan before any of the execution services. Routes for the same
+      // reason events does: weighting cannot beat sales accumulating.
+      { v: 'newmarket', label: 'A new country or segment we have not sold to yet', w: { bd: 1 }, pts: 6, routeService: 'go-to-market' },
     ],
   },
   {
@@ -110,7 +114,7 @@ export function scoreQuiz(answers) {
     const chosen = question.options.find((o) => o.v === answers[question.id])
     if (!chosen) return
     // A specialism wins outright: those buyers are not better served by a
-    // heavier weighting on one of the five, they are a different practice.
+    // heavier weighting on one of the six, they are a different practice.
     if (chosen.route && !route) route = chosen.route
     if (chosen.routeService && !routeService) routeService = chosen.routeService
     Object.entries(chosen.w || {}).forEach(([k, n]) => {
@@ -154,6 +158,18 @@ export function matchFor(result) {
   }
   // Checked after the two specialisms on purpose: a property or yachting
   // buyer who also exhibits is still better served by that practice.
+  if (result.routeService === 'go-to-market') {
+    const gtm = SERVICES.find((s) => s.slug === 'go-to-market')
+    if (gtm) {
+      return {
+        kind: 'service',
+        title: gtm.title,
+        href: `/services/${gtm.slug}`,
+        line: gtm.blurb,
+        second: { title: 'Sales, in person and digital', href: '/services/sales' },
+      }
+    }
+  }
   if (result.routeService === 'events') {
     const ev = SERVICES.find((s) => s.slug === 'events')
     if (ev) {
@@ -189,6 +205,12 @@ export function matchFor(result) {
 // bottleneck answer adds one line on top, because two companies matched to the
 // same discipline for different reasons should not read the same plan.
 export const PLANS = {
+  'go-to-market': {
+    first: 'Pick one segment and size it properly, including who already serves it. Then map the buying committee: who signs, who blocks, who uses it, and what makes it urgent now. Guessing here is what makes everything after it unreadable.',
+    then: 'Write the positioning and test it on buyers outside the building. Set pricing and the entry offer. Build a named target account list against the profile rather than a scraped one, and choose two channels to run properly.',
+    park: 'Do not spend on paid or a rebrand this quarter. Both amplify a message you have not finished writing.',
+    expect: 'A plan you can hand to someone else to run, a list worth working, and the first real conversations inside ninety days.',
+  },
   events: {
     first: 'Pick the one show that matters most this year and work backwards from it. Pull the attendee and exhibitor lists, mark who is genuinely worth a meeting, and start the outreach four to six weeks out. A full diary on day one is decided now, not on the floor.',
     then: 'Run the show itself as three jobs rather than one: keep the diary moving, capture and publish while it is happening, and record every conversation with the detail that makes follow-up possible. Then send that follow-up within days, not weeks.',
