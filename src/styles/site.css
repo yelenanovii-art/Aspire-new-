@@ -1652,7 +1652,15 @@
 @media (min-width: 1040px) {
   .team > .team__card { flex: 1 1 0%; max-width: none; }
 }
-@media (max-width: 520px) { .team > .team__card { flex-basis: 100%; max-width: 340px; } }
+/* Two per row rather than one, so the column does not become a single tall
+   stack of portraits; the centred wrap means the fifth sits in the middle
+   rather than alone against the left edge. */
+@media (max-width: 1039px) {
+  .team > .team__card { flex: 0 1 calc(33.333% - 18px); max-width: none; }
+}
+@media (max-width: 680px) {
+  .team > .team__card { flex: 0 1 calc(50% - 10px); }
+}
 .team__card {
   border-radius: var(--radius);
   overflow: hidden;
@@ -3707,6 +3715,59 @@
 .practice-grid--three { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
 .practice__media--mark { display: grid; place-items: center; background: var(--wash-dark); }
 .practice__chip { width: 56%; max-width: 180px; color: var(--accent-tint-2); }
+
+/* ── About: the quotes and the CTA, side by side ─────────────────────────────
+   Stacked, these two left the foot of the page mostly white space. Two columns
+   on desktop, aligned at the top with a rule between them; stacked again below
+   1000px with the quotes first, which is the order that makes sense when they
+   are read one after the other. */
+.about-close__grid { display: grid; gap: clamp(32px, 4vw, 56px); align-items: start; }
+@media (min-width: 1000px) {
+  .about-close__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(44px, 5vw, 76px);
+    /* Equal height columns: the card fills its column and the actions sit at
+       the foot of it, rather than the card ending halfway up and leaving the
+       rule running past nothing. */
+    align-items: stretch;
+  }
+  .about-close__cta { display: flex; }
+  .cta-band--boxed { display: flex; width: 100%; }
+  .cta-band--boxed .cta-band__inner { display: flex; flex-direction: column; width: 100%; }
+  .cta-band--boxed .cta-band__actions { margin-top: auto; padding-top: clamp(22px, 2.6vw, 30px); }
+  /* The separation is a rule rather than more space, so the two read as two
+     things rather than one that drifted apart. */
+  .about-close__cta { position: relative; }
+  .about-close__cta::before {
+    content: "";
+    position: absolute;
+    left: calc(clamp(44px, 5vw, 76px) / -2);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+  }
+}
+
+/* The band as a card: no full-bleed background, no page gutter, and it keeps
+   its own corner radius so it reads as a panel beside the quotes. */
+.cta-band--boxed {
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: clamp(30px, 3.6vw, 46px);
+  /* It is no longer closing the page, so it does not need the page's vertical
+     rhythm on top of its own padding. */
+  margin: 0;
+}
+.cta-band--boxed .cta-band__inner { width: 100%; max-width: none; padding: 0; margin: 0; }
+.cta-band--boxed .cta-band__title { font-size: clamp(23px, 2.3vw, 31px); max-width: 18ch; }
+.cta-band--boxed .cta-band__body { max-width: 42ch; }
+.cta-band--boxed .cta-band__actions { flex-direction: column; align-items: stretch; }
+.cta-band--boxed .cta-band__actions .btn { justify-content: center; }
+@media (min-width: 520px) and (max-width: 999px) {
+  .cta-band--boxed .cta-band__actions { flex-direction: row; align-items: center; }
+  .cta-band--boxed .cta-band__actions .btn { flex: 0 1 auto; }
+}
 
 /* ── Events feature band ─────────────────────────────────────────────────────
    Dark, because it lands between the light services section and the alt-toned

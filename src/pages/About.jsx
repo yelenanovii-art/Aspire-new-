@@ -6,6 +6,7 @@ import Testimonials from '../components/Testimonials'
 import CTABand from '../components/CTABand'
 import { bookHref, bookAttrs, COMPANY, SITE_URL } from '../config'
 import { VALUES, STATS, TEAM, ABOUT_BAND } from '../data/site'
+import CountUp from '../components/CountUp'
 import { useJsonLd } from '../hooks/useJsonLd'
 
 export default function About() {
@@ -32,7 +33,10 @@ export default function About() {
         <div className="container">
           <p className="eyebrow reveal">About</p>
           <h1 className="page-hero__title reveal" style={{ '--delay': '60ms' }}>
-            Four specialists. <em>One plan.</em>
+            {/* Forced, not left to wrapping: the break has to hold at every
+                width, not only where the measure happens to run out. */}
+            Four specialists,<br />
+            <em>One plan.</em>
           </h1>
           <p className="lead reveal" style={{ '--delay': '120ms' }}>
             Aspire is a sales and marketing team for B2B tech companies, built in Barcelona
@@ -136,11 +140,17 @@ export default function About() {
           <SectionHead eyebrow="Track record" title="Where the numbers stand today." light />
           <div className="stat-grid">
             {STATS.map((s) => (
+              /* Routed through CountUp rather than Stat's own counter so this
+                 page matches the home page exactly — including leaving 2022
+                 alone, which Stat would otherwise count up to like a quantity. */
               <Stat
                 key={s.label}
-                value={s.value}
-                plain={s.plain}
-                suffix={s.suffix}
+                staticText={
+                  <CountUp
+                    value={s.plain ? String(s.value) : `${s.value.toLocaleString()}${s.suffix || ''}`}
+                    plain={s.plain}
+                  />
+                }
                 label={s.label}
                 dark
               />
@@ -149,18 +159,25 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container container--narrow">
-          <SectionHead eyebrow="In their words" title="What clients say afterwards." center />
-          <Testimonials />
+      {/* The quotes and the call to action used to stack, which left the
+          bottom of the page mostly empty. Side by side on desktop, stacked
+          again below it with the quotes first. */}
+      <section className="section about-close">
+        <div className="container about-close__grid">
+          <div className="about-close__quotes">
+            <SectionHead eyebrow="In their words" title="What clients say afterwards." />
+            <Testimonials />
+          </div>
+          <div className="about-close__cta">
+            <CTABand
+              boxed
+              title="Want to know if we are a fit?"
+              body="Fifteen minutes on a call will tell you. No deck, no pitch, no obligation."
+              secondary={{ to: '/work', label: 'See the client cases' }}
+            />
+          </div>
         </div>
       </section>
-
-      <CTABand
-        title="Want to know if we are a fit?"
-        body="Fifteen minutes on a call will tell you. No deck, no pitch, no obligation."
-        secondary={{ to: '/work', label: 'See the client cases' }}
-      />
     </>
   )
 }

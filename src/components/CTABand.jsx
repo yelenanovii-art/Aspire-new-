@@ -13,12 +13,15 @@ export default function CTABand({
   // Tags the primary action with the page it was clicked on, so the enquiry
   // lands in the right pipeline once it is finished on /contact.
   from,
+  // Renders as a card rather than a full-bleed band, for the one place it
+  // sits beside something else instead of closing the page.
+  boxed = false,
 }) {
   const glow = useGlow()
   return (
-    <section className="cta-band has-glow" ref={glow}>
+    <section className={`cta-band has-glow ${boxed ? 'cta-band--boxed' : ''}`} ref={glow}>
       <span className="glow-layer" aria-hidden="true" />
-      <div className="container cta-band__inner">
+      <div className={`${boxed ? '' : 'container '}cta-band__inner`}>
         <p className="eyebrow eyebrow--light reveal">{eyebrow}</p>
         <h2 className="cta-band__title reveal" style={{ '--delay': '60ms' }}>{title}</h2>
         <p className="cta-band__body reveal" style={{ '--delay': '110ms' }}>{body}</p>
