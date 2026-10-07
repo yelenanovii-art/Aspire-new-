@@ -7,6 +7,7 @@ import MediaSlot from '../components/MediaSlot'
 import { SITE_URL } from '../config'
 import { serviceBySlug, logoFor, TESTIMONIALS } from '../data/site'
 import { caseDetailFor } from '../data/caseDetail'
+import CaseStudyPremium from '../components/CaseStudyPremium'
 
 // One client engagement, at length.
 //
@@ -39,6 +40,10 @@ export default function CaseStudy({ c }) {
     publisher: { '@id': `${SITE_URL}/#organization` },
     articleSection: c.sector,
   })
+
+  // One case is built from its own layout. Everything below is the shared
+  // template the other six still use, unchanged.
+  if (d.layout === 'premium') return <CaseStudyPremium c={c} d={d} />
 
   return (
     <>

@@ -5096,3 +5096,218 @@
 .book__cta { margin-top: clamp(26px, 3vw, 34px); }
 .book__alt { margin: clamp(22px, 2.6vw, 30px) 0 0; font-size: 14.5px; color: var(--muted); }
 .book__alt a { color: var(--accent-600); font-weight: 600; }
+
+/* ── A case on its own layout ─────────────────────────────────────────────────
+   Used by RatTech. The shared template tells every engagement the same way so
+   they can be compared; this one is read by somebody deciding whether to enter
+   a market, where the numbers and the shape of the work persuade and a
+   narrative does not. Glass cards and the home page's gradient language, with
+   more air than the template allows.
+   ────────────────────────────────────────────────────────────────────────── */
+.cs2-head { padding-block: calc(var(--nav-h) + clamp(44px, 6vw, 76px)) clamp(10px, 1.6vw, 18px); background: var(--white); }
+.cs2-head__grid { display: grid; gap: clamp(26px, 4vw, 52px); align-items: center; }
+@media (min-width: 900px) {
+  /* The photograph is about a third, so the summary still leads. */
+  .cs2-head__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 0.46fr); }
+}
+.cs2-head__logo { margin-top: 18px; opacity: 0.9; }
+.cs2-head__client {
+  margin: 18px 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+.cs2-head__h {
+  margin: clamp(16px, 2vw, 22px) 0 0;
+  font-family: var(--display);
+  font-weight: var(--display-w-light);
+  font-size: clamp(27px, 3.6vw, 44px);
+  line-height: 1.1;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+.cs2-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: clamp(20px, 2.4vw, 26px) 0 0; }
+.cs2-tags li {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  border: 1px solid rgba(var(--accent-rgb), 0.28);
+  background: rgba(var(--accent-rgb), 0.05);
+  border-radius: 999px;
+  padding: 6px 13px;
+}
+.cs2-head__media {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 4 / 3;
+}
+.cs2-head__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── Results ──────────────────────────────────────────────────────────────── */
+.cs2-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+}
+.cs2-stat {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(130% 150% at 0% 0%, rgba(var(--accent-rgb), 0.09) 0%, transparent 62%),
+    var(--card-fill);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+@media (hover: hover) {
+  .cs2-stat:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(var(--accent-rgb), 0.1);
+    border-color: rgba(var(--accent-rgb), 0.3);
+  }
+}
+.cs2-stat__v {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(42px, 5.4vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: var(--accent-600);
+  font-variant-numeric: tabular-nums;
+}
+.cs2-stat__k { font-size: 15px; line-height: 1.5; color: var(--body); max-width: 26ch; }
+.cs2-stats__cap {
+  margin: clamp(16px, 2vw, 22px) 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+}
+
+/* ── Prose and headings ───────────────────────────────────────────────────── */
+.cs2-split { display: grid; gap: clamp(12px, 1.6vw, 18px); }
+@media (min-width: 900px) {
+  .cs2-split { grid-template-columns: minmax(0, 0.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 60px); align-items: start; }
+}
+.cs2-lede { font-size: clamp(17px, 1.9vw, 21px); line-height: 1.6; color: var(--ink-700); max-width: 60ch; }
+.cs2-h2 {
+  margin: 12px 0 clamp(28px, 3.6vw, 42px);
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(25px, 3vw, 38px);
+  letter-spacing: var(--display-ls);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* ── What we did ──────────────────────────────────────────────────────────── */
+.cs2-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+  gap: clamp(14px, 1.8vw, 20px);
+}
+.cs2-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: clamp(22px, 2.6vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(168deg, rgba(255, 255, 255, 0.9), #ffffff 60%),
+    var(--card-fill);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+@media (hover: hover) {
+  .cs2-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(var(--accent-rgb), 0.28);
+  }
+}
+.cs2-card__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  color: var(--accent-600);
+  background: rgba(var(--accent-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-rgb), 0.16);
+}
+.cs2-card__h { font-family: var(--sans); font-size: 16.5px; font-weight: 700; letter-spacing: -0.012em; color: var(--ink); }
+.cs2-card__p { font-size: 15px; line-height: 1.58; color: var(--body); }
+
+/* ── Timeline ─────────────────────────────────────────────────────────────── */
+.cs2-time { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(18px, 2.2vw, 26px); }
+@media (min-width: 860px) {
+  /* Horizontal on a wide screen, with the rule running through the markers. */
+  .cs2-time { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
+}
+.cs2-time__i { position: relative; display: grid; gap: 8px; align-content: start; padding-top: 26px; }
+.cs2-time__dot {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
+}
+/* The connector. Horizontal between markers on desktop, vertical on a phone. */
+.cs2-time__i::before {
+  content: "";
+  position: absolute;
+  background: var(--line-strong);
+}
+@media (min-width: 860px) {
+  .cs2-time__i::before { top: 8.5px; left: 14px; right: calc(clamp(12px, 1.6vw, 20px) * -1); height: 1px; }
+  .cs2-time__i:last-child::before { display: none; }
+}
+@media (max-width: 859px) {
+  .cs2-time__i { padding-left: 26px; padding-top: 0; }
+  .cs2-time__dot { top: 5px; }
+  .cs2-time__i::before { left: 4.5px; top: 19px; bottom: calc(clamp(18px, 2.2vw, 26px) * -1); width: 1px; }
+  .cs2-time__i:last-child::before { display: none; }
+}
+.cs2-time__n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent-600); }
+.cs2-time__t { font-family: var(--sans); font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--ink); letter-spacing: -0.012em; }
+
+/* ── In progress ──────────────────────────────────────────────────────────── */
+/* Visibly not a result: no figure, no card weight, a dashed edge and a live
+   marker, so it reads as something still running. */
+.cs2-next {
+  display: grid;
+  gap: 10px;
+  padding: clamp(22px, 2.6vw, 30px);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(var(--accent-rgb), 0.035);
+}
+.cs2-next__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+.cs2-next__pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: cs2pulse 2.4s ease-in-out infinite; }
+@keyframes cs2pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .cs2-next__pulse { animation: none; opacity: 0.8; } }
+.cs2-next__p { font-size: 16px; line-height: 1.55; color: var(--ink-700); max-width: 58ch; }

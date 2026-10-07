@@ -41,39 +41,50 @@ export const CASE_DETAIL = {
   },
 
   rattech: {
-    // No photography from either market yet.
-    photoTodo: { label: 'RatTech, Netherlands and UAE, photograph to follow', hint: 'TODO: image not yet supplied' },
-    metaTitle: 'RatTech: Go-to-Market for the Netherlands and the UAE',
+    // This page is built from its own layout, not the shared case template.
+    // See CaseStudyPremium.
+    layout: 'premium',
+    metaTitle: 'RatTech: Go-to-Market for Dubai and the Netherlands',
     metaDesc:
-      'How Aspire built RatTech go-to-market strategies for two new markets and booked around 60 meetings in one week in the UAE.',
+      'How Aspire took RatTech to market in Dubai and the Netherlands: strategy, pitch, sales materials and a week of meetings that produced five pilots.',
+    tags: ['Go-To-Market', 'Dubai', 'Netherlands'],
     summary:
-      'A Danish product with a proven home market, and two new countries that buy nothing the same way.',
+      'We took RatTech to market in Dubai and the Netherlands, from first pitch deck to signed pilots, with the UK lined up next.',
+    photo: {
+      src: '/media/work/rattech.webp',
+      w: 880,
+      h: 660,
+      alt: 'A RatTech technician beside a branded service van',
+    },
+    stats: [
+      { v: '90%', k: 'follow-up rate after the first week of meetings' },
+      { v: '30%', k: 'of meetings turned into qualified opportunities' },
+      { v: '5', k: 'deals or pilots agreed' },
+    ],
+    statsCaption: 'Measured after one week of meetings in Dubai.',
     challenge:
-      'RatTech sells digital, poison free rat control, and it works in Denmark. Neither the Netherlands nor the UAE buys it the way Denmark does. The buyers are different, the channels are different, and in the UAE the decision sits with property developers, private investors and mall operators rather than municipalities. Taking the Danish plan abroad unchanged would have tested the wrong message on the wrong people and called the result a market problem.',
-    approach: [
-      {
-        h: 'Two plans, not one translated',
-        p: 'Market and competitor research for each country, then the buyer map that goes with it. Who signs in the Netherlands is not who signs in the UAE, so the positioning, the pricing conversation and the proof points were written twice.',
-      },
-      {
-        h: 'A named list, not a scraped one',
-        p: 'Target accounts researched against the profile rather than filtered from a database: developers with portfolios where the problem is expensive, investors with exposure to it, and operators who feel it daily.',
-      },
-      {
-        h: 'Worked the list in person',
-        p: 'In the UAE we ran the outreach and then the week itself, booking into a calendar rather than collecting interest. Around sixty meetings inside one week, with the people who can actually sign.',
-      },
+      'RatTech had a strong product but no go-to-market structure for new markets: no sales materials, no pitch, and no local presence in Dubai or the Netherlands.',
+    did: [
+      { icon: 'map', h: 'Go-to-market strategy', p: 'Market entry plan for Dubai and the Netherlands, with the UK as a potential next market.' },
+      { icon: 'team', h: 'Sales enablement', p: 'Built the pitch and prepared the team on how to sell it.' },
+      { icon: 'deck', h: 'Pitch decks', p: 'Multiple decks tailored to different audiences.' },
+      { icon: 'doc', h: 'Sales materials', p: 'Flyers, info sheets and supporting documents.' },
+      { icon: 'social', h: 'Social media', p: 'Launched and started posting on their channels.' },
+      { icon: 'web', h: 'Website', p: 'Designed and built the website.' },
     ],
-    outcome: [
-      'Around 60 meetings booked in one week in the UAE, with property developers, private investors and shopping mall operators.',
-      'Follow up rate after the week: [FOLLOW_UP_RATE]',
-      'Qualified opportunities from those meetings: [QUALIFIED_OPPORTUNITIES]',
-      'Deals or pilots agreed: [DEALS_OR_PILOTS]',
-      'Netherlands result: [NL_RESULT]',
-      'Measured over: [TIMEFRAME]',
+    timeline: [
+      'Strategy and positioning',
+      'Materials and pitch built',
+      'Team prepared to sell',
+      'One week of meetings in Dubai',
+      'Follow-ups and pilots',
     ],
+    next: 'Netherlands results are in the making, with the UK as a potential next market.',
+    cta: {
+      title: "Entering a new market? Let's build your go-to-market.",
+      label: 'Book a free call',
+    },
   },
-
   siltest: {
     metaTitle: 'SilTest Semiconductors: Two Years of Compounding B2B Growth',
     metaDesc:
