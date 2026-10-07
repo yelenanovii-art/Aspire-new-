@@ -4537,6 +4537,20 @@
   line-height: 1.62;
 }
 .sched .slot { margin-top: 8px; }
+
+/* The drawn phase panels. A framed surface rather than a loose drawing, so the
+   row still reads as three plates even though nothing in them is photographic. */
+.phaseart {
+  display: block;
+  margin-top: clamp(14px, 1.8vw, 20px);
+  padding: clamp(10px, 1.4vw, 16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(120% 140% at 12% 0%, rgba(var(--accent-rgb), 0.16) 0%, transparent 62%),
+    rgba(255, 255, 255, 0.025);
+}
+.phaseart svg { display: block; width: 100%; height: auto; }
 /* The empty frame has to be legible on the dark ground too, or it reads as a
    gap in the section rather than a reserved plate. */
 .sched .slot--empty {

@@ -1,6 +1,7 @@
 import { ArrowRight, Check } from '../components/Icons'
 import SectionHead from '../components/SectionHead'
 import MediaSlot from '../components/MediaSlot'
+import PhaseArt from '../components/PhaseArt'
 import CaseCard from '../components/CaseCard'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
@@ -261,16 +262,10 @@ export default function ServiceDetail({ service }) {
                   <span className="sched__n" aria-hidden="true">{ph.n}</span>
                   <h3 className="sched__h">{ph.h}</h3>
                   <p className="sched__p">{ph.p}</p>
-                  {/* Only where the photographs are genuinely outstanding.
-                      Reserving a frame on every service would put fifteen
-                      empty boxes on the site to hold space nobody is filling. */}
-                  {s.phasePhotos && (
-                    <MediaSlot
-                      ratio="21 / 9"
-                      label={`${ph.h}, photograph to follow`}
-                      hint="TODO: image not yet supplied"
-                    />
-                  )}
+                  {/* Drawn, not photographed. A picture of a strategy phase is
+                      always people at a table, which says nothing; a diagram
+                      can say what the paragraph beside it claims. */}
+                  {s.phaseArt && <PhaseArt n={ph.n} />}
                 </li>
               ))}
             </ol>

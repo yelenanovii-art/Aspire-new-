@@ -144,9 +144,8 @@ export const SERVICES = [
     scheduleEyebrow: 'How it runs',
     scheduleTitle: 'Three phases, ninety days.',
     scheduleKind: 'rail',
-    // The only service whose phase photographs are still outstanding, so the
-    // only one that reserves frames for them.
-    phasePhotos: true,
+    // Each phase carries a drawing rather than a photograph. See PhaseArt.
+    phaseArt: true,
     quiz: { to: '/services/go-to-market/quiz', label: 'Check your GTM readiness', note: 'Seven questions, two minutes, a score and three next steps.' },
     proof: { caseSlugs: ['rattech', 'bunq', 'siltest'] },
     faq: [
