@@ -21,6 +21,7 @@ import Fit from './pages/Fit'
 import CaseStudy from './pages/CaseStudy'
 import Insights from './pages/Insights'
 import Article from './pages/Article'
+import Book from './pages/Book'
 import AiPromo from './components/AiPromo'
 import CookieConsent from './components/CookieConsent'
 import { SERVICES, CASES } from './data/site'
@@ -40,6 +41,7 @@ const ROUTES = {
   '/work': Work,
   '/about': About,
   '/contact': Contact,
+  '/book': Book,
   '/privacy': Privacy,
   '/terms': Terms,
   '/cookies': Cookies,

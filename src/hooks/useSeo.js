@@ -71,6 +71,13 @@ const META = {
     d: 'Tell us where growth is stuck. We reply within one business day to book your free 15 minute call. No obligation, and you leave with a view either way.',
     k: 'contact Aspire, discovery call, B2B growth consultation Barcelona',
   },
+  // Noindex (see below), but it still needs its own title: without an entry
+  // here it inherits the home page's, which is what a visitor sees in the tab
+  // for the second it is on screen.
+  '/book': {
+    t: 'Book a Discovery Call',
+    d: 'Opening the booking calendar for a free fifteen minute discovery call with Aspire.',
+  },
   [`/${ESTATE.slug}`]: { t: ESTATE.metaTitle, d: ESTATE.metaDesc, k: ESTATE.keywords },
   [`/${AI.slug}`]: { t: AI.metaTitle, d: AI.metaDesc, k: AI.keywords },
   '/cookies': {
@@ -265,7 +272,10 @@ export function useSeo(path, known = true) {
     document.title = (known ? m.t : 'Page Not Found') + BRAND_SUFFIX
     setMeta('description', known ? m.d : 'The page you are looking for could not be found.')
     setMeta('keywords', (known && m.k) || '')
-    setMeta('robots', known ? 'index, follow, max-image-preview:large, max-snippet:-1' : 'noindex, follow')
+    // /book forwards to the calendar. Indexing a turnstile puts it in results
+    // ahead of the page that explains what the call is for.
+    const indexable = known && path !== '/book'
+    setMeta('robots', indexable ? 'index, follow, max-image-preview:large, max-snippet:-1' : 'noindex, follow')
 
     setLink('canonical', url)
     setLink('alternate', url, 'en')

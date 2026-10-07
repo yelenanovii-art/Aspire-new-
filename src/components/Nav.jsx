@@ -172,10 +172,22 @@ export default function Nav({ path, onDark = false }) {
         </div>
       </div>
 
-      {/* Mobile drawer: the same two groups, so the structure is identical on
-          both, rather than a flat list on small screens. */}
+      {/* Mobile drawer: the same groups as the desktop panel, reordered so the
+          four pages people hunt for in a menu are the four at the top. */}
       <div className="nav__drawer" role="dialog" aria-modal="true" aria-hidden={!open}>
         <div className="nav__drawer-scroll">
+          {/* Company first on a phone. The desktop bar can show nine service
+              links and four top level ones at once; the drawer cannot, and
+              putting the nine first meant Work, Insights, About and Contact
+              were below the fold of the menu itself. */}
+          <div className="nav__drawer-group">
+            <div className="nav__drawer-h">Company</div>
+            {NAV.filter((n) => n.type === 'link').map((n, i) => (
+              <a key={n.to} href={n.to} className={`nav__drawer-link ${isActive(n.to) ? 'is-active' : ''}`} style={{ '--i': i }}>
+                {n.label}
+              </a>
+            ))}
+          </div>
           {NAV.filter((n) => n.type === 'mega').map((n) =>
             n.columns.map((col) => (
               <div className="nav__drawer-group" key={col.heading}>
@@ -188,14 +200,6 @@ export default function Nav({ path, onDark = false }) {
               </div>
             ))
           )}
-          <div className="nav__drawer-group">
-            <div className="nav__drawer-h">Company</div>
-            {NAV.filter((n) => n.type === 'link').map((n, i) => (
-              <a key={n.to} href={n.to} className={`nav__drawer-link ${isActive(n.to) ? 'is-active' : ''}`} style={{ '--i': i }}>
-                {n.label}
-              </a>
-            ))}
-          </div>
         </div>
         <a className="btn btn-accent nav__drawer-cta" href={bookHref} {...bookAttrs}>
           Book a free call <ArrowRight />

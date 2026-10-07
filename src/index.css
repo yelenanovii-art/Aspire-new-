@@ -295,6 +295,14 @@ strong { font-weight: 700; color: var(--ink); }
 .btn-sm { padding: 10px 19px; font-size: 14px; }
 .btn-lg { padding: 16px 32px; font-size: 15.5px; }
 
+/* Below this, nowrap turns the longest label into the thing that decides the
+   width of whatever contains it. Two lines on a 320px phone is better than a
+   button that pushes its own card off the screen. */
+@media (max-width: 380px) {
+  .btn { white-space: normal; text-align: center; }
+  .btn-lg { padding-inline: 20px; }
+}
+
 .btn-accent { background: var(--accent); color: #fff; }
 .btn-accent:hover { background: var(--accent-hover); box-shadow: var(--shadow-accent); transform: translateY(-2px); }
 

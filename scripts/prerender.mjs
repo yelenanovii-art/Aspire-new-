@@ -37,6 +37,9 @@ const ROUTES = [
   '/about',
   '/fit',
   '/contact',
+  // A turnstile in front of the booking calendar, not a landing page: it is
+  // prerendered so a direct hit works, and excluded from the sitemap below.
+  '/book',
   '/privacy',
   '/terms',
   '/cookies',
@@ -48,6 +51,8 @@ const PRIORITY = {
   [`/${ESTATE.slug}`]: '0.9', [`/${AI.slug}`]: '0.9',
   '/work': '0.8', '/about': '0.8',
 }
+// Pages that exist but should not be offered to search.
+const NO_INDEX = new Set(['/book'])
 const priorityFor = (r) => PRIORITY[r] || (r.startsWith('/services/') ? '0.85' : '0.3')
 const changefreqFor = (r) => (r === '/' ? 'weekly' : /^\/(privacy|terms|cookies)$/.test(r) ? 'yearly' : 'monthly')
 
@@ -90,7 +95,7 @@ const sitemap =
   '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' +
   ' xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
-  ROUTES.map(
+  ROUTES.filter((r) => !NO_INDEX.has(r)).map(
     (r) =>
       `  <url><loc>${SITE_URL}${r === '/' ? '/' : r}</loc><lastmod>${today}</lastmod>` +
       `<changefreq>${changefreqFor(r)}</changefreq><priority>${priorityFor(r)}</priority>` +

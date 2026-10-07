@@ -26,9 +26,16 @@ const BOOKING_URL_RAW =
 const isPlaceholder = (u) => !u || /your-|example|placeholder|calendly\.com\/$/i.test(u)
 export const BOOKING_URL = isPlaceholder(BOOKING_URL_RAW) ? '' : BOOKING_URL_RAW
 
-// Convenience for CTA components: href + the attrs an external link needs.
-export const bookHref = BOOKING_URL || '/contact'
-export const bookAttrs = BOOKING_URL ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+// Convenience for CTA components.
+//
+// These point at /book rather than at the calendar directly. /book is a real
+// page on this domain that forwards to the calendar, which means Netlify
+// Analytics counts it: without that step the one action the site exists to
+// produce happens off-site and is invisible. BOOKING_URL stays the single
+// place the calendar address lives.
+export const bookHref = BOOKING_URL ? '/book' : '/contact'
+// Same tab. It is our own page now, and a new tab would hide the hand-off.
+export const bookAttrs = {}
 
 // The same booking action, tagged with where it was clicked, so an enquiry
 // finished on /contact still records the page that sent it.
@@ -39,8 +46,9 @@ export const bookAttrs = BOOKING_URL ? { target: '_blank', rel: 'noopener norefe
 // meeting beats a form fill) but it does mean the property and charter form
 // loses the CTA route into it. The other two routes still hold: a submission
 // made on /real-estate, and the two estate options in the interest select.
+// ?from= rides along so the referrer in the log says which page sent them.
 export const bookHrefFrom = (origin) =>
-  BOOKING_URL ? bookHref : `/contact?from=${encodeURIComponent(origin)}`
+  BOOKING_URL ? `/book?from=${encodeURIComponent(origin)}` : `/contact?from=${encodeURIComponent(origin)}`
 
 // ── Social profiles (footer) ────────────────────────────────────────────────
 // Paste the real profile URLs here (or set VITE_SOCIAL_* in .env.local). Until
