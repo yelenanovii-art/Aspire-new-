@@ -51,6 +51,36 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* The calendar, in the page rather than a tab away.
+          Loaded lazily and only where there is room for it: an iframe this tall
+          on a phone is a scroll trap inside a scroll, so below 860px the page
+          keeps the link to /book instead. It is the one third party frame the
+          CSP allows, named explicitly rather than by a wildcard. */}
+      {BOOKING_URL && (
+        <section className="section section--tight calembed">
+          <div className="container">
+            <div className="calembed__head">
+              <p className="eyebrow">Or pick a slot now</p>
+              <h2 className="calembed__h">Rather just pick a time?</h2>
+            </div>
+            {/* Not an iframe. Google serves x-frame-options: SAMEORIGIN on the
+                booking page and on the calendar it redirects to, so an embed
+                renders blank for everyone. This is the nearest honest thing:
+                the slot picker is one tap away and says so. */}
+            <a className="calembed__card" href="/book/">
+              <span className="calembed__card-body">
+                <span className="calembed__card-h">Open the booking calendar</span>
+                <span className="calembed__card-p">
+                  Live availability, fifteen minutes, no prep. Pick a slot and it is in both
+                  diaries straight away.
+                </span>
+              </span>
+              <span className="calembed__card-go"><ArrowRight size={18} /></span>
+            </a>
+          </div>
+        </section>
+      )}
+
 
       <section className="section section--alt">
         <div className="container container--narrow">

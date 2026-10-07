@@ -40,6 +40,7 @@ const ROUTES = [
   // A turnstile in front of the booking calendar, not a landing page: it is
   // prerendered so a direct hit works, and excluded from the sitemap below.
   '/book',
+  '/thank-you',
   '/privacy',
   '/terms',
   '/cookies',
@@ -52,7 +53,7 @@ const PRIORITY = {
   '/work': '0.8', '/about': '0.8',
 }
 // Pages that exist but should not be offered to search.
-const NO_INDEX = new Set(['/book'])
+const NO_INDEX = new Set(['/book', '/thank-you'])
 const priorityFor = (r) => PRIORITY[r] || (r.startsWith('/services/') ? '0.85' : '0.3')
 const changefreqFor = (r) => (r === '/' ? 'weekly' : /^\/(privacy|terms|cookies)$/.test(r) ? 'yearly' : 'monthly')
 

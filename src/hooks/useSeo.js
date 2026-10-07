@@ -78,6 +78,10 @@ const META = {
     t: 'Book a Discovery Call',
     d: 'Opening the booking calendar for a free fifteen minute discovery call with Aspire.',
   },
+  '/thank-you': {
+    t: 'Thank You',
+    d: 'Your message is with the Aspire team. We reply within one business day.',
+  },
   [`/${ESTATE.slug}`]: { t: ESTATE.metaTitle, d: ESTATE.metaDesc, k: ESTATE.keywords },
   [`/${AI.slug}`]: { t: AI.metaTitle, d: AI.metaDesc, k: AI.keywords },
   '/cookies': {
@@ -294,7 +298,7 @@ export function useSeo(path, known = true) {
     setMeta('keywords', (known && m.k) || '')
     // /book forwards to the calendar. Indexing a turnstile puts it in results
     // ahead of the page that explains what the call is for.
-    const indexable = known && path !== '/book'
+    const indexable = known && path !== '/book' && path !== '/thank-you'
     setMeta('robots', indexable ? 'index, follow, max-image-preview:large, max-snippet:-1' : 'noindex, follow')
 
     setLink('canonical', url)

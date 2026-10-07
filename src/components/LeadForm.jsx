@@ -8,11 +8,14 @@ import { SERVICES } from '../data/site'
 
 // Reusable lead-capture form. Submissions go to the endpoint configured in
 // src/config.js, or to Netlify Forms as a fallback.
+// `ac` is the autocomplete token. Without them a browser cannot offer a saved
+// name, company, address or number, so every visitor types all four by hand on
+// a phone keyboard, which is where most abandoned forms are abandoned.
 const FIELD_DEFS = {
-  name: { label: 'Your name', type: 'text', required: true, ph: 'Jane Doe' },
-  company: { label: 'Company', type: 'text', ph: 'Acme B.V.' },
-  email: { label: 'Email', type: 'email', required: true, ph: 'jane@acme.com' },
-  phone: { label: 'Phone', type: 'tel', ph: '+34 …' },
+  name: { label: 'Your name', type: 'text', required: true, ph: 'Jane Doe', ac: 'name' },
+  company: { label: 'Company', type: 'text', ph: 'Acme B.V.', ac: 'organization' },
+  email: { label: 'Email', type: 'email', required: true, ph: 'jane@acme.com', ac: 'email' },
+  phone: { label: 'Phone', type: 'tel', ph: '+34 …', ac: 'tel' },
   interest: {
     label: 'What are you interested in?',
     type: 'select',
@@ -49,6 +52,15 @@ function mailtoFallback(to, subject, data) {
 // Fields that sit nicely two-up on wide screens.
 const PAIR = new Set(['name', 'company', 'email', 'phone'])
 
+// ?interest=events opens the form on that option, so a visitor who clicked an
+// events CTA is not asked what they are interested in straight afterwards.
+// Ignored unless it matches a real option, so a stray query cannot blank it.
+function interestFromQuery() {
+  if (typeof window === 'undefined') return undefined
+  const v = new URLSearchParams(window.location.search).get('interest')
+  return v && FIELD_DEFS.interest.options.some(([k]) => k === v) ? v : undefined
+}
+
 export default function LeadForm({
   fields = ['name', 'company', 'email', 'phone', 'interest', 'message'],
   submitLabel = 'Book my free discovery call',
@@ -65,6 +77,7 @@ export default function LeadForm({
   onSuccess,
 }) {
   const [sent, setSent] = useState(false)
+  const presetInterest = interestFromQuery()
   const [status, setStatus] = useState('idle') // idle | sending | error
   // Kept so a failed send can still be rescued as a pre-filled email rather
   // than asking someone to type everything a second time.
@@ -101,7 +114,10 @@ export default function LeadForm({
         interest: data.interest,
       })
       if (onSuccess) onSuccess({ delivered: true })
-      else setSent(true)
+      else {
+        // A real page, so the conversion can be counted and pointed at.
+        window.location.assign('/thank-you/?f=' + encodeURIComponent(source || 'contact'))
+      }
     } else {
       // Delivery is our problem, not the visitor's. Where the form buys
       // something — the quiz trades an email for a plan — hand over what was
@@ -157,7 +173,7 @@ export default function LeadForm({
       {rows.map((row, i) => (
         <div key={i} className={row.length === 2 ? 'field-row' : ''}>
           {row.map((f) => (
-            <Field key={f} name={f} def={FIELD_DEFS[f]} />
+            <Field key={f} name={f} def={f === 'interest' ? { ...FIELD_DEFS.interest, initial: presetInterest } : FIELD_DEFS[f]} />
           ))}
         </div>
       ))}
@@ -192,13 +208,14 @@ function Field({ name, def }) {
       {def.type === 'textarea' ? (
         <textarea id={id} name={name} rows="4" placeholder={def.ph} required={def.required} />
       ) : def.type === 'select' ? (
-        <select id={id} name={name} defaultValue={def.options[0][0]}>
+        <select id={id} name={name} defaultValue={def.initial || def.options[0][0]} autoComplete="off">
           {def.options.map(([v, label]) => (
             <option key={v} value={v}>{label}</option>
           ))}
         </select>
       ) : (
-        <input id={id} name={name} type={def.type} placeholder={def.ph} required={def.required} />
+        <input id={id} name={name} type={def.type} placeholder={def.ph} required={def.required}
+               autoComplete={def.ac} />
       )}
     </div>
   )

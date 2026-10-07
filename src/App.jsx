@@ -22,6 +22,7 @@ import CaseStudy from './pages/CaseStudy'
 import Insights from './pages/Insights'
 import Article from './pages/Article'
 import Book from './pages/Book'
+import ThankYou from './pages/ThankYou'
 import BookBar from './components/BookBar'
 import { initAnalytics, trackBookingClicks } from './lib/analytics'
 import AiPromo from './components/AiPromo'
@@ -44,6 +45,7 @@ const ROUTES = {
   '/about': About,
   '/contact': Contact,
   '/book': Book,
+  '/thank-you': ThankYou,
   '/privacy': Privacy,
   '/terms': Terms,
   '/cookies': Cookies,

@@ -89,3 +89,11 @@ export const COMPANY = {
 // FORM_ENDPOINT to 'https://api.web3forms.com/submit' and put the key here:
 //   export const FORM_EXTRA = { access_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' }
 export const FORM_EXTRA = {}
+
+// Open the contact form with the interest select already on a value, so a
+// visitor who clicked an events CTA is not asked what they are interested in
+// immediately after saying so. The value has to match an option in
+// FIELD_DEFS.interest, which is generated from SERVICES.
+export const contactHrefFor = (interest, from) =>
+  `/contact/?interest=${encodeURIComponent(interest)}` +
+  (from ? `&from=${encodeURIComponent(from)}` : '')

@@ -124,9 +124,9 @@ export default function GtmQuiz() {
               </p>
               <div className="field-row">
                 <label className="field"><span>Name <span className="req">*</span></span>
-                  <input type="text" name="name" required placeholder="Jane Doe" /></label>
+                  <input type="text" name="name" required placeholder="Jane Doe" autoComplete="name" /></label>
                 <label className="field"><span>Work email <span className="req">*</span></span>
-                  <input type="email" name="email" required placeholder="jane@acme.com" /></label>
+                  <input type="email" name="email" required placeholder="jane@acme.com" autoComplete="email" /></label>
               </div>
               {/* Seven answers say what stage they are at. These say who is
                   asking, which is what makes the reply worth reading: the site
@@ -136,13 +136,13 @@ export default function GtmQuiz() {
                   three, so the form stays short enough to finish. */}
               <div className="field-row">
                 <label className="field"><span>Company <span className="req">*</span></span>
-                  <input type="text" name="company" required placeholder="Acme B.V." /></label>
+                  <input type="text" name="company" required placeholder="Acme B.V." autoComplete="organization" /></label>
                 <label className="field"><span>Company website <span className="req">*</span></span>
-                  <input type="url" name="website" required placeholder="https://acme.com" /></label>
+                  <input type="url" name="website" required placeholder="https://acme.com" autoComplete="url" /></label>
               </div>
               <div className="field-row">
                 <label className="field"><span>Your role</span>
-                  <input type="text" name="role" placeholder="Head of Growth" /></label>
+                  <input type="text" name="role" placeholder="Head of Growth" autoComplete="organization-title" /></label>
                 <label className="field"><span>Which is this? <span className="req">*</span></span>
                   <select name="gtm_type" required defaultValue="">
                     <option value="" disabled>Choose one</option>

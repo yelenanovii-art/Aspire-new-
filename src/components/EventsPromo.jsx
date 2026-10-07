@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowRight } from './Icons'
-import { bookHref, bookAttrs } from '../config'
+import { contactHrefFor } from '../config'
 import { EVENTS_PROMO as P } from '../data/eventsPromo'
 import { dismissedRecently, recordDismissal } from '../lib/promoDismiss'
 
@@ -99,7 +99,7 @@ export default function EventsPromo() {
             <span className="promo__stat-v">{P.statValue}</span>
             <span className="promo__stat-k">{P.statLabel}</span>
           </p>
-          <a className="btn btn-accent btn-lg promo__cta" href={bookHref} {...bookAttrs} onClick={close}>
+          <a className="btn btn-accent btn-lg promo__cta" href={contactHrefFor('events', 'events-popup')} onClick={close}>
             {P.ctaLabel} <ArrowRight />
           </a>
           {P.ctaNote && <p className="promo__note">{P.ctaNote}</p>}

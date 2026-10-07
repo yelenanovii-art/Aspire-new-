@@ -1,5 +1,5 @@
 import { ArrowRight } from './Icons'
-import { bookHref, bookAttrs } from '../config'
+import { contactHrefFor } from '../config'
 import { serviceBySlug } from '../data/site'
 
 // A feature band for the events practice.
@@ -35,7 +35,9 @@ export default function EventsBand() {
             <a className="btn btn-accent btn-lg" href={`/services/${s.slug}/`}>
               See how it works <ArrowRight />
             </a>
-            <a className="btn btn-outline-light btn-lg" href={bookHref} {...bookAttrs}>
+            {/* Carries the interest through rather than dropping the visitor
+                on a generic form that asks what they just told us. */}
+            <a className="btn btn-outline-light btn-lg" href={contactHrefFor('events', 'events-band')}>
               Book the week
             </a>
           </div>
