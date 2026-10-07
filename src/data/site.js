@@ -57,7 +57,9 @@ export const COMPARE = {
       label: 'What it costs',
       hire: 'One salary, plus tooling, plus recruitment',
       agency: 'Monthly retainer, usually on a year contract',
-      aspire: 'Scoped to the work. Pricing on request',
+      // TODO: replace [FROM_PRICE]. It is the only figure on the site that is
+      // not real, and it renders as a visible token so it cannot ship unnoticed.
+      aspire: 'Scoped to the work. From [FROM_PRICE] per month',
     },
     {
       label: 'Who does the work',
@@ -146,7 +148,7 @@ export const SERVICES = [
     scheduleKind: 'rail',
     // Each phase carries a drawing rather than a photograph. See PhaseArt.
     phaseArt: true,
-    quiz: { to: '/services/go-to-market/quiz', label: 'Check your GTM readiness', note: 'Seven questions, two minutes, a score and three next steps.' },
+    quiz: { to: '/services/go-to-market/quiz/', label: 'Check your GTM readiness', note: 'Seven questions, two minutes, a score and three next steps.' },
     proof: { caseSlugs: ['rattech', 'bunq', 'siltest'] },
     faq: [
       { q: 'How long does a go-to-market plan take?', a: 'Four to six weeks for the plan itself, depending on how much research the market needs. The ninety day roadmap starts the moment it is signed off.' },
@@ -679,10 +681,12 @@ export const TEAM = [
     initials: 'NS',
     role: 'Marketing consultant',
     discipline: 'Strategy and campaigns',
-    bio: 'Digital marketing degree in London, then a specialism in paid acquisition. Runs anything with a budget attached to it.',
+    bio: 'Digital marketing degree in London. Owns the strategy and the campaigns: what gets said, to whom, on which channel, and what the month is meant to produce.',
   },
   {
     name: 'Selin Sehin',
+    // TODO: confirm with Selin. Written from the role alone.
+    bio: 'Runs the paid side: budgets, targeting, and the creative that goes against them. Reports on what each channel actually returned rather than on impressions.',
     photo: '/photos/team/selin-sehin.webp',
     initials: 'SS',
     role: 'Ads specialist',
@@ -691,6 +695,9 @@ export const TEAM = [
   },
   {
     name: 'Mattis Maerz',
+    // TODO: photograph not supplied. Drop a file at this path and the card
+    // swaps from initials to a portrait with no other change needed.
+    photoTodo: '/photos/team/mattis-maerz.webp',
     initials: 'MM',
     role: 'AI systems',
     discipline: 'Custom dashboards and integrations',
@@ -829,9 +836,10 @@ export const STATS = [
 // Live performance figures, shown in the hero panel. VERIFY before launch:
 // these are averages across client accounts and move over time.
 export const PERFORMANCE = {
-  leads: { value: '500+', label: 'Qualified leads captured', note: 'Last 30 days' },
-  engagement: { value: '8%', label: 'Avg. engagement rate', note: 'Above industry average' },
-  conversion: { value: '12%', label: 'Avg. sales conversion', note: 'Across managed accounts' },
+  // Each figure says where it came from. A number with no source is a claim.
+  leads: { value: '500+', label: 'Qualified leads captured', note: 'Across managed accounts, last 30 days' },
+  engagement: { value: '8%', label: 'Avg. engagement rate', note: 'Managed social accounts, rolling 90 days' },
+  conversion: { value: '12%', label: 'Avg. sales conversion', note: 'Meetings to opportunity, last 12 months' },
   // Shape of the BUNQ onboarding curve, used by the hero sparkline.
   curve: [4, 9, 14, 26, 38, 47, 61, 74, 83, 94, 100],
 }
@@ -872,7 +880,7 @@ export const STEPS = [
 export const VALUES = [
   {
     title: 'Specialists, not generalists',
-    body: 'Four people, each with their own discipline. The person shooting your video is not the person managing your pipeline, and neither of them is learning on your account.',
+    body: 'Five people, each with their own discipline. The person shooting your video is not the person managing your pipeline, and neither of them is learning on your account.',
   },
   {
     title: 'Strategies built on your data',
@@ -894,6 +902,8 @@ export const TESTIMONIALS = [
     quote:
       'I was struggling with the direction of my marketing strategy, so I worked with Aspire to create one that was fully personalised. Elena built a clear step by step strategy that was easy to implement, and we have seen a lot of growth, especially on LinkedIn.',
     short: 'Elena built a clear step by step strategy that was easy to implement. We have seen a lot of growth, especially on LinkedIn.',
+    // TODO: the real name and job title. Credited to the company until then,
+    // which is weaker proof than a named person but is not invented.
     name: 'RCK Consulting',
     role: 'Tech consulting',
     company: 'RCK Consulting',
@@ -917,6 +927,7 @@ export const TESTIMONIALS = [
     quote:
       'Elena is very professional, very experienced and the best in her field. With her creative ideas and expertise she will help you achieve your results. She created my website and helped with everything that comes with it. I could not be happier.',
     short: 'Very professional, very experienced, and the best in her field.',
+    // TODO: the real name and job title.
     name: 'Coaching BV',
     role: 'Coaching',
     initials: 'CB',
@@ -929,7 +940,7 @@ export const TESTIMONIALS = [
 export const FAQ = [
   {
     q: 'What does an engagement cost?',
-    a: 'It depends on scope, and we would rather scope it properly than quote blind. Pricing is on request and the free 15 minute call exists to work out what you actually need first.',
+    a: 'Engagements start from [FROM_PRICE] per month and are scoped to the work rather than sold as a fixed package. We would rather scope it properly than quote blind, which is what the free 15 minute call is for.',
   },
   {
     q: 'Do we have to buy all six services?',

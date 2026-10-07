@@ -95,7 +95,7 @@ export default function ServiceCarousel() {
                 <ul className="svcx__points">
                   {s.includes.slice(0, 3).map((inc) => <li key={inc.h}>{inc.h}</li>)}
                 </ul>
-                <a className="svcx__more" href={`/services/${s.slug}`} tabIndex={d === 0 ? 0 : -1}>
+                <a className="svcx__more" href={`/services/${s.slug}/`} tabIndex={d === 0 ? 0 : -1}>
                   <span aria-hidden="true">Learn more</span>
                   <span className="sr-only">Learn more about {s.title}</span>
                   <ArrowRight size={15} />

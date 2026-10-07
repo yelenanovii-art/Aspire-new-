@@ -15,7 +15,13 @@ export default function Team({ compact = false, photos = true }) {
               {m.photo ? (
                 <img src={m.photo} alt={m.name} width="800" height="1000" loading="lazy" />
               ) : (
-                <span className="team__avatar" aria-hidden="true">{m.initials}</span>
+                /* A portrait is reserved where one is outstanding, so the card
+                   is visibly waiting for a file rather than quietly settling for
+                   initials. Set `photo` in the data and this disappears. */
+                <span className={'team__avatar' + (m.photoTodo ? ' team__avatar--todo' : '')} aria-hidden="true">
+                  {m.initials}
+                  {m.photoTodo && <span className="team__todo">Photo to follow</span>}
+                </span>
               )}
             </div>
           )}

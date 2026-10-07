@@ -19,14 +19,14 @@ export default function Insights() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Insights',
-    url: `${SITE_URL}/insights`,
+    url: `${SITE_URL}/insights/`,
     description:
       'Written pieces on B2B sales, social for technical audiences, trade shows, CRM and market entry, from the engagements we run.',
     publisher: { '@id': `${SITE_URL}/#organization` },
     hasPart: INSIGHTS_BY_DATE.map((a) => ({
       '@type': 'Article',
       headline: a.title,
-      url: `${SITE_URL}/insights/${a.slug}`,
+      url: `${SITE_URL}/insights/${a.slug}/`,
       datePublished: a.date,
       description: a.dek,
     })),
@@ -51,7 +51,7 @@ export default function Insights() {
           <ul className="posts">
             {INSIGHTS_BY_DATE.map((a, i) => (
               <li className="posts__item reveal" key={a.slug} style={{ '--delay': `${i * 60}ms` }}>
-                <a className="posts__link" href={`/insights/${a.slug}`}>
+                <a className="posts__link" href={`/insights/${a.slug}/`}>
                   <div className="posts__meta">
                     <time dateTime={a.date}>{fmt(a.date)}</time>
                     <span aria-hidden="true">·</span>
@@ -83,7 +83,7 @@ export default function Insights() {
             center
           />
           <p className="fit__foot">
-            <a className="link-arrow" href="/fit">Find your match <ArrowRight /></a>
+            <a className="link-arrow" href="/fit/">Find your match <ArrowRight /></a>
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function Insights() {
       <CTABand
         title="Something here sound familiar?"
         body="Tell us where growth is stuck and we will come back with a plan, whether or not you run it with us. Fifteen minutes, free."
-        secondary={{ to: '/work', label: 'See the client cases' }}
+        secondary={{ to: '/work/', label: 'See the client cases' }}
         from="insights"
       />
     </>

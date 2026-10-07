@@ -30,7 +30,7 @@ export default function CookieConsent() {
         <p className="consent__text">
           We use only what the site needs to work. Allow analytics and we load Plausible,
           which counts visits without cookies and without collecting anything personal.{' '}
-          <a href="/cookies">Read the cookie policy</a>.
+          <a href="/cookies/">Read the cookie policy</a>.
         </p>
         <div className="consent__actions">
           <button type="button" className="btn btn-outline-light btn-sm" onClick={() => choose(false)}>

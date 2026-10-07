@@ -79,7 +79,7 @@ export default function CaseStudyPremium({ c, d }) {
             <nav className="crumbs reveal" aria-label="Breadcrumb">
               <a href="/">Home</a>
               <span aria-hidden="true">/</span>
-              <a href="/work">Work</a>
+              <a href="/work/">Work</a>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{c.client}</span>
             </nav>

@@ -97,7 +97,7 @@ const sitemap =
   ' xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
   ROUTES.filter((r) => !NO_INDEX.has(r)).map(
     (r) =>
-      `  <url><loc>${SITE_URL}${r === '/' ? '/' : r}</loc><lastmod>${today}</lastmod>` +
+      `  <url><loc>${SITE_URL}${r === '/' ? '/' : r + '/'}</loc><lastmod>${today}</lastmod>` +
       `<changefreq>${changefreqFor(r)}</changefreq><priority>${priorityFor(r)}</priority>` +
       `${imageTags(r)}</url>`
   ).join('\n') +

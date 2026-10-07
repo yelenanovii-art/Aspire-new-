@@ -156,7 +156,7 @@ export default function GtmQuiz() {
                 <textarea name="notes" rows={3} placeholder="What you sell, what you have tried, when you want to launch." /></label>
               <label className="pbf__consent">
                 <input type="checkbox" name="consent" required value="yes" />
-                <span>I agree to Aspire storing my details as described in the <a href="/privacy">privacy policy</a>.</span>
+                <span>I agree to Aspire storing my details as described in the <a href="/privacy/">privacy policy</a>.</span>
               </label>
               <button className="btn btn-accent btn-lg contact-form__submit" type="submit">
                 Show me the steps <ArrowRight />
@@ -175,7 +175,7 @@ export default function GtmQuiz() {
           {!sent && (
             <p className="quiz__note quiz__note--warn" role="alert">
               Your steps are below as promised. We could not file your details from here, so if
-              you want us to go through this with you, email elena.novikova@aspireagencymarketing.com.
+              you want us to go through this with you, email hello@aspireagencymarketing.com.
             </p>
           )}
 
@@ -192,7 +192,7 @@ export default function GtmQuiz() {
             <a className="btn btn-accent" href={bookHref} {...bookAttrs}>
               Book a free call <ArrowRight />
             </a>
-            <a className="btn btn-outline" href="/services/go-to-market">See the service</a>
+            <a className="btn btn-outline" href="/services/go-to-market/">See the service</a>
           </div>
 
           <button type="button" className="quiz__back" onClick={() => { setAnswers({}); setIdx(0); setStage('quiz') }}>

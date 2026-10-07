@@ -165,7 +165,7 @@ export default function RealEstate() {
               boxed
             title="Bring us a listing."
             body="Send one property or one vessel and we will tell you exactly how we would shoot it. Fifteen minutes, free."
-            secondary={{ to: '/services/content-creation', label: 'All content services' }}
+            secondary={{ to: '/services/content-creation/', label: 'All content services' }}
             from={ESTATE_ORIGIN}
             />
           </div>

@@ -58,8 +58,14 @@ export default function Testimonials({ light = false }) {
           <span className="quote__avatar" aria-hidden="true">{t.initials}</span>
         )}
         <span className="quote__meta">
+          {/* "Client of Aspire" under every quote said nothing a reader did not
+              already know. A role and a company is what turns a quote into
+              evidence rather than decoration. */}
           <strong>{t.name}</strong>
-          <span>Client of Aspire</span>
+          <span>
+            {t.role}
+            {t.company && t.company !== t.name ? ', ' + t.company : ''}
+          </span>
         </span>
       </figcaption>
       <div className="quote__dots" role="tablist" aria-label="Client testimonials">

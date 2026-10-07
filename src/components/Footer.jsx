@@ -60,20 +60,20 @@ export default function Footer() {
               Services
             </span>
             {SERVICES.map((s) => (
-              <a key={s.slug} href={`/services/${s.slug}`}>{s.nav}</a>
+              <a key={s.slug} href={`/services/${s.slug}/`}>{s.nav}</a>
             ))}
-            <a href={`/${TECH.slug}`}>{TECH.nav}</a>
-            <a href={`/${ESTATE.slug}`}>{ESTATE.nav} and Yachting</a>
-            <a href={`/${AI.slug}`}>{AI.nav}</a>
+            <a href={`/${TECH.slug}/`}>{TECH.nav}</a>
+            <a href={`/${ESTATE.slug}/`}>{ESTATE.nav} and Yachting</a>
+            <a href={`/${AI.slug}/`}>{AI.nav}</a>
           </nav>
 
           <nav className="footer__col" aria-label="Company">
             <span className="footer__col-h">Company</span>
-            <a href="/work">Our work</a>
-            <a href="/about">About Aspire</a>
-            <a href="/insights">Insights</a>
-            <a href="/contact">Get started</a>
-            <a href="/services">All services</a>
+            <a href="/work/">Our work</a>
+            <a href="/about/">About Aspire</a>
+            <a href="/insights/">Insights</a>
+            <a href="/contact/">Get started</a>
+            <a href="/services/">All services</a>
           </nav>
 
           <div className="footer__col footer__col--contact">
@@ -95,9 +95,9 @@ export default function Footer() {
         <span>© {year} {COMPANY.name}. All rights reserved.</span>
         <span className="footer__base-links">
           <span className="footer__reg">VAT {COMPANY.registration}</span>
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
-          <a href="/cookies">Cookies</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/cookies/">Cookies</a>
           <button type="button" className="footer__cookie-btn" onClick={openCookieSettings}>
             Cookie settings
           </button>

@@ -32,7 +32,7 @@ export default function EventsBand() {
             {s.tags.map((t) => <li key={t}>{t}</li>)}
           </ul>
           <div className="evb__actions reveal" style={{ '--delay': '190ms' }}>
-            <a className="btn btn-accent btn-lg" href={`/services/${s.slug}`}>
+            <a className="btn btn-accent btn-lg" href={`/services/${s.slug}/`}>
               See how it works <ArrowRight />
             </a>
             <a className="btn btn-outline-light btn-lg" href={bookHref} {...bookAttrs}>

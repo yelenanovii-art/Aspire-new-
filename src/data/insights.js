@@ -14,7 +14,7 @@ export const AUTHOR = {
   name: 'Elena Novikova',
   role: 'Founder, Aspire Agency',
   bio: 'Elena founded Aspire in Barcelona in 2022 and runs the sales and go-to-market side of the work. Everything here comes out of engagements the team has actually run.',
-  url: '/about',
+  url: '/about/',
   photo: '/photos/team/elena-novikova.webp',
 }
 

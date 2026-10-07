@@ -24,6 +24,6 @@ export const AI_PROMO = {
   statLabel: 'weeks from first session to a system your team runs',
   ctaLabel: 'Book a free 15 minute call',
   // Where the pop-up hands off if they would rather read first.
-  secondary: { to: '/ai-systems', label: 'See what we build' },
+  secondary: { to: '/ai-systems/', label: 'See what we build' },
   ctaNote: 'Fifteen minutes. Bring the report you rebuild every month.',
 }

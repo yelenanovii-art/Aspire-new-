@@ -51,7 +51,7 @@ export default function CaseCard({ c, i = 0, compact = false, showServices = fal
         {compact && <span className="case-card__result">{c.result}</span>}
         <a
           className="link-arrow case-card__cta"
-          href={hasPage ? `/work/${c.slug}` : '/contact'}
+          href={hasPage ? `/work/${c.slug}/` : '/contact/'}
         >
           {/* Eight "Read the case" links on /work are eight identical links in
               a screen reader's list. The visible label stays short; the
@@ -68,7 +68,7 @@ export default function CaseCard({ c, i = 0, compact = false, showServices = fal
             const svc = serviceBySlug(slug)
             return svc ? (
               <li key={slug}>
-                <a href={`/services/${svc.slug}`}>{svc.nav}</a>
+                <a href={`/services/${svc.slug}/`}>{svc.nav}</a>
               </li>
             ) : null
           })}

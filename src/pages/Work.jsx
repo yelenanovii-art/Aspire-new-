@@ -7,6 +7,10 @@ import Marquee from '../components/Marquee'
 import CTABand from '../components/CTABand'
 import { CASES, STATS, CLIENTS, WORK_BAND } from '../data/site'
 
+// Counted off the data. "Six engagements" went stale the moment a seventh
+// existed, which is exactly the kind of line nobody re-reads.
+const COUNT_WORD = ['None', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten']
+
 export default function Work() {
   return (
     <>
@@ -14,7 +18,7 @@ export default function Work() {
         <div className="container">
           <p className="eyebrow reveal">Client cases</p>
           <h1 className="page-hero__title reveal" style={{ '--delay': '60ms' }}>
-            Six engagements. <em>Real numbers.</em>
+            {COUNT_WORD[CASES.length] || CASES.length} engagements. <em>Real numbers.</em>
           </h1>
           <p className="lead reveal" style={{ '--delay': '120ms' }}>
             Fintech market entry, a semiconductor testing firm, the largest AV show in the
@@ -67,7 +71,7 @@ export default function Work() {
           {/* The band is the events practice in pictures; without this the
               reader has no way from it into the thing being sold. */}
           <p className="band__foot reveal">
-            <a className="link-arrow" href="/services/events">
+            <a className="link-arrow" href="/services/events/">
               This is our events and conferences service <ArrowRight size={15} />
             </a>
           </p>
@@ -82,7 +86,7 @@ export default function Work() {
               title="What clients say when the engagement ends."
               lede="Three of the companies we have worked with, on what the work was actually like."
             />
-            <a className="link-arrow reveal" href="/about">How we work <ArrowRight /></a>
+            <a className="link-arrow reveal" href="/about/">How we work <ArrowRight /></a>
           </div>
           <div className="about-strip__quote reveal" style={{ '--delay': '100ms' }}>
             <Testimonials />
@@ -98,7 +102,7 @@ export default function Work() {
 
       <CTABand
         title="Your case could be next."
-        body="Tell us where you want to grow. The first 15-minute call is free, and you leave with a view either way."
+        body="Tell us where you want to grow. The first 15 minute call is free, and you leave with a view either way."
       />
     </>
   )

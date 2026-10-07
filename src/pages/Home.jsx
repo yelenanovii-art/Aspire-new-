@@ -82,7 +82,7 @@ export default function Home() {
             {/* The note belongs to this button. Under the row it read as a
                 condition on both, which made the call look like a quiz. */}
             <span className="hero__quiz">
-              <a className="btn btn-outline-light btn-lg" href="/fit">
+              <a className="btn btn-outline-light btn-lg" href="/fit/">
                 Find your match
               </a>
               <span className="hero__cta-note">Six questions, two minutes, no sales call.</span>
@@ -184,7 +184,7 @@ export default function Home() {
 
           <p className="svc-list__fit">
             Not sure which of the six you need?{' '}
-            <a className="link-arrow" href="/fit">
+            <a className="link-arrow" href="/fit/">
               Answer six questions <ArrowRight />
             </a>
           </p>
@@ -219,7 +219,7 @@ export default function Home() {
 
           <div className="sec-head sec-head--split work__head">
             <h3 className="work__h">Selected client cases</h3>
-            <a className="link-arrow reveal" href="/work">All {COUNT_WORD[CASES.length] || CASES.length} cases <ArrowRight /></a>
+            <a className="link-arrow reveal" href="/work/">All {COUNT_WORD[CASES.length] || CASES.length} cases <ArrowRight /></a>
           </div>
 
           <div className="work-grid work-grid--lead work-grid--swipe">
@@ -269,7 +269,7 @@ export default function Home() {
               eyebrow="On site"
               title="Where the work actually happens."
             />
-            <a className="link-arrow reveal" href="/services/content-creation">Content and events <ArrowRight /></a>
+            <a className="link-arrow reveal" href="/services/content-creation/">Content and events <ArrowRight /></a>
           </div>
         </div>
         <Carousel />
@@ -301,7 +301,7 @@ export default function Home() {
               boxed
             title="Tell us where growth is stuck."
             body="Fifteen minutes, free, no obligation. You leave with a view on what to do first, whether or not you run it with us."
-            secondary={{ to: '/services', label: 'See what we do' }}
+            secondary={{ to: '/services/', label: 'See what we do' }}
             />
           </div>
         </div>

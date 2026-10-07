@@ -175,7 +175,7 @@ export default function About() {
               boxed
               title="Want to know if we are a fit?"
               body="Fifteen minutes on a call will tell you. No deck, no pitch, no obligation."
-              secondary={{ to: '/work', label: 'See the client cases' }}
+              secondary={{ to: '/work/', label: 'See the client cases' }}
             />
           </div>
         </div>

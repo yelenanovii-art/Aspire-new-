@@ -53,7 +53,7 @@ export default function Fit() {
           />
           <p className="fit__foot">
             Prefer to talk it through?{' '}
-            <a className="link-arrow" href="/contact">
+            <a className="link-arrow" href="/contact/">
               Book the free call instead <ArrowRight />
             </a>
           </p>
@@ -63,7 +63,7 @@ export default function Fit() {
       <CTABand
         title="Already know what you need?"
         body="Skip the questions and tell us where growth is stuck. Fifteen minutes, free, no obligation."
-        secondary={{ to: '/services', label: 'See all six services' }}
+        secondary={{ to: '/services/', label: 'See all six services' }}
       />
     </>
   )

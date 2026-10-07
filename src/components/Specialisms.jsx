@@ -23,7 +23,7 @@ export default function Specialisms() {
 
   return (
     <div className="practice-grid practice-grid--three">
-      <a className="practice practice--tech reveal" href={`/${TECH.slug}`} data-spot>
+      <a className="practice practice--tech reveal" href={`/${TECH.slug}/`} data-spot>
         <span className="practice__media practice__media--mark" aria-hidden="true">
           {/* No photograph for this one yet, so a drawn mark rather than
               borrowing a frame that belongs to another page. */}
@@ -50,7 +50,7 @@ export default function Specialisms() {
         </span>
       </a>
 
-      <a className="practice practice--estate reveal" href={`/${ESTATE.slug}`} data-spot>
+      <a className="practice practice--estate reveal" href={`/${ESTATE.slug}/`} data-spot>
         <span className="practice__media" aria-hidden="true">
           {/* Below 860px .practice__media is display:none, and a lazy image that
               can never intersect the viewport is one Chrome gives up on and
@@ -88,11 +88,12 @@ export default function Specialisms() {
         </span>
       </a>
 
-      <a className="practice practice--ai reveal" href={`/${AI.slug}`} style={{ '--delay': '80ms' }} data-spot>
+      <a className="practice practice--ai reveal" href={`/${AI.slug}/`} style={{ '--delay': '80ms' }} data-spot>
         <span className="practice__media practice__media--panel" aria-hidden="true">
           <span className="practice__panel">
             <span className="practice__panel-head">
-              <span className="practice__panel-title">{AI.demo.title}</span>
+              {/* Illustrative figures, not a live readout or a client's data. */}
+              <span className="practice__panel-title">Example dashboard</span>
               <span className="practice__panel-sync">{AI.demo.updated}</span>
             </span>
             <svg className="practice__spark" viewBox="0 0 100 34" preserveAspectRatio="none">

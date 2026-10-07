@@ -17,7 +17,7 @@ const fmt = (iso) =>
 // stop. The related links sit at the end, where someone who finished is the
 // one most worth sending somewhere.
 export default function Article({ a }) {
-  const url = `${SITE_URL}/insights/${a.slug}`
+  const url = `${SITE_URL}/insights/${a.slug}/`
   const services = (a.related?.services || []).map(serviceBySlug).filter(Boolean)
   const cases = (a.related?.cases || []).map(caseBySlug).filter(Boolean)
   const more = INSIGHTS_BY_DATE.filter((o) => o.slug !== a.slug).slice(0, 2)
@@ -51,7 +51,7 @@ export default function Article({ a }) {
           <nav className="crumbs reveal" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span aria-hidden="true">/</span>
-            <a href="/insights">Insights</a>
+            <a href="/insights/">Insights</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{a.title}</span>
           </nav>
@@ -97,7 +97,7 @@ export default function Article({ a }) {
                   <ul>
                     {services.map((s) => (
                       <li key={s.slug}>
-                        <a href={`/services/${s.slug}`}>{s.nav} <ArrowRight size={14} /></a>
+                        <a href={`/services/${s.slug}/`}>{s.nav} <ArrowRight size={14} /></a>
                       </li>
                     ))}
                   </ul>
@@ -109,7 +109,7 @@ export default function Article({ a }) {
                   <ul>
                     {cases.map((c) => (
                       <li key={c.slug}>
-                        <a href={`/work/${c.slug}`}>{c.client} <ArrowRight size={14} /></a>
+                        <a href={`/work/${c.slug}/`}>{c.client} <ArrowRight size={14} /></a>
                       </li>
                     ))}
                   </ul>
@@ -123,14 +123,14 @@ export default function Article({ a }) {
             <ul>
               {more.map((o) => (
                 <li key={o.slug}>
-                  <a href={`/insights/${o.slug}`}>
+                  <a href={`/insights/${o.slug}/`}>
                     <span>{o.title}</span>
                     <ArrowRight size={15} />
                   </a>
                 </li>
               ))}
             </ul>
-            <p><a className="link-arrow" href="/insights">All insights <ArrowRight size={15} /></a></p>
+            <p><a className="link-arrow" href="/insights/">All insights <ArrowRight size={15} /></a></p>
           </nav>
         </div>
       </article>
@@ -166,8 +166,8 @@ export default function Article({ a }) {
         body="Fifteen minutes, free. Tell us where growth is stuck and we will come back with a plan, whether or not you run it with us."
         secondary={
           (a.related?.services || []).includes('events')
-            ? { to: '/services/events', label: 'See the events service' }
-            : { to: '/fit', label: 'Or answer six questions' }
+            ? { to: '/services/events/', label: 'See the events service' }
+            : { to: '/fit/', label: 'Or answer six questions' }
         }
         from={`insight-${a.slug}`}
       />

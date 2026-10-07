@@ -34,7 +34,7 @@ export default function Services() {
                     <li key={inc.h}><Check size={15} /> {inc.h}</li>
                   ))}
                 </ul>
-                <a className="link-arrow svc-card__cta" href={`/services/${s.slug}`}>
+                <a className="link-arrow svc-card__cta" href={`/services/${s.slug}/`}>
                   {s.title} in detail <ArrowRight />
                 </a>
               </article>

@@ -33,7 +33,7 @@ export const BOOKING_URL = isPlaceholder(BOOKING_URL_RAW) ? '' : BOOKING_URL_RAW
 // Analytics counts it: without that step the one action the site exists to
 // produce happens off-site and is invisible. BOOKING_URL stays the single
 // place the calendar address lives.
-export const bookHref = BOOKING_URL ? '/book' : '/contact'
+export const bookHref = BOOKING_URL ? '/book/' : '/contact/'
 // Same tab. It is our own page now, and a new tab would hide the hand-off.
 export const bookAttrs = {}
 
@@ -48,7 +48,7 @@ export const bookAttrs = {}
 // made on /real-estate, and the two estate options in the interest select.
 // ?from= rides along so the referrer in the log says which page sent them.
 export const bookHrefFrom = (origin) =>
-  BOOKING_URL ? `/book?from=${encodeURIComponent(origin)}` : `/contact?from=${encodeURIComponent(origin)}`
+  BOOKING_URL ? `/book/?from=${encodeURIComponent(origin)}` : `/contact/?from=${encodeURIComponent(origin)}`
 
 // ── Social profiles (footer) ────────────────────────────────────────────────
 // Paste the real profile URLs here (or set VITE_SOCIAL_* in .env.local). Until
@@ -73,7 +73,7 @@ export const COMPANY = {
   name: 'Aspire Agency',
   legalName: 'Aspire Agency Marketing',
   founder: 'Elena Novikova',
-  email: 'elena.novikova@aspireagencymarketing.com',
+  email: 'hello@aspireagencymarketing.com',
   phone: '+34 651 349 497',
   phoneHref: '+34651349497',
   street: 'Rambla de Catalunya 8',

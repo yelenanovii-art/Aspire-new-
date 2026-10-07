@@ -60,7 +60,7 @@ export default function Contact() {
             items={[
               {
                 q: 'What happens after I send this?',
-                a: 'Elena reads it personally and replies within one business day to book the free 15-minute call. No automated sequence, no sales development rep.',
+                a: 'Elena reads it personally and replies within one business day to book the free 15 minute call. No automated sequence, no sales development rep.',
               },
               {
                 q: 'Is the first call really free?',

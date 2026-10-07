@@ -14,16 +14,16 @@ export default function NotFound() {
 
         <div className="notfound__links">
           <a href="/">Home</a>
-          <a href="/services">Services</a>
+          <a href="/services/">Services</a>
           {SERVICES.map((s) => (
-            <a key={s.slug} href={`/services/${s.slug}`}>{s.nav}</a>
+            <a key={s.slug} href={`/services/${s.slug}/`}>{s.nav}</a>
           ))}
-          <a href="/work">Our work</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
+          <a href="/work/">Our work</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
         </div>
 
-        <a className="btn btn-accent btn-lg notfound__cta" href="/contact">
+        <a className="btn btn-accent btn-lg notfound__cta" href="/contact/">
           Book a free discovery call <ArrowRight />
         </a>
       </div>

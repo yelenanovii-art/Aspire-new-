@@ -63,7 +63,7 @@ export default function ServiceDetail({ service }) {
           <nav className="crumbs reveal" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span aria-hidden="true">/</span>
-            <a href="/services">Services</a>
+            <a href="/services/">Services</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{s.title}</span>
           </nav>
@@ -76,7 +76,7 @@ export default function ServiceDetail({ service }) {
             <a className="btn btn-accent btn-lg" href={bookHref} {...bookAttrs}>
               Book a free 15 minute call <ArrowRight />
             </a>
-            <a className="btn btn-outline btn-lg" href="/work">See the results</a>
+            <a className="btn btn-outline btn-lg" href="/work/">See the results</a>
           </div>
 
           <ul className="page-hero__tags reveal" style={{ '--delay': '240ms' }}>
@@ -303,7 +303,7 @@ export default function ServiceDetail({ service }) {
           <div className="container">
             <div className="sec-head sec-head--split">
               <SectionHead eyebrow="Proof" title="Where this has been done before." />
-              <a className="link-arrow reveal" href="/work">All client cases <ArrowRight /></a>
+              <a className="link-arrow reveal" href="/work/">All client cases <ArrowRight /></a>
             </div>
             <div className="work-grid">
               {cases.map((c, i) => <CaseCard c={c} i={i} compact key={c.slug} />)}
@@ -342,7 +342,7 @@ export default function ServiceDetail({ service }) {
           <p className="related__h">The other {COUNT_WORD[others.length] || others.length}</p>
           <div className="related">
             {others.map((o) => (
-              <a className="related__card reveal" href={`/services/${o.slug}`} key={o.slug}>
+              <a className="related__card reveal" href={`/services/${o.slug}/`} key={o.slug}>
                 <span className="related__n">{o.n}</span>
                 <span className="related__title">{o.title}</span>
                 <span className="related__blurb">{o.blurb}</span>

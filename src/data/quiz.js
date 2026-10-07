@@ -166,7 +166,7 @@ export function matchFor(result) {
         title: gtm.title,
         href: `/services/${gtm.slug}`,
         line: gtm.blurb,
-        second: { title: 'Sales, in person and digital', href: '/services/sales' },
+        second: { title: 'Sales, in person and digital', href: '/services/sales/' },
       }
     }
   }
@@ -178,7 +178,7 @@ export function matchFor(result) {
         title: ev.title,
         href: `/services/${ev.slug}`,
         line: ev.blurb,
-        second: { title: 'Sales, in person and digital', href: '/services/sales' },
+        second: { title: 'Sales, in person and digital', href: '/services/sales/' },
       }
     }
   }

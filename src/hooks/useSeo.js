@@ -53,7 +53,7 @@ const META = {
   },
   '/work': {
     t: 'Client Cases and Results',
-    d: 'Six engagements across fintech, semiconductors, live events, legal and hospitality, including 300 new users onboarded for BUNQ in 2.5 months.',
+    d: 'Seven engagements across fintech, semiconductors, live events, legal and hospitality, including 300 new users onboarded for BUNQ in 2.5 months.',
     k: 'case studies, client results, BUNQ, ISE, SilTest, B2B agency results',
   },
   '/about': {
@@ -112,6 +112,9 @@ const META = {
 // hook appends this suffix, so every tab, bookmark and search result ends in
 // the identical brand string and any new page inherits it automatically.
 const BRAND_SUFFIX = ' | Aspire Agency'
+
+// One place that decides the canonical shape of a path.
+export const canonicalPath = (p) => (p === '/' ? '/' : p.endsWith('/') ? p : p + '/')
 
 const OG_IMAGE = SITE_URL + '/og.png'
 
@@ -231,7 +234,7 @@ function crumbs(path, url) {
       '@type': 'ListItem',
       position: i + 2,
       name: crumbName(sub),
-      item: i === segs.length - 1 ? url : SITE_URL + sub,
+      item: i === segs.length - 1 ? url : SITE_URL + canonicalPath(sub),
     })
   })
   return list
@@ -276,7 +279,10 @@ function buildGraph(path, m, url) {
 export function useSeo(path, known = true) {
   useEffect(() => {
     const m = META[path] || META['/']
-    const url = SITE_URL + (path === '/' ? '/' : path)
+    // Netlify serves these paths with a trailing slash and 301s the form
+    // without one. A canonical, an og:url or a breadcrumb that points at a
+    // redirect is a canonical pointing at the wrong URL, so they all carry it.
+    const url = SITE_URL + canonicalPath(path)
 
     // Google truncates around sixty characters. Eleven pages, all cases and
     // insights, ran past it and lost the end of a real sentence to keep a

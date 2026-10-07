@@ -39,7 +39,7 @@ export default function Tech() {
             <a className="btn btn-accent btn-lg" href={bookHref} {...bookAttrs}>
               Book a free 15 minute call <ArrowRight />
             </a>
-            <a className="btn btn-outline btn-lg" href="/work">See the results</a>
+            <a className="btn btn-outline btn-lg" href="/work/">See the results</a>
           </div>
 
           <ul className="page-hero__tags reveal" style={{ '--delay': '240ms' }}>
@@ -137,7 +137,7 @@ export default function Tech() {
               boxed
             title="Selling something technical?"
             body="Tell us who buys it and how long they take. Fifteen minutes, free, and you leave with a view either way."
-            secondary={{ to: '/services', label: 'See all six services' }}
+            secondary={{ to: '/services/', label: 'See all six services' }}
             />
           </div>
         </div>

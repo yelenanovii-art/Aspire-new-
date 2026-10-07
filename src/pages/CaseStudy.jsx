@@ -25,7 +25,7 @@ export default function CaseStudy({ c }) {
   const d = caseDetailFor(c.slug) || {}
   const quote = d.quoteName && TESTIMONIALS.find((t) => t.name === d.quoteName)
   const services = c.services.map(serviceBySlug).filter(Boolean)
-  const url = `${SITE_URL}/work/${c.slug}`
+  const url = `${SITE_URL}/work/${c.slug}/`
 
   // Article rather than a case-study type, which schema.org does not have.
   // `about` names the client as the subject so the page is attached to that
@@ -55,7 +55,7 @@ export default function CaseStudy({ c }) {
           <nav className="crumbs reveal" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span aria-hidden="true">/</span>
-            <a href="/work">Work</a>
+            <a href="/work/">Work</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{c.client}</span>
           </nav>
@@ -156,7 +156,7 @@ export default function CaseStudy({ c }) {
           <ul className="casepage__svcs">
             {services.map((s) => (
               <li className="reveal" key={s.slug}>
-                <a href={`/services/${s.slug}`}>
+                <a href={`/services/${s.slug}/`}>
                   <span>{s.nav}</span>
                   <ArrowRight size={15} />
                 </a>
@@ -164,7 +164,7 @@ export default function CaseStudy({ c }) {
             ))}
           </ul>
           <p className="casepage__back reveal">
-            <a className="link-arrow" href="/work">All client cases <ArrowRight size={15} /></a>
+            <a className="link-arrow" href="/work/">All client cases <ArrowRight size={15} /></a>
           </p>
         </div>
       </section>
@@ -178,8 +178,8 @@ export default function CaseStudy({ c }) {
         // quiz is the right fallback only when nothing more specific fits.
         secondary={
           c.services.includes('events')
-            ? { to: '/services/events', label: 'See the events service' }
-            : { to: '/fit', label: 'Not sure? Find your match' }
+            ? { to: '/services/events/', label: 'See the events service' }
+            : { to: '/fit/', label: 'Not sure? Find your match' }
         }
         from={`case-${c.slug}`}
       />

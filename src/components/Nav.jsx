@@ -23,7 +23,7 @@ const NAV = [
   {
     type: 'mega',
     label: 'Services',
-    to: '/services',
+    to: '/services/',
     // Any path under these lights the Services item as current.
     match: (p) =>
       p.startsWith('/services') ||
@@ -36,7 +36,7 @@ const NAV = [
         // as a set, and the panel widens to hold it.
         split: true,
         items: SERVICES.map((s) => ({
-          to: `/services/${s.slug}`,
+          to: `/services/${s.slug}/`,
           label: s.nav,
           desc: firstSentence(s.blurb),
           flag: s.flag,
@@ -46,18 +46,18 @@ const NAV = [
         heading: 'Specialisms',
         note: 'Where we go deeper',
         items: [
-          { to: `/${TECH.slug}`, label: TECH.nav, desc: TECH.navDesc },
-          { to: `/${ESTATE.slug}`, label: `${ESTATE.nav} and Yachting`, desc: ESTATE.navDesc },
-          { to: `/${AI.slug}`, label: AI.nav, desc: AI.navDesc },
+          { to: `/${TECH.slug}/`, label: TECH.nav, desc: TECH.navDesc },
+          { to: `/${ESTATE.slug}/`, label: `${ESTATE.nav} and Yachting`, desc: ESTATE.navDesc },
+          { to: `/${AI.slug}/`, label: AI.nav, desc: AI.navDesc },
         ],
       },
     ],
-    featured: { to: '/fit', label: 'Not sure which one? Find your match' },
+    featured: { to: '/fit/', label: 'Not sure which one? Find your match' },
   },
-  { type: 'link', to: '/work', label: 'Work' },
-  { type: 'link', to: '/insights', label: 'Insights' },
-  { type: 'link', to: '/about', label: 'About' },
-  { type: 'link', to: '/contact', label: 'Contact' },
+  { type: 'link', to: '/work/', label: 'Work' },
+  { type: 'link', to: '/insights/', label: 'Insights' },
+  { type: 'link', to: '/about/', label: 'About' },
+  { type: 'link', to: '/contact/', label: 'Contact' },
 ]
 
 function Caret() {
@@ -152,8 +152,9 @@ export default function Nav({ path, onDark = false }) {
               as the accessible name everywhere. */}
           <a
             className={`nav__quiz ${isActive('/fit') ? 'is-active' : ''}`}
-            href="/fit"
+            href="/fit/"
             aria-label="Find your match: a six question quiz"
+            title="Find your match"
           >
             <ChoiceMark size={20} />
             {/* Visible on hover and on keyboard focus. An icon with no label

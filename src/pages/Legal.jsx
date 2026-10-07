@@ -49,7 +49,7 @@ export function Privacy() {
       <p>
         This site sets no advertising or cross-site tracking cookies. Optional analytics are switched
         off unless you choose to allow them, and your choice is stored on your own device.
-        Full detail is in the <a href="/cookies">cookie policy</a>.
+        Full detail is in the <a href="/cookies/">cookie policy</a>.
       </p>
 
       <h2>Who else sees your data</h2>
@@ -218,7 +218,7 @@ export function Cookies() {
       <h2>Questions</h2>
       <p>
         Anything about this policy, or about the personal data in our{' '}
-        <a href="/privacy">privacy policy</a>, can go to{' '}
+        <a href="/privacy/">privacy policy</a>, can go to{' '}
         <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
       </p>
     </LegalPage>

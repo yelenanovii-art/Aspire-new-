@@ -133,7 +133,7 @@ export default function AiSystems() {
               boxed
             title="Tell us what you rebuild every week."
             body="If it lives in a spreadsheet and somebody updates it by hand, it is probably a system. Fifteen minutes, free, and you leave with a view on whether it is worth building."
-            secondary={{ to: '/contact', label: 'Contact us' }}
+            secondary={{ to: '/contact/', label: 'Contact us' }}
             />
           </div>
         </div>

@@ -10,7 +10,7 @@ export default function GtmQuizPage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Go-to-market readiness check',
-    url: `${SITE_URL}/services/go-to-market/quiz`,
+    url: `${SITE_URL}/services/go-to-market/quiz/`,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
@@ -26,9 +26,9 @@ export default function GtmQuizPage() {
           <nav className="crumbs reveal" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span aria-hidden="true">/</span>
-            <a href="/services">Services</a>
+            <a href="/services/">Services</a>
             <span aria-hidden="true">/</span>
-            <a href="/services/go-to-market">Go-to-market strategy</a>
+            <a href="/services/go-to-market/">Go-to-market strategy</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">Readiness check</span>
           </nav>
@@ -60,7 +60,7 @@ export default function GtmQuizPage() {
           />
           <p className="fit__foot">
             Prefer to talk it through?{' '}
-            <a className="link-arrow" href="/contact">Book the free call instead <ArrowRight /></a>
+            <a className="link-arrow" href="/contact/">Book the free call instead <ArrowRight /></a>
           </p>
         </div>
       </section>
@@ -68,7 +68,7 @@ export default function GtmQuizPage() {
       <CTABand
         title="Want the plan built properly?"
         body="Fifteen minutes, free. Tell us the market and we will tell you what the plan needs to cover."
-        secondary={{ to: '/services/go-to-market', label: 'See the service' }}
+        secondary={{ to: '/services/go-to-market/', label: 'See the service' }}
       />
     </>
   )

@@ -52,13 +52,13 @@ export default function Book() {
             {slow ? 'Open the calendar' : 'Continue to the calendar'} <ArrowRight />
           </a>
         ) : (
-          <a className="btn btn-accent btn-lg book__cta" href="/contact">
+          <a className="btn btn-accent btn-lg book__cta" href="/contact/">
             Send us a message instead <ArrowRight />
           </a>
         )}
 
         <p className="book__alt">
-          Would rather write? <a className="link-arrow" href="/contact">Use the contact form</a> or
+          Would rather write? <a className="link-arrow" href="/contact/">Use the contact form</a> or
           email <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
         </p>
       </div>
