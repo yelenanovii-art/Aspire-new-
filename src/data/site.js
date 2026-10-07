@@ -719,8 +719,8 @@ export const PAGE_MEDIA = {
 // six cases below rather than stock event photography. Shot by Jackson at the
 // show in Barcelona.
 export const WORK_BAND = [
-  { src: '/media/work/ise-team.webp',
-    alt: 'A presenter interviewing four people on the Pitching Stage at Integrated Systems Europe 2026' },
+  { src: '/media/work/ise-keynote.webp',
+    alt: 'A speaker on the keynote stage at Integrated Systems Europe 2026, with The Big 5 on the screen behind' },
   { src: '/media/work/ise-floor.webp',
     alt: 'A large group photographed on the Pitching Stage at Integrated Systems Europe 2026' },
   { src: '/media/work/ise-installation.webp',

@@ -48,8 +48,8 @@ export default function Work() {
       </section>
 
       {/* The cases above are told in numbers; this is what the work looked
-          like. All six frames are from the ISE engagement listed above, not
-          stock event photography. */}
+          like. Every frame is from the ISE engagement listed above, not stock
+          event photography. */}
       <section className="section section--tight">
         <div className="container">
           <SectionHead
