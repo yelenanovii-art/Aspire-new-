@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TESTIMONIALS, logoFor } from '../data/site'
+import { useSwipe } from '../hooks/useSwipe'
 
 // Rotating client quotes. Auto-advance is suppressed under reduced motion,
 // and pauses while the reader is hovering or has focus inside the panel.
@@ -14,6 +15,14 @@ export default function Testimonials({ light = false }) {
     return () => clearInterval(id)
   }, [paused])
 
+  const n = TESTIMONIALS.length
+  // The dots were the only way to move this, which on a phone is a 10px
+  // target. They stay as the position indicator; the swipe is the control.
+  const swipe = useSwipe(
+    () => setI((v) => (v + 1) % n),
+    () => setI((v) => (v - 1 + n) % n)
+  )
+
   const t = TESTIMONIALS[i]
 
   return (
@@ -23,6 +32,7 @@ export default function Testimonials({ light = false }) {
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
+      {...swipe}
     >
       {/* All three are rendered, stacked in one grid cell, with the inactive
           ones faded out. Trimming them to a similar length gets the line

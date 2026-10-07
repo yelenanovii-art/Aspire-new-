@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { ArrowRight } from './Icons'
 import LeadForm from './LeadForm'
 import { QUESTIONS, scoreQuiz, matchFor, planFor, scoreOf, archetypeOf } from '../data/quiz'
@@ -27,7 +27,20 @@ export default function Quiz() {
   const q = QUESTIONS[idx]
   const pct = Math.round((Object.keys(answers).length / QUESTIONS.length) * 100)
 
+
+  // After an answer the next question renders above the fold only if the card
+  // is already at the top. On a phone it usually is not, so the first thing
+  // you see is the bottom of a question you have not read.
+  const card = useRef(null)
+  const lift = () => {
+    const el = card.current
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.scrollY - 86
+    if (window.scrollY > y) window.scrollTo({ top: y, behavior: 'smooth' })
+  }
+
   const choose = (v) => {
+    lift()
     const next = { ...answers, [q.id]: v }
     setAnswers(next)
     if (idx + 1 < QUESTIONS.length) setIdx(idx + 1)
@@ -43,7 +56,7 @@ export default function Quiz() {
   }
 
   return (
-    <div className="quiz">
+    <div className="quiz" ref={card}>
       <div className="quiz__bar" aria-hidden="true">
         <span className="quiz__bar-fill" style={{ width: `${stage === 'quiz' ? pct : 100}%` }} />
       </div>

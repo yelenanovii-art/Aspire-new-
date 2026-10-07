@@ -5371,3 +5371,256 @@
 @media (max-width: 520px) {
   .byline { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ═══ Mobile pass ════════════════════════════════════════════════════════════
+   Phones get a shorter page and a booking button that is always in reach. None
+   of this touches the desktop layout: every rule below is inside a max-width
+   query or scoped to a class only the phone layout uses.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── The sticky booking bar ───────────────────────────────────────────────── */
+.bookbar {
+  position: fixed;
+  z-index: 95;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-top: 1px solid var(--line);
+  transform: translateY(110%);
+  transition: transform 0.28s ease;
+}
+.bookbar.is-up { transform: translateY(0); }
+.bookbar__btn { width: 100%; justify-content: center; min-height: 48px; }
+@media (max-width: 860px) { .bookbar { display: block; } }
+@media (prefers-reduced-motion: reduce) { .bookbar { transition: none; } }
+@supports not (backdrop-filter: blur(14px)) { .bookbar { background: #fff; } }
+
+/* ── Drawer groups fold ───────────────────────────────────────────────────── */
+.nav__drawer-fold > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+}
+.nav__drawer-fold > summary::-webkit-details-marker { display: none; }
+/* .nav__drawer-group sets display: grid, and a <details> with an explicit
+   display loses the native hiding of its closed content. Hide the links
+   directly instead of fighting the layout for it. */
+.nav__drawer-fold:not([open]) > a { display: none; }
+.nav__drawer-chev {
+  width: 9px;
+  height: 9px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.2s ease;
+  opacity: 0.5;
+}
+.nav__drawer-fold[open] > summary .nav__drawer-chev { transform: rotate(-135deg) translate(-2px, -2px); }
+
+/* ── Homepage cases swipe ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .work-grid--swipe {
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+  }
+  .work-grid--swipe::-webkit-scrollbar { display: none; }
+  .work-grid--swipe > * { scroll-snap-align: center; }
+}
+
+/* ── Comparison: Aspire first, the rest behind a control ──────────────────── */
+.cmpm { display: none; }
+@media (max-width: 760px) {
+  .cmpm { display: block; }
+  .cmp__scroll { display: none; }
+}
+.cmpm__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.cmpm__row { display: grid; gap: 6px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.cmpm__k {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cmpm__v {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 600;
+}
+.cmpm__v svg { flex: none; margin-top: 4px; color: var(--accent); }
+.cmpm__alt { display: grid; gap: 2px; margin-top: 10px; padding-left: 22px; }
+.cmpm__alt-k { font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-light); }
+.cmpm__alt-v { font-size: 14.5px; line-height: 1.5; color: var(--body); }
+.cmpm__toggle {
+  margin-top: 18px;
+  min-height: 44px;
+  padding: 11px 18px;
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+}
+
+/* ── Footer service list folds ────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .footer__col--fold a { display: none; }
+  .footer__col--fold.is-open a { display: block; }
+  .footer__col-toggle { cursor: pointer; display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+  .footer__col-toggle::after {
+    content: "";
+    width: 8px; height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+  .footer__col--fold.is-open .footer__col-toggle::after { transform: rotate(-135deg); }
+}
+
+/* ── Contact: form first ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* Somebody on a phone who reached this page wants to send something, not
+     read an address they can get from the footer. */
+  .contact-copy--second { order: 2; }
+  .contact-form-wrap { order: 1; }
+}
+
+/* ── Share ────────────────────────────────────────────────────────────────── */
+.share { display: grid; gap: 12px; padding-top: clamp(20px, 2.4vw, 26px); border-top: 1px solid var(--line); }
+.share__label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+}
+.share__row { display: flex; flex-wrap: wrap; gap: 10px; }
+.share__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.share__btn svg { color: var(--accent-600); }
+@media (hover: hover) {
+  .share__btn:hover { border-color: var(--accent); color: var(--accent-600); background: rgba(var(--accent-rgb), 0.05); }
+}
+
+/* ── Remaining mobile items ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Hero buttons full width: two half buttons side by side on a 320px screen
+     are two buttons nobody can read the label of. */
+  .hero__actions { display: grid; gap: 12px; }
+  .hero__actions > *, .hero__quiz, .hero__quiz .btn, .hero__actions .btn { width: 100%; }
+  .hero__actions .magnetic { width: 100%; }
+  .hero__actions .magnetic .btn { width: 100%; justify-content: center; }
+  .hero__cta-note { text-align: center; max-width: none; }
+  .hero__quiz { justify-items: stretch; }
+}
+
+@media (max-width: 860px) {
+  /* Team: two narrow columns gave each card a portrait the size of a stamp.
+     One column with the photograph beside the text reads at a glance. */
+  .team { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .team__card {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    max-width: none;
+  }
+  .team__media { width: 108px; height: 132px; margin: 0; }
+  .team__avatar { width: 100%; height: 100%; }
+  .team__body { text-align: left; padding: 0; }
+
+  /* Stats two by two rather than four single rows. */
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* H1 to intro on /fit and /insights had no gap: the lead sat straight under
+   the headline with nothing between them. */
+.page-hero__lead { margin-top: 20px; }
+
+/* Cookie policy table: a four column table on a phone is a sideways scroll.
+   Each row becomes a card, with the column name printed against its value. */
+@media (max-width: 680px) {
+  .legal__table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .legal__table, .legal__table tbody, .legal__table tr, .legal__table td { display: block; width: 100%; }
+  .legal__table tr {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--surface);
+  }
+  .legal__table td { border: 0; padding: 7px 0; }
+  /* The cells have no data attribute, so the four labels are named here. They
+     match the header row above, which is now hidden on this width. */
+  .legal__table tr td:nth-child(1)::before { content: "Name"; }
+  .legal__table tr td:nth-child(2)::before { content: "Type"; }
+  .legal__table tr td:nth-child(3)::before { content: "Purpose"; }
+  .legal__table tr td:nth-child(4)::before { content: "Kept for"; }
+  .legal__table td::before {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-light);
+    margin-bottom: 3px;
+  }
+  .table-scroll { overflow: visible; }
+}
+
+/* The AI specialism card was hidden on phones because its panel is a desktop
+   readout. It shows a reduced version instead: the title, the sync line and
+   the sparkline, which is enough to say what the thing is. */
+@media (max-width: 860px) {
+  .practice__media--panel { display: block; }
+  .practice__media--panel .practice__panel-metrics { display: none; }
+  .practice__media--panel .practice__spark { height: 44px; }
+}
+
+/* Insight body headings were 21px against 17px body, which is barely a step.
+   24px makes the structure scannable on a small screen. */
+@media (max-width: 760px) {
+  .article__sec h2 { font-size: 24px; }
+}
+
+/* Carousel and testimonial dots are indicators, not the control: the row is
+   swipeable, so the dots only have to say where you are. They keep a 44px hit
+   area via padding so they are still usable as buttons. */
+.svcx__dots button, .quote__dots button { min-width: 44px; min-height: 44px; }

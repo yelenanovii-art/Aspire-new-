@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { ArrowRight, Check } from './Icons'
 import { submitForm } from '../lib/submitForm'
 import { LEAD_FORM } from '../lib/leadRouting'
@@ -19,7 +19,20 @@ export default function GtmQuiz() {
   const q = GTM_QUESTIONS[idx]
   const pct = Math.round((Object.keys(answers).length / GTM_QUESTIONS.length) * 100)
 
+
+  // After an answer the next question renders above the fold only if the card
+  // is already at the top. On a phone it usually is not, so the first thing
+  // you see is the bottom of a question you have not read.
+  const card = useRef(null)
+  const lift = () => {
+    const el = card.current
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.scrollY - 86
+    if (window.scrollY > y) window.scrollTo({ top: y, behavior: 'smooth' })
+  }
+
   const choose = (v) => {
+    lift()
     setAnswers({ ...answers, [q.id]: v })
     if (idx + 1 < GTM_QUESTIONS.length) setIdx(idx + 1)
     else setStage('gate')
@@ -55,7 +68,7 @@ export default function GtmQuiz() {
   const dialPct = Math.round((result.score / GTM_MAX) * 100)
 
   return (
-    <div className="quiz">
+    <div className="quiz" ref={card}>
       <div className="quiz__bar" aria-hidden="true">
         <span className="quiz__bar-fill" style={{ width: `${stage === 'quiz' ? pct : 100}%` }} />
       </div>

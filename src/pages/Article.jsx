@@ -3,6 +3,7 @@ import { ArrowRight } from '../components/Icons'
 import { useJsonLd } from '../hooks/useJsonLd'
 import { SITE_URL, COMPANY } from '../config'
 import { serviceBySlug, caseBySlug } from '../data/site'
+import Share from '../components/Share'
 import { AUTHOR } from '../data/insights'
 import { INSIGHTS_BY_DATE } from '../data/insights'
 
@@ -133,6 +134,16 @@ export default function Article({ a }) {
           </nav>
         </div>
       </article>
+
+      {/* Three ways to pass it on, which is how a B2B piece actually travels:
+          LinkedIn for the public share, WhatsApp for the one that gets sent to
+          a colleague, and a copied link for everything else. No third party
+          share widget, so nothing is loaded and nobody is tracked. */}
+      <section className="section section--tight section--flush-top">
+        <div className="container container--narrow">
+          <Share url={url} title={a.title} />
+        </div>
+      </section>
 
       {/* Who wrote it, at the end, where somebody who read it will want to
           know. */}

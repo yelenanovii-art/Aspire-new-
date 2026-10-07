@@ -188,16 +188,27 @@ export default function Nav({ path, onDark = false }) {
               </a>
             ))}
           </div>
+          {/* Folded by default. Nine links open underneath four is most of a
+              screen of scrolling before the menu is even read; closed, the
+              whole menu fits without moving. The group containing the current
+              page opens itself, so you can always see where you are. */}
           {NAV.filter((n) => n.type === 'mega').map((n) =>
             n.columns.map((col) => (
-              <div className="nav__drawer-group" key={col.heading}>
-                <div className="nav__drawer-h">{col.heading}</div>
+              <details
+                className="nav__drawer-group nav__drawer-fold"
+                key={col.heading}
+                open={col.items.some((it) => isActive(it.to))}
+              >
+                <summary className="nav__drawer-h">
+                  {col.heading}
+                  <span className="nav__drawer-chev" aria-hidden="true" />
+                </summary>
                 {col.items.map((it, i) => (
                   <a key={it.to} href={it.to} className={`nav__drawer-link ${isActive(it.to) ? 'is-active' : ''}`} style={{ '--i': i }}>
                     {it.label}
                   </a>
                 ))}
-              </div>
+              </details>
             ))
           )}
         </div>

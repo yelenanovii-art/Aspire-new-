@@ -22,6 +22,7 @@ import CaseStudy from './pages/CaseStudy'
 import Insights from './pages/Insights'
 import Article from './pages/Article'
 import Book from './pages/Book'
+import BookBar from './components/BookBar'
 import { initAnalytics, trackBookingClicks } from './lib/analytics'
 import AiPromo from './components/AiPromo'
 import CookieConsent from './components/CookieConsent'
@@ -115,6 +116,7 @@ export default function App() {
       {/* Page scoped: it reads the route and shows itself only on the pages
           named in src/data/aiPromo.js. */}
       <AiPromo path={activePath} />
+      <BookBar path={activePath} />
     </div>
   )
 }

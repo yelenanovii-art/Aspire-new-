@@ -9,7 +9,7 @@ export default function Contact() {
     <>
       <section className="section contact-section">
         <div className="container contact-layout">
-          <div className="contact-copy">
+          <div className="contact-copy contact-copy--second">
             <p className="eyebrow reveal">Get started</p>
             <h1 className="contact-title reveal" style={{ '--delay': '60ms' }}>
               Set up your free 15 minute call.

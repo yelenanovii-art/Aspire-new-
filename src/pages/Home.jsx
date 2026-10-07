@@ -59,7 +59,7 @@ export default function Home() {
           <p className="eyebrow eyebrow--light reveal">Sales and marketing for B2B tech</p>
 
           <h1 className="hero__title reveal" style={{ '--delay': '60ms' }}>
-            Your product is ready. <em>Your pipeline is not.</em>
+            Your product is ready.<br /> <em>Your pipeline is not.</em>
           </h1>
 
           <p className="hero__lead reveal" style={{ '--delay': '120ms' }}>
@@ -222,7 +222,7 @@ export default function Home() {
             <a className="link-arrow reveal" href="/work">All {COUNT_WORD[CASES.length] || CASES.length} cases <ArrowRight /></a>
           </div>
 
-          <div className="work-grid work-grid--lead">
+          <div className="work-grid work-grid--lead work-grid--swipe">
             {CASES.slice(0, 3).map((c, i) => (
               <CaseCard c={c} i={i} compact={i > 0} key={c.slug} />
             ))}

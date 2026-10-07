@@ -1,4 +1,5 @@
 import Logo from './Logo'
+import { useState } from 'react'
 import { SOCIAL, COMPANY } from '../config'
 import { LinkedIn, Mail, Phone, Pin } from './Icons'
 import { SERVICES } from '../data/site'
@@ -25,6 +26,9 @@ function Social({ href, label, children }) {
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  // Phones only: the CSS hides the links and shows the control below 680px,
+  // so on a desktop this state is simply never read.
+  const [openServices, setOpenServices] = useState(false)
   return (
     <footer className="footer">
       <div className="container">
@@ -42,8 +46,19 @@ export default function Footer() {
         </div>
 
         <div className="footer__cols">
-          <nav className="footer__col" aria-label="Services">
-            <span className="footer__col-h">Services</span>
+          <nav className={`footer__col footer__col--fold ${openServices ? 'is-open' : ''}`} aria-label="Services">
+            {/* Nine links is most of the footer on a phone. Folded there,
+                always open on a desktop, where there is room. */}
+            <span
+              className="footer__col-h footer__col-toggle"
+              role="button"
+              tabIndex={0}
+              aria-expanded={openServices}
+              onClick={() => setOpenServices((v) => !v)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenServices((v) => !v) } }}
+            >
+              Services
+            </span>
             {SERVICES.map((s) => (
               <a key={s.slug} href={`/services/${s.slug}`}>{s.nav}</a>
             ))}

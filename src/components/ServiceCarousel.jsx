@@ -110,7 +110,7 @@ export default function ServiceCarousel() {
                 <div className="svcx__media" aria-hidden="true">
                   <img
                     src={s.photo.src}
-                    srcSet={`${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} ${s.photo.w || 1920}w`}
+                    srcSet={`${s.photo.src.replace(/\.webp$/, '-480.webp')} 480w, ${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} ${s.photo.w || 1920}w`}
                     sizes="(max-width: 860px) 92vw, 46vw"
                     alt=""
                     loading={d === 0 ? 'eager' : 'lazy'}
