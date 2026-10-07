@@ -8,8 +8,11 @@
 // constant below, and it would be defensible.
 import { hasAnalyticsConsent, CONSENT_EVENT } from './consent'
 
-const DOMAIN = 'aspireagencymarketing.com'
-const SRC = 'https://plausible.io/js/script.outbound-links.js'
+// The site-specific script from the Plausible dashboard. The site is encoded
+// in the filename, so there is no data-domain attribute on this version, and
+// what it tracks (outbound links, file downloads) is configured in Plausible
+// rather than by swapping the filename. Public by design: it ships in the page.
+const SRC = 'https://plausible.io/js/pa-UmQfeaiPLoEZRv8c0ZZ6j.js'
 const GATE = true
 
 // The prerender would otherwise ship the script tag inside every static file
@@ -24,18 +27,24 @@ function load() {
   if (document.querySelector(`script[src="${SRC}"]`)) { loaded = true; return }
   loaded = true
 
-  // Plausible's own stub. Calls made before the script arrives are queued on
-  // .q and replayed, so track() never has to wait or drop an event.
+  // Plausible's own stub, verbatim from the dashboard snippet. Calls made
+  // before the script arrives are queued on .q and replayed, so track() never
+  // has to wait or drop an event.
   window.plausible =
     window.plausible ||
     function stub() {
       ;(window.plausible.q = window.plausible.q || []).push(arguments)
     }
+  window.plausible.init =
+    window.plausible.init ||
+    function initStub(i) {
+      window.plausible.o = i || {}
+    }
+  window.plausible.init()
 
   const s = document.createElement('script')
-  s.defer = true
+  s.async = true
   s.src = SRC
-  s.setAttribute('data-domain', DOMAIN)
   document.head.appendChild(s)
 }
 
