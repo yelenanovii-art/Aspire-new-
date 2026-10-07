@@ -11,7 +11,11 @@ const set = (k, v) => { try { window.localStorage.setItem(k, v) } catch { /* pri
 // Three ways in — a timer, half the page scrolled, and leaving the window on a
 // real pointer — whichever happens first. Two ways it stays away: dismissed
 // suppresses it for a fortnight, submitted suppresses it for good.
-export default function PlaybookPopup() {
+// forceOpen is the locked cover on the page asking for it. A deliberate
+// click must open it even when the automatic triggers are suppressed:
+// somebody who dismissed the pop-up last week and has now clicked Unlock has
+// plainly changed their mind.
+export default function PlaybookPopup({ forceOpen = false, onClose }) {
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
   const box = useRef(null)
@@ -58,14 +62,17 @@ export default function PlaybookPopup() {
 
   const close = () => {
     setOpen(false)
+    if (onClose) onClose()
     // Submitting writes its own permanent key; only a dismissal starts the
     // fortnight.
     if (!done) set(P.keyDismissed, String(Date.now() + P.dismissDays * 86400000))
     if (last.current && last.current.focus) last.current.focus()
   }
 
+  const shown = open || forceOpen
+
   useEffect(() => {
-    if (!open) return undefined
+    if (!shown) return undefined
     const onKey = (e) => {
       if (e.key === 'Escape') { e.preventDefault(); close() }
       if (e.key === 'Tab' && box.current) {
@@ -87,9 +94,9 @@ export default function PlaybookPopup() {
       document.body.style.overflow = prev
       window.clearTimeout(t)
     }
-  }, [open, done])
+  }, [shown, done])
 
-  if (!open) return null
+  if (!shown) return null
 
   return (
     <div className="pbp" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) close() }}>

@@ -6,6 +6,18 @@ export const PLAYBOOK = {
   title: 'The Listing Content Playbook',
   authors: 'Elena Novikova and Jackson Hunter',
 
+  // The real cover artwork. 16:9 rather than a book-shaped portrait, because
+  // that is what was supplied: a title slide, not a jacket.
+  cover: {
+    src: '/media/pages/playbook-cover.webp',
+    w: 1200,
+    h: 675,
+    alt: 'The Listing Content Playbook: how property and yachts get enquiries, a free guide by Aspire',
+  },
+  // The locked state on /real-estate. Clicking it opens the form.
+  unlockLabel: 'Unlock for free',
+  unlockNote: 'One email. No charge, no call.',
+
   // Where the guide actually lives. No PDF has been supplied, so this is the
   // Canva link Elena gave; swapping in a hosted file later is this one line
   // plus dropping the file into /public.

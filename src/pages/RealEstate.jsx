@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ArrowRight, Check } from '../components/Icons'
 import SectionHead from '../components/SectionHead'
 import Gallery from '../components/Gallery'
@@ -5,7 +6,6 @@ import MediaSlot from '../components/MediaSlot'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
 import PlaybookPopup from '../components/PlaybookPopup'
-import PlaybookForm from '../components/PlaybookForm'
 import PlaybookCover from '../components/PlaybookCover'
 import { PLAYBOOK } from '../data/playbook'
 import { bookHrefFrom, bookAttrs, SITE_URL } from '../config'
@@ -16,6 +16,8 @@ import { useJsonLd } from '../hooks/useJsonLd'
 import { faqSchema } from '../lib/faqSchema'
 
 export default function RealEstate() {
+  // Set by the locked cover and the band button; cleared when the pop-up closes.
+  const [unlock, setUnlock] = useState(false)
   const e = ESTATE
 
   // The film plate now carries real footage, so declare it. Without this the
@@ -131,17 +133,23 @@ export default function RealEstate() {
           from the larger group who are not ready to book one. */}
       <section className="section pbband">
         <div className="container pbband__inner">
-          <PlaybookCover className="pbband__cover" />
+          {/* The cover is the control. A form sitting open on the page asks
+              for an address before it has said what the thing is; a locked
+              cover shows the thing and asks afterwards. */}
+          <PlaybookCover className="pbband__cover" locked onUnlock={() => setUnlock(true)} />
           <div className="pbband__body">
             <p className="eyebrow">Free guide</p>
             <h2 className="pbband__title">{PLAYBOOK.band.headline}</h2>
             <p className="pbband__sub">{PLAYBOOK.band.subline}</p>
-            <PlaybookForm placement="footer" />
+            <button type="button" className="btn btn-accent btn-lg pbband__cta" onClick={() => setUnlock(true)}>
+              {PLAYBOOK.unlockLabel} <ArrowRight />
+            </button>
+            <p className="pbband__note">{PLAYBOOK.smallPrint}</p>
           </div>
         </div>
       </section>
 
-      <PlaybookPopup />
+      <PlaybookPopup forceOpen={unlock} onClose={() => setUnlock(false)} />
 
       {/* Questions and the call to action sat one above the other, each in a
           narrow centred column with a lot of empty page either side. Paired,
