@@ -523,7 +523,10 @@
   line-height: 1.58;
   color: rgba(255, 255, 255, 0.72);
 }
-.hero__actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 34px; }
+/* align-items: start, not the flex default of stretch. The quiz button and
+   its note form a two row stack, and a stretching row made the primary
+   button grow to match it: 107px tall against the other button's 59px. */
+.hero__actions { display: flex; flex-wrap: wrap; align-items: start; gap: 13px; margin-top: 34px; }
 
 .hero__stats {
   display: grid;
