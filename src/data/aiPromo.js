@@ -3,7 +3,8 @@
 export const AI_PROMO = {
   // Set `enabled: false` to switch it off entirely.
   enabled: true,
-  delayMs: 9000,
+  delayMs: 14000,
+  dismissDays: 14,
 
   // WHICH PAGES IT RUNS ON. One line to edit.
   //

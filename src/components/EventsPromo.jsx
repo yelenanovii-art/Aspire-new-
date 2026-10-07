@@ -2,17 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowRight } from './Icons'
 import { bookHref, bookAttrs } from '../config'
 import { EVENTS_PROMO as P } from '../data/eventsPromo'
+import { dismissedRecently, recordDismissal } from '../lib/promoDismiss'
 
-// Nothing is remembered any more: the pop-up shows on every load of the home
-// page. These two keys are the old once-per-session and seven-day rules, kept
-// only so anyone who already has them stored gets them cleared rather than
-// being silently excluded forever.
+// Closing it is an answer, and it is remembered for P.dismissDays. The old
+// session key is cleared on sight so nobody carries a stale one around.
+const DISMISS_KEY = 'aspire.eventsPromo.dismissedUntil'
 const LEGACY_SESSION_KEY = 'aspire.eventsPromo.seen'
-const LEGACY_DISMISS_KEY = 'aspire.eventsPromo.dismissedUntil'
 
-// Every storage read here is wrapped: a private window, cleared site data or a
-// browser set to block storage all throw on access, and a pop-up that cannot
-// remember being dismissed is worse than one that never shows.
 const safeRemove = (store, k) => {
   try { window[store].removeItem(k) } catch { /* nothing to do */ }
 }
@@ -24,10 +20,8 @@ export default function EventsPromo() {
 
   useEffect(() => {
     if (!P.enabled) return undefined
-    // Clear the old gating so a visitor who dismissed it under the previous
-    // rules is not locked out for a week.
     safeRemove('sessionStorage', LEGACY_SESSION_KEY)
-    safeRemove('localStorage', LEGACY_DISMISS_KEY)
+    if (dismissedRecently(DISMISS_KEY)) return undefined
 
     const t = window.setTimeout(() => {
       lastFocused.current = document.activeElement
@@ -38,6 +32,7 @@ export default function EventsPromo() {
 
   const close = () => {
     setOpen(false)
+    recordDismissal(DISMISS_KEY, P.dismissDays)
     // Put the keyboard back where it was rather than at the top of the page.
     if (lastFocused.current && lastFocused.current.focus) lastFocused.current.focus()
   }

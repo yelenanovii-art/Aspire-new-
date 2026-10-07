@@ -9,6 +9,8 @@ import { VALUES, STATS, TEAM, ABOUT_BAND } from '../data/site'
 import CountUp from '../components/CountUp'
 import { useJsonLd } from '../hooks/useJsonLd'
 
+const COUNT_WORD = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+
 export default function About() {
   useJsonLd('aspire-team', {
     '@context': 'https://schema.org',
@@ -109,7 +111,7 @@ export default function About() {
           <SectionHead
             eyebrow="The team"
             title="The people who will actually do the work."
-            lede="You will meet all four. There is no account manager between you and the person running your account."
+            lede={`You will meet all ${COUNT_WORD[TEAM.length] || TEAM.length}. There is no account manager between you and the person running your account.`}
           />
           <Team />
         </div>

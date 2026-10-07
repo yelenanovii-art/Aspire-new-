@@ -22,6 +22,11 @@ import { useJsonLd } from '../hooks/useJsonLd'
 // The page is ordered as an argument, not as a brochure:
 //   what we are  ->  what is wrong  ->  why the usual fixes fail  ->  what we do
 //   ->  proof it worked  ->  how it runs  ->  who does it  ->  book the call
+// Spelled counts, read off the data. Typed out, "six cases" and "all four"
+// went stale the moment a seventh case and a fifth person were added, which
+// is the kind of thing nobody re-reads and every visitor can check.
+const COUNT_WORD = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+
 export default function Home() {
   const heroGlow = useGlow()
   const compareGlow = useGlow()
@@ -202,7 +207,7 @@ export default function Home() {
             index="04"
             eyebrow="Proof"
             title="What it has produced so far."
-            lede="Averages across the accounts we run, and three of the six client engagements behind them."
+            lede={`Averages across the accounts we run, and three of the ${COUNT_WORD[CASES.length] || CASES.length} client engagements behind them.`}
           />
 
           <div className="stat-grid stat-grid--bordered stat-grid--three">
@@ -213,7 +218,7 @@ export default function Home() {
 
           <div className="sec-head sec-head--split work__head">
             <h3 className="work__h">Selected client cases</h3>
-            <a className="link-arrow reveal" href="/work">All six cases <ArrowRight /></a>
+            <a className="link-arrow reveal" href="/work">All {COUNT_WORD[CASES.length] || CASES.length} cases <ArrowRight /></a>
           </div>
 
           <div className="work-grid work-grid--lead">

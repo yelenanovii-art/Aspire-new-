@@ -3,6 +3,7 @@ import { ArrowRight } from './Icons'
 import { bookHrefFrom, bookAttrs } from '../config'
 import { AI_PROMO as P } from '../data/aiPromo'
 import { AI } from '../data/verticals'
+import { dismissedRecently, recordDismissal } from '../lib/promoDismiss'
 
 // The AI systems pop-up, on the tech-leaning pages listed in its data file.
 //
@@ -10,6 +11,8 @@ import { AI } from '../data/verticals'
 // that matters: there is no photograph of a dashboard worth showing, so the
 // media half draws the readout the /ai-systems page leads with. The figures
 // are that page's own illustrative set rather than a second invented one.
+const DISMISS_KEY = 'aspire.aiPromo.dismissedUntil'
+
 export default function AiPromo({ path }) {
   const [open, setOpen] = useState(false)
   const dialog = useRef(null)
@@ -17,7 +20,9 @@ export default function AiPromo({ path }) {
   const onThisPage = P.enabled && P.pages.includes(path)
 
   useEffect(() => {
-    if (!onThisPage) return undefined
+    // Without this it re-armed on every listed page, so closing it on /tech
+    // only bought you until the next service page.
+    if (!onThisPage || dismissedRecently(DISMISS_KEY)) return undefined
     const t = window.setTimeout(() => {
       lastFocused.current = document.activeElement
       setOpen(true)
@@ -33,6 +38,7 @@ export default function AiPromo({ path }) {
 
   const close = () => {
     setOpen(false)
+    recordDismissal(DISMISS_KEY, P.dismissDays)
     if (lastFocused.current && lastFocused.current.focus) lastFocused.current.focus()
   }
 
