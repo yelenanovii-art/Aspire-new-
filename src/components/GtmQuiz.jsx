@@ -34,7 +34,9 @@ export default function GtmQuiz() {
         source: 'gtm-quiz',
         gtm_score: `${result.score} of ${GTM_MAX}`,
         gtm_stage: result.stage.name,
-        ...Object.fromEntries(GTM_QUESTIONS.map((x) => [`gtm_${x.id}`, answers[x.id] || ''])),
+        // q_ rather than gtm_: two question ids are "stage" and "market", and
+        // under the old prefix the answers overwrote gtm_stage and gtm_market.
+        ...Object.fromEntries(GTM_QUESTIONS.map((x) => [`q_${x.id}`, answers[x.id] || ''])),
       },
       { formName: LEAD_FORM }
     )
@@ -106,14 +108,32 @@ export default function GtmQuiz() {
                 <label className="field"><span>Work email <span className="req">*</span></span>
                   <input type="email" name="email" required placeholder="jane@acme.com" /></label>
               </div>
-              <label className="field"><span>Company <span className="req">*</span></span>
-                <input type="text" name="company" required placeholder="Acme B.V." /></label>
-              <label className="field"><span>Which is this? <span className="req">*</span></span>
-                <select name="gtm_type" required defaultValue="">
-                  <option value="" disabled>Choose one</option>
-                  <option value="first">First go-to-market</option>
-                  <option value="expansion">New market expansion</option>
-                </select></label>
+              {/* Seven answers say what stage they are at. These say who is
+                  asking, which is what makes the reply worth reading: the site
+                  tells us more than the answers do, and the market and the
+                  timing decide whether this is a conversation now or in a
+                  quarter. Only the site is required on top of the original
+                  three, so the form stays short enough to finish. */}
+              <div className="field-row">
+                <label className="field"><span>Company <span className="req">*</span></span>
+                  <input type="text" name="company" required placeholder="Acme B.V." /></label>
+                <label className="field"><span>Company website <span className="req">*</span></span>
+                  <input type="url" name="website" required placeholder="https://acme.com" /></label>
+              </div>
+              <div className="field-row">
+                <label className="field"><span>Your role</span>
+                  <input type="text" name="role" placeholder="Head of Growth" /></label>
+                <label className="field"><span>Which is this? <span className="req">*</span></span>
+                  <select name="gtm_type" required defaultValue="">
+                    <option value="" disabled>Choose one</option>
+                    <option value="first">First go-to-market</option>
+                    <option value="expansion">New market expansion</option>
+                  </select></label>
+              </div>
+              <label className="field"><span>Which market are you going into?</span>
+                <input type="text" name="gtm_market" placeholder="Netherlands, UAE, mid market SaaS" /></label>
+              <label className="field"><span>Anything else worth knowing?</span>
+                <textarea name="notes" rows={3} placeholder="What you sell, what you have tried, when you want to launch." /></label>
               <label className="pbf__consent">
                 <input type="checkbox" name="consent" required value="yes" />
                 <span>I agree to Aspire storing my details as described in the <a href="/privacy">privacy policy</a>.</span>

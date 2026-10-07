@@ -55,6 +55,10 @@
   align-items: center;
   gap: 28px;
   width: 100%;
+  /* Full bar height, so the Services trigger inside it reaches the bar's
+     bottom edge and the panel below opens flush against it. Left at content
+     height there was a 12px strip between the two that dropped the hover. */
+  align-self: stretch;
 }
 
 .nav__links {
@@ -62,6 +66,9 @@
   align-items: center;
   gap: 4px;
   margin-left: auto;
+  /* Full bar height so the Services trigger inside it does too; the links
+     themselves stay centred on align-items above. */
+  align-self: stretch;
 }
 .nav__link {
   position: relative;
@@ -94,6 +101,10 @@
 
 /* Dropdown */
 .nav__group { position: relative; }
+/* The trigger spans the full height of the bar, so there is no strip between
+   its bottom edge and the top of the panel for the pointer to cross and lose
+   the hover on the way down. */
+.nav__group--mega { align-self: stretch; display: flex; align-items: center; }
 /* The 6px gap under the trigger was a dead zone: the pointer crossed it, the
    group stopped being hovered and the panel closed before it could be reached.
    The panel now starts flush and carries its own transparent lead-in, so the
@@ -142,7 +153,33 @@
 .nav__menu-desc { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
 
 /* ---------- Mega panel ---------- */
-.nav__menu--mega { min-width: 660px; }
+/* Fixed and centred on the viewport rather than on the trigger. Centred on
+   the trigger, a panel this wide hung off the left edge of the page at every
+   width below about 1200 and the first column was clipped: the trigger sits
+   left of centre, and the wider the panel the further out it reached. */
+.nav__menu--mega {
+  position: fixed;
+  top: var(--nav-h);
+  left: 50%;
+  min-width: 0;
+  width: min(660px, calc(100vw - 32px));
+}
+.nav__mega-items { display: grid; align-content: start; gap: 2px; }
+/* Six services in one column made the panel a tall list to read down. Three
+   and three reads as a set you scan. It needs the extra width, so it only
+   splits where there is room: the bar itself survives to 861px, and a 900px
+   panel centred on a trigger that sits left of centre would run off the page
+   below about 1060. */
+@media (min-width: 1060px) {
+  .nav__menu--mega { width: min(900px, calc(100vw - 32px)); }
+  .nav__menu--mega .nav__mega { grid-template-columns: 1.95fr 1fr; }
+  /* Multi-column rather than a two column grid: only two of the six carry a
+     flag, so grid rows sized to the tallest left a hole under every item that
+     did not. Columns pack independently and flow 01-03 then 04-06, which is
+     also the order they are numbered in. */
+  .nav__mega-items--two { display: block; columns: 2; column-gap: 10px; }
+  .nav__mega-items--two > .nav__menu-link { break-inside: avoid; margin-bottom: 2px; }
+}
 .nav__menu--mega .nav__menu-inner { padding: 10px; gap: 0; }
 .nav__mega {
   display: grid;
@@ -3840,16 +3877,79 @@
   margin: clamp(20px, 2.6vw, 26px) 0 clamp(20px, 2.6vw, 26px);
 }
 .promo__stat-v {
-  font-family: var(--display);
-  font-weight: var(--display-w);
-  font-size: clamp(38px, 5vw, 56px);
-  line-height: 1;
-  letter-spacing: var(--display-ls);
-  color: var(--accent-600);
+  /* The Didone, matching the 01/02/03 on the home page's problem list. The
+     grotesque read as a number in a table; this reads as a figure. Same face,
+     same weight, same tracking as .prob__k. */
+  font-family: var(--wordmark);
+  font-weight: 400;
+  font-size: clamp(44px, 5.6vw, 64px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--accent);
 }
 .promo__stat-v { display: block; }
 .promo__stat-k { display: block; margin-top: 2px; font-size: 14px; color: var(--body); line-height: 1.4; max-width: 30ch; }
 .promo__note { margin: 11px 0 0; font-size: 12.5px; color: var(--muted); }
+/* A second way out for somebody who wants to read before they book. */
+.promo__second {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--accent-600);
+}
+
+/* There is no photograph of a dashboard worth showing, so this half draws the
+   readout the /ai-systems page leads with instead of borrowing a frame from
+   somewhere it does not belong. */
+.promo__media--panel {
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 3vw, 34px);
+  background:
+    radial-gradient(90% 80% at 20% 0%, rgba(var(--accent-rgb), 0.42) 0%, transparent 62%),
+    linear-gradient(168deg, #16262b 0%, var(--ink) 58%, #070d10 100%);
+}
+.promo__panel {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(6px);
+}
+.promo__panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.promo__panel-title { font-size: 13.5px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+.promo__panel-sync {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-tint-2);
+}
+.promo__spark { width: 100%; height: 62px; color: var(--accent-tint-2); }
+.promo__panel-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.promo__metric { display: grid; gap: 2px; min-width: 0; }
+.promo__metric-v {
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: 19px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.promo__metric-k {
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.58);
+}
+@supports not (backdrop-filter: blur(6px)) {
+  .promo__panel { background: rgba(255, 255, 255, 0.09); }
+}
 .promo__lead { margin: 16px 0 0; color: var(--body); line-height: 1.6; font-size: 15px; }
 .promo__cta { margin-top: 22px; }
 .promo__close {

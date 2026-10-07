@@ -32,6 +32,9 @@ const NAV = [
       {
         heading: 'Growth services',
         note: 'Run together or on their own',
+        // Six in one column made the panel a tall list. Three and three reads
+        // as a set, and the panel widens to hold it.
+        split: true,
         items: SERVICES.map((s) => ({
           to: `/services/${s.slug}`,
           label: s.nav,
@@ -122,7 +125,9 @@ export default function Nav({ path, onDark = false }) {
                             {col.heading}
                             {col.note && <span>{col.note}</span>}
                           </div>
-                          {col.items.map((it) => <MenuLink it={it} key={it.to} />)}
+                          <div className={`nav__mega-items${col.split ? ' nav__mega-items--two' : ''}`}>
+                            {col.items.map((it) => <MenuLink it={it} key={it.to} />)}
+                          </div>
                         </div>
                       ))}
                     </div>

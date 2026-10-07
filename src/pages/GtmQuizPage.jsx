@@ -1,6 +1,5 @@
 import SectionHead from '../components/SectionHead'
 import GtmQuiz from '../components/GtmQuiz'
-import MediaSlot from '../components/MediaSlot'
 import CTABand from '../components/CTABand'
 import { ArrowRight } from '../components/Icons'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -42,12 +41,6 @@ export default function GtmQuizPage() {
             score out of ten, where you sit on the way to a pipeline that repeats, and the three
             things to do next.
           </p>
-        </div>
-      </section>
-
-      <section className="section section--flush-top section--tight">
-        <div className="container">
-          <MediaSlot ratio="16 / 9" label="Go-to-market quiz, photograph to follow" hint="TODO: image not yet supplied" />
         </div>
       </section>
 
