@@ -1,3 +1,4 @@
+import { logoWidth } from '../lib/logoSize'
 // Infinite client marquee. The track is duplicated so the loop is seamless;
 // the duplicate is aria-hidden so each client is announced only once.
 //
