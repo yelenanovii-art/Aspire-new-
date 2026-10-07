@@ -32,7 +32,7 @@
     # 'unsafe-inline' appears ONLY in style-src, because React writes inline
     # style attributes (e.g. style={{ '--delay': '60ms' }}). Style injection is
     # far lower risk than script injection, and script-src stays strict.
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://plausible.io; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self' https://plausible.io; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
     # Two years, all subdomains. Do NOT add "preload" until you are certain
     # every current and future subdomain will always serve HTTPS: preload lists

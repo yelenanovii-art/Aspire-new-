@@ -22,6 +22,7 @@ import CaseStudy from './pages/CaseStudy'
 import Insights from './pages/Insights'
 import Article from './pages/Article'
 import Book from './pages/Book'
+import { initAnalytics, trackBookingClicks } from './lib/analytics'
 import AiPromo from './components/AiPromo'
 import CookieConsent from './components/CookieConsent'
 import { SERVICES, CASES } from './data/site'
@@ -87,6 +88,14 @@ export default function App() {
 
   const activePath = redirect || path
   const known = Boolean(ROUTES[activePath])
+
+  // One listener for every booking CTA on the site, and the loader that only
+  // fires for visitors who chose analytics.
+  useEffect(() => {
+    const stopInit = initAnalytics()
+    const stopClicks = trackBookingClicks()
+    return () => { if (stopInit) stopInit(); if (stopClicks) stopClicks() }
+  }, [])
 
   useReveal(activePath)
   useSeo(activePath, known)

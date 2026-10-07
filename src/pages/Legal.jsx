@@ -47,7 +47,7 @@ export function Privacy() {
 
       <h2>Cookies and analytics</h2>
       <p>
-        This site sets no advertising or tracking cookies. Optional analytics are switched
+        This site sets no advertising or cross-site tracking cookies. Optional analytics are switched
         off unless you choose to allow them, and your choice is stored on your own device.
         Full detail is in the <a href="/cookies">cookie policy</a>.
       </p>
@@ -153,9 +153,10 @@ export function Cookies() {
     <LegalPage title="Cookie Policy" updated="September 2026">
       <h2>The short version</h2>
       <p>
-        This site does not track you. It sets no advertising cookies, no social pixels and
-        no third party trackers. The only thing stored on your device by default is the
-        record of the cookie choice you made, so we do not ask again on every page.
+        This site sets no advertising cookies, no social pixels and nothing that follows you
+        to other sites. The only thing stored on your device by default is the record of the
+        cookie choice you made, so we do not ask again on every page. If you allow analytics
+        we load Plausible, which is cookieless and stores nothing on your device either.
       </p>
 
       <h2>What is stored</h2>
@@ -172,18 +173,31 @@ export function Cookies() {
               <td>Until you clear your browser storage</td>
             </tr>
             <tr>
-              <td>Analytics</td>
+              <td>Plausible Analytics</td>
               <td>Optional</td>
-              <td>Aggregate page view counts, used only to see which pages are worth keeping. Not set unless you choose to allow them.</td>
-              <td>Not currently in use</td>
+              <td>
+                Aggregate page views and a small number of counted actions, such as a form
+                being sent or a booking link being followed, so we can see which pages do
+                any work. It sets no cookies and stores nothing on your device. Loaded only
+                if you allow analytics.
+              </td>
+              <td>Nothing stored on your device</td>
             </tr>
           </tbody>
         </table>
       </div>
       <p>
-        Analytics are listed because the consent choice exists to gate them. At the time of
-        writing no analytics provider is loaded on this site at all, whichever option you
-        pick. If one is added, it will only load for visitors who allowed it.
+        We use <a href="https://plausible.io/privacy" rel="noopener noreferrer">Plausible
+        Analytics</a>, which is cookieless: it sets nothing on your device, records no
+        identifier that could follow you between sites, and collects no personal data. It
+        counts page views and a few specific actions in aggregate, nothing more. Data is
+        processed in the European Union.
+      </p>
+      <p>
+        Because it stores nothing on your device, it does not legally require your consent.
+        We ask anyway, and it does not load at all unless you choose &ldquo;Allow
+        analytics&rdquo;. Choosing &ldquo;Essential only&rdquo; means no analytics script is
+        ever requested.
       </p>
 
       <h2>Changing your mind</h2>

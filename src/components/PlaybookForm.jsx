@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArrowRight, Check } from './Icons'
+import { track } from '../lib/analytics'
 import { submitForm } from '../lib/submitForm'
 import { LEAD_FORM_ESTATE } from '../lib/leadRouting'
 import { bookHrefFrom, bookAttrs } from '../config'
@@ -14,17 +15,6 @@ import { PLAYBOOK as P } from '../data/playbook'
 export default function PlaybookForm({ placement, onSubmitted }) {
   const [state, setState] = useState('idle') // idle | sending | done | error
   const [consent, setConsent] = useState(false)
-
-  const track = (name) => {
-    // No analytics provider is installed yet. Pushing to the dataLayer and
-    // firing a DOM event means whichever one is added later picks these up
-    // without the form needing to change.
-    try {
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({ event: name, placement })
-      window.dispatchEvent(new CustomEvent(name, { detail: { placement } }))
-    } catch { /* analytics must never break a submit */ }
-  }
 
   const handle = async (e) => {
     e.preventDefault()
@@ -41,12 +31,12 @@ export default function PlaybookForm({ placement, onSubmitted }) {
       },
       { formName: LEAD_FORM_ESTATE }
     )
-    track(placement === 'popup' ? 'playbook_popup_submit' : 'playbook_footer_submit')
     // The guide is the thing they were promised. Our delivery failing is not
     // their problem, so they get it either way; the error only says we could
     // not file their details.
     setState(res.ok ? 'done' : 'error')
     try { window.localStorage.setItem(P.keySubmitted, '1') } catch { /* private window */ }
+    track('playbook_download', { path: window.location.pathname, placement, market: data.market })
     if (onSubmitted) onSubmitted()
   }
 

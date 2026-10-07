@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArrowRight, Check } from './Icons'
+import { track } from '../lib/analytics'
 import { submitForm } from '../lib/submitForm'
 import { leadFormFor, originParam, currentPathname } from '../lib/leadRouting'
 import { COMPANY } from '../config'
@@ -93,6 +94,12 @@ export default function LeadForm({
     )
     if (res.ok) {
       setStatus('idle')
+      track('contact_form_submit', {
+        path: currentPathname(),
+        source,
+        form: target,
+        interest: data.interest,
+      })
       if (onSuccess) onSuccess({ delivered: true })
       else setSent(true)
     } else {

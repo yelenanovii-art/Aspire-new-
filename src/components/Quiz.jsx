@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { ArrowRight } from './Icons'
 import LeadForm from './LeadForm'
 import { QUESTIONS, scoreQuiz, matchFor, planFor, scoreOf, archetypeOf } from '../data/quiz'
+import { track } from '../lib/analytics'
 import { COMPANY } from '../config'
 
 // Three stages: answer, then a gate, then the plan.
@@ -120,6 +121,12 @@ export default function Quiz() {
               source="growth-quiz"
               onSuccess={(res) => {
                 setDelivered(res?.delivered !== false)
+                track('quiz_complete', {
+                  quiz: 'growth-fit',
+                  result: match.title,
+                  score: String(score.pct),
+                  archetype: archetype.name,
+                })
                 setStage('plan')
               }}
               hidden={{

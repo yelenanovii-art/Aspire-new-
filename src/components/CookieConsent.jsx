@@ -28,8 +28,8 @@ export default function CookieConsent() {
     <div className="consent" role="dialog" aria-live="polite" aria-label="Cookie choices">
       <div className="consent__inner">
         <p className="consent__text">
-          We use only what the site needs to work. Nothing is tracked or shared unless you
-          choose to allow analytics, which help us see which pages are useful.{' '}
+          We use only what the site needs to work. Allow analytics and we load Plausible,
+          which counts visits without cookies and without collecting anything personal.{' '}
           <a href="/cookies">Read the cookie policy</a>.
         </p>
         <div className="consent__actions">

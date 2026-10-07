@@ -4,6 +4,7 @@ import { submitForm } from '../lib/submitForm'
 import { LEAD_FORM } from '../lib/leadRouting'
 import { bookHref, bookAttrs } from '../config'
 import { GTM_QUESTIONS, GTM_MAX, scoreGtm } from '../data/gtmQuiz'
+import { track } from '../lib/analytics'
 
 // Three stages, the same shape as the fit quiz: answer, a gate, then the plan.
 // The score and the stage are shown at the gate so there is a reason to hand
@@ -41,6 +42,12 @@ export default function GtmQuiz() {
       { formName: LEAD_FORM }
     )
     setSent(res.ok)
+    track('quiz_complete', {
+      quiz: 'gtm-readiness',
+      result: result.stage.name,
+      score: String(result.score),
+      type: data.gtm_type,
+    })
     setStage('plan')
   }
 
