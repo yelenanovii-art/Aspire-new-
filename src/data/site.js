@@ -111,8 +111,10 @@ export const SERVICES = [
     // The seven deliverables are a contents page, so they are set as one:
     // numbered, ruled, read down. The other services keep the check list.
     includesLayout: 'ledger',
-    // No photograph for this page yet. The frame states what belongs there.
-    photoTodo: { label: 'Go-to-market, photograph to follow', hint: 'TODO: image not yet supplied' },
+    photo: {
+      src: '/media/pages/svc-gtm.webp', w: 1920, h: 1080,
+      alt: "A packed auditorium at a Barcelona Global event, under the hall's ornate ceiling",
+    },
     // Who it is for, shown above the phases.
     audience: [
       {
@@ -237,9 +239,9 @@ export const SERVICES = [
     },
     photo: {
       src: '/media/pages/svc-events.webp',
-      w: 1440,
-      h: 540,
-      alt: 'The outdoor audio demo area at Integrated Systems Europe 2026 in Barcelona',
+      w: 1920,
+      h: 1080,
+      alt: 'Two presenters miked up on the esports arena stage at a trade show',
     },
     n: '03',
     nav: 'Events and conferences',
@@ -325,7 +327,10 @@ export const SERVICES = [
   },
   {
     slug: 'business-development',
-    photo: { src: '/media/pages/svc-bizdev.webp', alt: 'Two people in conversation beside an exhibition stand' },
+    photo: {
+      src: '/media/pages/svc-bizdev.webp', w: 1920, h: 1080,
+      alt: 'Presenting at an interactive touch table on an exhibition stand',
+    },
     n: '04',
     nav: 'Business development',
     title: 'Business development',
@@ -388,7 +393,10 @@ export const SERVICES = [
   },
   {
     slug: 'social-media',
-    photo: { src: '/media/pages/svc-social.webp', alt: 'Someone filming a lit display on a phone at an exhibition' },
+    photo: {
+      src: '/media/pages/svc-social.webp', w: 1920, h: 1080,
+      alt: 'Filming a conference stage on a phone, held in both hands',
+    },
     n: '05',
     nav: 'Social media management',
     title: 'Social media management',
@@ -456,7 +464,10 @@ export const SERVICES = [
   },
   {
     slug: 'content-creation',
-    photo: { src: '/media/pages/svc-content.webp', alt: 'A flamenco performer under stage light in front of an LED backdrop' },
+    photo: {
+      src: '/media/pages/svc-content.webp', w: 1920, h: 1080,
+      alt: 'A camera rig and monitor filming a speaker on stage',
+    },
     n: '06',
     nav: 'Content creation',
     title: 'Content creation',
