@@ -18,7 +18,7 @@ export default function Marquee({ items, label }) {
                       what differs, and it is carried in the data. */}
                   {c.logo ? (
                     <img src={c.logo} alt={c.name} loading="lazy" decoding="async"
-                         width={c.logoW || 300} height="128" />
+                         width={logoWidth(c.name, 32)} height="32" />
                   ) : c.name}
                 </li>
               ))}
