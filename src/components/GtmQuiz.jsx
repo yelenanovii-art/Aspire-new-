@@ -76,7 +76,7 @@ export default function GtmQuiz() {
       {stage === 'quiz' && (
         <div className="quiz__step">
           <p className="quiz__count">Question {idx + 1} of {GTM_QUESTIONS.length}</p>
-          <h3 className="quiz__q">{q.q}</h3>
+          <h2 className="quiz__q">{q.q}</h2>
           <ul className="quiz__options">
             {q.options.map((o) => (
               <li key={o.v}>
@@ -169,7 +169,7 @@ export default function GtmQuiz() {
       {stage === 'plan' && (
         <div className="quiz__step">
           <p className="quiz__count">{result.stage.name} · {result.score}/{GTM_MAX}</p>
-          <h3 className="quiz__q">What to do next.</h3>
+          <h2 className="quiz__q">What to do next.</h2>
           <p className="quiz__help">{result.stage.line}</p>
 
           {!sent && (

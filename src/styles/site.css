@@ -1950,7 +1950,8 @@
   position: relative;
   background: linear-gradient(180deg, #101b1f 0%, var(--ink) 60%, #080f12 100%);
   color: rgba(255, 255, 255, 0.74);
-  padding-block: calc(var(--nav-h) + clamp(64px, 9vw, 128px)) clamp(64px, 9vw, 120px);
+  /* Matched to .hero. Two hero scales a quarter apart is drift, not emphasis. */
+  padding-block: calc(var(--nav-h) + clamp(56px, 7.5vw, 104px)) clamp(60px, 8vw, 108px);
   overflow: hidden;
   isolation: isolate;
   text-align: center;
@@ -2335,7 +2336,9 @@
   background: var(--wash-dark);
   overflow: hidden;
   isolation: isolate;
-  padding-block: clamp(72px, 9vw, 128px);
+  /* On the standard section scale. 128 was a quarter taller than every
+     other band for no reason the design could name. */
+  padding-block: clamp(56px, 7vw, 100px);
 }
 .pull-section__bg { position: absolute; inset: 0; z-index: -1; }
 
@@ -4717,7 +4720,9 @@
 .evb {
   background: var(--ink);
   color: #fff;
-  padding-block: clamp(52px, 7vw, 92px);
+  /* On the standard section scale rather than 92, which sat between tight
+     and standard and made this band read as a different rhythm. */
+  padding-block: clamp(56px, 7vw, 100px);
 }
 .evb__inner {
   display: grid;
@@ -5109,7 +5114,9 @@
    narrative does not. Glass cards and the home page's gradient language, with
    more air than the template allows.
    ────────────────────────────────────────────────────────────────────────── */
-.cs2-head { padding-block: calc(var(--nav-h) + clamp(44px, 6vw, 76px)) clamp(10px, 1.6vw, 18px); background: var(--white); }
+/* Opens tighter than a page hero on purpose, since the numbers below are the
+   point, but closes on the same rhythm as everything else. */
+.cs2-head { padding-block: calc(var(--nav-h) + clamp(44px, 6vw, 76px)) clamp(34px, 4.5vw, 52px); background: var(--white); }
 .cs2-head__grid { display: grid; gap: clamp(26px, 4vw, 52px); align-items: center; }
 @media (min-width: 900px) {
   /* The photograph is about a third, so the summary still leads. */
@@ -5639,4 +5646,15 @@
   .footer__social-btn { min-width: 44px; min-height: 44px; }
   .faq__q button { min-height: 44px; }
   .quiz__option { min-height: 48px; }
+}
+
+/* Inline links inside article prose and the related lists were 26px tall on a
+   phone, under the 44px a thumb needs. Padding, so the line length is
+   untouched and nothing moves on a desktop. */
+@media (pointer: coarse) {
+  .article__related a,
+  .article__more a,
+  .casepage__svcs a,
+  .related__card { min-height: 44px; display: flex; align-items: center; }
+  .article__sec p a { padding-block: 9px; }
 }

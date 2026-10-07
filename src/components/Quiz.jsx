@@ -67,7 +67,7 @@ export default function Quiz() {
           <p className="quiz__count">
             Question {idx + 1} of {QUESTIONS.length}
           </p>
-          <h3 className="quiz__q">{q.q}</h3>
+          <h2 className="quiz__q">{q.q}</h2>
           {q.help && <p className="quiz__help">{q.help}</p>}
 
           <ul className="quiz__options">
@@ -111,7 +111,7 @@ export default function Quiz() {
             </div>
           </div>
 
-          <h3 className="quiz__q quiz__archetype">{archetype.name}</h3>
+          <h2 className="quiz__q quiz__archetype">{archetype.name}</h2>
           <p className="quiz__help">{archetype.line}</p>
 
           <p className="quiz__match-line">
@@ -161,7 +161,7 @@ export default function Quiz() {
       {(stage === 'plan' || stage === 'match') && (
         <div className="quiz__step">
           <p className="quiz__count">{archetype.name} · {score.pct}/100</p>
-          <h3 className="quiz__q">{match.title}</h3>
+          <h2 className="quiz__q">{match.title}</h2>
           <p className="quiz__help">{match.line}</p>
 
           {stage === 'plan' && !delivered && (
