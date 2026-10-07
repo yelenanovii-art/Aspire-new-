@@ -114,6 +114,15 @@ const META = {
 const BRAND_SUFFIX = ' | Aspire Agency'
 
 const OG_IMAGE = SITE_URL + '/og.png'
+
+// Cases and insights get their own card, generated at build time with the page
+// title on the brand ground. One shared image across thirteen different pages
+// makes every share look like the same link, which is most of why a shared
+// case study gets no clicks. Everything else keeps the default.
+const ogFor = (path) =>
+  /^\/(work|insights)\/[^/]+$/.test(path)
+    ? `${SITE_URL}/og/${path.slice(1).replace('/', '-')}.png`
+    : OG_IMAGE
 const ORG_ID = SITE_URL + '/#organization'
 const SITE_ID = SITE_URL + '/#website'
 const SITE_PUBLISHED = '2026-09-01'
@@ -285,6 +294,14 @@ export function useSeo(path, known = true) {
     setLink('canonical', url)
     setLink('alternate', url, 'en')
     setLink('alternate', url, 'x-default')
+
+    // The card was set once in the static head and never changed, so thirteen
+    // different cases and articles all shared one image and every share looked
+    // like the same link.
+    const og = ogFor(path)
+    setMeta('og:image', og, 'property')
+    setMeta('og:image:alt', known ? m.t : 'Aspire Agency', 'property')
+    setMeta('twitter:image', og)
 
     setMeta('og:url', url, 'property')
     setMeta('og:type', 'website', 'property')

@@ -2,6 +2,7 @@ import CTABand from './CTABand'
 import CountUp from './CountUp'
 import { ArrowRight } from './Icons'
 import { logoFor } from '../data/site'
+import { logoWidth } from '../lib/logoSize'
 
 // The RatTech case, on its own layout.
 //
@@ -84,7 +85,8 @@ export default function CaseStudyPremium({ c, d }) {
             </nav>
 
             {logoFor(c.client) ? (
-              <img className="cs2-head__logo reveal" src={logoFor(c.client)} alt={c.client} height="34" />
+              <img className="cs2-head__logo reveal" src={logoFor(c.client)} alt={c.client}
+                   width={logoWidth(c.client, 34)} height="34" loading="lazy" decoding="async" />
             ) : (
               <p className="cs2-head__client reveal">{c.client}</p>
             )}

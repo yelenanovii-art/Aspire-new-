@@ -113,6 +113,8 @@ export default function ServiceCarousel() {
                     srcSet={`${s.photo.src.replace(/\.webp$/, '-480.webp')} 480w, ${s.photo.src.replace(/\.webp$/, '-760.webp')} 760w, ${s.photo.src} ${s.photo.w || 1920}w`}
                     sizes="(max-width: 860px) 92vw, 46vw"
                     alt=""
+                    width={s.photo.w || 1920}
+                    height={s.photo.h || 1080}
                     loading={d === 0 ? 'eager' : 'lazy'}
                     decoding="async"
                   />

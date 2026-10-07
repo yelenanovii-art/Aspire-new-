@@ -156,6 +156,8 @@ export default function Nav({ path, onDark = false }) {
             aria-label="Find your match: a six question quiz"
           >
             <ChoiceMark size={20} />
+            {/* Visible on hover and on keyboard focus. An icon with no label
+                at all is a guess, and the tooltip was pointer-only. */}
             <span className="nav__quiz-tip" aria-hidden="true">Find your match</span>
           </a>
           <a className="btn btn-accent btn-sm nav__cta" href={bookHref} {...bookAttrs}>

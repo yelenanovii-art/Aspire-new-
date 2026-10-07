@@ -1,4 +1,5 @@
 import { ArrowRight } from './Icons'
+import { logoWidth } from '../lib/logoSize'
 import { serviceBySlug, logoFor } from '../data/site'
 import { caseDetailFor } from '../data/caseDetail'
 
@@ -27,7 +28,7 @@ export default function CaseCard({ c, i = 0, compact = false, showServices = fal
         {logoFor(c.client) ? (
           // The mark identifies the client faster than the name does; the name
           // stays as the accessible label rather than being dropped.
-          <img className="case-card__logo" src={logoFor(c.client)} alt={c.client}
+          <img className="case-card__logo" width={logoWidth(c.client, 22)} src={logoFor(c.client)} alt={c.client}
                height="22" loading="lazy" decoding="async" />
         ) : (
           <span className="case-card__client">{c.client}</span>

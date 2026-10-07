@@ -626,16 +626,16 @@ export const CASES = [
 export const caseBySlug = (slug) => CASES.find((c) => c.slug === slug)
 
 export const CLIENTS = [
-  { name: 'Integrated Systems Europe', logo: '/brand/clients/ise.webp' },
-  { name: 'SilTest Semiconductors', logo: '/brand/clients/siltest.webp' },
-  { name: 'BUNQ', logo: '/brand/clients/bunq.webp' },
-  { name: 'De Interim Notaris', logo: '/brand/clients/de-interim-notaris.webp' },
-  { name: 'The Craft Cigar Club', logo: '/brand/clients/craft-cigar-club.webp' },
-  { name: 'RCK Consulting', logo: '/brand/clients/rck.webp' },
-  { name: 'Interactive Digital Media', logo: '/brand/clients/idm.webp' },
-  { name: 'AnyMessage', logo: '/brand/clients/anymessage.webp' },
-  { name: 'RatTech', logo: '/brand/clients/rattech.webp' },
-  { name: 'ABC Kloak', logo: '/brand/clients/abc-kloak.webp' },
+  { name: 'Integrated Systems Europe', logo: '/brand/clients/ise.webp', logoW: 365 },
+  { name: 'SilTest Semiconductors', logo: '/brand/clients/siltest.webp', logoW: 195 },
+  { name: 'BUNQ', logo: '/brand/clients/bunq.webp', logoW: 309 },
+  { name: 'De Interim Notaris', logo: '/brand/clients/de-interim-notaris.webp', logoW: 128 },
+  { name: 'The Craft Cigar Club', logo: '/brand/clients/craft-cigar-club.webp', logoW: 128 },
+  { name: 'RCK Consulting', logo: '/brand/clients/rck.webp', logoW: 311 },
+  { name: 'Interactive Digital Media', logo: '/brand/clients/idm.webp', logoW: 294 },
+  { name: 'AnyMessage', logo: '/brand/clients/anymessage.webp', logoW: 210 },
+  { name: 'RatTech', logo: '/brand/clients/rattech.webp', logoW: 477 },
+  { name: 'ABC Kloak', logo: '/brand/clients/abc-kloak.webp', logoW: 118 },
   // No image mark for these two, so they run as set wordmarks. Veerpoint's
   // own brand is typographic (type plus a coloured stop), so a wordmark is
   // faithful rather than a fallback.

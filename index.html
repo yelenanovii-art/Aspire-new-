@@ -137,6 +137,9 @@
          top of index.css), so there is no request to Google and no preconnect
          to any third party. Only the two families used above the fold are
          preloaded; the wordmark and mono faces load normally. -->
+    <!-- The wordmark is in the first paint of every page, and it is the only
+         image above the fold that is not decorative. -->
+    <link rel="preload" as="image" href="/brand/aspire-logo.webp" fetchpriority="high" />
     <link rel="preload" as="font" type="font/woff2" crossorigin
           href="/fonts/inter-latin-wght-normal.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -159,7 +162,7 @@
          `form-name`. Keep the field list in sync with LeadForm's FIELD_DEFS.
          Harmless if you use Formspree instead (set VITE_FORM_ENDPOINT). -->
     <form name="aspire-lead" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
-      <input type="text" name="bot-field" />
+      <input type="text" name="bot-field" tabindex="-1" />
       <input type="text" name="name" />
       <input type="text" name="company" />
       <input type="text" name="email" />
@@ -212,7 +215,7 @@
          build time and stores only the fields declared here, so this block and
          src/lib/leadRouting.js have to stay in step. -->
     <form name="aspire-lead-real-estate" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
-      <input type="text" name="bot-field" />
+      <input type="text" name="bot-field" tabindex="-1" />
       <input type="text" name="name" />
       <input type="text" name="company" />
       <input type="text" name="email" />

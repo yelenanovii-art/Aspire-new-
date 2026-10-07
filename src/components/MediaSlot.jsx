@@ -30,7 +30,9 @@ export default function MediaSlot({ src, poster, label, hint, ratio = '3 / 2', s
   if (src) {
     return (
       <figure className="slot slot--filled" style={style}>
-        <img src={src} alt={alt || label} loading="lazy" />
+        {/* The frame already reserves the box through aspect-ratio; these keep
+            it reserved in the moment before the stylesheet applies. */}
+        <img src={src} alt={alt || label} loading="lazy" decoding="async" width="900" height="600" />
       </figure>
     )
   }

@@ -24,7 +24,7 @@ export default function PullQuote() {
       <figcaption className="pull__by">
         <span className="pull__rule" aria-hidden="true" />
         {logoFor(t.company) && (
-          <img className="pull__logo" src={logoFor(t.company)} alt="" height="26"
+          <img className="pull__logo" src={logoFor(t.company)} alt="" width="63" height="26"
                loading="lazy" decoding="async" />
         )}
         <span className="pull__name">{t.name}</span>

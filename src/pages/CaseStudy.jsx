@@ -6,6 +6,7 @@ import Todo from '../components/Todo'
 import MediaSlot from '../components/MediaSlot'
 import { SITE_URL } from '../config'
 import { serviceBySlug, logoFor, TESTIMONIALS } from '../data/site'
+import { logoWidth } from '../lib/logoSize'
 import { caseDetailFor } from '../data/caseDetail'
 import CaseStudyPremium from '../components/CaseStudyPremium'
 
@@ -78,7 +79,8 @@ export default function CaseStudy({ c }) {
 
           {logoFor(c.client) && (
             <img className="casepage__logo reveal" src={logoFor(c.client)} alt={c.client}
-                 height="38" style={{ '--delay': '220ms' }} />
+                 width={logoWidth(c.client, 38)} height="38" loading="lazy" decoding="async"
+                 style={{ '--delay': '220ms' }} />
           )}
         </div>
       </section>

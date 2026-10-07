@@ -93,7 +93,7 @@ export default function FilmCard({ src, poster, label, note, ratio = '16 / 9', i
     <figure className={`film ${tall ? 'film--tall' : 'film--wide'}`} style={{ aspectRatio: ratio }} ref={host}>
       {/* The poster is always in the markup, so the frame is never an empty
           box while the clip loads or if it never does. */}
-      <img src={poster} alt={label} loading="lazy" decoding="async" />
+      <img src={poster} alt={label} loading="lazy" decoding="async" width="540" height="960" />
       <video
         ref={keepMuted}
         src={armed ? src : undefined}

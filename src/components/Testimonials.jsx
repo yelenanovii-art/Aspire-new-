@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TESTIMONIALS, logoFor } from '../data/site'
 import { useSwipe } from '../hooks/useSwipe'
+import { logoWidth } from '../lib/logoSize'
 
 // Rotating client quotes. Auto-advance is suppressed under reduced motion,
 // and pauses while the reader is hovering or has focus inside the panel.
@@ -51,7 +52,7 @@ export default function Testimonials({ light = false }) {
       </div>
       <figcaption className="quote__by">
         {logoFor(t.company) ? (
-          <img className="quote__logo" src={logoFor(t.company)} alt={t.company}
+          <img className="quote__logo" width={logoWidth(t.company, 24)} src={logoFor(t.company)} alt={t.company}
                height="24" loading="lazy" decoding="async" />
         ) : (
           <span className="quote__avatar" aria-hidden="true">{t.initials}</span>

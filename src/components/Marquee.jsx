@@ -13,7 +13,13 @@ export default function Marquee({ items, label }) {
             <ul className="marquee__group" aria-hidden={dup === 1} key={dup}>
               {items.map((c) => (
                 <li key={c.name} className={c.logo ? 'has-logo' : ''}>
-                  {c.logo ? <img src={c.logo} alt={c.name} loading="lazy" /> : c.name}
+                  {/* Intrinsic size so the strip does not reflow as each mark
+                      arrives. They are all exported 128 tall; the width is
+                      what differs, and it is carried in the data. */}
+                  {c.logo ? (
+                    <img src={c.logo} alt={c.name} loading="lazy" decoding="async"
+                         width={c.logoW || 300} height="128" />
+                  ) : c.name}
                 </li>
               ))}
             </ul>
