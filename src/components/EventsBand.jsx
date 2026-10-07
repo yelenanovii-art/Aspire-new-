@@ -24,7 +24,7 @@ export default function EventsBand() {
           </h2>
           <p className="evb__lead reveal" style={{ '--delay': '110ms' }}>
             We join your team for the run-up, the floor and the follow-up: meetings in the
-            diary before you land, leads captured with the conversation attached, content
+            diary before you land, qualified leads captured with the conversation attached, content
             published while it is happening. Three years running the show floors at
             Integrated Systems Europe, and external sales at SilTest.
           </p>

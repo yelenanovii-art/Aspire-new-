@@ -215,7 +215,7 @@ export const PLANS = {
     first: 'Pick the one show that matters most this year and work backwards from it. Pull the attendee and exhibitor lists, mark who is genuinely worth a meeting, and start the outreach four to six weeks out. A full diary on day one is decided now, not on the floor.',
     then: 'Run the show itself as three jobs rather than one: keep the diary moving, capture and publish while it is happening, and record every conversation with the detail that makes follow-up possible. Then send that follow-up within days, not weeks.',
     park: 'Do not redesign the stand this cycle. A better-looking stand with an empty diary still produces an empty pipeline.',
-    expect: 'A calendar of booked meetings before you travel, a recorded lead list instead of a pile of scans, and follow-up out while they still remember the conversation.',
+    expect: 'A calendar of booked meetings before you travel, a recorded list of qualified leads instead of a pile of scans, and follow-up out while they still remember the conversation.',
   },
   sales: {
     first: 'Define the buyer properly, then build one list against it. Not a sector and a job title: the trigger that makes someone need this now. Most outreach fails on the list, not the message.',

@@ -139,6 +139,12 @@ export const SERVICES = [
       { n: '03', w: 'Weeks 9 to 12', h: 'Repeatable pipeline', p: 'What produced meetings gets scaled, what did not gets cut, and the roadmap moves from a plan into a process your team can run.' },
     ],
     // Pulls the readiness quiz CTA onto the page.
+    scheduleEyebrow: 'How it runs',
+    scheduleTitle: 'Three phases, ninety days.',
+    scheduleKind: 'rail',
+    // The only service whose phase photographs are still outstanding, so the
+    // only one that reserves frames for them.
+    phasePhotos: true,
     quiz: { to: '/services/go-to-market/quiz', label: 'Check your GTM readiness', note: 'Seven questions, two minutes, a score and three next steps.' },
     proof: { caseSlugs: ['rattech', 'bunq', 'siltest'] },
     faq: [
@@ -163,10 +169,29 @@ export const SERVICES = [
     metaDesc:
       'Lead research, multichannel outreach, conference representation and CRM management for B2B tech companies. In the room and online, from Barcelona.',
     keywords: 'B2B sales, lead generation, conference sales, outreach, CRM, tech sales, Barcelona',
-    tags: ['Lead research', 'Outreach', 'Conference sales', 'CRM'],
+    tags: ['Account research', 'Outreach', 'Conference sales', 'CRM'],
+    meta: [
+      { k: 'Starts', v: 'Within two weeks' },
+      { k: 'You get', v: 'Meetings, not lists' },
+      { k: 'Runs', v: 'Monthly, no lock-in' },
+    ],
+    includesLayout: 'ledger',
+    // A funnel rather than a calendar: this service is one line with four
+    // stages and fewer accounts surviving each one, and the shape says that
+    // better than a date range would.
+    scheduleEyebrow: 'The line',
+    scheduleTitle: 'Four stages, one owner.',
+    scheduleKind: 'funnel',
+    scheduleNote: 'Same person from the first email to the handover. Nothing is passed between a researcher, a caller and an account manager who have never spoken.',
+    phases: [
+      { n: '01', w: 'Stage one', h: 'Research', p: 'The accounts worth the time and the people inside them who actually sign. Named and checked rather than scraped, so nothing downstream is wasted on a list that was never right.' },
+      { n: '02', w: 'Stage two', h: 'Open', p: 'First contact on the channel this buyer answers on, written for them rather than sent at them. Volume is not the goal and never has been.' },
+      { n: '03', w: 'Stage three', h: 'Follow up', p: 'Where most outreach dies. Four to seven touches over weeks, each one adding something, until there is an answer either way.' },
+      { n: '04', w: 'Stage four', h: 'Hand over', p: 'A qualified lead reaches your team with the full thread, the notes and the next step already agreed, recorded in your CRM as it happens.' },
+    ],
     includes: [
       {
-        h: 'Account and lead research',
+        h: 'Account and buyer research',
         p: 'We build the target list against your real buyer profile: sector, size, region, buying signal. Not a scraped database sent to everyone.',
       },
       {
@@ -190,7 +215,7 @@ export const SERVICES = [
       },
       {
         q: 'Will you actually attend conferences with us?',
-        a: 'Yes. Onsite representation is core to this service. We have worked with Integrated Systems Europe for the last three years. They run one of the largest audio visual conferences in the world, held annually in Barcelona, and we help their team run the show floors and planning and executing social media support through the week and the run-up to it. For SilTest Semiconductors we attend as an external sales agency: generating leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers afterwards to grow the pipeline.',
+        a: 'Yes. Onsite representation is core to this service. We have worked with Integrated Systems Europe for the last three years. They run one of the largest audio visual conferences in the world, held annually in Barcelona, and we help their team run the show floors and planning and executing social media support through the week and the run-up to it. For SilTest Semiconductors we attend as an external sales agency: generating qualified leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers afterwards to grow the pipeline.',
       },
       {
         q: 'How quickly does outreach produce meetings?',
@@ -225,23 +250,39 @@ export const SERVICES = [
     // nothing on the page could support.
     flag: 'Project based, worldwide',
     blurb:
-      'Extra hands for the week your pipeline is decided. Meetings booked before you land, leads captured on the floor, live marketing, and the follow-up sent while it still counts. Project based, worldwide.',
+      'Extra hands for the week your pipeline is decided. Meetings booked before you land, qualified leads captured on the floor, live marketing, and the follow-up sent while it still counts. Project based, worldwide.',
     h1: 'A conference is five days. Most of its value is lost in the sixth.',
     lede:
-      'We join your team for the run-up, the show and the week after: pre-booked meetings in the diary before you arrive, lead capture and sales conversations on the floor, social and content published live, and follow-up sent while the conversation is still warm. Scoped to the event rather than a retainer, and we travel.',
+      'We join your team for the run-up, the show and the week after: pre-booked meetings in the diary before you arrive, qualified leads and sales conversations on the floor, social and content published live, and follow-up sent while the conversation is still warm. Scoped to the event rather than a retainer, and we travel.',
     metaTitle: 'Conference and Event Marketing and Sales Support',
     metaDesc:
-      'Project-based conference support for B2B tech: pre-booked meetings, onsite lead capture and sales, live social and content, and structured follow-up. Worldwide, scoped per event.',
+      'Project-based conference support for B2B tech: pre-booked meetings, qualified leads and sales onsite, live social and content, and structured follow-up. Worldwide, scoped per event.',
     keywords:
       'conference marketing, trade show sales support, event lead generation, exhibition staff, onsite marketing, B2B events',
-    tags: ['Pre-booked meetings', 'Onsite lead capture', 'Live content', 'Follow-up'],
+    tags: ['Pre-booked meetings', 'Qualified leads onsite', 'Live content', 'Follow-up'],
+    meta: [
+      { k: 'Scope', v: 'One show at a time' },
+      { k: 'We cover', v: 'Run-up, floor, follow-up' },
+      { k: 'Where', v: 'Worldwide' },
+    ],
+    includesLayout: 'ledger',
+    // Measured against the show rather than against a start date, because the
+    // show is the fixed point and everything else moves around it.
+    scheduleEyebrow: 'Before, during, after',
+    scheduleTitle: 'The week is decided before it starts.',
+    scheduleKind: 'rail',
+    phases: [
+      { n: '01', w: 'Six weeks out', h: 'Fill the diary', p: 'Target list against who is actually attending, outreach, and meetings confirmed into your calendar. You land with a week that is already booked rather than a stand to stand behind.' },
+      { n: '02', w: 'Show week', h: 'Work the floor', p: 'We are on the stand and in the halls with your team: taking meetings, qualifying leads as they happen with the conversation attached, and publishing the show while it is still on.' },
+      { n: '03', w: 'The week after', h: 'Close the loop', p: 'Follow-up out within days, while they still remember the conversation. Qualified leads, notes and sequences handed over in your systems, not ours.' },
+    ],
     includes: [
       {
         h: 'Meetings booked before you arrive',
         p: 'Walk-up traffic is the least valuable thing a stand produces. We work the attendee and exhibitor lists in the weeks before and put real conversations in the diary, so day one starts with a schedule rather than hope.',
       },
       {
-        h: 'Lead capture and sales on the floor',
+        h: 'Qualified leads and sales on the floor',
         p: 'We attend as your team: stand cover, badge scanning with a note of what was actually discussed, and the sales conversations themselves. A scanned badge with no context is a name nobody remembers by the following week.',
       },
       {
@@ -266,7 +307,7 @@ export const SERVICES = [
     faq: [
       {
         q: 'Do you travel to the event?',
-        a: 'Yes, anywhere. This is project work scoped to a specific show rather than a retainer, so the engagement is the run-up, the event itself and the follow-up week. We have worked with Integrated Systems Europe for three years, helping run the show floors and the social support at their annual Barcelona conference; with SilTest Semiconductors as an external sales agency, generating leads ahead of the show, booking and taking the meetings and handing them over qualified afterwards; and with Interactive Digital Media.',
+        a: 'Yes, anywhere. This is project work scoped to a specific show rather than a retainer, so the engagement is the run-up, the event itself and the follow-up week. We have worked with Integrated Systems Europe for three years, helping run the show floors and the social support at their annual Barcelona conference; with SilTest Semiconductors as an external sales agency, generating qualified leads ahead of the show, booking and taking the meetings and handing them over qualified afterwards; and with Interactive Digital Media.',
       },
       {
         q: 'How far in advance do you need to start?',
@@ -278,7 +319,7 @@ export const SERVICES = [
       },
       {
         q: 'What do we keep afterwards?',
-        a: 'Everything. The leads, the notes, the content and the follow-up sequences all sit in your systems, recorded as they happen. If we never work another show together you still have the pipeline from this one.',
+        a: 'Everything. The qualified leads, the notes, the content and the follow-up sequences all sit in your systems, recorded as they happen. If we never work another show together you still have the pipeline from this one.',
       },
     ],
   },
@@ -298,6 +339,23 @@ export const SERVICES = [
       'Branding, website, SEO and partnerships wired directly into your sales pipeline. Long term B2B growth from Aspire in Barcelona.',
     keywords: 'business development, branding, website, SEO, partnerships, audience growth',
     tags: ['Branding', 'Website', 'SEO', 'Partnerships'],
+    meta: [
+      { k: 'Timeline', v: 'Six to ten weeks' },
+      { k: 'You own', v: 'The brand and the source' },
+      { k: 'Then', v: 'It feeds the outreach' },
+    ],
+    includesLayout: 'ledger',
+    // A stack, not a run: each layer only holds because the one under it is
+    // already there. Partnerships before a site that backs the name up is the
+    // usual and expensive way round.
+    scheduleEyebrow: 'The order',
+    scheduleTitle: 'Each layer needs the one beneath it.',
+    scheduleKind: 'stack',
+    phases: [
+      { n: '01', w: 'Foundation', h: 'The name and the look', p: 'Identity, voice and the basic kit. Everything after this points back to it, so it goes first or everything after it gets rebuilt.' },
+      { n: '02', w: 'Built on it', h: 'The site and the search', p: 'A site that backs the name up when somebody checks, and the technical and content work that puts it in front of people searching for what you do.' },
+      { n: '03', w: 'Built on that', h: 'The partnerships', p: 'Introductions and partners who already have the audience. This only works once the first two hold: a warm introduction to a weak site is a wasted introduction.' },
+    ],
     includes: [
       {
         h: 'Brand and visual identity',
@@ -344,6 +402,24 @@ export const SERVICES = [
       'LinkedIn, YouTube, TikTok and Instagram managed end to end: strategy, calendar, posting, community and analytics. B2B first, from Barcelona.',
     keywords: 'social media management, LinkedIn, YouTube, TikTok, Instagram, B2B social, tech',
     tags: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram'],
+    meta: [
+      { k: 'Setup', v: 'Two weeks' },
+      { k: 'Then', v: 'Every week, indefinitely' },
+      { k: 'Channels', v: 'Four, or the two that matter' },
+    ],
+    includesLayout: 'ledger',
+    // A loop rather than a line: the point of this service is that the month
+    // repeats, and each one is informed by the last.
+    scheduleEyebrow: 'The cycle',
+    scheduleTitle: 'One month, then the same month again, sharper.',
+    scheduleKind: 'loop',
+    scheduleNote: 'Then it starts again, planned against what the last month actually did rather than against the same template.',
+    phases: [
+      { n: '01', w: 'Week one', h: 'Plan', p: 'The calendar for the month against what performed last month, what is happening in the business, and what the sales team needs the market to already believe.' },
+      { n: '02', w: 'Weeks one to four', h: 'Make and post', p: 'Written, shot, edited, scheduled and published. Nothing waits on a reminder, and the calendar does not go quiet because somebody was busy.' },
+      { n: '03', w: 'Every day', h: 'Reply', p: 'Comments, messages and the conversations that start in the replies. This is where the qualified leads actually come from and it is the part most agencies skip.' },
+      { n: '04', w: 'Month end', h: 'Read it back', p: 'Reach, engagement and what arrived as a qualified lead, against the plan. What worked gets more of the next month. What did not is cut.' },
+    ],
     includes: [
       {
         h: 'Channel strategy',
@@ -359,7 +435,7 @@ export const SERVICES = [
       },
       {
         h: 'Analytics and iteration',
-        p: 'Monthly reporting on reach, engagement and what arrived as a lead, with the plan adjusted against it.',
+        p: 'Monthly reporting on reach, engagement and what arrived as a qualified lead, with the plan adjusted against it.',
       },
     ],
     proof: { caseSlugs: ['siltest', 'ise', 'rck'] },
@@ -394,6 +470,14 @@ export const SERVICES = [
       'Photography, video and branded visuals for YouTube, LinkedIn, Shorts and Reels, shot on location and at live events. Content creation from Aspire, Barcelona.',
     keywords: 'content creation, video production, photography, Reels, Shorts, event content',
     tags: ['Photo', 'Video', 'Reels and Shorts', 'Live events'],
+    meta: [
+      { k: 'Where', v: 'On location or at your events' },
+      { k: 'Turnaround', v: 'Cuts in days, not weeks' },
+      { k: 'You keep', v: 'The raw files too' },
+    ],
+    includesLayout: 'ledger',
+    // No schedule section on this page on purpose. The film grid below is its
+    // dark anchor, and two heavy bands on one page is one too many.
     includes: [
       {
         h: 'Photography',
@@ -735,7 +819,7 @@ export const STATS = [
 // Live performance figures, shown in the hero panel. VERIFY before launch:
 // these are averages across client accounts and move over time.
 export const PERFORMANCE = {
-  leads: { value: '500+', label: 'Leads captured', note: 'Last 30 days' },
+  leads: { value: '500+', label: 'Qualified leads captured', note: 'Last 30 days' },
   engagement: { value: '8%', label: 'Avg. engagement rate', note: 'Above industry average' },
   conversion: { value: '12%', label: 'Avg. sales conversion', note: 'Across managed accounts' },
   // Shape of the BUNQ onboarding curve, used by the hero sparkline.

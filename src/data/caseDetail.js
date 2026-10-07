@@ -93,7 +93,7 @@ export const CASE_DETAIL = {
       },
       {
         h: 'Meet them where they already are',
-        p: 'We attend major conferences as their external sales agency: generating leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers to their team afterwards. For a technical sector the show floor is still where the real conversations happen.',
+        p: 'We attend major conferences as their external sales agency: generating qualified leads ahead of the show, booking the meetings, taking them on the floor, and making qualified handovers to their team afterwards. For a technical sector the show floor is still where the real conversations happen.',
       },
     ],
     outcome: [
@@ -201,8 +201,8 @@ export const CASE_DETAIL = {
         p: 'Membership and corporate venue hire run as distinct lines with their own targeting and outreach, rather than one message hoping to land with both.',
       },
       {
-        h: 'Outreach and closing, not just leads',
-        p: 'We generate the leads and close them. Handing over a list and calling it lead generation leaves the hardest part with the client.',
+        h: 'Outreach and closing, not just qualified leads',
+        p: 'We generate the qualified leads and close them. Handing over a list and calling it lead generation leaves the hardest part with the client.',
       },
       {
         h: 'Alongside the in-house team',

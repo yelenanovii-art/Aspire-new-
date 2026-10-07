@@ -142,7 +142,7 @@ export const INSIGHTS = [
       {
         h: 'The follow-up window is shorter than you think',
         p: [
-          'Badge scans are not leads. A scanned badge with no note is a name you will not remember in a fortnight, and your prospect has just had four hundred conversations too.',
+          'Badge scans are not qualified leads. A scanned badge with no note is a name you will not remember in a fortnight, and your prospect has just had four hundred conversations too.',
           'Send follow-up while the conversation is still warm: during the show where possible, within days at the outside. Record what was actually discussed against the contact in the CRM, not just that they visited. The stand cost is already sunk; the follow-up is the only variable left that decides whether it returns anything.',
         ],
       },

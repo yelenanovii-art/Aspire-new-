@@ -4296,6 +4296,8 @@
   pointer-events: none;
 }
 .plate .slot { border-radius: 0; }
+/* The frame is shared with the photo banner, which brings its own ratio. */
+.page-banner.plate { border-radius: var(--radius-lg); }
 /* Empty, a pale frame this size is simply a hole in a white page. Dark, the
    same box is the one heavy band at the top of the page and the composition
    holds without the photograph. It fills and disappears when one lands. */
@@ -4421,9 +4423,14 @@
   margin: clamp(34px, 4.5vw, 54px) 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(22px, 3vw, 40px);
 }
+/* One column per phase rather than auto-fit. Auto-fit gave four stages three
+   columns and left the fourth alone on a second row, which breaks the one
+   thing the row is there to show: that they run in order, left to right. */
+@media (min-width: 740px) { .sched__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1060px) { .sched__list { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); } }
 .sched__i {
   display: grid;
   gap: 10px;
@@ -4498,6 +4505,81 @@
 .sched .slot__mark { color: rgba(255, 255, 255, 0.26); }
 .sched .slot__label { color: rgba(255, 255, 255, 0.72); }
 .sched .slot__hint { color: rgba(255, 255, 255, 0.42); }
+
+.sched__note {
+  margin: clamp(26px, 3vw, 36px) 0 0;
+  padding-top: clamp(18px, 2vw, 24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 15px;
+  max-width: 62ch;
+}
+
+/* Four shapes on one skeleton, because the six services do not run the same
+   way and three numbered cards in a row would say they do.
+
+   rail    a run of dated phases on one axis        go-to-market, events
+   funnel  one line, narrowing at every stage       sales
+   stack   layers, each holding up the next         business development
+   loop    a month that repeats, sharper each time  social media            */
+
+/* ── funnel ─────────────────────────────────────────────────────────────── */
+/* The bar above each stage is shorter than the one before it. Fewer accounts
+   survive each stage, which is the whole shape of the service. */
+.sched--funnel .sched__axis {
+  right: auto;
+  width: calc(100% - var(--i) * 17%);
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-tint-2), rgba(143, 201, 212, 0.18));
+}
+.sched--funnel .sched__axis::before { display: none; }
+
+/* ── stack ──────────────────────────────────────────────────────────────── */
+/* One column, stepping right, with a spine down the left. Side by side, three
+   equal cards say the order does not matter, and on this service it does. */
+@media (min-width: 740px) {
+  .sched--stack .sched__list { grid-template-columns: minmax(0, 1fr) !important; gap: 0; }
+  .sched--stack .sched__i {
+    margin-left: calc(var(--i) * clamp(20px, 3.4vw, 52px));
+    padding: clamp(22px, 2.6vw, 30px) 0 clamp(22px, 2.6vw, 30px) clamp(22px, 2.6vw, 32px);
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .sched--stack .sched__p { max-width: 62ch; }
+  /* Tighter than the row variants: stacked, the full numeral rhythm left a
+     third of the section empty down the right. */
+  .sched--stack .sched__n { font-size: clamp(32px, 3.2vw, 44px); margin: 0; }
+  .sched--stack .sched__i { gap: 7px; }
+}
+.sched--stack .sched__axis {
+  right: auto;
+  width: clamp(22px, 2.6vw, 32px);
+  height: 1px;
+  top: 0;
+}
+.sched--stack .sched__axis::before { left: -4px; }
+.sched--stack .sched__i:first-child .sched__axis { background: var(--accent-tint-2); }
+
+/* ── loop ───────────────────────────────────────────────────────────────── */
+/* Dashed, because it does not end: the fourth step feeds the first. */
+.sched--loop .sched__axis {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3) 0 7px,
+    transparent 7px 14px
+  );
+}
+.sched--loop .sched__axis::before {
+  background: transparent;
+  border: 2px solid var(--accent-tint-2);
+  box-shadow: none;
+  width: 9px;
+  height: 9px;
+  top: -4px;
+}
+.sched--loop .sched__i:last-child .sched__axis::before {
+  background: var(--accent-tint-2);
+}
 
 /* ── Quiz band ────────────────────────────────────────────────────────────── */
 .quizcta {

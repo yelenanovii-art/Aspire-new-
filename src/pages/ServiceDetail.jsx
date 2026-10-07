@@ -105,7 +105,7 @@ export default function ServiceDetail({ service }) {
       {s.film && (
         <section className="section section--flush-top section--tight">
           <div className="container">
-            <div className="page-banner page-banner--film reveal">
+            <div className="page-banner page-banner--film plate reveal">
               <MediaSlot {...s.film} />
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function ServiceDetail({ service }) {
       {!s.film && s.photo && (
         <section className="section section--flush-top section--tight">
           <div className="container">
-            <figure className="page-banner reveal">
+            <figure className="page-banner plate reveal">
               {/* The banner is 1068px on desktop, which at 2x genuinely wants
                   the full 1920. On a phone the same box is 350px, so the full
                   file is five times the pixels that can be shown — by far the
@@ -244,25 +244,37 @@ export default function ServiceDetail({ service }) {
           section: a dated schedule with an axis running through it, rather
           than three cards that happen to be numbered. */}
       {s.phases && (
-        <section className="section section--dark sched">
+        <section className={`section section--dark sched sched--${s.scheduleKind || 'rail'}`}>
           <div className="container">
-            <SectionHead eyebrow="How it runs" title="Three phases, ninety days." light />
-            <ol className="sched__list">
+            <SectionHead eyebrow={s.scheduleEyebrow} title={s.scheduleTitle} light />
+            <ol className="sched__list" style={{ '--n': s.phases.length }}>
               {s.phases.map((ph, i) => (
-                <li className="sched__i reveal" key={ph.n} style={{ '--delay': `${i * 90}ms` }}>
+                <li
+                  className="sched__i reveal"
+                  key={ph.n}
+                  // --i drives the shape: how far the funnel has narrowed by
+                  // this stage, how far the stack has stepped across.
+                  style={{ '--delay': `${i * 90}ms`, '--i': i, '--n': s.phases.length }}
+                >
                   <span className="sched__axis" aria-hidden="true" />
                   <span className="sched__w">{ph.w}</span>
                   <span className="sched__n" aria-hidden="true">{ph.n}</span>
                   <h3 className="sched__h">{ph.h}</h3>
                   <p className="sched__p">{ph.p}</p>
-                  <MediaSlot
-                    ratio="21 / 9"
-                    label={`${ph.h}, photograph to follow`}
-                    hint="TODO: image not yet supplied"
-                  />
+                  {/* Only where the photographs are genuinely outstanding.
+                      Reserving a frame on every service would put fifteen
+                      empty boxes on the site to hold space nobody is filling. */}
+                  {s.phasePhotos && (
+                    <MediaSlot
+                      ratio="21 / 9"
+                      label={`${ph.h}, photograph to follow`}
+                      hint="TODO: image not yet supplied"
+                    />
+                  )}
                 </li>
               ))}
             </ol>
+            {s.scheduleNote && <p className="sched__note reveal">{s.scheduleNote}</p>}
           </div>
         </section>
       )}
