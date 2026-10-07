@@ -43,7 +43,9 @@ export default function Specialisms() {
           <span className="practice__title">{TECH.cardTitle}</span>
           <span className="practice__blurb">{TECH.cardResult} Most of our client list already sells here.</span>
           <span className="practice__go">
-            See how it works <ArrowRight size={16} />
+            <span aria-hidden="true">See how it works</span>
+            <span className="sr-only">See how the tech specialism works</span>
+            <ArrowRight size={16} />
           </span>
         </span>
       </a>
@@ -79,7 +81,9 @@ export default function Specialisms() {
             filming that get the viewing booked.
           </span>
           <span className="practice__go">
-            See how it works <ArrowRight size={16} />
+            <span aria-hidden="true">See how it works</span>
+            <span className="sr-only">See how property and yachting works</span>
+            <ArrowRight size={16} />
           </span>
         </span>
       </a>
@@ -113,7 +117,9 @@ export default function Specialisms() {
             there when you need them instead of a day's work away.
           </span>
           <span className="practice__go">
-            See how it works <ArrowRight size={16} />
+            <span aria-hidden="true">See how it works</span>
+            <span className="sr-only">See how AI systems works</span>
+            <ArrowRight size={16} />
           </span>
         </span>
       </a>

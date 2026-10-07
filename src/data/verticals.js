@@ -11,9 +11,6 @@
 // ---------------------------------------------------------------------------
 // ── Tech ────────────────────────────────────────────────────────────────────
 // The first specialism, and the one most of the client list already sits in.
-// Placeholder copy where marked: the page exists so the nav, the home section
-// and the footer can all point somewhere real, and the words get replaced once
-// Elena has written them.
 export const TECH = {
   slug: 'tech',
   nav: 'Tech',
@@ -30,13 +27,36 @@ export const TECH = {
   keywords: 'B2B tech marketing, technology marketing agency, semiconductor marketing, SaaS sales, hardware marketing',
   tags: ['Technical audiences', 'Long cycles', 'Procurement', 'Conference-led'],
   includes: [
-    { h: 'Written for people who check', p: 'Technical buyers assess a company by how precisely it talks about its own work. Vague competence claims read as nothing to say.' },
-    { h: 'Built for the real cycle', p: 'A three month campaign ends before this audience has finished deciding, so the plan is built to still be present when they are ready.' },
-    { h: 'Where the conversations happen', p: 'For most technical sectors the show floor is still where the real conversations start, so the plan usually runs through the calendar of events.' },
+    { h: 'Written for people who check', p: 'Technical buyers assess a company by how precisely it talks about its own work. Vague competence claims read as nothing to say, and a reader who can tell the difference will notice immediately. We write to the level of the person reading rather than down to an imagined general audience.' },
+    { h: 'Built for the real cycle', p: 'A three month campaign ends before this audience has finished deciding. Plans here are built to still be running when the budget finally moves, which usually means fewer, better placed things repeated for longer rather than a burst and silence.' },
+    { h: 'Proof a technical reader accepts', p: 'Not a testimonial about how lovely you were to work with. A number, a configuration, a before and after, or a named deployment. The specific claim that can be checked beats the general one that cannot, every time, with this audience.' },
+    { h: 'One message, three audiences', p: 'The engineer wants to know it works, procurement wants to know what it costs to run, and the person signing wants to know what happens if it fails. The same launch has to answer all three without diluting into something that answers none.' },
+    { h: 'Where the conversations happen', p: 'For most technical sectors the show floor is still where the real conversations start. The plan usually runs through the calendar of events, because that is where a year of email gets compressed into four days of meetings.' },
+  ],
+
+  // The four sectors this actually covers, because "tech" means nothing on its
+  // own and the buyer in each of them behaves differently.
+  sectors: [
+    { h: 'Semiconductors', p: 'Long qualification, named accounts, and a buying committee that includes people who will never take your call. The work is being precise and present for the year before anybody is ready to move.' },
+    { h: 'Audio visual', p: 'Specified by integrators and consultants long before the end client sees a price. The show calendar decides the year, which is why this sector leans hardest on the events service.' },
+    { h: 'SaaS', p: 'Shorter cycles, but a crowded category where nobody reads another all in one platform. The gap here is almost always positioning rather than volume.' },
+    { h: 'Hardware and devices', p: 'A physical product with a distribution layer in front of it. Two audiences at once, the partner and the end user, and they do not want the same message.' },
+  ],
+
+  // What the cycle actually looks like from the seller's side. This is the
+  // section that explains why a quarterly campaign plan does not fit.
+  cycle: [
+    { n: '01', h: 'They find you quietly', p: 'Months of reading before a form is ever filled in. Search, a datasheet, a conference talk, a colleague. None of it shows up in your pipeline, and most of the decision is made here.' },
+    { n: '02', h: 'They check whether you know the work', p: 'The first real test is whether you can talk about your own product precisely. This is where most B2B tech marketing loses, by being general in front of people who deal in specifics.' },
+    { n: '03', h: 'A committee forms', p: 'An engineer, someone in procurement, and whoever owns the budget. Each one needs different proof, and the deal stalls on whichever of the three you did not answer.' },
+    { n: '04', h: 'It lands on a calendar you do not control', p: 'Budget cycles, certification windows, the show where the decision gets made. Being present when that moment arrives matters more than being loud six months before it.' },
   ],
   faq: [
     { q: 'What counts as a tech company here?', a: 'Semiconductors, audio visual, SaaS, hardware and the companies that sell into them. If your buyer reads a datasheet before a brochure, this is the right page.' },
-    { q: 'Do you need to understand our product?', a: 'Enough to be precise, which is the part that earns trust with this audience. We work alongside your technical people rather than guessing.' },
+    { q: 'Do you need to understand our product?', a: 'Enough to be precise, which is the part that earns trust with this audience. We work alongside your technical people rather than guessing, and we would rather ask an obvious question than publish a confident sentence that is wrong.' },
+    { q: 'How long before this produces meetings?', a: 'First conversations usually inside six to eight weeks. A qualified pipeline that repeats takes a quarter, because the cycle itself is long: the people you reach in month one are often not ready until month four. Anyone promising faster in this sector is either buying bad meetings or describing a different market.' },
+    { q: 'Do you work with early stage tech companies?', a: 'Yes, and often that is where the go-to-market service fits better than the execution ones. If nobody has sold it repeatably yet, the useful work is deciding who buys and what gets said, not running outreach against a guess.' },
+    { q: 'We already have a marketing person. Where do you fit?', a: 'Usually either side of them. They own the day to day; we bring the sales motion, the conference weeks and the specialist production they do not have time to run. We work alongside in house teams more often than we replace them.' },
   ],
   proofCaseSlugs: ['siltest', 'bunq'],
 }

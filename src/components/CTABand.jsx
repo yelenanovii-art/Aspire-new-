@@ -6,9 +6,9 @@ import { useGlow } from '../hooks/useInteractions'
 // The dark closing band that ends every page. One primary action.
 export default function CTABand({
   eyebrow = 'Get started',
-  title = 'Set up your free 15-minute discovery call.',
+  title = 'Set up your free 15 minute call.',
   body = 'Tell us where you want to grow. We will come back with a plan, whether or not you run it with us.',
-  cta = 'Book a free discovery call',
+  cta = 'Book a free 15 minute call',
   secondary,
   // Tags the primary action with the page it was clicked on, so the enquiry
   // lands in the right pipeline once it is finished on /contact.

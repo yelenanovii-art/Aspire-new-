@@ -18,7 +18,7 @@ export const EVENTS_PROMO = {
   body:
     'Weeks of planning. Chasing replies. Running between halls, hoping the right people have time for you. We work alongside your team from first outreach to final follow-up, so you arrive with a full calendar and focus on the conversations that matter.',
   ctaLabel: "Let's plan your conference",
-  ctaNote: 'Free 15-minute call. No prep needed.',
+  ctaNote: 'Free 15 minute call. No prep needed.',
   // Its own frame: the service banner and the home band use different ones.
   photo: {
     src: '/media/pages/promo-crowd.webp',

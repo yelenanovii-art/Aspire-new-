@@ -43,12 +43,12 @@ const INSIGHT_META = Object.fromEntries(
 const META = {
   '/': {
     t: 'Sales and Marketing for B2B Tech',
-    d: 'The outsourced sales and marketing team for B2B tech companies. Four specialists in Barcelona covering sales, business development, social, content and conference support.',
+    d: 'The outsourced sales and marketing team for B2B tech companies. Five specialists in Barcelona covering sales, events, social, content and go-to-market.',
     k: 'B2B tech marketing agency, sales agency Barcelona, lead generation, social media management',
   },
   '/services': {
     t: 'B2B Sales and Marketing Services',
-    d: 'Six services run as one plan: go-to-market strategy, in person and digital sales, events and conferences, business development, social media management and content creation.',
+    d: 'Six services run as one plan: go-to-market, in person and digital sales, events and conferences, business development, social media and content creation.',
     k: 'B2B sales services, business development, social media management, content creation',
   },
   '/work': {
@@ -58,7 +58,7 @@ const META = {
   },
   '/about': {
     t: 'About Aspire and the Team',
-    d: 'Founded in Barcelona in 2022. Four specialists covering sales, content, paid acquisition and custom AI systems, working across Europe with B2B tech companies.',
+    d: 'Founded in Barcelona in 2022. Five specialists covering sales, content, paid acquisition and custom AI systems, working across Europe with B2B tech companies.',
     k: 'about Aspire, Elena Novikova, B2B tech agency Barcelona, marketing team',
   },
   '/fit': {
@@ -269,7 +269,12 @@ export function useSeo(path, known = true) {
     const m = META[path] || META['/']
     const url = SITE_URL + (path === '/' ? '/' : path)
 
-    document.title = (known ? m.t : 'Page Not Found') + BRAND_SUFFIX
+    // Google truncates around sixty characters. Eleven pages, all cases and
+    // insights, ran past it and lost the end of a real sentence to keep a
+    // brand name that is already in the URL and the logo. The suffix is worth
+    // having; it is not worth the last five words of the title.
+    const bare = known ? m.t : 'Page Not Found'
+    document.title = bare.length + BRAND_SUFFIX.length > 60 ? bare : bare + BRAND_SUFFIX
     setMeta('description', known ? m.d : 'The page you are looking for could not be found.')
     setMeta('keywords', (known && m.k) || '')
     // /book forwards to the calendar. Indexing a turnstile puts it in results

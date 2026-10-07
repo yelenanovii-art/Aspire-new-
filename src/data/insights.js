@@ -7,6 +7,17 @@
 // Every number quoted is one of our own engagements, named and linked to its
 // case study. Nothing here cites an outside statistic, because a figure we
 // cannot stand behind is worse than no figure.
+// Who wrote these. A named author with a real role is what separates an
+// article from anonymous content marketing, for a reader and for the Article
+// schema, which has nowhere sensible to put an organisation as the author.
+export const AUTHOR = {
+  name: 'Elena Novikova',
+  role: 'Founder, Aspire Agency',
+  bio: 'Elena founded Aspire in Barcelona in 2022 and runs the sales and go-to-market side of the work. Everything here comes out of engagements the team has actually run.',
+  url: '/about',
+  photo: '/photos/team/elena-novikova.webp',
+}
+
 export const INSIGHTS = [
   {
     slug: 'how-long-b2b-outbound-takes',
@@ -17,7 +28,7 @@ export const INSIGHTS = [
     tags: ['Sales', 'Outbound'],
     metaTitle: 'How Long B2B Outbound Takes to Produce Meetings',
     metaDesc:
-      'What the first ninety days of B2B outbound realistically produce, why month one is for learning rather than booking, and how to tell early whether it is working.',
+      'What the first ninety days of B2B outbound really produce, why month one is for learning rather than booking, and how to tell early whether it is working.',
     keywords: 'B2B outbound timeline, how long does cold outreach take, lead generation results, outbound meetings',
     intro:
       'This is the first question nearly every prospect asks, and it is usually asked in a tone that expects to be disappointed. They have been promised meetings in week two before. What follows is what we actually tell people, including the parts that lose us work.',
@@ -65,7 +76,7 @@ export const INSIGHTS = [
     tags: ['Social', 'B2B'],
     metaTitle: 'LinkedIn for Technical B2B Audiences',
     metaDesc:
-      'Why engineers and procurement specialists ignore standard B2B social content, what they do engage with, and why consistency beats campaign thinking for technical audiences.',
+      'Why engineers and procurement specialists ignore standard B2B social content, what they do engage with, and why consistency beats campaign thinking.',
     keywords: 'LinkedIn for B2B tech, technical audience social media, semiconductor marketing, engineer marketing',
     intro:
       'A company with a genuinely good product writes a post about it, gets eleven likes, nine from their own staff, and concludes that LinkedIn does not work for their sector. It usually does. The content is just written for a reader who does not exist.',
@@ -113,7 +124,7 @@ export const INSIGHTS = [
     tags: ['Events', 'Sales'],
     metaTitle: 'B2B Trade Show Playbook: Before, During and After',
     metaDesc:
-      'A practical sequence for B2B trade shows: what to book before you arrive, how to work the floor, and why the week after decides whether the stand paid for itself.',
+      'A practical sequence for B2B trade shows: what to book before you arrive, how to work the floor, and why the week after decides whether the stand paid.',
     keywords: 'trade show strategy, B2B conference sales, exhibition lead follow up, event marketing',
     intro:
       'A stand is one of the largest single line items in a B2B marketing budget and one of the least measured. We have worked Integrated Systems Europe in Barcelona for three years, one of the largest audio visual conferences in the world, and the pattern that separates a show that paid for itself from one that did not is consistent.',
@@ -161,7 +172,7 @@ export const INSIGHTS = [
     tags: ['Buying'],
     metaTitle: 'Agency vs Freelancer vs In-House Hire for B2B Growth',
     metaDesc:
-      'An honest comparison of agency, freelancer and in-house hire for B2B growth: what each gives you, what each costs you, and when a small agency is the wrong answer.',
+      'An honest comparison of agency, freelancer and in-house hire for B2B growth: what each gives you, what each costs you, and when an agency is wrong.',
     keywords: 'agency vs freelancer, in-house vs agency marketing, B2B growth team, outsourced marketing',
     intro:
       'We are an agency, so treat this accordingly. But the version of this comparison that only comes down to monthly cost helps nobody, and we would rather not win work we are the wrong shape for.',

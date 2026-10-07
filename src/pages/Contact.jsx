@@ -12,7 +12,7 @@ export default function Contact() {
           <div className="contact-copy">
             <p className="eyebrow reveal">Get started</p>
             <h1 className="contact-title reveal" style={{ '--delay': '60ms' }}>
-              Set up your free 15-minute discovery call.
+              Set up your free 15 minute call.
             </h1>
             <p className="lead reveal" style={{ '--delay': '110ms' }}>
               Tell us where you want to grow. Elena will come back within one business day

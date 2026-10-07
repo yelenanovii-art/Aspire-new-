@@ -74,7 +74,7 @@ export default function ServiceDetail({ service }) {
 
           <div className="page-hero__actions reveal" style={{ '--delay': '180ms' }}>
             <a className="btn btn-accent btn-lg" href={bookHref} {...bookAttrs}>
-              Book a free discovery call <ArrowRight />
+              Book a free 15 minute call <ArrowRight />
             </a>
             <a className="btn btn-outline btn-lg" href="/work">See the results</a>
           </div>
@@ -339,7 +339,7 @@ export default function ServiceDetail({ service }) {
 
       <section className="section section--tight section--ruled">
         <div className="container">
-          <h2 className="related__h">The other {COUNT_WORD[others.length] || others.length}</h2>
+          <p className="related__h">The other {COUNT_WORD[others.length] || others.length}</p>
           <div className="related">
             {others.map((o) => (
               <a className="related__card reveal" href={`/services/${o.slug}`} key={o.slug}>

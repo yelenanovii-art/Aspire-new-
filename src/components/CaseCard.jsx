@@ -52,7 +52,12 @@ export default function CaseCard({ c, i = 0, compact = false, showServices = fal
           className="link-arrow case-card__cta"
           href={hasPage ? `/work/${c.slug}` : '/contact'}
         >
-          {hasPage ? 'Read the case' : 'Start yours'} <ArrowRight size={15} />
+          {/* Eight "Read the case" links on /work are eight identical links in
+              a screen reader's list. The visible label stays short; the
+              accessible one names the client. */}
+          <span aria-hidden="true">{hasPage ? 'Read the case' : 'Start yours'}</span>
+          <span className="sr-only">{hasPage ? `Read the ${c.client} case` : `Start yours, like ${c.client}`}</span>
+          <ArrowRight size={15} />
         </a>
       </div>
 

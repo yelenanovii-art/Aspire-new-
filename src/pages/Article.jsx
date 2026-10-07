@@ -3,6 +3,7 @@ import { ArrowRight } from '../components/Icons'
 import { useJsonLd } from '../hooks/useJsonLd'
 import { SITE_URL, COMPANY } from '../config'
 import { serviceBySlug, caseBySlug } from '../data/site'
+import { AUTHOR } from '../data/insights'
 import { INSIGHTS_BY_DATE } from '../data/insights'
 
 const fmt = (iso) =>
@@ -31,7 +32,14 @@ export default function Article({ a }) {
     dateModified: a.date,
     wordCount: [a.intro, ...a.sections.flatMap((s) => s.p)].join(' ').split(/\s+/).length,
     keywords: a.tags.join(', '),
-    author: { '@id': `${SITE_URL}/#organization` },
+    // A Person, not the organisation. An article with no human author is the
+    // signature of content nobody stands behind.
+    author: {
+      '@type': 'Person',
+      name: AUTHOR.name,
+      jobTitle: AUTHOR.role,
+      url: SITE_URL + AUTHOR.url,
+    },
     publisher: { '@id': `${SITE_URL}/#organization` },
   })
 
@@ -51,6 +59,8 @@ export default function Article({ a }) {
             <time dateTime={a.date}>{fmt(a.date)}</time>
             <span aria-hidden="true">·</span>
             <span>{a.minutes} min read</span>
+            <span aria-hidden="true">·</span>
+            <span>By {AUTHOR.name}</span>
             <span aria-hidden="true">·</span>
             <span>{COMPANY.name}</span>
           </div>
@@ -123,6 +133,22 @@ export default function Article({ a }) {
           </nav>
         </div>
       </article>
+
+      {/* Who wrote it, at the end, where somebody who read it will want to
+          know. */}
+      <section className="section section--tight">
+        <div className="container container--narrow">
+          <aside className="byline reveal">
+            <img className="byline__photo" src={AUTHOR.photo} alt="" width="72" height="90" loading="lazy" decoding="async" />
+            <div>
+              <p className="byline__name">{AUTHOR.name}</p>
+              <p className="byline__role">{AUTHOR.role}</p>
+              <p className="byline__bio">{AUTHOR.bio}</p>
+              <a className="link-arrow" href={AUTHOR.url}>More about the team <ArrowRight size={15} /></a>
+            </div>
+          </aside>
+        </div>
+      </section>
 
       <CTABand
         title="Want this applied to your company?"

@@ -18,6 +18,8 @@ import CaseStudyPremium from '../components/CaseStudyPremium'
 //
 // Structure is deliberately the same on every one — problem, sequence,
 // outcome — so they can be compared rather than admired.
+const possessive = (name) => (/s$/i.test(name) ? `${name}'` : `${name}'s`)
+
 export default function CaseStudy({ c }) {
   const d = caseDetailFor(c.slug) || {}
   const quote = d.quoteName && TESTIMONIALS.find((t) => t.name === d.quoteName)
@@ -166,7 +168,9 @@ export default function CaseStudy({ c }) {
       </section>
 
       <CTABand
-        title={`Have a problem like ${c.client}'s?`}
+        // SilTest Semiconductors's was the old output. A name already ending
+        // in s takes the apostrophe alone.
+        title={`Have a problem like ${possessive(c.client)}?`}
         body="Tell us where growth is stuck and we will come back with a plan, whether or not you run it with us. Fifteen minutes, free."
         // A conference engagement should offer the practice that ran it; the
         // quiz is the right fallback only when nothing more specific fits.

@@ -60,7 +60,9 @@ export default function Insights() {
                   <h2 className="posts__title">{a.title}</h2>
                   <p className="posts__dek">{a.dek}</p>
                   <span className="posts__go">
-                    Read it <ArrowRight size={15} />
+                    <span aria-hidden="true">Read it</span>
+                    <span className="sr-only">Read {a.title}</span>
+                    <ArrowRight size={15} />
                   </span>
                 </a>
                 <ul className="posts__tags">
@@ -77,7 +79,7 @@ export default function Insights() {
           <SectionHead
             eyebrow="Rather skip the reading"
             title="Six questions, and we will tell you where to start."
-            lede="If you would rather not work out which of these applies to you, the fit check does it in two minutes and sends you a ninety day plan."
+            lede="If you would rather not work out which of these applies to you, the fit check does it in two minutes and shows you a ninety day plan on the spot."
             center
           />
           <p className="fit__foot">

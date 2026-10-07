@@ -37,8 +37,8 @@ export default function About() {
           <h1 className="page-hero__title reveal" style={{ '--delay': '60ms' }}>
             {/* Forced, not left to wrapping: the break has to hold at every
                 width, not only where the measure happens to run out. */}
-            Four specialists,<br />
-            <em>One plan.</em>
+            {TEAM.length === 5 ? 'Five' : TEAM.length} specialists,<br />
+            <em>one plan.</em>
           </h1>
           <p className="lead reveal" style={{ '--delay': '120ms' }}>
             Aspire is a sales and marketing team for B2B tech companies, built in Barcelona
@@ -93,7 +93,7 @@ export default function About() {
               <h3>Aspire at a glance</h3>
               <dl className="side-card__dl">
                 <div><dt>Founded</dt><dd>2022, Barcelona</dd></div>
-                <div><dt>Team</dt><dd>Four specialists</dd></div>
+                <div><dt>Team</dt><dd>{COUNT_WORD[TEAM.length] || TEAM.length} specialists</dd></div>
                 <div><dt>Coverage</dt><dd>Europe wide</dd></div>
                 <div><dt>Focus</dt><dd>B2B tech</dd></div>
                 <div><dt>First call</dt><dd>Free, 15 minutes</dd></div>

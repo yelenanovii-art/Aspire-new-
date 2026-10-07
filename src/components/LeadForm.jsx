@@ -54,7 +54,7 @@ export default function LeadForm({
   submitLabel = 'Book my free discovery call',
   note = 'We never share your details. Your first call is free and there is no obligation.',
   successTitle = 'Thank you, that is with us.',
-  successBody = 'Elena will be in touch within one business day to book your free 15-minute call. Talk soon.',
+  successBody = 'Elena will be in touch within one business day to book your free 15 minute call. Talk soon.',
   source = 'contact',
   hidden,
   // Overrides the routing below. Left unset everywhere so far: the three

@@ -1,6 +1,6 @@
 import Logo from './Logo'
 import { SOCIAL, COMPANY } from '../config'
-import { LinkedIn, Instagram, YouTube, Mail, Phone, Pin } from './Icons'
+import { LinkedIn, Mail, Phone, Pin } from './Icons'
 import { SERVICES } from '../data/site'
 import { ESTATE, AI, TECH } from '../data/verticals'
 import { openCookieSettings } from '../lib/consent'
@@ -31,18 +31,19 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <Logo onDark size="lg" />
-            <p>Your sales &amp; marketing partner. We help you get new clients and grow your name.</p>
+            <p>The outsourced sales and marketing team for B2B tech companies.</p>
           </div>
           <div className="footer__social" role="group" aria-label="Aspire on social media">
+            {/* Only the profiles that exist. Two inert icons promised accounts
+                that are not there, which costs more trust than the icons buy.
+                Fill in VITE_SOCIAL_INSTAGRAM or _YOUTUBE and add the line back. */}
             <Social href={SOCIAL.linkedin} label="Aspire on LinkedIn"><LinkedIn /></Social>
-            <Social href={SOCIAL.instagram} label="Aspire on Instagram"><Instagram /></Social>
-            <Social href={SOCIAL.youtube} label="Aspire on YouTube"><YouTube /></Social>
           </div>
         </div>
 
         <div className="footer__cols">
           <nav className="footer__col" aria-label="Services">
-            <h3 className="footer__col-h">Services</h3>
+            <span className="footer__col-h">Services</span>
             {SERVICES.map((s) => (
               <a key={s.slug} href={`/services/${s.slug}`}>{s.nav}</a>
             ))}
@@ -52,15 +53,16 @@ export default function Footer() {
           </nav>
 
           <nav className="footer__col" aria-label="Company">
-            <h3 className="footer__col-h">Company</h3>
+            <span className="footer__col-h">Company</span>
             <a href="/work">Our work</a>
             <a href="/about">About Aspire</a>
+            <a href="/insights">Insights</a>
             <a href="/contact">Get started</a>
             <a href="/services">All services</a>
           </nav>
 
           <div className="footer__col footer__col--contact">
-            <h3 className="footer__col-h">Get in touch</h3>
+            <span className="footer__col-h">Get in touch</span>
             <a href={`mailto:${COMPANY.email}`}><Mail /> {COMPANY.email}</a>
             <a href={`tel:${COMPANY.phoneHref}`}><Phone /> {COMPANY.phone}</a>
             <span className="footer__addr">
@@ -77,7 +79,7 @@ export default function Footer() {
       <div className="container footer__base">
         <span>© {year} {COMPANY.name}. All rights reserved.</span>
         <span className="footer__base-links">
-          <span className="footer__reg">Reg. {COMPANY.registration}</span>
+          <span className="footer__reg">VAT {COMPANY.registration}</span>
           <a href="/privacy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/cookies">Cookies</a>

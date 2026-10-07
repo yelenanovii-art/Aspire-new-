@@ -63,7 +63,7 @@ export const COMPARE = {
       label: 'Who does the work',
       hire: 'One person, one skill set',
       agency: 'A junior team behind an account manager',
-      aspire: 'Four specialists, each in their own discipline',
+      aspire: 'Five specialists, each in their own discipline',
     },
     {
       label: 'Scope',
@@ -97,7 +97,7 @@ export const SERVICES = [
       'A launch or a new market fails on the plan far more often than on the effort. We do the research, define who you are selling to, write the positioning, set the pricing and offer, choose the channels, and hand back a ninety day roadmap with the accounts to call and the numbers to judge it by. Then we can run it with you.',
     metaTitle: 'Go-to-Market Strategy for B2B Tech',
     metaDesc:
-      'Market and competitor research, ICP and buyer mapping, positioning, pricing, channel plan, target account list and a 90 day roadmap. Built for a first launch or a new country.',
+      'Market and competitor research, ICP and buyer mapping, positioning, pricing, channels, a target account list and a 90 day roadmap, for a launch or new market.',
     keywords: 'go to market strategy, GTM, market entry, ICP, positioning, launch plan, B2B expansion',
     tags: ['Research', 'ICP and positioning', 'Channel plan', '90 day roadmap'],
     // Three facts under the hero. A strategy sale is bought on scope and
@@ -257,7 +257,7 @@ export const SERVICES = [
       'We join your team for the run-up, the show and the week after: pre-booked meetings in the diary before you arrive, qualified leads and sales conversations on the floor, social and content published live, and follow-up sent while the conversation is still warm. Scoped to the event rather than a retainer, and we travel.',
     metaTitle: 'Conference and Event Marketing and Sales Support',
     metaDesc:
-      'Project-based conference support for B2B tech: pre-booked meetings, qualified leads and sales onsite, live social and content, and structured follow-up. Worldwide, scoped per event.',
+      'Project-based conference support for B2B tech: pre-booked meetings, qualified leads and sales onsite, live content, and structured follow-up. Worldwide.',
     keywords:
       'conference marketing, trade show sales support, event lead generation, exhibition staff, onsite marketing, B2B events',
     tags: ['Pre-booked meetings', 'Qualified leads onsite', 'Live content', 'Follow-up'],
@@ -651,7 +651,7 @@ const LOGO_BY_NAME = Object.fromEntries(
 export const logoFor = (name) => (name ? LOGO_BY_NAME[name.toLowerCase()] : undefined)
 
 // ---------------------------------------------------------------------------
-// The team. Four specialists, one discipline each.
+// The team. One discipline each.
 // VERIFY: the live Wix site claims "a combined six languages". That count was
 // written for the previous line-up, so it is not asserted anywhere on the site
 // until it is confirmed for the current four.

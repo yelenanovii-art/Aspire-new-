@@ -79,14 +79,15 @@ export default function Home() {
                 group who are not ready to book a call yet, and it asks a
                 question rather than naming a page, so the click is driven by
                 wanting the answer. Work is still one tap away in the nav. */}
-            <a className="btn btn-outline-light btn-lg" href="/fit">
-              Find your match
-            </a>
+            {/* The note belongs to this button. Under the row it read as a
+                condition on both, which made the call look like a quiz. */}
+            <span className="hero__quiz">
+              <a className="btn btn-outline-light btn-lg" href="/fit">
+                Find your match
+              </a>
+              <span className="hero__cta-note">Six questions, two minutes, no sales call.</span>
+            </span>
           </div>
-
-          <p className="hero__cta-note reveal" style={{ '--delay': '205ms' }}>
-            Six questions, two minutes, no sales call.
-          </p>
 
           {/* With the readout panel gone, the proof moves inline so the hero
               still answers "why should I believe you" above the fold. */}
