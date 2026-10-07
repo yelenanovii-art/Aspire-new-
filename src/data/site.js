@@ -100,6 +100,17 @@ export const SERVICES = [
       'Market and competitor research, ICP and buyer mapping, positioning, pricing, channel plan, target account list and a 90 day roadmap. Built for a first launch or a new country.',
     keywords: 'go to market strategy, GTM, market entry, ICP, positioning, launch plan, B2B expansion',
     tags: ['Research', 'ICP and positioning', 'Channel plan', '90 day roadmap'],
+    // Three facts under the hero. A strategy sale is bought on scope and
+    // timeline before anything else, so they go above the fold rather than
+    // being found in the FAQ.
+    meta: [
+      { k: 'Timeline', v: 'Four to six weeks' },
+      { k: 'You receive', v: 'Seven documents' },
+      { k: 'Then', v: 'A ninety day roadmap' },
+    ],
+    // The seven deliverables are a contents page, so they are set as one:
+    // numbered, ruled, read down. The other services keep the check list.
+    includesLayout: 'ledger',
     // No photograph for this page yet. The frame states what belongs there.
     photoTodo: { label: 'Go-to-market, photograph to follow', hint: 'TODO: image not yet supplied' },
     // Who it is for, shown above the phases.
@@ -123,9 +134,9 @@ export const SERVICES = [
       { h: '90 day roadmap and KPIs', p: 'What happens in which week, who owns it, and the numbers that say whether it is working before the quarter ends.' },
     ],
     phases: [
-      { n: '01', h: 'Foundations', p: 'Research, ICP, positioning, pricing and offer. By the end of this phase you can say who buys, why, and what you charge, and defend all three.' },
-      { n: '02', h: 'First meetings', p: 'Target list built, channels chosen, messaging written and outreach live. The goal is real conversations with the right people, not volume.' },
-      { n: '03', h: 'Repeatable pipeline', p: 'What produced meetings gets scaled, what did not gets cut, and the roadmap moves from a plan into a process your team can run.' },
+      { n: '01', w: 'Weeks 1 to 4', h: 'Foundations', p: 'Research, ICP, positioning, pricing and offer. By the end of this phase you can say who buys, why, and what you charge, and defend all three.' },
+      { n: '02', w: 'Weeks 5 to 8', h: 'First meetings', p: 'Target list built, channels chosen, messaging written and outreach live. The goal is real conversations with the right people, not volume.' },
+      { n: '03', w: 'Weeks 9 to 12', h: 'Repeatable pipeline', p: 'What produced meetings gets scaled, what did not gets cut, and the roadmap moves from a plan into a process your team can run.' },
     ],
     // Pulls the readiness quiz CTA onto the page.
     quiz: { to: '/services/go-to-market/quiz', label: 'Check your GTM readiness', note: 'Seven questions, two minutes, a score and three next steps.' },

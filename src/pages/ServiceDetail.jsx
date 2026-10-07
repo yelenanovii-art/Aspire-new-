@@ -81,6 +81,20 @@ export default function ServiceDetail({ service }) {
           <ul className="page-hero__tags reveal" style={{ '--delay': '240ms' }}>
             {s.tags.map((t) => <li key={t}>{t}</li>)}
           </ul>
+
+          {/* Scope and timeline above the fold. On a strategy page these are
+              the first two questions, and burying them in the FAQ makes the
+              hero all claim and no substance. */}
+          {s.meta && (
+            <dl className="svcmeta reveal" style={{ '--delay': '300ms' }}>
+              {s.meta.map((m) => (
+                <div className="svcmeta__i" key={m.k}>
+                  <dt>{m.k}</dt>
+                  <dd>{m.v}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
       </section>
 
@@ -103,7 +117,13 @@ export default function ServiceDetail({ service }) {
       {!s.film && !s.photo && s.photoTodo && (
         <section className="section section--flush-top section--tight">
           <div className="container">
-            <MediaSlot ratio="16 / 9" label={s.photoTodo.label} hint={s.photoTodo.hint} />
+            {/* 21:9 rather than 16:9. Empty, a 16:9 is a third of the screen
+                of nothing directly under the headline, which is most of why
+                the page read as unfinished. A letterbox plate holds the same
+                place and stays a composed band until the photograph lands. */}
+            <div className="plate reveal">
+              <MediaSlot ratio="21 / 9" label={s.photoTodo.label} hint={s.photoTodo.hint} />
+            </div>
           </div>
         </section>
       )}
@@ -135,14 +155,15 @@ export default function ServiceDetail({ service }) {
         <section className="section section--ruled">
           <div className="container">
             <SectionHead eyebrow="Who it is for" title="Two situations this is built for." />
-            <div className="spec-grid">
+            {/* These are two different buyers with two different problems, so
+                they are set as two routes to choose between rather than two
+                bullet points of equal weight in a list. */}
+            <div className="routes">
               {s.audience.map((a, i) => (
-                <article className="spec" style={{ '--delay': `${i * 60}ms` }} key={a.h}>
-                  <span className="spec__check"><Check size={16} /></span>
-                  <div>
-                    <h3>{a.h}</h3>
-                    <p>{a.p}</p>
-                  </div>
+                <article className="route reveal" style={{ '--delay': `${i * 90}ms` }} key={a.h}>
+                  <span className="route__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="route__h">{a.h}</h3>
+                  <p className="route__p">{a.p}</p>
                 </article>
               ))}
             </div>
@@ -159,17 +180,32 @@ export default function ServiceDetail({ service }) {
       <section className="section section--ruled">
         <div className="container">
           <SectionHead eyebrow="What it includes" title="What you actually get." />
-          <div className="spec-grid">
-            {s.includes.map((inc, i) => (
-              <article className="spec" style={{ '--delay': `${i * 60}ms` }} key={inc.h}>
-                <span className="spec__check"><Check size={16} /></span>
-                <div>
-                  <h3>{inc.h}</h3>
-                  <p>{inc.p}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          {/* Seven named documents are a contents page, and setting them as one
+              says more about what is being bought than seven ticks do. Opt in
+              from the data; every other service keeps the check list. */}
+          {s.includesLayout === 'ledger' ? (
+            <ol className="ledger">
+              {s.includes.map((inc, i) => (
+                <li className="ledger__row reveal" style={{ '--delay': `${i * 45}ms` }} key={inc.h}>
+                  <span className="ledger__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="ledger__h">{inc.h}</h3>
+                  <p className="ledger__p">{inc.p}</p>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <div className="spec-grid">
+              {s.includes.map((inc, i) => (
+                <article className="spec" style={{ '--delay': `${i * 60}ms` }} key={inc.h}>
+                  <span className="spec__check"><Check size={16} /></span>
+                  <div>
+                    <h3>{inc.h}</h3>
+                    <p>{inc.p}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -203,18 +239,24 @@ export default function ServiceDetail({ service }) {
       )}
 
       {/* ── Proof ────────────────────────────────────────────────────── */}
+      {/* The centre of the page, and the answer to the only real objection on
+          a strategy sale, which is that it is vague. So it is the one dark
+          section: a dated schedule with an axis running through it, rather
+          than three cards that happen to be numbered. */}
       {s.phases && (
-        <section className="section section--alt">
+        <section className="section section--dark sched">
           <div className="container">
-            <SectionHead eyebrow="How it runs" title="Three phases, ninety days." />
-            <ol className="phases">
+            <SectionHead eyebrow="How it runs" title="Three phases, ninety days." light />
+            <ol className="sched__list">
               {s.phases.map((ph, i) => (
-                <li className="phase reveal" key={ph.n} style={{ '--delay': `${i * 70}ms` }}>
-                  <span className="phase__n">{ph.n}</span>
-                  <h3 className="phase__h">{ph.h}</h3>
-                  <p className="phase__p">{ph.p}</p>
+                <li className="sched__i reveal" key={ph.n} style={{ '--delay': `${i * 90}ms` }}>
+                  <span className="sched__axis" aria-hidden="true" />
+                  <span className="sched__w">{ph.w}</span>
+                  <span className="sched__n" aria-hidden="true">{ph.n}</span>
+                  <h3 className="sched__h">{ph.h}</h3>
+                  <p className="sched__p">{ph.p}</p>
                   <MediaSlot
-                    ratio="4 / 3"
+                    ratio="21 / 9"
                     label={`${ph.h}, photograph to follow`}
                     hint="TODO: image not yet supplied"
                   />
@@ -227,9 +269,16 @@ export default function ServiceDetail({ service }) {
 
       {s.quiz && (
         <section className="section section--tight">
-          <div className="container container--narrow">
+          <div className="container">
             <div className="quizcta reveal">
-              <div>
+              {/* The dial is the thing being offered, so it is on the card
+                  rather than described on it. Ten is the scale the quiz
+                  actually scores out of. */}
+              <span className="quizcta__dial" aria-hidden="true">
+                <span className="quizcta__dial-n">?</span>
+                <span className="quizcta__dial-k">/10</span>
+              </span>
+              <div className="quizcta__body">
                 <p className="eyebrow">Free, two minutes</p>
                 <h2 className="quizcta__h">{s.quiz.label}</h2>
                 <p className="quizcta__p">{s.quiz.note}</p>
