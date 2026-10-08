@@ -939,28 +939,28 @@ export const TESTIMONIALS = [
 // FAQ, also emitted as FAQPage structured data
 // ---------------------------------------------------------------------------
 export const FAQ = [
-  {
+{
     q: 'What does an engagement cost?',
     a: 'Engagements start from €2,500 per month and are scoped to the work rather than sold as a fixed package. We would rather scope it properly than quote blind, which is what the free 15 minute call is for.',
   },
-  {
-    q: 'Do we have to buy all six services?',
-    a: 'No, and most clients start with one. They tend to expand once it is producing. RCK Consulting began with a website and now runs four workstreams with us.',
-  },
-  {
-    q: 'Do you only work with tech companies?',
-    a: 'Tech is where we are strongest and where most of our work sits, from semiconductors to fintech. We also work with legal, hospitality and sports clients where the growth problem is the same.',
-  },
-  {
-    q: 'Are you only in Barcelona?',
-    a: 'Barcelona is the base. The team works across Europe and beyond, and 15 of the projects so far have been international.',
-  },
-  {
+{
     q: 'How fast can you start?',
     a: 'Strategy in week one and execution in week two, once we have agreed scope. Compare that to two to four months to hire somebody in house.',
   },
-  {
+{
+    q: 'Do we have to buy all six services?',
+    a: 'No, and most clients start with one. They tend to expand once it is producing. RCK Consulting began with a website and now runs four workstreams with us.',
+  },
+{
     q: 'What happens after the discovery call?',
     a: 'You get a written strategy with a step by step plan and a clear scope. If you want to run it with us, we start. If you do not, the plan is still yours to keep.',
   },
-]
+{
+    q: 'Do you only work with tech companies?',
+    a: 'Tech is where we are strongest and where most of our work sits, from semiconductors to fintech. We also work with legal, hospitality and sports clients where the growth problem is the same.',
+  },
+{
+    q: 'Are you only in Barcelona?',
+    a: 'Barcelona is the base. The team works across Europe and beyond, and 15 of the projects so far have been international.',
+  },
+  ]

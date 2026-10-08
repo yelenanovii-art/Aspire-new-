@@ -13,6 +13,26 @@ import { TECH } from '../data/verticals'
 // it covers, proof, questions, CTA — with placeholder copy where the real
 // words have not been written yet. It exists so the nav, the home section and
 // the footer can all point at something real rather than a dead link.
+// A photograph in the page's own frame: rounded, the site's overlay wash, lazy
+// and sized from the data. Compact by design, since none of these is a hero.
+function Shot({ photo, className = '' }) {
+  if (!photo) return null
+  return (
+    <figure className={`techshot ${className}`}>
+      <img
+        src={photo.src}
+        srcSet={`${photo.src.replace('.webp', '-420.webp')} 420w, ${photo.src} ${photo.w}w`}
+        sizes="(max-width: 860px) 92vw, 420px"
+        alt={photo.alt}
+        width={photo.w}
+        height={photo.h}
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  )
+}
+
 export default function Tech() {
   const t = TECH
   useJsonLd('aspire-faq-tech', faqSchema(t.faq))
@@ -20,8 +40,9 @@ export default function Tech() {
 
   return (
     <>
-      <section className="page-hero page-hero--service">
-        <div className="container">
+      <section className="page-hero page-hero--service techhero">
+        <div className="container techhero__grid">
+          <div className="techhero__text">
           <nav className="crumbs reveal" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span aria-hidden="true">/</span>
@@ -45,6 +66,8 @@ export default function Tech() {
           <ul className="page-hero__tags reveal" style={{ '--delay': '240ms' }}>
             {t.tags.map((x) => <li key={x}>{x}</li>)}
           </ul>
+          </div>
+          <Shot photo={t.photos?.header} className="techhero__shot reveal" />
         </div>
       </section>
 
@@ -76,6 +99,8 @@ export default function Tech() {
               title="Four sectors, four different buyers."
               lede="Most of the client list sits in one of these. The work is not interchangeable between them."
             />
+            <div className="techsec-wrap">
+            <Shot photo={t.photos?.sectors} className="techsec__shot reveal" />
             <div className="techsec">
               {t.sectors.map((x, i) => (
                 <article className="techsec__i reveal" key={x.h} style={{ '--delay': `${i * 70}ms` }}>
@@ -83,6 +108,7 @@ export default function Tech() {
                   <p className="techsec__p">{x.p}</p>
                 </article>
               ))}
+            </div>
             </div>
           </div>
         </section>
@@ -98,6 +124,7 @@ export default function Tech() {
               title="Most of the decision happens before you hear about it."
               light
             />
+            <Shot photo={t.photos?.cycle} className="techcycle__shot reveal" />
             <ol className="sched__list" style={{ '--n': t.cycle.length }}>
               {t.cycle.map((c, i) => (
                 <li className="sched__i reveal" key={c.n} style={{ '--delay': `${i * 90}ms`, '--i': i }}>
@@ -116,6 +143,7 @@ export default function Tech() {
         <section className="section section--alt">
           <div className="container">
             <SectionHead eyebrow="Proof" title="Where this has been done before." />
+            <Shot photo={t.photos?.proof} className="techproof__shot reveal" />
             <div className="work-grid">
               {cases.map((c, i) => <CaseCard c={c} i={i} compact key={c.slug} />)}
             </div>

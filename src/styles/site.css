@@ -1137,8 +1137,29 @@
 }
 .faq__sign::after { transform: rotate(90deg); }
 .faq__item.is-open .faq__sign::after { transform: rotate(0deg); }
-.faq__panel { padding: 0 44px 24px 4px; }
-.faq__panel p { font-size: 16px; color: var(--body); line-height: 1.62; max-width: 68ch; }
+/* grid-template-rows 0fr to 1fr is the one way to transition to a height the
+   browser works out itself. The inner wrapper is what min-height: 0 needs to
+   bite on, or the row refuses to collapse. */
+.faq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.faq__item.is-open .faq__panel { grid-template-rows: 1fr; }
+.faq__panel-inner { overflow: hidden; min-height: 0; }
+.faq__panel p {
+  padding: 0 44px 24px 4px;
+  font-size: 16px;
+  color: var(--body);
+  line-height: 1.62;
+  max-width: 68ch;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.faq__item.is-open .faq__panel p { opacity: 1; transition-delay: 0.08s; }
+@media (prefers-reduced-motion: reduce) {
+  .faq__panel, .faq__panel p, .faq__sign::before, .faq__sign::after { transition: none; }
+}
 
 /* ---------- 12. CTA band ---------------------------------------------- */
 .cta-band {
@@ -4009,12 +4030,16 @@
     /* Equal height columns: the card fills its column and the actions sit at
        the foot of it, rather than the card ending halfway up and leaving the
        rule running past nothing. */
-    align-items: stretch;
+    /* Natural heights, not stretch. With every question closed the two
+       columns are already within a few pixels of each other, and stretching
+       the card to match a column that grows as a panel opens is what put the
+       blank area under the button. */
+    align-items: start;
   }
   .pair__b { display: flex; }
   .cta-band--boxed { display: flex; width: 100%; }
   .cta-band--boxed .cta-band__inner { display: flex; flex-direction: column; width: 100%; }
-  .cta-band--boxed .cta-band__actions { margin-top: auto; padding-top: clamp(22px, 2.6vw, 30px); }
+  .cta-band--boxed .cta-band__actions { padding-top: clamp(20px, 2.4vw, 26px); }
   /* The separation is a rule rather than more space, so the two read as two
      things rather than one that drifted apart. */
   .pair__b { position: relative; }
@@ -4034,7 +4059,7 @@
 .cta-band--boxed {
   border-radius: var(--radius);
   overflow: hidden;
-  padding: clamp(30px, 3.6vw, 46px);
+  padding: clamp(26px, 3vw, 36px);
   /* It is no longer closing the page, so it does not need the page's vertical
      rhythm on top of its own padding. */
   margin: 0;
@@ -5747,3 +5772,154 @@
 .pbf__err a { font-weight: 700; text-decoration: underline; }
 /* The inline form, which on /real-estate only ever rendered inside the pop-up. */
 .pbband .pbf { display: grid; gap: 14px; margin-top: clamp(18px, 2.2vw, 24px); max-width: 520px; }
+
+/* ═══ One card treatment, one depth, across every page ════════════════════════
+   The glass card was only on the home service carousel. Every other page used
+   a flat white panel with a hairline, which is why the rest of the site read as
+   plainer than the front of it. These four properties are the treatment; the
+   list below is every card that should carry it.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.spec,
+.route,
+.cs2-card,
+.cs2-stat,
+.related__card,
+.techsec__i,
+.quizcta,
+.calembed__card,
+.byline,
+.case-card,
+.posts__item,
+.member,
+.team__card,
+.cmpm__toggle,
+.pbband__inner {
+  position: relative;
+  background:
+    linear-gradient(168deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.62) 100%),
+    radial-gradient(120% 150% at 0% 0%, rgba(var(--accent-rgb), 0.07) 0%, transparent 62%),
+    var(--card-fill);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 2px rgba(11, 19, 22, 0.04),
+    0 10px 30px -14px rgba(11, 19, 22, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.32s ease, border-color 0.32s ease;
+}
+/* The lift and the glow, on a pointer only: on a touch screen hover sticks
+   after a tap and the card stays raised behind the page you moved to. */
+@media (hover: hover) {
+  .spec:hover,
+  .route:hover,
+  .cs2-card:hover,
+  .cs2-stat:hover,
+  .related__card:hover,
+  .techsec__i:hover,
+  .calembed__card:hover,
+  .case-card:hover,
+  .posts__item:hover,
+  .team__card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(var(--accent-rgb), 0.26);
+    box-shadow:
+      0 2px 4px rgba(11, 19, 22, 0.05),
+      0 20px 44px -18px rgba(var(--accent-rgb), 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spec, .route, .cs2-card, .cs2-stat, .related__card, .techsec__i,
+  .calembed__card, .case-card, .posts__item, .team__card { transition: none; }
+  .spec:hover, .route:hover, .cs2-card:hover, .cs2-stat:hover,
+  .related__card:hover, .techsec__i:hover, .calembed__card:hover,
+  .case-card:hover, .posts__item:hover, .team__card:hover { transform: none; }
+}
+@supports not (backdrop-filter: blur(10px)) {
+  .spec, .route, .cs2-card, .cs2-stat, .related__card, .techsec__i,
+  .quizcta, .calembed__card, .byline, .case-card, .posts__item, .team__card {
+    background: var(--card-fill);
+  }
+}
+
+/* The light sections were flat fills. A wash with a direction gives them a
+   light source, which is most of the difference between a band and a block. */
+.section--alt,
+.section--ruled {
+  position: relative;
+  isolation: isolate;
+}
+.section--alt::after,
+.section--ruled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 90% at 12% 0%, rgba(var(--accent-rgb), 0.07) 0%, transparent 60%),
+    radial-gradient(60% 80% at 92% 100%, rgba(var(--accent-rgb), 0.05) 0%, transparent 62%);
+}
+
+/* Cards inside a section slide in behind the heading rather than with it, so
+   a row reads as a row arriving rather than six things appearing at once. */
+.spec.reveal, .route.reveal, .cs2-card.reveal, .cs2-stat.reveal,
+.related__card.reveal, .techsec__i.reveal, .posts__item.reveal {
+  transform: translateY(18px);
+}
+
+/* ── Tech page photographs ───────────────────────────────────────────────────
+   Compact by design: none of these is a hero, they are there to stop the page
+   reading as a wall of type. Same frame and wash as the rest of the site. */
+.techshot {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 4 / 3;
+}
+.techshot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.techshot::after {
+  /* The site's overlay treatment: a hairline so a pale frame does not bleed
+     into a white page, and a faint wash so the photographs sit together. */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(11, 19, 22, 0.1);
+  background: linear-gradient(180deg, transparent 55%, rgba(6, 12, 14, 0.22) 100%);
+  pointer-events: none;
+}
+
+/* Header: text leads, the photograph is about a third. */
+.techhero__grid { display: grid; gap: clamp(26px, 4vw, 52px); align-items: center; }
+@media (min-width: 940px) {
+  .techhero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 0.44fr); }
+  /* The hero's own two column rule is for a title and a lede side by side.
+     This page puts the whole text block in one column instead. */
+  .techhero .page-hero__title { max-width: 18ch; }
+  .techhero .lead { max-width: 54ch; }
+}
+.techhero__shot { max-width: 460px; }
+@media (max-width: 939px) { .techhero__shot { max-width: 100%; } }
+
+/* Sectors: the photograph sits beside the list rather than above it. */
+.techsec-wrap { display: grid; gap: clamp(22px, 3vw, 40px); align-items: start; }
+@media (min-width: 1000px) {
+  .techsec-wrap { grid-template-columns: minmax(0, 0.4fr) minmax(0, 1fr); }
+  .techsec-wrap .techsec { margin-top: 0; }
+}
+.techsec__shot { max-width: 420px; }
+
+/* In the dark band, and beside the proof row. */
+.techcycle__shot { max-width: 420px; margin-bottom: clamp(20px, 2.6vw, 30px); }
+.techcycle__shot::after { border-color: rgba(255, 255, 255, 0.16); }
+.techproof__shot { max-width: 420px; margin-bottom: clamp(22px, 2.8vw, 32px); }
+@media (min-width: 1000px) {
+  /* Floated beside the cases rather than stacked above them, so the row keeps
+     its three across. */
+  .techproof__shot { float: right; margin: 0 0 20px 32px; max-width: 340px; }
+}

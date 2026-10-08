@@ -8,8 +8,11 @@
 //
 // Google only honours the markup when the same text is visible on the page, so
 // this must always be built from the rendered items rather than written twice.
-export function faqSchema(items) {
+// `max` mirrors the display cap in Faq.jsx. Google only honours this markup
+// when the same text is visible, so a page showing four must not claim six.
+export function faqSchema(items, max = 4) {
   if (!items || !items.length) return null
+  items = items.slice(0, max)
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

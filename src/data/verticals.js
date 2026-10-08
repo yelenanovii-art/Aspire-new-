@@ -26,6 +26,18 @@ export const TECH = {
     'Marketing and sales for B2B technology companies: semiconductors, AV, SaaS and hardware. Built around long technical buying cycles rather than consumer funnels.',
   keywords: 'B2B tech marketing, technology marketing agency, semiconductor marketing, SaaS sales, hardware marketing',
   tags: ['Technical audiences', 'Long cycles', 'Procurement', 'Conference-led'],
+
+  // Our own frames, recropped for this page. Swap a src and nothing else moves.
+  photos: {
+    header: { src: '/media/tech/tech-stand.webp', w: 600, h: 450,
+      alt: 'Three people in conversation at a trade stand with product screens behind them' },
+    sectors: { src: '/media/tech/tech-exhibit.webp', w: 600, h: 450,
+      alt: 'An exhibition stand for a connectivity company, its product list on lit panels' },
+    cycle: { src: '/media/tech/tech-floor.webp', w: 600, h: 450,
+      alt: 'A lit sculptural installation on an exhibition show floor at night' },
+    proof: { src: '/media/tech/tech-demo.webp', w: 600, h: 450,
+      alt: 'A product demonstration on an interactive table being filmed on a gimbal' },
+  },
   includes: [
     { h: 'Written for people who check', p: 'Technical buyers assess a company by how precisely it talks about its own work. Vague competence claims read as nothing to say, and a reader who can tell the difference will notice immediately. We write to the level of the person reading rather than down to an imagined general audience.' },
     { h: 'Built for the real cycle', p: 'A three month campaign ends before this audience has finished deciding. Plans here are built to still be running when the budget finally moves, which usually means fewer, better placed things repeated for longer rather than a burst and silence.' },
@@ -53,8 +65,8 @@ export const TECH = {
   ],
   faq: [
     { q: 'What counts as a tech company here?', a: 'Semiconductors, audio visual, SaaS, hardware and the companies that sell into them. If your buyer reads a datasheet before a brochure, this is the right page.' },
-    { q: 'Do you need to understand our product?', a: 'Enough to be precise, which is the part that earns trust with this audience. We work alongside your technical people rather than guessing, and we would rather ask an obvious question than publish a confident sentence that is wrong.' },
     { q: 'How long before this produces meetings?', a: 'First conversations usually inside six to eight weeks. A qualified pipeline that repeats takes a quarter, because the cycle itself is long: the people you reach in month one are often not ready until month four. Anyone promising faster in this sector is either buying bad meetings or describing a different market.' },
+    { q: 'Do you need to understand our product?', a: 'Enough to be precise, which is the part that earns trust with this audience. We work alongside your technical people rather than guessing, and we would rather ask an obvious question than publish a confident sentence that is wrong.' },
     { q: 'Do you work with early stage tech companies?', a: 'Yes, and often that is where the go-to-market service fits better than the execution ones. If nobody has sold it repeatably yet, the useful work is deciding who buys and what gets said, not running outreach against a guess.' },
     { q: 'We already have a marketing person. Where do you fit?', a: 'Usually either side of them. They own the day to day; we bring the sales motion, the conference weeks and the specialist production they do not have time to run. We work alongside in house teams more often than we replace them.' },
   ],
@@ -256,16 +268,8 @@ export const AI = {
 
   faq: [
     {
-      q: 'Do we need to be technical to work with you?',
-      a: 'No. We map the workflow with the people who do the job, then handle the build. You need somebody who can tell us how the work actually happens, not somebody who can read code.',
-    },
-    {
       q: 'Where does our data live?',
       a: 'In your accounts. We build inside your cloud and your tools, with your access rules. Nothing is copied to us and nothing is used to train a model.',
-    },
-    {
-      q: 'What if we want to take it in house later?',
-      a: 'Then you take it. The source, the prompts and the documentation are yours at handover, which is written into the engagement rather than negotiated afterwards.',
     },
     {
       q: 'How much does a system cost?',
@@ -274,6 +278,14 @@ export const AI = {
     {
       q: 'Is this just a wrapper around a chatbot?',
       a: 'No. Most of what we build is data plumbing and interface: getting the right numbers into one place and making them actionable. A model is used where it earns its place, not as the product.',
+    },
+    {
+      q: 'What if we want to take it in house later?',
+      a: 'Then you take it. The source, the prompts and the documentation are yours at handover, which is written into the engagement rather than negotiated afterwards.',
+    },
+    {
+      q: 'Do we need to be technical to work with you?',
+      a: 'No. We map the workflow with the people who do the job, then handle the build. You need somebody who can tell us how the work actually happens, not somebody who can read code.',
     },
   ],
 }

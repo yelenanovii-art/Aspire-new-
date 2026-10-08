@@ -17,6 +17,7 @@ import EventsPromo from '../components/EventsPromo'
 import CountUp from '../components/CountUp'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES, CASES, CLIENTS, STATS, STEPS, PROBLEM, FAQ, PERFORMANCE } from '../data/site'
+import { faqSchema } from '../lib/faqSchema'
 import { useJsonLd } from '../hooks/useJsonLd'
 
 // The page is ordered as an argument, not as a brochure:
@@ -33,15 +34,10 @@ export default function Home() {
   const quoteGlow = useGlow()
   const grids = useSpotlight()
 
-  useJsonLd('aspire-home-faq', {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  })
+  // Through the helper, so the cap on what the page shows and the cap on what
+  // the markup claims cannot drift apart. Google only honours FAQPage when the
+  // same text is visible.
+  useJsonLd('aspire-home-faq', faqSchema(FAQ))
 
   return (
     <div ref={grids}>
