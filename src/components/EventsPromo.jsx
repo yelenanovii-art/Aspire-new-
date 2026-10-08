@@ -23,11 +23,37 @@ export default function EventsPromo() {
     safeRemove('sessionStorage', LEGACY_SESSION_KEY)
     if (dismissedRecently(DISMISS_KEY)) return undefined
 
-    const t = window.setTimeout(() => {
+    // Whichever fires first, and nothing fires on a clock unless delayMs is
+    // set: a pop-up on a timer interrupts somebody who is reading.
+    let armed = false
+    const show = () => {
+      if (armed) return
+      armed = true
       lastFocused.current = document.activeElement
       setOpen(true)
-    }, P.delayMs)
-    return () => window.clearTimeout(t)
+    }
+
+    const t = P.delayMs > 0 ? window.setTimeout(show, P.delayMs) : null
+
+    const onScroll = () => {
+      const h = document.documentElement
+      const max = h.scrollHeight - h.clientHeight
+      if (max > 0 && h.scrollTop / max >= (P.scrollPct ?? 0.5)) show()
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    let onLeave
+    const fine = window.matchMedia('(pointer: fine)').matches
+    if (P.exitIntent && fine) {
+      onLeave = (e) => { if (e.clientY <= 0) show() }
+      document.addEventListener('mouseout', onLeave)
+    }
+
+    return () => {
+      if (t) window.clearTimeout(t)
+      window.removeEventListener('scroll', onScroll)
+      if (onLeave) document.removeEventListener('mouseout', onLeave)
+    }
   }, [])
 
   const close = () => {
@@ -102,6 +128,11 @@ export default function EventsPromo() {
           <a className="btn btn-accent btn-lg promo__cta" href={contactHrefFor('events', 'events-popup')} onClick={close}>
             {P.ctaLabel} <ArrowRight />
           </a>
+          {P.secondary && (
+            <a className="link-arrow promo__second" href={P.secondary.to} onClick={close}>
+              {P.secondary.label} <ArrowRight size={15} />
+            </a>
+          )}
           {P.ctaNote && <p className="promo__note">{P.ctaNote}</p>}
         </div>
       </div>

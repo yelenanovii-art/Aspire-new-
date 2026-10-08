@@ -3,9 +3,15 @@
 export const EVENTS_PROMO = {
   // Set `enabled: false` to switch the pop-up off entirely.
   enabled: true,
-  // Six seconds landed while people were still reading the hero. Twelve is
-  // past the fold on most visits without being so late it never fires.
-  delayMs: 12000,
+  // No timer. A pop-up on a clock interrupts somebody mid-sentence; half the
+  // page scrolled, or a pointer leaving for the tab bar, are both signals that
+  // they are done with what is on screen. Set delayMs to a number of
+  // milliseconds to bring the timer back alongside these two.
+  delayMs: 0,
+  scrollPct: 0.5,
+  // Only on a real pointer: a touch screen has no cursor to leave with, and
+  // the event fires spuriously there.
+  exitIntent: true,
   // Days to stay away after somebody closes it. This reverses the earlier
   // "show on every load" rule: coming back after it was dismissed is the
   // single most irritating thing a pop-up can do. Set to 0 to go back.
@@ -18,6 +24,13 @@ export const EVENTS_PROMO = {
   body:
     'Weeks of planning. Chasing replies. Running between halls, hoping the right people have time for you. We work alongside your team from first outreach to final follow-up, so you arrive with a full calendar and focus on the conversations that matter.',
   ctaLabel: "Let's plan your conference",
+  // The second exit. Somebody who will not book a call today will still take
+  // the guide, and it lands them on the gated block rather than a page they
+  // then have to search.
+  secondary: {
+    to: '/services/events/#playbook',
+    label: 'Not ready to talk? Take the playbook',
+  },
   ctaNote: 'Free 15 minute call. No prep needed.',
   // Its own frame: the service banner and the home band use different ones.
   photo: {

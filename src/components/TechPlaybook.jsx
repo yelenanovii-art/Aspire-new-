@@ -46,7 +46,7 @@ export default function TechPlaybook({ placement }) {
   if (!P.enabled) return null
 
   return (
-    <section className="section pbband">
+    <section className="section pbband" id="playbook">
       <div className="container pbband__inner">
         {open || state === 'done' ? (
           <figure className="pbcover pbband__cover">

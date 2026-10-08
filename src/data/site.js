@@ -57,10 +57,7 @@ export const COMPARE = {
       label: 'What it costs',
       hire: 'One salary, plus tooling, plus recruitment',
       agency: 'Monthly retainer, usually on a year contract',
-      // PLACEHOLDER FIGURE, invented at the client's request and not confirmed
-      // against a real engagement. It is the one number on this site that is
-      // not measured. Change it here and in the pricing FAQ together.
-      aspire: 'Scoped to the work. From €2,500 per month',
+      aspire: 'Scoped to the work, not sold as a package',
     },
     {
       label: 'Who does the work',
@@ -941,7 +938,7 @@ export const TESTIMONIALS = [
 export const FAQ = [
 {
     q: 'What does an engagement cost?',
-    a: 'Engagements start from €2,500 per month and are scoped to the work rather than sold as a fixed package. We would rather scope it properly than quote blind, which is what the free 15 minute call is for.',
+    a: 'Every engagement is scoped to the work rather than sold as a fixed package, so there is no list price that would mean anything. We would rather scope it properly than quote blind, which is what the free 15 minute call is for: you leave it knowing what we would do first and what that involves.',
   },
 {
     q: 'How fast can you start?',
