@@ -9,6 +9,11 @@
 // name or field added here without the matching declaration is silently
 // dropped on submit.
 export const LEAD_FORM = 'aspire-lead'
+// The tech magnet posts here. Separate from aspire-lead so the guide's
+// enquiries can be notified and reported on their own, and separate from the
+// estate form so Jackson is not put on leads that are not his.
+export const LEAD_FORM_TECH = 'aspire-lead-tech'
+
 export const LEAD_FORM_ESTATE = 'aspire-lead-real-estate'
 
 // Interest values that belong to the property and charter practice. These are

@@ -4,6 +4,7 @@ import { useJsonLd } from '../hooks/useJsonLd'
 import { SITE_URL, COMPANY } from '../config'
 import { serviceBySlug, caseBySlug } from '../data/site'
 import Share from '../components/Share'
+import TechPlaybook from '../components/TechPlaybook'
 import { AUTHOR } from '../data/insights'
 import { INSIGHTS_BY_DATE } from '../data/insights'
 
@@ -137,6 +138,10 @@ export default function Article({ slug }) {
           </nav>
         </div>
       </article>
+
+      {/* The playbook is this article as a working document, so it belongs
+          here and nowhere else in the insights. */}
+      {a.slug === 'trade-show-playbook' && <TechPlaybook placement="trade-show-article" />}
 
       {/* Three ways to pass it on, which is how a B2B piece actually travels:
           LinkedIn for the public share, WhatsApp for the one that gets sent to

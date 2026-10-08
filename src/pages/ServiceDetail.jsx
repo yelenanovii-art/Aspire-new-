@@ -2,6 +2,7 @@ import { ArrowRight, Check } from '../components/Icons'
 import SectionHead from '../components/SectionHead'
 import MediaSlot from '../components/MediaSlot'
 import PhaseArt from '../components/PhaseArt'
+import TechPlaybook from '../components/TechPlaybook'
 import CaseCard from '../components/CaseCard'
 import Faq from '../components/Faq'
 import CTABand from '../components/CTABand'
@@ -352,6 +353,11 @@ export default function ServiceDetail({ service }) {
           </div>
         </div>
       </section>
+
+      {/* The guide, for the larger group who are not ready to book a call.
+          Only on events: it is a trade show playbook, and a magnet on a page
+          it does not answer is just another form. */}
+      {s.slug === 'events' && <TechPlaybook placement="events-service" />}
 
       {/* The questions and the call to action closed the page one under the
           other, which left a narrow column down the middle and a lot of empty

@@ -211,6 +211,21 @@
          visitor arrived on. Netlify detects forms by scanning this HTML at
          build time and stores only the fields declared here, so this block and
          src/lib/leadRouting.js have to stay in step. -->
+    <!-- The B2B tech guide. Its own form, so its enquiries can be notified and
+         reported separately, and so the property and charter notification that
+         routes to Jackson is not extended to leads that are not his. -->
+    <form name="aspire-lead-tech" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+      <input type="text" name="bot-field" tabindex="-1" />
+      <input type="text" name="name" />
+      <input type="text" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="consent" />
+      <input type="text" name="source" />
+      <input type="text" name="_subject" />
+      <input type="text" name="page_url" />
+      <input type="text" name="submitted_at" />
+    </form>
+
     <form name="aspire-lead-real-estate" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
       <input type="text" name="bot-field" tabindex="-1" />
       <input type="text" name="name" />

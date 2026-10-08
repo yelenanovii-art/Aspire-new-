@@ -5728,3 +5728,22 @@
   color: #fff;
   background: var(--accent);
 }
+
+/* The tech guide reuses the property playbook's band and cover. These are the
+   two states that band never had, because its form lived in a pop-up. */
+.pbf__done { display: grid; gap: 14px; justify-items: start; margin-top: clamp(18px, 2.2vw, 24px); }
+.pbf__done-h {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.012em;
+}
+.pbf__done-h svg { color: var(--accent); flex: none; }
+.pbf__err { margin: 12px 0 0; font-size: 14.5px; color: var(--accent-700); }
+.pbf__err a { font-weight: 700; text-decoration: underline; }
+/* The inline form, which on /real-estate only ever rendered inside the pop-up. */
+.pbband .pbf { display: grid; gap: 14px; margin-top: clamp(18px, 2.2vw, 24px); max-width: 520px; }
