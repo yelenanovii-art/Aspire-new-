@@ -49,6 +49,22 @@
     # them available to injected code.
     Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), interest-cohort=()"
 
+# ── Email signature images ──────────────────────────────────────────────────
+# The site-wide policy above sets Cross-Origin-Resource-Policy: same-origin,
+# which tells a browser to refuse the response when the page asking for it is
+# on another origin. That is right for every other asset here and wrong for
+# these two: an email signature is, by definition, rendered somewhere else.
+#
+# Gmail is unaffected either way, because it fetches through its own proxy
+# server-side and never applies CORP. Apple Mail and Outlook on the web ask
+# the browser directly and show a broken image without this.
+[[headers]]
+  for = "/signature/*"
+  [headers.values]
+    Cross-Origin-Resource-Policy = "cross-origin"
+    Cache-Control = "public, max-age=604800"
+    X-Robots-Tag = "noindex"
+
 # ── Caching ─────────────────────────────────────────────────────────────────
 # Vite fingerprints these filenames, so they can be cached permanently.
 [[headers]]
