@@ -16,7 +16,10 @@ const fmt = (iso) =>
 // text — these are long enough that anything in the margin is a reason to
 // stop. The related links sit at the end, where someone who finished is the
 // one most worth sending somewhere.
-export default function Article({ a }) {
+export default function Article({ slug }) {
+  const a = INSIGHTS_BY_DATE.find((x) => x.slug === slug)
+  if (!a) return null
+
   const url = `${SITE_URL}/insights/${a.slug}/`
   const services = (a.related?.services || []).map(serviceBySlug).filter(Boolean)
   const cases = (a.related?.cases || []).map(caseBySlug).filter(Boolean)

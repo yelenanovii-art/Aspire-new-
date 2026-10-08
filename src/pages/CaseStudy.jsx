@@ -5,7 +5,7 @@ import { useJsonLd } from '../hooks/useJsonLd'
 import Todo from '../components/Todo'
 import MediaSlot from '../components/MediaSlot'
 import { SITE_URL } from '../config'
-import { serviceBySlug, logoFor, TESTIMONIALS } from '../data/site'
+import { serviceBySlug, logoFor, caseBySlug, TESTIMONIALS } from '../data/site'
 import { logoWidth } from '../lib/logoSize'
 import { caseDetailFor } from '../data/caseDetail'
 import CaseStudyPremium from '../components/CaseStudyPremium'
@@ -21,7 +21,10 @@ import CaseStudyPremium from '../components/CaseStudyPremium'
 // outcome — so they can be compared rather than admired.
 const possessive = (name) => (/s$/i.test(name) ? `${name}'` : `${name}'s`)
 
-export default function CaseStudy({ c }) {
+export default function CaseStudy({ slug }) {
+  const c = caseBySlug(slug)
+  if (!c) return null
+
   const d = caseDetailFor(c.slug) || {}
   const quote = d.quoteName && TESTIMONIALS.find((t) => t.name === d.quoteName)
   const services = c.services.map(serviceBySlug).filter(Boolean)

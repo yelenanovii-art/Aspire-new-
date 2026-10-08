@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { useRoute } from './hooks/useRoute'
 import { useReveal } from './hooks/useReveal'
 import { useSeo } from './hooks/useSeo'
@@ -6,29 +6,29 @@ import ScrollProgress from './components/ScrollProgress'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Services from './pages/Services'
-import ServiceDetail from './pages/ServiceDetail'
-import Work from './pages/Work'
-import About from './pages/About'
-import Contact from './pages/Contact'
+const Services = lazy(() => import('./pages/Services'))
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'))
+const Work = lazy(() => import('./pages/Work'))
+const About = lazy(() => import('./pages/About'))
+const Contact = lazy(() => import('./pages/Contact'))
 import { Privacy, Terms, Cookies } from './pages/Legal'
-import NotFound from './pages/NotFound'
-import RealEstate from './pages/RealEstate'
-import AiSystems from './pages/AiSystems'
-import Tech from './pages/Tech'
-import GtmQuizPage from './pages/GtmQuizPage'
-import Fit from './pages/Fit'
-import CaseStudy from './pages/CaseStudy'
-import Insights from './pages/Insights'
-import Article from './pages/Article'
-import Book from './pages/Book'
-import ThankYou from './pages/ThankYou'
+const NotFound = lazy(() => import('./pages/NotFound'))
+const RealEstate = lazy(() => import('./pages/RealEstate'))
+const AiSystems = lazy(() => import('./pages/AiSystems'))
+const Tech = lazy(() => import('./pages/Tech'))
+const GtmQuizPage = lazy(() => import('./pages/GtmQuizPage'))
+const Fit = lazy(() => import('./pages/Fit'))
+const CaseStudy = lazy(() => import('./pages/CaseStudy'))
+const Insights = lazy(() => import('./pages/Insights'))
+const Article = lazy(() => import('./pages/Article'))
+const Book = lazy(() => import('./pages/Book'))
+const ThankYou = lazy(() => import('./pages/ThankYou'))
 import BookBar from './components/BookBar'
 import { initAnalytics, trackBookingClicks } from './lib/analytics'
 import AiPromo from './components/AiPromo'
 import CookieConsent from './components/CookieConsent'
-import { SERVICES, CASES } from './data/site'
-import { INSIGHTS } from './data/insights'
+import { SERVICES } from './data/site'
+import { CASE_SLUGS, INSIGHT_SLUGS } from './data/slugs'
 
 // One entry per crawlable URL. The four service pages share a single component
 // and are generated from the content data, so adding a service to
@@ -52,9 +52,9 @@ const ROUTES = {
   ...Object.fromEntries(
     SERVICES.map((s) => [`/services/${s.slug}`, () => <ServiceDetail service={s} />])
   ),
-  ...Object.fromEntries(CASES.map((c) => [`/work/${c.slug}`, () => <CaseStudy c={c} />])),
+  ...Object.fromEntries(CASE_SLUGS.map((slug) => [`/work/${slug}`, () => <CaseStudy slug={slug} />])),
   '/insights': Insights,
-  ...Object.fromEntries(INSIGHTS.map((a) => [`/insights/${a.slug}`, () => <Article a={a} />])),
+  ...Object.fromEntries(INSIGHT_SLUGS.map((slug) => [`/insights/${slug}`, () => <Article slug={slug} />])),
 }
 
 // Old URLs from the previous site, redirected to their canonical page so
@@ -111,7 +111,13 @@ export default function App() {
       <ScrollProgress />
       <Nav path={activePath} onDark={DARK_HERO.has(activePath)} />
       <main id="main">
-        <Page />
+        {/* Nothing is rendered in place of a page while its chunk arrives. The
+            HTML is prerendered, so on a cold load the content is already on
+            screen and this only covers an in-app navigation, where a flash of
+            a spinner is worse than a beat of the previous page. */}
+        <Suspense fallback={null}>
+          <Page />
+        </Suspense>
       </main>
       <Footer />
       <CookieConsent />

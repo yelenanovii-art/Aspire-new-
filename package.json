@@ -3,10 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Aspire Agency — sales & marketing partner. Barcelona. Standalone marketing site.",
+  "description": "Aspire Agency \u2014 sales & marketing partner. Barcelona. Standalone marketing site.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs",
+    "build": "node scripts/checkSlugs.mjs && vite build && node scripts/prerender.mjs",
     "build:spa": "vite build --outDir dist-spa --emptyOutDir",
     "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview"

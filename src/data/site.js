@@ -57,9 +57,10 @@ export const COMPARE = {
       label: 'What it costs',
       hire: 'One salary, plus tooling, plus recruitment',
       agency: 'Monthly retainer, usually on a year contract',
-      // TODO: replace [FROM_PRICE]. It is the only figure on the site that is
-      // not real, and it renders as a visible token so it cannot ship unnoticed.
-      aspire: 'Scoped to the work. From [FROM_PRICE] per month',
+      // PLACEHOLDER FIGURE, invented at the client's request and not confirmed
+      // against a real engagement. It is the one number on this site that is
+      // not measured. Change it here and in the pricing FAQ together.
+      aspire: 'Scoped to the work. From €2,500 per month',
     },
     {
       label: 'Who does the work',
@@ -940,7 +941,7 @@ export const TESTIMONIALS = [
 export const FAQ = [
   {
     q: 'What does an engagement cost?',
-    a: 'Engagements start from [FROM_PRICE] per month and are scoped to the work rather than sold as a fixed package. We would rather scope it properly than quote blind, which is what the free 15 minute call is for.',
+    a: 'Engagements start from €2,500 per month and are scoped to the work rather than sold as a fixed package. We would rather scope it properly than quote blind, which is what the free 15 minute call is for.',
   },
   {
     q: 'Do we have to buy all six services?',
