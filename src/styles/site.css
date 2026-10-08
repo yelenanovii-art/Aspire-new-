@@ -1965,13 +1965,25 @@
   color: rgba(255, 255, 255, 0.68);
 }
 
+/* Twelve column units across eleven photographs, so the grid divides exactly
+   at four, three and two columns and no row is ever left part empty. The cell
+   carries the shape; see Gallery.jsx for why the per-item ratios are ignored. */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: clamp(12px, 1.6vw, 20px);
   margin-top: clamp(34px, 4.5vw, 50px);
 }
-.gallery__cell { grid-column: span var(--span, 1); }
+@media (min-width: 700px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1000px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+.gallery__cell { grid-column: span var(--span, 1); min-width: 0; }
+/* The wide cell takes the height its row already has. MediaSlot writes its
+   aspect-ratio as an inline style, which no ordinary rule can outrank, hence
+   the !important: it is overriding an attribute rather than another stylesheet. */
+.gallery__cell--wide .slot {
+  aspect-ratio: auto !important;
+  height: 100%;
+}
 
 /* ============================================================
    23. Real estate and yachting
@@ -2274,12 +2286,19 @@
 }
 
 @media (max-width: 900px) {
-  .gallery { grid-template-columns: repeat(2, 1fr); }
-  .gallery__cell { grid-column: span 1; }
+  /* The gallery sets its own columns higher up and keeps the wide cell at two
+     spans, because twelve units is what divides evenly. Flattening every cell
+     to one span here left eleven, which does not. */
   .dash__metrics { grid-template-columns: 1fr; gap: 10px; }
 }
 @media (max-width: 620px) {
+  /* One column on the narrowest screens, and the wide cell stops spanning
+     because there is nothing to span across. It also needs its ratio back:
+     stretching to the row height is meaningless when it is the only thing in
+     the row, and without a ratio it collapsed to nothing. */
   .gallery { grid-template-columns: 1fr; }
+  .gallery__cell { grid-column: span 1; }
+  .gallery__cell--wide .slot { aspect-ratio: 4 / 3 !important; height: auto; }
   .consent__inner { padding: 15px 16px; }
   .consent__actions .btn { flex: 1 1 auto; justify-content: center; }
   .estate-film { margin-top: -34px; }

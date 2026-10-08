@@ -142,7 +142,10 @@ export const ESTATE = {
       alt: 'Open kitchen with a stone island under a vaulted timber ceiling' },
     { id: 'villa-terrace', src: '/media/estate/villa-terrace.webp', label: 'Terrace', ratio: '3 / 2',
       alt: 'Stone villa terrace set for dining beneath a cypress tree' },
-    { id: 'villa-aerial', src: '/media/estate/villa-aerial.webp', label: 'Estate from the air', ratio: '16 / 9', span: 2,
+    // Eleven photographs with one double-width cell is twelve column units,
+    // which is exactly three rows of four. Two wide cells made thirteen, and
+    // thirteen cannot tile a four column grid without leaving a hole.
+    { id: 'villa-aerial', src: '/media/estate/villa-aerial.webp', label: 'Estate from the air', ratio: '16 / 9', span: 1,
       alt: 'Aerial panorama of a villa estate in the Tuscan hills at dusk' },
     { id: 'villa-overhead', src: '/media/estate/villa-overhead.webp', label: 'Overhead', ratio: '4 / 5',
       alt: 'Overhead drone view looking straight down on a villa and its grounds' },
