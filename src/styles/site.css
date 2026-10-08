@@ -3570,7 +3570,9 @@
   border-top: 1px solid var(--line);
 }
 .article__more ul { gap: 10px; }
-.article__more a {
+/* The list only. "All insights" sits under it as a tertiary link and was
+   being dressed as another row to pick from. */
+.article__more ul a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3584,7 +3586,7 @@
   color: var(--ink);
   transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
 }
-.article__more a:hover {
+.article__more ul a:hover {
   border-color: var(--line-strong);
   background: var(--card-fill);
   transform: translateX(3px);
@@ -5956,12 +5958,26 @@
 /* In the dark band, and beside the proof row. */
 .techcycle__shot { max-width: 420px; margin-bottom: clamp(20px, 2.6vw, 30px); }
 .techcycle__shot::after { border-color: rgba(255, 255, 255, 0.16); }
-.techproof__shot { max-width: 420px; margin-bottom: clamp(22px, 2.8vw, 32px); }
+.techproof__shot { max-width: 420px; }
+.techproof__row { display: grid; gap: clamp(18px, 2.4vw, 26px); }
 @media (min-width: 1000px) {
-  /* Floated beside the cases rather than stacked above them, so the row keeps
-     its three across. */
-  .techproof__shot { float: right; margin: 0 0 20px 32px; max-width: 340px; }
+  /* The cases and the photograph as one row. The float this replaces could not
+     match the cards' height, because a floated figure is only ever as tall as
+     its own crop. Stretched in a grid track it takes the row's height and the
+     image covers it. */
+  .techproof__row { grid-template-columns: minmax(0, 1fr) 340px; align-items: stretch; }
+  .techproof__shot { max-width: none; aspect-ratio: auto; height: 100%; }
 }
+
+/* 100px under the last step and 68px over the next eyebrow put 168px of
+   nothing in the middle of the page. */
+.section.approach { padding-bottom: clamp(44px, 5vw, 64px); }
+.approach + .onsite-section { padding-top: clamp(28px, 3.4vw, 40px); }
+
+/* The note belongs to the button above it, so it reads as a label on that
+   button rather than as a stray line starting at its left edge. */
+.hero__quiz { justify-items: center; }
+.hero__cta-note { text-align: center; }
 
 /* ── The guide, riffled ───────────────────────────────────────────────────────
    Hovering the locked cover turns four interior pages. A gated guide otherwise
@@ -6156,3 +6172,161 @@
 /* The property pop-up's trigger: a zero-height marker under the film grid, so
    the pop-up is keyed to a place on the page rather than to a clock. */
 .promo__mark { display: block; height: 0; }
+
+/* ── Insights, the reading page ──────────────────────────────────────────────
+   Every other page on the site sits on a ground: a gradient with a breath of
+   the accent in one corner, cards that lift off it, a mono eyebrow in teal.
+   The article page had none of that. It was the one page rendered on flat
+   white with the body text doing all the work, which beside the rest of the
+   site read as unfinished rather than as restraint.
+
+   The prose itself is left alone — a reading page earns nothing from
+   decoration between the reader and the sentence. What changes is everything
+   around it: the masthead it opens on, the blocks at the foot, and the joins
+   between them. */
+
+/* The masthead. The same ground the light sections use, with the accent tint
+   pulled to the top right so the page opens with a light source rather than a
+   blank. The rule at the foot gives the body text something to start from. */
+.page-hero--article {
+  position: relative;
+  background:
+    radial-gradient(70% 90% at 88% 0%, rgba(var(--accent-rgb), 0.1) 0%, transparent 62%),
+    var(--wash-light);
+  border-bottom: 1px solid var(--line);
+  /* The hero's own bottom padding plus the article section's top padding put
+     roughly 130px of nothing between the standfirst and the first sentence. */
+  padding-bottom: clamp(26px, 3.4vw, 40px);
+}
+.page-hero--article .crumbs { margin-bottom: 14px; }
+/* The dateline was the same grey as the body, so the page opened on two
+   indistinguishable greys. In teal it reads as a label, which is what it is,
+   and it matches every other eyebrow on the site. */
+.page-hero--article .posts__meta { color: var(--accent-600); }
+.page-hero--article .posts__meta span[aria-hidden="true"] { color: var(--line-strong); }
+.page-hero--article .article__dek { color: var(--body); }
+
+/* The first paragraph now follows a rule rather than a void, so it needs the
+   gap back on its own terms. */
+.article > .container > .article__intro:first-child { margin-top: clamp(26px, 3.4vw, 40px); }
+
+/* A hairline above each heading. Long-form needs its structure visible when
+   somebody is scanning for the part they came for, and a rule says "new
+   section" without numbering prose that is not a sequence. */
+.article__sec { position: relative; }
+.article__sec h2 { position: relative; padding-top: clamp(16px, 2vw, 22px); }
+.article__sec h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px 1px rgba(var(--accent-rgb), 0.35);
+}
+
+/* The three blocks at the foot are the ones that were plainest: a bordered
+   box, then two bare lists. They get the card treatment the rest of the site
+   uses, so the end of the piece looks like the end of a page rather than the
+   point where the stylesheet ran out. */
+.article__takeaway,
+.article__related,
+.article__more,
+.byline {
+  background:
+    linear-gradient(168deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.66) 100%),
+    radial-gradient(120% 150% at 0% 0%, rgba(var(--accent-rgb), 0.07) 0%, transparent 62%),
+    var(--card-fill);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 2px rgba(11, 19, 22, 0.04),
+    0 10px 30px -14px rgba(11, 19, 22, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  padding: clamp(22px, 2.8vw, 32px);
+}
+
+/* The takeaway is the one block that should stop a scanner, so it keeps the
+   accent rail it is the only thing on the page to get. */
+.article__takeaway {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(38px, 4.6vw, 56px);
+}
+.article__takeaway::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(var(--accent-rgb), 0.25) 100%);
+}
+.article__takeaway-k { color: var(--accent-600); }
+
+.article__related { margin-top: clamp(26px, 3.2vw, 36px); }
+.article__more { margin-top: clamp(18px, 2.2vw, 24px); }
+
+/* "Read next" was a list of underlined links. As rows with a hairline between
+   them and the arrow pinned right, it reads as something to pick from. */
+.article__more a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  transition: color 0.22s ease;
+}
+.article__more li:last-child a { border-bottom: 0; }
+.article__more ul a svg { flex: none; color: var(--accent-600); transition: transform 0.22s ease; }
+.article__more a:hover { color: var(--accent-600); background: none; }
+.article__more ul a:hover svg { transform: translateX(3px); }
+
+.byline { margin-top: 0; }
+
+@media (max-width: 760px) {
+  /* The cards stack, so they need to breathe from each other rather than
+     inherit desktop gaps that read as a pile on a phone. */
+  .article__takeaway { margin-top: clamp(30px, 6vw, 38px); }
+  .article__sec h2::before { width: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .article__more ul a, .article__more ul a svg { transition: none; }
+  .article__more ul a:hover svg { transform: none; }
+}
+
+/* ── The join under the hero, and the strip under that ───────────────────────
+   The line at the top of the photograph was not the gradient after all. Two
+   adjacent full-bleed sections land on fractional pixels at most device
+   ratios, and the page's own white background shows through the sliver
+   between them as a light hairline. Matching the colour is not enough when
+   there is nothing there to colour, so the section carries the hero's closing
+   tone as its own background and is pulled up a pixel to close the sliver. */
+.herophoto {
+  background: #080f12;
+  margin-top: -1px;
+}
+
+/* "Trusted by" sat directly against the foot of the photograph: the section
+   had no rule of its own, so it was running on zero padding. */
+.logos {
+  padding-block: clamp(42px, 6vw, 72px) clamp(36px, 5vw, 60px);
+}
+@media (max-width: 760px) {
+  .logos { padding-block: 40px 34px; }
+}
+
+/* The marquee stopped dead under prefers-reduced-motion and became a strip you
+   had to drag. Asked for it to keep moving, so it does — at a third of the
+   speed, which reads as drift rather than motion and still leaves the row
+   legible without anybody touching it. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: marquee 120s linear infinite; }
+  .marquee { overflow-x: hidden; }
+  .marquee__group:nth-child(2) { display: flex; }
+  .marquee__group { padding-right: clamp(34px, 5vw, 64px); }
+}

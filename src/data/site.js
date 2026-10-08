@@ -798,6 +798,10 @@ export const FILM = [
   // point: the grid plays muted, so a piece to camera has to read silently.
   { id: 'ise26-showfloor', src: '/media/film/ise26-showfloor.mp4', poster: '/media/film/ise26-showfloor.webp',
     label: 'Show floor walkthrough', note: 'Integrated Systems Europe 2026, captioned for social', ratio: '9 / 16', span: 1 },
+  // The second horizontal, and the only one from a different client and a
+  // different show, which is what stops the row reading as one event.
+  { id: 'mwc-idm', src: '/media/film/mwc-idm.mp4', poster: '/media/film/mwc-idm.webp',
+    label: 'Founder to camera', note: 'Mobile World Congress, for Interactive Digital Media', ratio: '16 / 9', span: 1 },
 
   // ───────────────────────────────────────────────────────────────────────────
   // ADD NEW FILMS HERE

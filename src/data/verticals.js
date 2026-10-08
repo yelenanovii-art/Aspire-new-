@@ -33,8 +33,8 @@ export const TECH = {
       alt: 'A pitching stage at a technology show, a company presenting to a standing audience' },
     sectors: { src: '/media/tech/tech-audience.webp', w: 600, h: 450,
       alt: 'An audience watching a wall of lit product screens in a darkened conference hall' },
-    cycle: { src: '/media/tech/tech-floor.webp', w: 600, h: 450,
-      alt: 'A lit sculptural installation on an exhibition show floor at night' },
+    // No photograph on the cycle section. Shot returns null without one, and
+    // the numbered steps carry that section on their own.
     proof: { src: '/media/tech/tech-demo.webp', w: 600, h: 450,
       alt: 'A product demonstration on an interactive table being filmed on a gimbal' },
   },

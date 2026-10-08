@@ -143,9 +143,14 @@ export default function Tech() {
         <section className="section section--alt">
           <div className="container">
             <SectionHead eyebrow="Proof" title="Where this has been done before." />
-            <Shot photo={t.photos?.proof} className="techproof__shot reveal" />
-            <div className="work-grid">
-              {cases.map((c, i) => <CaseCard c={c} i={i} compact key={c.slug} />)}
+            {/* Wrapped so the photograph and the cases are one row that can
+                share a height. Floated, the picture was whatever height its
+                own crop made it and sat short beside the cards. */}
+            <div className="techproof__row">
+              <div className="work-grid">
+                {cases.map((c, i) => <CaseCard c={c} i={i} compact key={c.slug} />)}
+              </div>
+              <Shot photo={t.photos?.proof} className="techproof__shot reveal" />
             </div>
           </div>
         </section>
