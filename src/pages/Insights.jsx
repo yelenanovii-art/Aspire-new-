@@ -23,7 +23,7 @@ export default function Insights() {
     name: 'Insights',
     url: `${SITE_URL}/insights/`,
     description:
-      'Written pieces on B2B sales, social for technical audiences, trade shows, CRM and market entry, from the engagements we run.',
+      'Twenty answers to the questions B2B tech companies ask us about go-to-market, outbound, qualification, trade shows, content and AI systems, from the engagements we run.',
     publisher: { '@id': `${SITE_URL}/#organization` },
     hasPart: INSIGHTS_BY_DATE.map((a) => ({
       '@type': 'Article',
@@ -41,9 +41,9 @@ export default function Insights() {
           <p className="eyebrow">Insights</p>
           <h1 className="page-hero__title">What we have learned doing the work.</h1>
           <p className="page-hero__lead">
-            Six pieces, each answering a question a client actually asked us. Every number
-            quoted is from one of our own engagements. We would rather write six things worth
-            reading than twenty that rank.
+            Twenty pieces, each answering one question a client has actually asked us, with the
+            answer in the first paragraph. Where we quote a number it is from our own work. Where
+            we do not have one, we have left it out rather than borrowed somebody else's.
           </p>
         </div>
       </section>

@@ -3397,7 +3397,7 @@
 }
 
 /* ── Insights index and articles ─────────────────────────────────────────────
-   A list, not a feed. Six pieces that each answer a real question beats a
+   A list, not a feed. Pieces that each answer a real question beat a
    stream nobody finishes, so the index is sized for reading in one pass and
    the articles carry nothing in the margin to stop for. */
 .posts__meta {
@@ -5829,7 +5829,7 @@
   .techsec__i:hover,
   .calembed__card:hover,
   .case-card:hover,
-  .posts__item:hover,
+  .postcard:hover,
   .team__card:hover {
     transform: translateY(-3px);
     border-color: rgba(var(--accent-rgb), 0.26);
@@ -5841,14 +5841,14 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .spec, .route, .cs2-card, .cs2-stat, .related__card, .techsec__i,
-  .calembed__card, .case-card, .posts__item, .team__card { transition: none; }
+  .calembed__card, .case-card, .postcard, .team__card { transition: none; }
   .spec:hover, .route:hover, .cs2-card:hover, .cs2-stat:hover,
   .related__card:hover, .techsec__i:hover, .calembed__card:hover,
-  .case-card:hover, .posts__item:hover, .team__card:hover { transform: none; }
+  .case-card:hover, .postcard:hover, .team__card:hover { transform: none; }
 }
 @supports not (backdrop-filter: blur(10px)) {
   .spec, .route, .cs2-card, .cs2-stat, .related__card, .techsec__i,
-  .quizcta, .calembed__card, .byline, .case-card, .posts__item, .team__card {
+  .quizcta, .calembed__card, .byline, .case-card, .postcard, .team__card {
     background: var(--card-fill);
   }
 }
@@ -6489,4 +6489,24 @@
   .postlead, .postlead__go .arrow, .postcard__go, .postcard__title { transition: none; }
   .postlead:hover { transform: none; }
   .postcard:hover .postcard__go { transform: none; }
+}
+
+/* The glass treatment sets no radius of its own, so the cards it is applied to
+   are square unless the component asks otherwise. The insights cards now match
+   the lead above them and the cards everywhere else. */
+.postcard { border-radius: var(--radius); }
+
+/* Tags read as keywords rather than as borders. A tint of the accent, which
+   keeps them inside the one colour the brand has instead of introducing a
+   second; the text stays at the darker end of it so it is legible rather than
+   decorative. */
+.posts__tags li {
+  background: rgba(var(--accent-rgb), 0.09);
+  border-color: rgba(var(--accent-rgb), 0.2);
+  color: var(--accent-600);
+}
+.posts__tags--dark li {
+  background: rgba(var(--accent-rgb), 0.26);
+  border-color: rgba(var(--accent-tint-2-rgb, 143, 201, 212), 0.34);
+  color: var(--accent-tint-2);
 }

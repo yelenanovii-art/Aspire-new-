@@ -27,6 +27,20 @@ export const INSIGHT_SLUGS = [
   'agency-freelancer-or-hire',
   'the-crm-is-not-the-problem',
   'entering-a-new-market',
+  'cost-per-qualified-lead-b2b-tech',
+  'what-a-go-to-market-strategy-includes',
+  'how-to-qualify-a-lead-at-a-trade-show',
+  'what-belongs-in-a-b2b-content-calendar',
+  'what-counts-as-a-qualified-lead',
+  'how-to-measure-trade-show-roi',
+  'who-should-own-marketing-in-a-small-tech-company',
+  'how-many-touches-b2b-outreach-needs',
+  'how-to-choose-which-conferences-to-attend',
+  'how-to-build-an-icp',
+  'what-to-send-after-a-conference',
+  'why-b2b-websites-do-not-convert',
+  'what-ai-can-actually-automate-in-sales',
+  'when-is-it-too-early-for-paid-ads',
 ]
 
 export const hasCasePage = (slug) => CASE_SLUGS.includes(slug)
