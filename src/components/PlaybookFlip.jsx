@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 //
 // prefers-reduced-motion stops the turning entirely rather than merely
 // shortening it: the whole effect is movement.
-export default function PlaybookFlip({ pages, active = false, interval = 1100 }) {
+export default function PlaybookFlip({ pages, active = false, interval = 1100, hold = 1800 }) {
   const [i, setI] = useState(0)
   const host = useRef(null)
   // On touch, the cover being on screen is what stands in for hover.
@@ -41,13 +41,25 @@ export default function PlaybookFlip({ pages, active = false, interval = 1100 })
 
   const running = touch ? seen : active
 
+  // The cover holds longer than the pages do. It is the one anybody arriving
+  // has not seen yet, and on a phone the riffle starts the moment the thing
+  // scrolls in, so turning straight off it would mean the cover never actually
+  // registered. A chain of timeouts rather than one interval, since the first
+  // gap is not the same as the rest.
   useEffect(() => {
     if (!running) { setI(0); return undefined }  // back to the cover at rest
     if (typeof window === 'undefined') return undefined
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
-    const t = window.setInterval(() => setI((v) => (v + 1) % pages.length), interval)
-    return () => window.clearInterval(t)
-  }, [running, pages.length, interval])
+    let t = 0
+    const step = (n) => {
+      t = window.setTimeout(() => {
+        setI(n)
+        step((n + 1) % pages.length)
+      }, n === 1 ? hold : interval)
+    }
+    step(1)
+    return () => window.clearTimeout(t)
+  }, [running, pages.length, interval, hold])
 
   return (
     <span className="pbflip" aria-hidden="true" ref={host}>

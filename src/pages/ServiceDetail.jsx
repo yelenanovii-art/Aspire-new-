@@ -238,9 +238,12 @@ export default function ServiceDetail({ service }) {
               ))}
             </div>
           </div>
-          <EstatePromo />
         </section>
       )}
+      {/* Outside the section, so the marker sits below its bottom padding: the
+          last film has to be properly off the top of the screen before the
+          pop-up arrives, not merely level with it. */}
+      {s.slug === 'content-creation' && <EstatePromo />}
 
       {/* ── Proof ────────────────────────────────────────────────────── */}
       {/* The centre of the page, and the answer to the only real objection on

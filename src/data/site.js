@@ -914,7 +914,9 @@ export const TESTIMONIALS = [
       'Elena executed her work perfectly and beyond expectations. She is a very proactive person with creative and engaging ideas, which makes a difference and is really welcome in marketing. She has a strong ability to work under pressure.',
     short: 'Elena executed her work perfectly and beyond expectations, with creative and engaging ideas and a strong ability to work under pressure.',
     name: 'Cécile Laurent',
-    role: 'Social Media Manager, Integrated Systems Europe',
+    // Job title only. `company` is appended by the caption, so carrying the
+    // employer here too printed "Integrated Systems Europe" twice in a row.
+    role: 'Social Media Manager',
     company: 'Integrated Systems Europe',
     initials: 'CL',
   },

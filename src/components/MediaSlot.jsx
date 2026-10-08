@@ -62,23 +62,46 @@ export default function MediaSlot({ src, poster, label, hint, ratio = '3 / 2', s
 // Now the gate asks about the connection instead. A phone that can afford the
 // file plays the film like a desktop does; a metered or slow one still gets the
 // poster, and so does anyone who asked for less motion.
-function SlotVideo({ src, poster, label, style, keepMuted }) {
-  const ref = useRef(null)
-  const [play, setPlay] = useState(false)
-
-  useEffect(() => {
-    const calm = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+// Whether this visit should autoplay, decided before the first paint.
+//
+// It used to be worked out in an effect, which meant the element was rendered
+// once with no source and then given src + autoplay afterwards. Safari is
+// strict about that: an autoplaying video wants to arrive with its source, its
+// muted attribute and playsinline already on it, so on iOS the second pass
+// often bought a poster and nothing else.
+function wantsAutoplay() {
+  if (typeof window === 'undefined') return false   // prerender: ship the poster
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
     // Network Information API, so this is Chrome and Android and nothing else.
     // Where it is missing we autoplay, which is what every desktop browser was
     // already doing — the known-bad cases are the ones it does report.
     const net = navigator.connection || navigator.mozConnection || navigator.webkitConnection
-    const thrifty = net ? net.saveData === true || /^(slow-)?2g$|^3g$/.test(net.effectiveType || '') : false
-    if (calm && !thrifty) setPlay(true)
-  }, [])
+    if (!net) return true
+    return net.saveData !== true && !/^(slow-)?2g$|^3g$/.test(net.effectiveType || '')
+  } catch {
+    return true
+  }
+}
+
+function SlotVideo({ src, poster, label, style, keepMuted }) {
+  const ref = useRef(null)
+  // Lazy initialiser, so the very first render already carries the source.
+  const [play, setPlay] = useState(wantsAutoplay)
 
   useEffect(() => {
     const el = ref.current
-    if (play && el && el.paused) el.play().catch(() => {})
+    if (!play || !el) return undefined
+    // Safari can reject the first play() while it is still opening the file, so
+    // try again the moment there are frames to show rather than giving up.
+    const go = () => { if (el.paused) el.play().catch(() => {}) }
+    go()
+    el.addEventListener('loadeddata', go)
+    el.addEventListener('canplay', go)
+    return () => {
+      el.removeEventListener('loadeddata', go)
+      el.removeEventListener('canplay', go)
+    }
   }, [play])
 
   return (

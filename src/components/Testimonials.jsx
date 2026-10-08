@@ -64,7 +64,9 @@ export default function Testimonials({ light = false }) {
           <strong>{t.name}</strong>
           <span>
             {t.role}
-            {t.company && t.company !== t.name ? ', ' + t.company : ''}
+            {t.company && t.company !== t.name && !t.role.includes(t.company)
+              ? ', ' + t.company
+              : ''}
           </span>
         </span>
       </figcaption>

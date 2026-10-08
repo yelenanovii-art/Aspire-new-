@@ -12,10 +12,11 @@ import { dismissedRecently, recordDismissal } from '../lib/promoDismiss'
 // opens once that marker has been scrolled past, so the interruption lands
 // after the two property films rather than before anybody has seen them.
 //
-// The marker has to live inside the film section to mark that spot, and the
-// dialog must not: that section is section--dark, and its colour rules reach
-// anything nested in it, which painted the pop-up's heading white on its own
-// white panel. The dialog goes to the body instead, where the other two sit.
+// The component sits just below the film section, so its marker falls after
+// that section's bottom padding and the last film is genuinely behind the
+// reader before anything opens. The dialog goes to the body through a portal
+// rather than rendering in place, which also keeps it clear of any section
+// whose colour rules would reach into it.
 const DISMISS_KEY = 'aspire.estatePromo.dismissedUntil'
 
 export default function EstatePromo() {
@@ -35,8 +36,10 @@ export default function EstatePromo() {
       ([e]) => {
         // boundingClientRect.top < 0 means the marker is above the viewport,
         // so the films are behind them. Without it this also fires on the way
-        // down the page from a deep link landing below.
-        if (fired.current || e.isIntersecting || e.boundingClientRect.top > 0) return
+        // down the page from a deep link landing below. The extra 120px is so
+        // the last film is clearly gone rather than just level with the top
+        // edge, which is where it was interrupting people mid-watch.
+        if (fired.current || e.isIntersecting || e.boundingClientRect.top > -120) return
         fired.current = true
         lastFocused.current = document.activeElement
         setOpen(true)

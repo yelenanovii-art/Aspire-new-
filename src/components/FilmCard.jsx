@@ -58,12 +58,24 @@ export default function FilmCard({ src, poster, label, note, ratio = '16 / 9', i
   // card that scrolls past mid-stagger cannot end up playing off screen.
   useEffect(() => {
     const v = videoRef.current
-    if (!v) return
-    if (playing) {
+    if (!v) return undefined
+    if (!playing) {
+      if (!v.paused) v.pause()
+      return undefined
+    }
+    // Safari rejects play() while it is still opening the file, which on a
+    // phone is most first attempts. One rejection is not a refusal, so try
+    // again once there are frames, and only call it blocked if that fails too.
+    const go = () => {
       const p = v.play()
-      if (p?.catch) p.catch(() => setBlocked(true))
-    } else if (!v.paused) {
-      v.pause()
+      if (p?.catch) p.catch(() => { if (v.readyState >= 2) setBlocked(true) })
+    }
+    go()
+    v.addEventListener('loadeddata', go)
+    v.addEventListener('canplay', go)
+    return () => {
+      v.removeEventListener('loadeddata', go)
+      v.removeEventListener('canplay', go)
     }
   }, [playing, armed])
 

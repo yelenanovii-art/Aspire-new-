@@ -15,13 +15,11 @@ export default function Team({ compact = false, photos = true }) {
               {m.photo ? (
                 <img src={m.photo} alt={m.name} width="800" height="1000" loading="lazy" />
               ) : (
-                /* A portrait is reserved where one is outstanding, so the card
-                   is visibly waiting for a file rather than quietly settling for
-                   initials. Set `photo` in the data and this disappears. */
-                <span className={'team__avatar' + (m.photoTodo ? ' team__avatar--todo' : '')} aria-hidden="true">
-                  {m.initials}
-                  {m.photoTodo && <span className="team__todo">Photo to follow</span>}
-                </span>
+                /* Initials where there is no portrait. It used to also say
+                   "Photo to follow", which told a visitor about our file
+                   management rather than about the person. Set `photo` in the
+                   data and the initials give way to it. */
+                <span className="team__avatar" aria-hidden="true">{m.initials}</span>
               )}
             </div>
           )}
