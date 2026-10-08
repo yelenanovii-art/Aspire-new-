@@ -30,7 +30,7 @@ export const TECH_PLAYBOOK = {
   band: {
     headline: 'Not ready for a call? Take the playbook.',
     subline:
-      'The sequence we run at Integrated Systems Europe and for clients exhibiting worldwide: the six week countdown, the qualification grades, and the follow-up template. Eleven pages, two of them printable.',
+      'The sequence we run at Integrated Systems Europe and for clients exhibiting worldwide: the six week countdown, the qualification grades, and the follow-up template. Twelve pages, two of them printable.',
   },
 
   submitLabel: 'Send me the playbook',
