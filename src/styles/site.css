@@ -3400,15 +3400,6 @@
    A list, not a feed. Six pieces that each answer a real question beats a
    stream nobody finishes, so the index is sized for reading in one pass and
    the articles carry nothing in the margin to stop for. */
-.posts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-.posts__item { border-top: 1px solid var(--line); }
-.posts__item:last-child { border-bottom: 1px solid var(--line); }
-.posts__link {
-  display: grid;
-  gap: 9px;
-  padding: clamp(26px, 3.2vw, 38px) 0 clamp(18px, 2vw, 22px);
-  color: inherit;
-}
 .posts__meta {
   display: flex;
   flex-wrap: wrap;
@@ -3420,35 +3411,12 @@
   text-transform: uppercase;
   color: var(--muted);
 }
-.posts__title {
-  font-family: var(--display);
-  font-weight: var(--display-w);
-  font-size: clamp(22px, 2.5vw, 32px);
-  line-height: 1.17;
-  letter-spacing: var(--display-ls);
-  color: var(--ink);
-  margin: 0;
-  max-width: 24ch;
-  text-wrap: balance;
-  transition: color 0.22s ease;
-}
-.posts__link:hover .posts__title { color: var(--accent-600); }
-.posts__dek { margin: 0; color: var(--body); line-height: 1.62; max-width: 62ch; }
-.posts__go {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent-600);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.posts__link:hover .posts__go .arrow { transform: translateX(3px); }
 .posts__tags {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin: 0 0 clamp(22px, 2.6vw, 30px);
+  margin: 0;
   padding: 0;
 }
 .posts__tags li {
@@ -5830,7 +5798,7 @@
 .calembed__card,
 .byline,
 .case-card,
-.posts__item,
+.postcard,
 .member,
 .team__card,
 .cmpm__toggle,
@@ -6376,4 +6344,149 @@
     40%  { opacity: 0;   transform: none; box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
     100% { opacity: 0;   transform: none; }
   }
+}
+
+/* ── Insights, the index ─────────────────────────────────────────────────────
+   Six entries in one narrow column, identical in weight, with the right half
+   of the page empty beside them. Nothing said which to read first and the
+   layout used half the space it had.
+
+   The newest piece leads on the dark ground the site uses for its anchors;
+   the rest sit in a grid of the same glass cards as everywhere else. Each
+   card is one target: the link covers it, so the title, the dek and the
+   whitespace between them all go to the same place. */
+.page-hero--insights {
+  background:
+    radial-gradient(70% 90% at 88% 0%, rgba(var(--accent-rgb), 0.1) 0%, transparent 62%),
+    var(--wash-light);
+  border-bottom: 1px solid var(--line);
+}
+
+/* The lead. */
+.postlead {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(90% 120% at 88% 0%, rgba(var(--accent-rgb), 0.3) 0%, transparent 58%),
+    linear-gradient(170deg, #142026 0%, var(--ink) 58%, #080f12 100%);
+  box-shadow: 0 26px 60px -26px rgba(11, 19, 22, 0.5);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease;
+}
+/* The whole card is the target, so the link is stretched across it rather
+   than being a phrase at the bottom somebody has to aim for. */
+.postlead__link { position: absolute; inset: 0; z-index: 1; }
+.postlead > *:not(.postlead__link) { position: relative; z-index: 0; }
+.postlead__kicker {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-tint-2);
+}
+.postlead .posts__meta { color: rgba(255, 255, 255, 0.6); }
+.postlead__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(27px, 3.6vw, 46px);
+  line-height: 1.08;
+  letter-spacing: var(--display-ls);
+  color: #fff;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.postlead__dek {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.62;
+  font-size: clamp(15.5px, 1.3vw, 17.5px);
+  max-width: 58ch;
+}
+.posts__tags--dark li { color: rgba(255, 255, 255, 0.66); border-color: rgba(255, 255, 255, 0.22); }
+.postlead__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.postlead__go .arrow { transition: transform 0.22s ease; }
+@media (hover: hover) {
+  .postlead:hover { transform: translateY(-3px); box-shadow: 0 34px 70px -26px rgba(11, 19, 22, 0.58); }
+  .postlead:hover .postlead__go .arrow { transform: translateX(4px); }
+}
+.postlead__link:focus-visible { outline: 2px solid var(--accent-tint-2); outline-offset: -4px; border-radius: var(--radius-lg); }
+
+/* The rest. Three across is what divides the five that follow the lead
+   without stranding one on a row of its own. */
+.postgrid {
+  list-style: none;
+  margin: clamp(18px, 2.4vw, 26px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(16px, 2vw, 22px);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 620px) { .postgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .postgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.postcard {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: clamp(20px, 2.2vw, 26px);
+  /* Room at the foot for the arrow, which is pinned to the corner so it sits
+     in the same place on every card however long the title runs. */
+  padding-bottom: clamp(46px, 4vw, 54px);
+}
+.postcard__link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+/* The arrow is excluded by name, not just by being positioned: a :not() carries
+   the specificity of its argument, so this selector was beating
+   .postcard__go's own `position: absolute` and dropping the arrow back into
+   the flow, on top of the tags. */
+.postcard > *:not(.postcard__link):not(.postcard__go) { position: relative; z-index: 0; }
+.postcard__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: var(--display-w);
+  font-size: clamp(18.5px, 1.6vw, 21px);
+  line-height: 1.2;
+  letter-spacing: var(--display-ls);
+  color: var(--ink);
+  text-wrap: balance;
+  transition: color 0.22s ease;
+}
+.postcard__dek {
+  margin: 0;
+  color: var(--body);
+  line-height: 1.58;
+  font-size: 14.5px;
+}
+.postcard .posts__tags { margin-top: 2px; }
+.postcard__go {
+  position: absolute;
+  left: clamp(20px, 2.2vw, 26px);
+  bottom: clamp(18px, 1.8vw, 22px);
+  color: var(--accent-600);
+  display: inline-flex;
+  transition: transform 0.22s ease;
+}
+@media (hover: hover) {
+  .postcard:hover .postcard__title { color: var(--accent-600); }
+  .postcard:hover .postcard__go { transform: translateX(4px); }
+}
+.postcard__link:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .postlead, .postlead__go .arrow, .postcard__go, .postcard__title { transition: none; }
+  .postlead:hover { transform: none; }
+  .postcard:hover .postcard__go { transform: none; }
 }

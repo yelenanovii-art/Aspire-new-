@@ -15,6 +15,8 @@ const fmt = (iso) =>
 // stream nobody finishes, and it is the honest shape for a four person team
 // that writes when it has something to say.
 export default function Insights() {
+  const [lead, ...rest] = INSIGHTS_BY_DATE
+
   useJsonLd('aspire-insights-list', {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -34,7 +36,7 @@ export default function Insights() {
 
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero page-hero--insights">
         <div className="container page-hero__inner">
           <p className="eyebrow">Insights</p>
           <h1 className="page-hero__title">What we have learned doing the work.</h1>
@@ -46,28 +48,48 @@ export default function Insights() {
         </div>
       </section>
 
+      {/* The newest piece leads, and the rest sit in a grid under it.
+          A single column of six identical entries said nothing about which
+          one to read and left the right half of the page empty. */}
       <section className="section section--flush-top">
         <div className="container">
-          <ul className="posts">
-            {INSIGHTS_BY_DATE.map((a, i) => (
-              <li className="posts__item reveal" key={a.slug} style={{ '--delay': `${i * 60}ms` }}>
-                <a className="posts__link" href={`/insights/${a.slug}/`}>
-                  <div className="posts__meta">
-                    <time dateTime={a.date}>{fmt(a.date)}</time>
-                    <span aria-hidden="true">·</span>
-                    <span>{a.minutes} min read</span>
-                  </div>
-                  <h2 className="posts__title">{a.title}</h2>
-                  <p className="posts__dek">{a.dek}</p>
-                  <span className="posts__go">
-                    <span aria-hidden="true">Read it</span>
-                    <span className="sr-only">Read {a.title}</span>
-                    <ArrowRight size={15} />
-                  </span>
+          <article className="postlead reveal">
+            <a className="postlead__link" href={`/insights/${lead.slug}/`}>
+              <span className="sr-only">Read {lead.title}</span>
+            </a>
+            <p className="postlead__kicker">Latest</p>
+            <div className="posts__meta">
+              <time dateTime={lead.date}>{fmt(lead.date)}</time>
+              <span aria-hidden="true">·</span>
+              <span>{lead.minutes} min read</span>
+            </div>
+            <h2 className="postlead__title">{lead.title}</h2>
+            <p className="postlead__dek">{lead.dek}</p>
+            <ul className="posts__tags posts__tags--dark">
+              {lead.tags.map((t) => <li key={t}>{t}</li>)}
+            </ul>
+            <span className="postlead__go" aria-hidden="true">
+              Read it <ArrowRight size={16} />
+            </span>
+          </article>
+
+          <ul className="postgrid">
+            {rest.map((a, i) => (
+              <li className="postcard reveal" key={a.slug} style={{ '--delay': `${i * 60}ms` }}>
+                <a className="postcard__link" href={`/insights/${a.slug}/`}>
+                  <span className="sr-only">Read {a.title}</span>
                 </a>
+                <div className="posts__meta">
+                  <time dateTime={a.date}>{fmt(a.date)}</time>
+                  <span aria-hidden="true">·</span>
+                  <span>{a.minutes} min read</span>
+                </div>
+                <h3 className="postcard__title">{a.title}</h3>
+                <p className="postcard__dek">{a.dek}</p>
                 <ul className="posts__tags">
                   {a.tags.map((t) => <li key={t}>{t}</li>)}
                 </ul>
+                <span className="postcard__go" aria-hidden="true"><ArrowRight size={15} /></span>
               </li>
             ))}
           </ul>
