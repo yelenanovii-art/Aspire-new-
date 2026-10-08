@@ -683,7 +683,6 @@ export const TEAM = [
   },
   {
     name: 'Selin Sehin',
-    // TODO: confirm with Selin. Written from the role alone.
     bio: 'Runs the paid side: budgets, targeting, and the creative that goes against them. Reports on what each channel actually returned rather than on impressions.',
     photo: '/photos/team/selin-sehin.webp',
     initials: 'SS',
@@ -900,12 +899,10 @@ export const TESTIMONIALS = [
     quote:
       'I was struggling with the direction of my marketing strategy, so I worked with Aspire to create one that was fully personalised. Elena built a clear step by step strategy that was easy to implement, and we have seen a lot of growth, especially on LinkedIn.',
     short: 'Elena built a clear step by step strategy that was easy to implement. We have seen a lot of growth, especially on LinkedIn.',
-    // TODO: the real name and job title. Credited to the company until then,
-    // which is weaker proof than a named person but is not invented.
-    name: 'RCK Consulting',
+    name: 'Sean Taylor',
     role: 'Tech consulting',
     company: 'RCK Consulting',
-    initials: 'RC',
+    initials: 'ST',
   },
   {
     // LinkedIn recommendation, 17 February 2025. Cécile managed Elena directly
@@ -925,10 +922,10 @@ export const TESTIMONIALS = [
     quote:
       'Elena is very professional, very experienced and the best in her field. With her creative ideas and expertise she will help you achieve your results. She created my website and helped with everything that comes with it. I could not be happier.',
     short: 'Very professional, very experienced, and the best in her field.',
-    // TODO: the real name and job title.
-    name: 'Coaching BV',
+    name: 'Bobby',
     role: 'Coaching',
-    initials: 'CB',
+    company: 'Coaching BV',
+    initials: 'B',
   },
 ]
 
