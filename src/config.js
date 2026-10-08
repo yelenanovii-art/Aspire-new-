@@ -59,6 +59,10 @@ export const SOCIAL = {
   // Public company page, recovered from the Wix site's admin link
   // (company 87186403). Env var still overrides if it ever changes.
   linkedin: cleanSocial(import.meta.env.VITE_SOCIAL_LINKEDIN || 'https://www.linkedin.com/company/87186403/'),
+  // LinkedIn is the only account that exists. Instagram and YouTube are kept
+  // here so that setting the env var is the whole job if either is ever
+  // opened; the footer already leaves the icon out while they are empty, so
+  // nothing dead ships in the meantime.
   instagram: cleanSocial(import.meta.env.VITE_SOCIAL_INSTAGRAM || ''),
   youtube: cleanSocial(import.meta.env.VITE_SOCIAL_YOUTUBE || ''),
 }

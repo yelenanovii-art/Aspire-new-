@@ -634,6 +634,14 @@ export const INSIGHTS = [
         ],
       },
       {
+        h: 'A worked example',
+        p: [
+          'Suppose a stand costs 18,000, the build and shipping 9,000, travel and accommodation for four people 6,000, and the four of them spend six working days each on the show and its follow-up. At a loaded day rate of 400 that is another 9,600, which brings the real cost to 42,600 rather than the 27,000 that appears on the invoice.',
+          'If the week produces fourteen qualified opportunities that still exist at day ninety, the show cost roughly 3,000 per opportunity. Whether that is good depends entirely on what the same money produces through your other channels, which is why the number is useless in isolation and decisive next to a comparison.',
+          'The figures above are illustrative. The point is the two lines teams leave out: the team days, and the ninety day survival of the opportunities.',
+        ],
+      },
+      {
         h: 'Read it at ninety days, not at the close',
         p: [
           'The Monday after a show tells you how the week felt. The quarter after tells you whether it produced anything, because that is the window in which a conversation becomes an opportunity or quietly does not.',
@@ -816,6 +824,14 @@ export const INSIGHTS = [
         p: [
           'Take your average contract value and the margin on it. Decide what proportion of that margin you are willing to spend to acquire one. Then divide by the rate at which qualified leads become customers.',
           'If a qualified lead converts at one in five and you will spend a fifth of the first year margin to win one, the ceiling on a qualified lead is that margin divided by twenty-five. That is your number. It is not anybody else’s.',
+        ],
+      },
+      {
+        h: 'A worked example',
+        p: [
+          'Take a company with a 40,000 average first year contract and a 60 per cent gross margin, so 24,000 of margin per customer. They are willing to spend a quarter of that to win one, which is 6,000 of acquisition budget per closed deal.',
+          'Qualified leads convert at one in five, so five leads are needed per customer. Six thousand divided by five puts the ceiling at 1,200 per qualified lead. If outbound is producing them at 700 the channel has room to scale; at 1,800 it is losing money on every one and the problem is either the conversion rate or the definition of qualified, not the campaign.',
+          'Those figures are illustrative. Substitute your own contract value, margin and win rate and the arithmetic is the same: margin, times the share you will spend, divided by the number of qualified leads it takes to close one.',
         ],
       },
       {
