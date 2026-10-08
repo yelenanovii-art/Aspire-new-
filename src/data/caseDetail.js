@@ -35,8 +35,9 @@ export const CASE_DETAIL = {
     ],
     outcome: [
       'Over 300 new users onboarded in the first two and a half months.',
-      'A local partner network built from nothing, structured around acquisition rather than press.',
-      'A clear read on which partner types convert in this market, and which do not.',
+      'A Spanish partner network built from nothing, chosen on audience overlap rather than name recognition.',
+      'Every partnership opened in person rather than by cold email, which is what made a foreign bank worth meeting.',
+      'A read on which partner types convert here and which do not, before any money went into paid.',
     ],
   },
 
@@ -108,9 +109,10 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'Two years in and still running, which for this buying cycle is the result.',
-      'A technical B2B audience that engages rather than scrolls past.',
-      'Four services added in sequence, each justified by the one before it.',
+      'Two years in and still running, which for a buying cycle this long is the result.',
+      'An engineering and procurement audience built on LinkedIn alone before a euro went anywhere else.',
+      'Scope added in sequence rather than sold up front: LinkedIn, then business development, then the website, then conferences and onsite sales.',
+      'Each addition justified by the one before it, so nothing was bought on a forecast.',
     ],
   },
 
@@ -137,9 +139,10 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'Three years working the show, and still going.',
-      'Engagement mechanics that widened reach well beyond attendees.',
-      'Content live during the event rather than after it.',
+      'Three years on the floor in Barcelona, and still going.',
+      'The show made legible to the audience that was not in the building, which is most of it.',
+      'Captured and published inside the same hour, rather than edited the week after when the point has gone.',
+      'The plan signed off before the doors opened, so every decision during the show was execution rather than direction.',
     ],
     quoteName: 'Cécile Laurent',
   },
@@ -167,9 +170,10 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'Four workstreams running against one plan rather than four briefs.',
-      'A pipeline the client owns and can read.',
-      'Growth in the social accounts, LinkedIn especially.',
+      'Website, lead generation, CRM and conference representation run against one plan rather than four briefs.',
+      'Every conversation recorded, so the pipeline is a record rather than an estimate.',
+      'That pipeline stays with RCK when the engagement ends, which is not the usual arrangement.',
+      'Social accounts grown, LinkedIn in particular, arguing the same case as the outreach.',
     ],
     quoteName: 'RCK Consulting',
   },
@@ -193,8 +197,9 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'A professional presence that reflects the practice.',
-      'Found through search by people already looking, without paying for every click.',
+      'A site structured around the services the practice actually offers, so a visitor knows within seconds whether they are in the right place.',
+      'Search built into that structure rather than retrofitted, so the pages exist because people look for those things.',
+      'Found by people already searching for a notary, without paying for every click.',
     ],
   },
 
@@ -221,9 +226,10 @@ export const CASE_DETAIL = {
       },
     ],
     outcome: [
-      'Two revenue lines grown in parallel.',
-      'Membership base expanded through direct outreach.',
-      'Corporate venue rentals driven alongside it.',
+      'Membership and corporate venue hire run as two separate sales, with their own targeting, timelines and channels.',
+      'Members found and signed through direct outreach rather than waiting on walk-ins.',
+      'Venue enquiries closed as well as generated, rather than handed over as a list for somebody else to chase.',
+      'Run alongside the in-house team rather than around it.',
     ],
   },
 }
