@@ -3618,9 +3618,9 @@
      moment before it falls away, so there is no edge to find. */
   background: linear-gradient(
     180deg,
-    #080f12 0%,
-    #080f12 4%,
-    rgba(8, 15, 18, 0.74) 16%,
+    #111b1e 0%,
+    #111b1e 5%,
+    rgba(17, 27, 30, 0.76) 17%,
     rgba(8, 15, 18, 0.42) 36%,
     rgba(11, 19, 22, 0.14) 70%,
     rgba(11, 19, 22, 0.5) 100%
@@ -3650,9 +3650,9 @@
   .herophoto__veil {
     background: linear-gradient(
       180deg,
-      #080f12 0%,
-      #080f12 6%,
-      rgba(8, 15, 18, 0.8) 22%,
+      #111b1e 0%,
+      #111b1e 7%,
+      rgba(17, 27, 30, 0.82) 24%,
       rgba(8, 15, 18, 0.5) 42%,
       rgba(11, 19, 22, 0.18) 72%,
       rgba(11, 19, 22, 0.52) 100%
@@ -6307,7 +6307,12 @@
    there is nothing there to colour, so the section carries the hero's closing
    tone as its own background and is pulled up a pixel to close the sliver. */
 .herophoto {
-  background: #080f12;
+  /* The hero's gradient ends on #080f12, but that is not what it paints: a
+     grain overlay at 0.22 covers the band and lifts its bottom edge to
+     rgb(17,27,30), measured uniform across the width. Matching the token
+     rather than the render is what left a step at the join. The -1px closes
+     the sub-pixel sliver where the page's own white used to show through. */
+  background: #111b1e;
   margin-top: -1px;
 }
 
