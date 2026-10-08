@@ -6335,3 +6335,45 @@
   .marquee__group:nth-child(2) { display: flex; }
   .marquee__group { padding-right: clamp(34px, 5vw, 64px); }
 }
+
+/* ── The quiz icon, asking once ──────────────────────────────────────────────
+   The quiz is the low-commitment way in for everybody not ready to book a
+   call, and its icon sits quietly in the bar on every page and every size,
+   which means it is easy to never notice. A ring opens out of it and fades,
+   three times with a gap between, and then it stops: an attention cue that
+   keeps going is just a thing to ignore.
+
+   It starts four seconds in, so it is not competing with the page arriving,
+   and never on /fit/ itself, where it would be pointing at the page you are
+   already reading. The nav does not remount between routes, so this runs once
+   per visit rather than once per page. */
+.nav__quiz::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  animation: quizPing 3.4s ease-out 4s 3;
+}
+.nav__quiz.is-active::after { animation: none; }
+@keyframes quizPing {
+  0%   { opacity: 0.95; transform: scale(0.9); box-shadow: 0 0 10px 2px rgba(var(--accent-rgb), 0.45); }
+  40%  { opacity: 0;    transform: scale(1.55); box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
+  100% { opacity: 0;    transform: scale(1.55); box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
+}
+/* Teal vanishes against the dark bar, so there it is the lighter tint. */
+.nav--over-dark .nav__quiz::after { border-color: var(--accent-tint-2); }
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the cue, drop the movement: it brightens and fades on the spot
+     rather than opening outwards. */
+  .nav__quiz::after {
+    animation: quizGlow 3.4s ease-out 4s 3;
+  }
+  @keyframes quizGlow {
+    0%   { opacity: 0.9; transform: none; box-shadow: 0 0 10px 2px rgba(var(--accent-rgb), 0.4); }
+    40%  { opacity: 0;   transform: none; box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
+    100% { opacity: 0;   transform: none; }
+  }
+}

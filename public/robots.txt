@@ -2,6 +2,10 @@
 User-agent: *
 Allow: /
 
+# Email signature images. Reachable by direct URL, which is the point, but
+# there is nothing to index here and no page links to them.
+Disallow: /signature/
+
 # AI answer engines are welcome — every page ships real prerendered HTML.
 User-agent: GPTBot
 Allow: /

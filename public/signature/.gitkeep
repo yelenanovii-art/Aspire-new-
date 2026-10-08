@@ -1,0 +1,11 @@
+Email signature images, served by direct URL only.
+
+They are deliberately not referenced from any page, component, sitemap or
+navigation. robots.txt disallows the folder.
+
+One thing is still outstanding: Cross-Origin-Resource-Policy is same-origin
+site wide (see netlify.toml), which makes a browser refuse these when the page
+asking for them is on another origin — which an email signature always is.
+Gmail is unaffected because it fetches through its own proxy server side.
+Apple Mail and Outlook on the web ask the browser directly and will show a
+broken image until /signature/* is allowed cross-origin.

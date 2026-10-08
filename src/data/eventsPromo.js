@@ -3,11 +3,11 @@
 export const EVENTS_PROMO = {
   // Set `enabled: false` to switch the pop-up off entirely.
   enabled: true,
-  // No timer. A pop-up on a clock interrupts somebody mid-sentence; half the
-  // page scrolled, or a pointer leaving for the tab bar, are both signals that
-  // they are done with what is on screen. Set delayMs to a number of
-  // milliseconds to bring the timer back alongside these two.
-  delayMs: 0,
+  // Six seconds, then whichever of the other two comes first. The timer went
+  // away once because a pop-up on a clock interrupts somebody mid-sentence;
+  // six is long enough to read the headline and decide to stay. Set to 0 to
+  // drop it again and leave only the scroll and exit triggers.
+  delayMs: 6000,
   scrollPct: 0.5,
   // Only on a real pointer: a touch screen has no cursor to leave with, and
   // the event fires spuriously there.
