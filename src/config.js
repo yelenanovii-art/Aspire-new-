@@ -73,7 +73,7 @@ export const COMPANY = {
   name: 'Aspire Agency',
   legalName: 'Aspire Agency Marketing',
   founder: 'Elena Novikova',
-  email: 'hello@aspireagencymarketing.com',
+  email: 'elena.novikova@aspireagencymarketing.com',
   phone: '+34 651 349 497',
   phoneHref: '+34651349497',
   street: 'Rambla de Catalunya 8',

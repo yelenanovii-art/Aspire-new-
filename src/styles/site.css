@@ -5923,3 +5923,44 @@
      its three across. */
   .techproof__shot { float: right; margin: 0 0 20px 32px; max-width: 340px; }
 }
+
+/* ── The guide, riffled ───────────────────────────────────────────────────────
+   Hovering the locked cover turns four interior pages. A gated guide otherwise
+   asks for an address on the strength of its least informative page.
+
+   Each page is a layer in a stack; the one in front is the face, and pages
+   already passed rotate away from a left-hand spine, which is what makes it
+   read as turning rather than cross-fading. transform-style and a perspective
+   on the parent are what give it the fold. */
+.pbflip {
+  position: absolute;
+  inset: 0;
+  display: block;
+  perspective: 1400px;
+}
+.pbflip__page {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  opacity: 0;
+  transition: transform 0.72s cubic-bezier(0.4, 0.05, 0.2, 1), opacity 0.3s ease;
+}
+/* The page being read. */
+.pbflip__page.is-face { opacity: 1; transform: rotateY(0deg); }
+/* Pages already turned, swung back towards the spine and out of sight. */
+.pbflip__page.is-turned { opacity: 0; transform: rotateY(-108deg); }
+
+@media (hover: hover) {
+  /* A hint that it does something, before anybody has hovered long enough to
+     see a page turn. */
+  .pbcover--locked:hover .pbflip__page.is-face { transform: rotateY(-2.5deg) translateZ(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pbflip__page { transition: none; }
+  .pbcover--locked:hover .pbflip__page.is-face { transform: none; }
+}

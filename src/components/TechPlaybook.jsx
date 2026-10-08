@@ -4,6 +4,7 @@ import { track } from '../lib/analytics'
 import { submitForm } from '../lib/submitForm'
 import { LEAD_FORM_TECH } from '../lib/leadRouting'
 import { TECH_PLAYBOOK as P } from '../data/techPlaybook'
+import PlaybookFlip from './PlaybookFlip'
 
 // The trade show guide, behind an email.
 //
@@ -18,6 +19,7 @@ export default function TechPlaybook({ placement }) {
   const [open, setOpen] = useState(false)
   const [state, setState] = useState('idle') // idle | sending | done | error
   const [consent, setConsent] = useState(false)
+  const [riffling, setRiffling] = useState(false)
 
   const submit = async (e) => {
     e.preventDefault()
@@ -61,18 +63,16 @@ export default function TechPlaybook({ placement }) {
             />
           </figure>
         ) : (
-          <button type="button" className="pbcover pbcover--locked pbband__cover" onClick={() => setOpen(true)}>
-            <img
-              className="pbcover__img"
-              src={P.cover.src}
-              srcSet={`${P.cover.src.replace('.webp', '-640.webp')} 640w, ${P.cover.src} ${P.cover.w}w`}
-              sizes="(max-width: 859px) 92vw, 520px"
-              alt=""
-              width={P.cover.w}
-              height={P.cover.h}
-              loading="lazy"
-              decoding="async"
-            />
+          <button
+            type="button"
+            className="pbcover pbcover--locked pbband__cover"
+            onClick={() => setOpen(true)}
+            onPointerEnter={() => setRiffling(true)}
+            onPointerLeave={() => setRiffling(false)}
+            onFocus={() => setRiffling(true)}
+            onBlur={() => setRiffling(false)}
+          >
+            <PlaybookFlip pages={P.pages} active={riffling} />
             <span className="pbcover__veil" aria-hidden="true" />
             <span className="pbcover__lock">
               <span className="pbcover__lock-icon" aria-hidden="true">

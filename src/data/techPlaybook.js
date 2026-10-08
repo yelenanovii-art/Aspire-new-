@@ -17,8 +17,21 @@ export const TECH_PLAYBOOK = {
   assetUrl: '/guides/aspire-trade-show-playbook.pdf',
   assetIsExternal: false,
 
+  // The cover, then four interior pages. Hovering the locked cover riffles
+  // through them, which is the only honest way to answer "what is actually in
+  // it" without ungating the thing. Chosen to show the working pages rather
+  // than the prose: the outreach sequence, the sign-off list, the
+  // qualification grades and the printable countdown.
+  pages: [
+    { src: '/media/pages/tech-playbook-0.webp',
+      alt: 'The Trade Show Playbook: how three days turn into a quarter of pipeline, a free guide by Aspire' },
+    { src: '/media/pages/tech-playbook-1.webp', alt: 'A page of the guide: the four touch outreach sequence' },
+    { src: '/media/pages/tech-playbook-2.webp', alt: 'A page of the guide: the nine things to sign off the week before' },
+    { src: '/media/pages/tech-playbook-3.webp', alt: 'A page of the guide: the qualification questions and grades' },
+    { src: '/media/pages/tech-playbook-4.webp', alt: 'A page of the guide: the printable six week countdown' },
+  ],
   cover: {
-    src: '/media/pages/tech-playbook-cover.webp',
+    src: '/media/pages/tech-playbook-0.webp',
     w: 1200,
     h: 675,
     alt: 'The Trade Show Playbook: how three days turn into a quarter of pipeline, a free guide by Aspire',

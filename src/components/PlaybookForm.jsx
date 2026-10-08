@@ -48,7 +48,7 @@ export default function PlaybookForm({ placement, onSubmitted }) {
         {state === 'error' && (
           <p className="pbf__warn" role="alert">
             Your guide is below either way. We could not file your details from here, so if you
-            would like us to follow up, email hello@aspireagencymarketing.com.
+            would like us to follow up, email elena.novikova@aspireagencymarketing.com.
           </p>
         )}
         <a

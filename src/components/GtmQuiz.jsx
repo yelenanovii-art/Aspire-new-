@@ -175,7 +175,7 @@ export default function GtmQuiz() {
           {!sent && (
             <p className="quiz__note quiz__note--warn" role="alert">
               Your steps are below as promised. We could not file your details from here, so if
-              you want us to go through this with you, email hello@aspireagencymarketing.com.
+              you want us to go through this with you, email elena.novikova@aspireagencymarketing.com.
             </p>
           )}
 
