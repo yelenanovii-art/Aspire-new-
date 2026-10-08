@@ -9,6 +9,7 @@ import CTABand from '../components/CTABand'
 import { bookHref, bookAttrs } from '../config'
 import { SERVICES, caseBySlug, FILM } from '../data/site'
 import FilmCard from '../components/FilmCard'
+import EstatePromo from '../components/EstatePromo'
 import { useJsonLd } from '../hooks/useJsonLd'
 import { faqSchema } from '../lib/faqSchema'
 import { SITE_URL } from '../config'
@@ -218,7 +219,7 @@ export default function ServiceDetail({ service }) {
             <SectionHead
               eyebrow="In motion"
               title="Shot, cut and delivered for every channel."
-              lede="One shoot feeds the long cut, the listing page and the vertical reel. Hover any frame to watch it move."
+              lede="One shoot feeds the long cut, the listing page and the vertical reel. Each one plays as it reaches you."
               light
             />
             {/* Two rows on purpose. Mixing orientations in one grid squeezed
@@ -237,6 +238,7 @@ export default function ServiceDetail({ service }) {
               ))}
             </div>
           </div>
+          <EstatePromo />
         </section>
       )}
 

@@ -29,10 +29,10 @@ export const TECH = {
 
   // Our own frames, recropped for this page. Swap a src and nothing else moves.
   photos: {
-    header: { src: '/media/tech/tech-stand.webp', w: 600, h: 450,
-      alt: 'Three people in conversation at a trade stand with product screens behind them' },
-    sectors: { src: '/media/tech/tech-exhibit.webp', w: 600, h: 450,
-      alt: 'An exhibition stand for a connectivity company, its product list on lit panels' },
+    header: { src: '/media/tech/tech-pitch.webp', w: 600, h: 450,
+      alt: 'A pitching stage at a technology show, a company presenting to a standing audience' },
+    sectors: { src: '/media/tech/tech-audience.webp', w: 600, h: 450,
+      alt: 'An audience watching a wall of lit product screens in a darkened conference hall' },
     cycle: { src: '/media/tech/tech-floor.webp', w: 600, h: 450,
       alt: 'A lit sculptural installation on an exhibition show floor at night' },
     proof: { src: '/media/tech/tech-demo.webp', w: 600, h: 450,

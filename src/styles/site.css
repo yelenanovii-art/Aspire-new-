@@ -1261,7 +1261,14 @@
 .spec p { font-size: 15.5px; color: var(--body); line-height: 1.58; }
 
 .related__h { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; }
+/* Five services, and auto-fit put four on the first row and left the fifth
+   stranded under them. The counts are chosen so the row always divides: one,
+   then two, then three, then all five. Four is skipped on purpose, because it
+   is the one that orphans a card. */
+.related { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 560px) { .related { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 880px) { .related { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .related { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; } }
 .related__card {
   display: grid;
   gap: 7px;
@@ -5682,9 +5689,12 @@
 @media (pointer: coarse) {
   .article__related a,
   .article__more a,
-  .casepage__svcs a,
-  .related__card { min-height: 44px; display: flex; align-items: center; }
+  .casepage__svcs a { min-height: 44px; display: flex; align-items: center; }
   .article__sec p a { padding-block: 9px; }
+  /* .related__card used to be in that list, which was wrong twice over: it is
+     a card rather than an inline link, so it already clears 44px on its own
+     padding, and `display: flex` overrode its grid and laid the number, the
+     title and the blurb out side by side down the whole of a phone. */
 }
 
 /* ── /thank-you ───────────────────────────────────────────────────────────────
@@ -5948,10 +5958,14 @@
   transform-origin: left center;
   backface-visibility: hidden;
   opacity: 0;
-  transition: transform 0.72s cubic-bezier(0.4, 0.05, 0.2, 1), opacity 0.3s ease;
+  /* The outgoing page has to stay visible while it swings, or the turn reads
+     as a flicker rather than as paper. The fade is delayed to the back half of
+     the arc; the arriving page gets no delay at all. */
+  transition: transform 0.72s cubic-bezier(0.4, 0.05, 0.2, 1), opacity 0.34s ease 0.26s;
+  box-shadow: 0 0 40px -10px rgba(11, 19, 22, 0.4);
 }
 /* The page being read. */
-.pbflip__page.is-face { opacity: 1; transform: rotateY(0deg); }
+.pbflip__page.is-face { opacity: 1; transform: rotateY(0deg); transition-delay: 0s, 0s; }
 /* Pages already turned, swung back towards the spine and out of sight. */
 .pbflip__page.is-turned { opacity: 0; transform: rotateY(-108deg); }
 
@@ -5964,3 +5978,110 @@
   .pbflip__page { transition: none; }
   .pbcover--locked:hover .pbflip__page.is-face { transform: none; }
 }
+
+/* ── The mobile comparison sits on the dark band ──────────────────────────────
+   It was written for a light surface and dropped onto section--dark, so the
+   answers rendered in near-black ink on near-black. The labels were readable
+   and the content was not, which is the worst way round. */
+.section--dark .cmpm__k { color: rgba(255, 255, 255, 0.68); }
+.section--dark .cmpm__v { color: #fff; }
+.section--dark .cmpm__v svg { color: var(--accent-tint-2); }
+.section--dark .cmpm__row { border-bottom-color: rgba(255, 255, 255, 0.14); }
+.section--dark .cmpm__list { border-top-color: rgba(255, 255, 255, 0.14); }
+.section--dark .cmpm__alt-k { color: var(--accent-tint-2); }
+.section--dark .cmpm__alt-v { color: rgba(255, 255, 255, 0.72); }
+.section--dark .cmpm__toggle {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  box-shadow: none;
+}
+
+/* ── Carousel and testimonial indicators ─────────────────────────────────────
+   Seven filled circles and two arrow buttons took a whole row of a phone to say
+   which of six cards was showing. A short rule per slide does the same job in a
+   fraction of the height, and reads as a measure rather than a control panel.
+   The hit area stays 44px through padding, so it is no harder to tap. */
+.svcx__dots, .quote__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.svcx__dots button, .quote__dots button {
+  position: relative;
+  width: 30px;
+  min-width: 0;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.svcx__dots button::after, .quote__dots button::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 50%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  transform: translateY(-50%);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.svcx__dots button[aria-selected="true"]::after,
+.svcx__dots button.is-on::after,
+.quote__dots button[aria-selected="true"]::after,
+.quote__dots button.is-active::after {
+  background: var(--accent);
+  transform: translateY(-50%) scaleY(2);
+}
+.section--dark .svcx__dots button::after,
+.quote--light .quote__dots button::after { background: rgba(255, 255, 255, 0.26); }
+.section--dark .svcx__dots button[aria-selected="true"]::after,
+.quote--light .quote__dots button[aria-selected="true"]::after { background: var(--accent-tint-2); }
+@media (prefers-reduced-motion: reduce) {
+  .svcx__dots button::after, .quote__dots button::after { transition: none; }
+}
+
+/* ── The pop-up has to fit the phone it opens on ─────────────────────────────
+   It was taller than a viewport, so the first thing it asked somebody to do was
+   scroll inside a thing that had just interrupted them. The photograph gives up
+   the height: it is the part that can shrink without losing meaning. */
+@media (max-width: 760px) {
+  .promo__box { max-height: calc(100dvh - 32px); overflow: hidden; display: flex; flex-direction: column; }
+  .promo__media { flex: none; max-height: 26dvh; }
+  .promo__title { font-size: 25px; }
+  .promo__media img { height: 100%; min-height: 0; object-fit: cover; }
+  .promo__body { overflow-y: auto; padding-block: clamp(18px, 3vw, 24px); }
+  /* The figure is proof, not the point, and on a phone it costs a third of the
+     panel. The label carries it. */
+  .promo__stat { margin-block: 10px; }
+  .promo__stat-v { font-size: 32px; }
+  .promo__lead { font-size: 15px; line-height: 1.5; }
+}
+/* A short phone cannot hold the photograph and the words at once. The
+   photograph is the decorative half — it is already aria-hidden — so it is the
+   half that goes, rather than making somebody scroll inside a pop-up. */
+@media (max-width: 760px) and (max-height: 760px) {
+  .promo__media { display: none; }
+}
+
+
+/* ── The trade show playbook cover ───────────────────────────────────────────
+   The artwork was a portrait A4 page sitting on a 16:9 canvas, so the band
+   showed a small page between two dark bars. The pages are now rendered edge
+   to edge, and the frame follows the paper: nothing is cropped and nothing is
+   padded. Width is set so the cover stands about as tall as the headline and
+   the form beside it, rather than towering over them. */
+.pbband .pbcover { aspect-ratio: 595 / 842; background: var(--card-fill); }
+.pbband__cover { max-width: 440px; margin-inline: auto; }
+@media (max-width: 859px) {
+  /* Full width would make it 1.4 screens tall. */
+  .pbband__cover { max-width: 320px; }
+}
+
+/* The property pop-up's trigger: a zero-height marker under the film grid, so
+   the pop-up is keyed to a place on the page rather than to a clock. */
+.promo__mark { display: block; height: 0; }

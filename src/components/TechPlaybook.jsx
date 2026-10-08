@@ -54,7 +54,7 @@ export default function TechPlaybook({ placement }) {
               className="pbcover__img"
               src={P.cover.src}
               srcSet={`${P.cover.src.replace('.webp', '-640.webp')} 640w, ${P.cover.src} ${P.cover.w}w`}
-              sizes="(max-width: 859px) 92vw, 520px"
+              sizes="(max-width: 859px) 320px, 440px"
               alt={P.cover.alt}
               width={P.cover.w}
               height={P.cover.h}

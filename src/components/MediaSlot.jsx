@@ -55,19 +55,25 @@ export default function MediaSlot({ src, poster, label, hint, ratio = '3 / 2', s
 }
 
 // Autoplaying this costs a viewer the whole file — the clip on /real-estate is
-// 5.8MB, and `preload="metadata"` does not save them because autoplay overrides
-// it. So autoplay only where it is cheap and wanted: a wide screen, a fine
-// pointer, and no reduced-motion preference. Everywhere else the poster stands
-// until the viewer asks for it, which also fixes motion autoplaying for people
-// who asked for less of it.
+// 5.8MB — so it used to be held back to wide screens with a fine pointer. That
+// guard was really about the download, and it read screen width to guess at it,
+// which meant every phone got a poster and a button even on good wifi.
+//
+// Now the gate asks about the connection instead. A phone that can afford the
+// file plays the film like a desktop does; a metered or slow one still gets the
+// poster, and so does anyone who asked for less motion.
 function SlotVideo({ src, poster, label, style, keepMuted }) {
   const ref = useRef(null)
   const [play, setPlay] = useState(false)
 
   useEffect(() => {
-    const wide = window.matchMedia('(min-width: 861px) and (pointer: fine)').matches
     const calm = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (wide && calm) setPlay(true)
+    // Network Information API, so this is Chrome and Android and nothing else.
+    // Where it is missing we autoplay, which is what every desktop browser was
+    // already doing — the known-bad cases are the ones it does report.
+    const net = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+    const thrifty = net ? net.saveData === true || /^(slow-)?2g$|^3g$/.test(net.effectiveType || '') : false
+    if (calm && !thrifty) setPlay(true)
   }, [])
 
   useEffect(() => {

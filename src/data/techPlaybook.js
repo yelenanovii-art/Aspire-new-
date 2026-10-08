@@ -32,8 +32,8 @@ export const TECH_PLAYBOOK = {
   ],
   cover: {
     src: '/media/pages/tech-playbook-0.webp',
-    w: 1200,
-    h: 675,
+    w: 900,
+    h: 1273,
     alt: 'The Trade Show Playbook: how three days turn into a quarter of pipeline, a free guide by Aspire',
   },
 
