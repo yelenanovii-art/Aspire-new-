@@ -10,7 +10,9 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DEST="$HOME/Aspire-Backup-$(date +%F)"
-SITE_ID="f7c7a72f-111c-4a23-8a3c-1e4ee9814785"
+# Read from the local Netlify link rather than hardcoded, so the repository
+# carries no account identifier. `netlify link` sets this up once per machine.
+SITE_ID="$(python3 -c "import json;print(json.load(open('$REPO/.netlify/state.json'))['siteId'])" 2>/dev/null || true)"
 
 echo "Backing up to $DEST"
 rm -rf "$DEST"
